@@ -38,9 +38,7 @@ public class MassImport_BusinessAccounts extends BaseClass {
 			if (!profilePage.isPrfileExist(profile.getEmail())) {
 				profilePage.createProfile(profile);
 			}
-
 		}
-
 	}
 
 }
