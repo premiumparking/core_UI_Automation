@@ -1,46 +1,34 @@
 package pageObjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import components.BaseClass;
 
+/*
+ * Class which contains the web elements and performs Home page activities (methods)
+ * 
+ * Extends : BaseClass
+ * 
+ * Author : Venu Thota(venu.t@comakeit.com)
+ */
 public class HomePage extends BaseClass {
 
-	public WebElement mainMenu_Home() {
-		return driver.findElement(By.id("mainmenu-home"));
+	// ****************** WEB ELEMENTS ****************************//
+	By label_OperatorDashboard = By.xpath("//span[contains(text(),'Operator Dashboard')]");
+	By dd_Manage = By.xpath("//a[contains(text(),'Manage')]");
+	By link_Profiles = By.xpath("//a[@href='/profiles']");
+
+	// ****************** ACTIONS ****************************//
+	/*
+	 * Method to navigate to profiles page from home page
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public ProfilesPage navigateToProfilesPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_Profiles, "Profiles sub-menu");
+		return new ProfilesPage();
 	}
-
-	public WebElement mainMenu_Management() {
-		return driver.findElement(By.id("mainmenu-management"));
-	}
-
-	public WebElement mainMenu_Workspaces() {
-		return driver.findElement(By.id("mainmenu-workspaces"));
-	}
-
-	public WebElement mainMenu_Marketplace() {
-		return driver.findElement(By.id("mainmenu-marketplace"));
-	}
-
-	public WebElement subMenu_Location() {
-		return driver.findElement(By.id("submenu-location"));
-	}
-
-
-
-
-	public LocationManagementPage navigateToLocationManagement() {
-		waitForPageLoad(2);
-		clickOnButton(mainMenu_Management(), "Management menu");
-		waitForPageLoad(1);
-		clickOnButton(subMenu_Location(), "Location sub-menu");
-		waitForPageLoad(2);
-
-		return new LocationManagementPage();
-
-	}
-
-
 
 }

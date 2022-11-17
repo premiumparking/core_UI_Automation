@@ -1,33 +1,28 @@
 package components;
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.ITestResult;
-import org.testng.annotations.*;
-
-import com.relevantcodes.extentreports.LogStatus;
-
-import pageObjects.HomePage;
-import pageObjects.LoginPage;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Date;
 import java.util.Properties;
-import java.util.Random;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
+import com.relevantcodes.extentreports.LogStatus;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+import pageObjects.HomePage;
+import pageObjects.LoginPage;
+import pageObjects.ProfilesPage;
 
 public class BaseClass extends Operations {
 
@@ -37,10 +32,13 @@ public class BaseClass extends Operations {
 	public static WebDriver driver = null;
 	protected static HomePage homePage;
 	protected static LoginPage loginPage;
+	protected static ProfilesPage profilePage;
+	protected static String username, password;
 
 	/*
-	 * Usage : This method is to load data from application.properties files Author
-	 * : Venu Thota
+	 * This method is to load data from application.properties files
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
 	 */
 	public void loadProperties() throws IOException {
 
@@ -50,20 +48,24 @@ public class BaseClass extends Operations {
 
 		config.load(fis);
 		appplicationUrl = config.getProperty("url");
+		username = config.getProperty("username");
+		password = config.getProperty("password");
 
 	}
 
 	/*
-	 * Usage : This method is to launch the browser
+	 * This method is to launch the browser
 	 * 
-	 * @BeforeMethod : Method will be invoked before the execution of each test
-	 * method where the test method is nothing but a test case Author : Venu Thota
+	 * @BeforeMethod : annotation to invoke before the execution of each test method
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
 	 */
-	@BeforeMethod
+	@BeforeMethod(alwaysRun = true)
 	public void launchBrowser(Method testMethod) throws InterruptedException, IOException {
 
 		loadProperties();
-		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+		WebDriverManager.chromedriver().setup();
+		// System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		test = report.startTest(getTestCaseName(testMethod));
@@ -72,6 +74,11 @@ public class BaseClass extends Operations {
 
 	}
 
+	/*
+	 * Usage: to get the test case name to include in the reports
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
+	 */
 	public String getTestCaseName(Method testMethod) {
 
 		String name = testMethod.getDeclaringClass().getTypeName();
@@ -82,64 +89,44 @@ public class BaseClass extends Operations {
 	}
 
 	/*
-	 * Usage : To get the current timestamp Author : Venu Thota
+	 * Usage : To get the current timestamp
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
 	 */
 	public String getTimestamp() {
 		return new SimpleDateFormat("HHmmss").format(new Date());
 	}
 
-	public String get4DigitRandomNumber() {
-		Random random = new Random();
-		return String.format("%04d", random.nextInt(10000));
-	}
-
 	/*
-	 * Usage : To launch application Author : Venu Thota Returns : LoginPage
+	 * Usage : To launch application & Returns : LoginPage
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
 	 */
-	public LoginPage launchApplication1() {
+	public LoginPage launchApplication() {
 		driver.get(appplicationUrl);
-		passStep("Application " + appplicationUrl + " has been launched");
+		passStep("Launched the application <b>" + appplicationUrl + "</b>");
 		loginPage = new LoginPage();
 		return loginPage;
 	}
 
-	public HomePage launchApplication() {
-		driver.get(appplicationUrl);
-		waitForPageLoad(1);
-		passStep("Application <b>" + appplicationUrl + "</b> has been launched");
-		return new HomePage();
-	}
-
-	/*
-	 * Usage : Execution will hold for the given specific time period Parameters :
-	 * int Returns : Homepage Author : Venu Thota
-	 */
-	public void waitForPageLoad(int seconds) {
-		try {
-			Thread.sleep(seconds * 1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public void waitForElementTobeDisplayed(By locator) {		
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-	}
-			
-
 	/*
 	 * Usage : This method is to quit the browser
 	 * 
-	 * @BeforeMethod : Method will be invoked after the execution of each test
-	 * method where the test method is nothing but a test case Author : Venu Thota
+	 * @AfterMethod : annotation to invoke after the execution of each test method
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
 	 */
-	@AfterMethod
+	@AfterMethod(alwaysRun = true)
 	public void quitBrowser() {
+		driver.close();
 		driver.quit();
 	}
 
+	/*
+	 * Usage : This method is to get the screenshots of the web page
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
+	 */
 	public static String getScreenshot(WebDriver driver, String screenshotName) throws IOException {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
@@ -156,7 +143,14 @@ public class BaseClass extends Operations {
 		return destination;
 	}
 
-	@AfterMethod
+	/*
+	 * Usage : This method is to quit the browser
+	 * 
+	 * @AfterMethod : annotation to invoke after the execution of each test method
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
+	 */
+	@AfterMethod(alwaysRun = true)
 	public void getResult(ITestResult result) throws IOException {
 		if (result.getStatus() == ITestResult.FAILURE) {
 			stepInfo("Failed Due to below exception : ");
@@ -166,12 +160,6 @@ public class BaseClass extends Operations {
 			test.log(LogStatus.FAIL, test.addScreenCapture(screenshotPath));
 
 		}
-	}
-
-	public static void highlightElement(WebElement element) {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].setAttribute('style', 'background: #90ee90; border: 2px solid yellow;');",
-				element);
 	}
 
 }
