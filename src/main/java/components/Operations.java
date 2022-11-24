@@ -50,6 +50,26 @@ public class Operations extends Extent_Reports {
 		}
 
 	}
+	
+	/*
+	 * This method is to click on BUTTON
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public void clickOnButton_using_Actions(By ele, String field) {
+		waitForElementTobeDisplayed(ele);
+		WebElement element = BaseClass.driver.findElement(ele);
+		waitForPageLoad(1);
+		if (isElementDisplayed(ele) && element.isEnabled()) {
+			highlightElement(element);
+			Actions act =  new Actions(BaseClass.driver);
+			act.moveToElement(BaseClass.driver.findElement(ele)).click().perform();
+			//element.click();
+			passStep("Clicked on " + field);
+			waitForPageLoad(2);
+		}
+
+	}
 
 	/*
 	 * This method is to verify whether the element is DISPLAYED or NOT and will
@@ -199,7 +219,7 @@ public class Operations extends Extent_Reports {
 	public void selectFromSearch(By ele, String text, String field) {
 		waitForElementTobeDisplayed(ele);
 		WebElement element = BaseClass.driver.findElement(ele);
-		if (isElementDisplayed(ele, field) && element.isEnabled()) {
+		if (isElementDisplayed(ele) && element.isEnabled()) {
 			highlightElement(element);
 			element.clear();
 			element.sendKeys(text);
@@ -230,4 +250,24 @@ public class Operations extends Extent_Reports {
 		Actions actions = new Actions(BaseClass.driver);
 		actions.moveToElement(element);
 	}
+
+	/*
+	 * This method is to accept the windows alert
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public void acceptAlert() {
+		BaseClass.driver.switchTo().alert().accept();
+	}
+
+	/*
+	 * This method is to click an element but not include in the report
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public void performClick(By ele) {
+		WebElement element = BaseClass.driver.findElement(ele);
+		element.click();
+	}
 }
+

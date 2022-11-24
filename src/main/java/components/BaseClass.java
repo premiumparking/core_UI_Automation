@@ -27,6 +27,8 @@ import pageObjects.ProfilesPage;
 public class BaseClass extends Operations {
 
 	String appplicationUrl = null;
+	protected static String profilesURL = null;
+	protected static String businessAccountURL = null;
 	Properties config;
 	FileInputStream fis;
 	public static WebDriver driver = null;
@@ -48,6 +50,8 @@ public class BaseClass extends Operations {
 
 		config.load(fis);
 		appplicationUrl = config.getProperty("url");
+		profilesURL = config.getProperty("url_new_profile");
+		businessAccountURL = config.getProperty("url_businessaccounts");
 		username = config.getProperty("username");
 		password = config.getProperty("password");
 
@@ -65,9 +69,10 @@ public class BaseClass extends Operations {
 
 		loadProperties();
 		WebDriverManager.chromedriver().setup();
-		// System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
+		//((HasAuthentication) driver).register(UsernameAndPassword.of("pp-admin", "premium"));
 		test = report.startTest(getTestCaseName(testMethod));
 		report.addSystemInfo("Browser", "Chrome");
 		waitForPageLoad(1);
@@ -103,7 +108,14 @@ public class BaseClass extends Operations {
 	 * Author : Venu Thota (venu.t@comakeit.com)
 	 */
 	public LoginPage launchApplication() {
+		
 		driver.get(appplicationUrl);
+		//waitForPageLoad(10);
+		//driver.get("https://pp-admin:admin@manage.release.premiumparking.com/");
+		//driver.switchTo().alert().sendKeys("pp-admin");
+		//acceptAlert();
+		//waitForPageLoad(10);
+
 		passStep("Launched the application <b>" + appplicationUrl + "</b>");
 		loginPage = new LoginPage();
 		return loginPage;

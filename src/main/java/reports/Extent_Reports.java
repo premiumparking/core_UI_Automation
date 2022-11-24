@@ -82,6 +82,6 @@ public class Extent_Reports {
 	 * Author : Venu Thota (venu.t@comakeit.com)
 	 */
 	public void stepInfo(String stepinfo) {
-		test.log(LogStatus.INFO, stepinfo);
+		test.log(LogStatus.INFO, "<b>"+stepinfo+"</b>");
 	}
 }

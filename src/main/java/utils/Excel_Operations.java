@@ -2,14 +2,13 @@ package utils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.poiji.bind.Poiji;
 
-import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import dataModel.Profile;
 
 /*
@@ -21,39 +20,46 @@ import dataModel.Profile;
 public class Excel_Operations {
 
 	/*
-	 * This method is to load the excel sheet
-	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
-	 */
-	public void loadExcelData1() {
-		try {
-			File file = new File(
-					System.getProperty("user.dir") + "\\src\\test\\resources\\AnnapolisResidentPermits_2022_2023.xlsx");
-
-			XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
-			XSSFSheet sheet = workbook.getSheet("Original");
-			XSSFRow row = sheet.getRow(1);
-			System.out.println("***********************");
-			System.out.println(row.getCell(0));
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/*
 	 * This method is to load the excel sheet and it binds to Profiles object and
 	 * returns list of profiles
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 
-	public List<Profile> load_ProfilesData_From_ExcelSheet(String filename) {
-
-		File file = new File(System.getProperty("user.dir") + "\\src\\test\\resources\\" + filename);
-		List<Profile> profiles = Poiji.fromExcel(file, Profile.class);
-		return profiles;
-
+	public List<Profile> load_ProfilesData_From_ExcelSheet(String fileName, String sheetName) {
+		try {
+			File file = new File(System.getProperty("user.dir") + "\\src\\test\\resources\\" + fileName);
+			XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
+			XSSFSheet sheet = workbook.getSheet(sheetName);
+			List<Profile> profiles = Poiji.fromExcel(sheet, Profile.class);
+			return profiles;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
+	/*
+	 * This method is to get the number of sheets from excel sheet
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+
+	public List<String> get_Total_Sheets(String fileName) {
+		try {
+			List<String> sheets = new ArrayList<String>();
+			File file = new File(System.getProperty("user.dir") + "\\src\\test\\resources\\" + fileName);
+			XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
+
+			int no_of_Sheets = workbook.getNumberOfSheets();
+
+			for (int i = 0; i < no_of_Sheets; i++) {
+				sheets.add(workbook.getSheetName(i));
+			}
+			return sheets;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
