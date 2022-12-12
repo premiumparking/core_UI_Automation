@@ -20,9 +20,10 @@ import org.testng.annotations.BeforeMethod;
 import com.relevantcodes.extentreports.LogStatus;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import pageObjects.HomePage;
-import pageObjects.LoginPage;
-import pageObjects.ProfilesPage;
+import pageObjects.Admiral.Adm_LoginPage;
+import pageObjects.OD.HomePage;
+import pageObjects.OD.LoginPage;
+import pageObjects.OD.ProfilesPage;
 
 public class BaseClass extends Operations {
 
@@ -35,7 +36,8 @@ public class BaseClass extends Operations {
 	protected static HomePage homePage;
 	protected static LoginPage loginPage;
 	protected static ProfilesPage profilePage;
-	protected static String username, password;
+	protected static String username, password, adm_username, adm_password,adm_url;
+
 
 	/*
 	 * This method is to load data from application.properties files
@@ -54,6 +56,9 @@ public class BaseClass extends Operations {
 		businessAccountURL = config.getProperty("url_businessaccounts");
 		username = config.getProperty("username");
 		password = config.getProperty("password");
+		adm_url = config.getProperty("adm_url");
+		adm_username = config.getProperty("adm_username");
+		adm_password = config.getProperty("adm_password");
 
 	}
 
@@ -69,10 +74,11 @@ public class BaseClass extends Operations {
 
 		loadProperties();
 		WebDriverManager.chromedriver().setup();
-		//System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+		// System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
-		//((HasAuthentication) driver).register(UsernameAndPassword.of("pp-admin", "premium"));
+		// ((HasAuthentication) driver).register(UsernameAndPassword.of("pp-admin",
+		// "premium"));
 		test = report.startTest(getTestCaseName(testMethod));
 		report.addSystemInfo("Browser", "Chrome");
 		waitForPageLoad(1);
@@ -108,13 +114,13 @@ public class BaseClass extends Operations {
 	 * Author : Venu Thota (venu.t@comakeit.com)
 	 */
 	public LoginPage launchApplication() {
-		
+
 		driver.get(appplicationUrl);
-		//waitForPageLoad(10);
-		//driver.get("https://pp-admin:admin@manage.release.premiumparking.com/");
-		//driver.switchTo().alert().sendKeys("pp-admin");
-		//acceptAlert();
-		//waitForPageLoad(10);
+		// waitForPageLoad(10);
+		// driver.get("https://pp-admin:admin@manage.release.premiumparking.com/");
+		// driver.switchTo().alert().sendKeys("pp-admin");
+		// acceptAlert();
+		// waitForPageLoad(10);
 
 		passStep("Launched the application <b>" + appplicationUrl + "</b>");
 		loginPage = new LoginPage();
@@ -172,6 +178,20 @@ public class BaseClass extends Operations {
 			test.log(LogStatus.FAIL, test.addScreenCapture(screenshotPath));
 
 		}
+	}
+
+	/*
+	 * Usage : To launch application & Returns : LoginPage
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
+	 */
+	public Adm_LoginPage launch_AdmiralEnforcement_Application() {
+		driver.get(adm_url);
+		Adm_LoginPage loginPage = new Adm_LoginPage();
+		waitForElementTobeDisplayed(loginPage.textbox_UserName);
+		if (isElementDisplayed(loginPage.textbox_UserName))
+			passStep("Launched the Admiral Enforcement application <b>" + adm_url + "</b>");
+		return loginPage;
 	}
 
 }

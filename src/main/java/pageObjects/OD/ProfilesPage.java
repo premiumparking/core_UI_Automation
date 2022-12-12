@@ -1,4 +1,4 @@
-package pageObjects;
+package pageObjects.OD;
 
 import java.util.List;
 
@@ -55,7 +55,7 @@ public class ProfilesPage extends BaseClass {
 		performClick(textbox_profile_address);
 		waitForPageLoad(1);
 		clickOnButton(button_Save, "Save");
-		passStep("Profile saved successfully !!!");
+		passStep("<b>Profile : "+profile.getEmail()+" created successfully !!! </b>");
 		navigate_To_Profiles_Page();
 	}
 
@@ -65,7 +65,7 @@ public class ProfilesPage extends BaseClass {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public boolean isPrfileExist(String email) {
-		stepInfo("Verifying profile : " + email);
+		stepInfo("<b>Verifying profile : " + email+"</b>");
 		waitForElementTobeDisplayed(searchBox);
 		enterText(searchBox, email, "Search box");
 		clickOnButton(button_Find, "Find button");

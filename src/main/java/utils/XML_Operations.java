@@ -6,6 +6,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import dataModel.Market;
 import dataModel.Operator;
 
 /*
@@ -39,6 +40,31 @@ public class XML_Operations {
 			e.printStackTrace();
 		}
 		return user;
+	}
+	
+	/*
+	 * This method is to load the excel sheet and it binds to Operator object and
+	 * return the Operator object
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public Market getMarketTestData() {
+		JAXBContext jaxbContext;
+		Market market = null;
+		File xmlFile = new File("src\\test\\java\\testData\\market.xml");
+
+		try {
+			jaxbContext = JAXBContext.newInstance(Market.class);
+			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+			market = (Market) jaxbUnmarshaller.unmarshal(xmlFile);
+			// System.out.println(user);
+		}
+
+		catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return market;
 	}
 
 }

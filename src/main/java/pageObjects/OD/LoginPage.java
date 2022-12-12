@@ -1,4 +1,4 @@
-package pageObjects;
+package pageObjects.OD;
 
 import org.openqa.selenium.By;
 
@@ -25,11 +25,12 @@ public class LoginPage extends BaseClass {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public HomePage login() {
-		enterText(textbox_UserName, BaseClass.username, "Username field");
-		enterText(textbox_Password, BaseClass.password, "Password field");
+		_enterText(textbox_UserName, BaseClass.username, "Username field");
+		_enterText(textbox_Password, BaseClass.password, "Password field");
 		clickOnButton(button_SignIn, "Sign In button");
 		HomePage homePage = new HomePage();
 		waitForElementTobeDisplayed(homePage.label_OperatorDashboard);
+		passStep("Logged in with Brendan Bodensteiner 's credentials");
 		return new HomePage();
 
 	}

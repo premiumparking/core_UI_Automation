@@ -1,4 +1,4 @@
-package pageObjects;
+package pageObjects.OD;
 
 import org.openqa.selenium.By;
 
@@ -18,6 +18,7 @@ public class HomePage extends BaseClass {
 	By dd_Manage = By.xpath("//a[contains(text(),'Manage')]");
 	By link_Profiles = By.xpath("//a[@href='/profiles']");
 	By link_BusinessAccounts = By.xpath("//a[@href='/businessaccounts']");
+	By link_Marketts = By.xpath("//a[@href='/markets']");
 
 	// ****************** ACTIONS ****************************//
 	/*
@@ -42,6 +43,18 @@ public class HomePage extends BaseClass {
 		clickOnButton(dd_Manage, "Manage menu");
 		clickOnButton(link_BusinessAccounts, "Business Accounts sub-menu");
 		return new BusinessAccountsPage();
+	}
+	
+	/*
+	 * Method to navigate to Markets page from home page
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public MarketsPage navigateToMarketsPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_Marketts, "Markets");
+		return new MarketsPage();
 	}
 
 }

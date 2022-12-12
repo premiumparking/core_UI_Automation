@@ -9,6 +9,8 @@ import com.poiji.bind.Poiji;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import dataModel.Citation;
 import dataModel.Profile;
 
 /*
@@ -57,6 +59,27 @@ public class Excel_Operations {
 				sheets.add(workbook.getSheetName(i));
 			}
 			return sheets;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
+	/*
+	 * This method is to load the excel sheet and it binds to Citation object and
+	 * returns list of citations
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+
+	public List<Citation> load_CitationData_From_ExcelSheet(String fileName, String sheetName) {
+		try {
+			File file = new File(System.getProperty("user.dir") + "\\src\\test\\java\\testData\\" + fileName);
+			XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
+			XSSFSheet sheet = workbook.getSheet(sheetName);
+			List<Citation> citations = Poiji.fromExcel(sheet, Citation.class);
+			return citations;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

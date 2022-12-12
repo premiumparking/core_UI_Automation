@@ -5,6 +5,7 @@ import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -30,7 +31,25 @@ public class Operations extends Extent_Reports {
 			waitForPageLoad(1);
 			passStep("Entered '" + text + "' into " + field);
 		}
+	}
 
+	/*
+	 * This method is to enter text into TEXTBOX but won't include in the report
+	 * 
+	 * Ex: username, password
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public void _enterText(By ele, String text, String field) {
+		waitForElementTobeDisplayed(ele);
+		WebElement element = BaseClass.driver.findElement(ele);
+		if (isElementDisplayed(ele) && element.isEnabled()) {
+			highlightElement(element);
+			element.clear();
+			element.sendKeys(text);
+			waitForPageLoad(1);
+			// passStep("Entered '" + text + "' into " + field);
+		}
 	}
 
 	/*
@@ -50,7 +69,7 @@ public class Operations extends Extent_Reports {
 		}
 
 	}
-	
+
 	/*
 	 * This method is to click on BUTTON
 	 * 
@@ -62,9 +81,9 @@ public class Operations extends Extent_Reports {
 		waitForPageLoad(1);
 		if (isElementDisplayed(ele) && element.isEnabled()) {
 			highlightElement(element);
-			Actions act =  new Actions(BaseClass.driver);
+			Actions act = new Actions(BaseClass.driver);
 			act.moveToElement(BaseClass.driver.findElement(ele)).click().perform();
-			//element.click();
+			// element.click();
 			passStep("Clicked on " + field);
 			waitForPageLoad(2);
 		}
@@ -165,8 +184,7 @@ public class Operations extends Extent_Reports {
 	 */
 	public static void highlightElement(WebElement element) {
 		JavascriptExecutor js = (JavascriptExecutor) BaseClass.driver;
-		js.executeScript("arguments[0].setAttribute('style', 'background: #90ee90; border: 2px solid yellow;');",
-				element);
+		js.executeScript("arguments[0].setAttribute('style', 'background: #828383; border: 2px solid red;');", element);
 	}
 
 	/*
@@ -269,5 +287,24 @@ public class Operations extends Extent_Reports {
 		WebElement element = BaseClass.driver.findElement(ele);
 		element.click();
 	}
-}
 
+	public void hitEnter(By ele) {
+		WebElement element = BaseClass.driver.findElement(ele);
+		element.sendKeys(Keys.ENTER);
+	}
+
+	public void clickWithPoints(By ele) {
+		WebElement element = BaseClass.driver.findElement(ele);
+		// Used points class to get x and y coordinates of element.
+		//Point point = element.getLocation();
+		//int xcord = point.getX();
+		//System.out.println("Position of the webelement from left side is " + xcord + " pixels");
+		//int ycord = point.getY();
+		//System.out.println("Position of the webelement from top side is " + ycord + " pixels");
+		// Using Actions class
+		Actions action = new Actions(BaseClass.driver);
+		// clicking on the logo based on x coordinate and y coordinate
+		// you will be redirecting to the home page of softwaretestingmaterial.com
+		action.moveToElement(element, 994, 448).click().build().perform();
+	}
+}

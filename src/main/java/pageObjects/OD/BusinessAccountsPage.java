@@ -1,9 +1,11 @@
-package pageObjects;
+package pageObjects.OD;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import components.BaseClass;
 import dataModel.Profile;
@@ -43,6 +45,10 @@ public class BusinessAccountsPage extends BaseClass {
 	By textBox_licencePlate = By.xpath("(//input[@name ='vehicle[license_plate]'])[1]");
 	By button_Add = By.xpath("(//input[@value='Add'])[1]");
 
+	By link_CopyLink = By.xpath(".//a[contains(text(),'copy link')]");
+	By input_licencePlate = By.id("subscription_license_plate");
+	By button_Verify = By.xpath("//button[contains(text(),'Verify')]");
+
 // ****************** ACTIONS ****************************//
 
 	/*
@@ -75,7 +81,7 @@ public class BusinessAccountsPage extends BaseClass {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public boolean isBusinessAccountExist(String accountName, String location) {
-		stepInfo("Verifying Business account : " + accountName);
+		stepInfo("<b>Verifying Business account : " + accountName + "</b>");
 		waitForElementTobeDisplayed(textBox_SearchByID_or_Name);
 		enterText(textBox_SearchByID_or_Name, accountName, "Search By ID box");
 		selectFromSearch(searchbox_Locations, location, "Location Search results");
@@ -106,7 +112,7 @@ public class BusinessAccountsPage extends BaseClass {
 	 */
 	public boolean isMembertExist(Profile profile) {
 
-		stepInfo("Verifying Member account : " + profile.getEmail());
+		stepInfo("<b>Verifying Member : " + profile.getEmail() + "</b>");
 		waitForElementTobeDisplayed(textBox_Search);
 		enterText(textBox_Search, profile.getEmail(), "Search Box");
 		clickOnButton(button_Search, "Search button");
@@ -152,6 +158,7 @@ public class BusinessAccountsPage extends BaseClass {
 		waitForElementTobeDisplayed(button_Confirm);
 		clickOnButton(button_Confirm, "Confirm");
 		waitForPageLoad(3);
+		passStep("<b>Member : " + profile.getEmail() + " added successfully !!! </b>");
 		waitForElementTobeDisplayed(link_Members);
 		clickOnButton(link_Members, "Members menu");
 		waitForPageLoad(3);
@@ -165,12 +172,40 @@ public class BusinessAccountsPage extends BaseClass {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public void add_Vehicle(String licence_Plate) {
-		stepInfo("Adding Vehicle : " + licence_Plate);
-		waitForElementTobeDisplayed(link_AddVehicle);
-		clickOnButton(link_AddVehicle, "Add Vehicle");
-		waitForElementTobeDisplayed(textBox_licencePlate);
-		enterText(textBox_licencePlate, licence_Plate, "Licence Palte text box");
-		clickOnButton(button_Add, "Add BUtton");
+		try {
+			if (isElementDisplayed(link_AddVehicle)) {
+				stepInfo("Adding Vehicle : " + licence_Plate);
+				clickOnButton(link_AddVehicle, "Add Vehicle");
+				waitForElementTobeDisplayed(textBox_licencePlate);
+				enterText(textBox_licencePlate, licence_Plate, "Licence Palte text box");
+				clickOnButton(button_Add, "Add BUtton");
+				passStep("Licence_Plate <b>" + licence_Plate + "</b> added successfully !!! </b>");
+			}
+		} catch (Exception e) {
+
+		}
+	}
+
+	public boolean is_CopyLink_displayed() {
+		try {
+			return isElementDisplayed(link_CopyLink);
+		} catch (Exception ex) {
+			return false;
+		}
+	}
+
+	public void activate_Member(String licencePlate) {
+		clickOnButton(link_CopyLink, "Copy Link");
+		String u = BaseClass.driver.findElement(link_CopyLink).getAttribute("href");
+		BaseClass.driver.get(u);
+
+		waitForElementTobeDisplayed(input_licencePlate);
+		enterText(input_licencePlate, licencePlate, "Licence Plate");
+		waitForElementTobeDisplayed(button_Verify);
+		clickOnButton(button_Verify, "Verify");
+		waitForPageLoad(4);
+		BaseClass.driver.navigate().back();
+		waitForPageLoad(4);
 
 	}
 
@@ -179,7 +214,7 @@ public class BusinessAccountsPage extends BaseClass {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public void navigate_To_BusinaessAcounts_Page() {
+	public void navigate_To_BusinessAcounts_Page() {
 		BaseClass.driver.get(businessAccountURL);
 		waitForPageLoad(2);
 		waitForElementTobeDisplayed(textBox_SearchByID_or_Name);
