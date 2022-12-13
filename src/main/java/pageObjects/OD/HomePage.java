@@ -61,6 +61,23 @@ public class HomePage extends BaseClass {
 		}
 		return locationsPage;
 	}
+	
+	/*
+	 * Method to navigate to Locations page from home page
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public VirtualLocationsPage navigateToVirtualLocationsPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_VirtualLocations, "Virtul Locations Link");
+		VirtualLocationsPage v_locationsPage = new VirtualLocationsPage();
+		waitForElementTobeDisplayed(v_locationsPage.label_VirtualLocations);
+		if (isElementDisplayed(v_locationsPage.label_VirtualLocations)) {
+			passStep("Virtual Locations page has been loaded");
+		}
+		return v_locationsPage;
+	}
 
 	/*
 	 * Method to navigate to profiles page from home page

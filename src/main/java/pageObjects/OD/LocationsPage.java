@@ -52,10 +52,22 @@ public class LocationsPage extends BaseClass {
 		waitForElementTobeDisplayed(button_New);
 		clickOnButton(button_New, "Button new");
 		waitForElementTobeDisplayed(label_NewLocation);
-		select_Radiobutton(radioButton_rates_live, "Rates");
-		select_Radiobutton(radioButton_reservations_Enabled, "Reservations");
-		select_Radiobutton(radioButton_durations_Enabled, "Durations");
-		select_Radiobutton(radioButton_NormalLocation, "Normal Location");
+		if (location.getRates().equalsIgnoreCase("Live"))
+			select_Radiobutton(radioButton_rates_live, "Rates Live");
+		else
+			select_Radiobutton(radioButton_rates_dead, "Rates Dead");
+		if (location.getReservations().equalsIgnoreCase("Enabled"))
+			select_Radiobutton(radioButton_reservations_Enabled, "Reservations Enabled");
+		else
+			select_Radiobutton(radioButton_reservations_Disabled, "Reservations Disabled");
+		if (location.getDurations().equalsIgnoreCase("Enabled"))
+			select_Radiobutton(radioButton_durations_Enabled, "Durations Enabled");
+		else
+			select_Radiobutton(radioButton_durations_Disabled, "Durations Disabled");
+		if (location.getLocationType().equalsIgnoreCase("Normal Location"))
+			select_Radiobutton(radioButton_NormalLocation, "Normal Location");
+		else
+			select_Radiobutton(radioButton_Cruise, "Cruise Location");
 		unselect_Checkbox(checkBox_MonthlyParkingURL, "Request Monthly Parking Box");
 		selectDropdown(dd_locationMarket, location.getMarket(), "Market dropdown");
 		enterText(textBox_location_name, location.getName(), "Name Textbox");
@@ -70,12 +82,13 @@ public class LocationsPage extends BaseClass {
 
 		waitForElementTobeDisplayed(textBox_search_Location);
 		enterText(textBox_search_Location, location.getName(), "Search box");
-		//hitEnter(textBox_search_Location);
+		// hitEnter(textBox_search_Location);
 
 		By locaionNameOnGrid = By.xpath("//a[contains(text(),'" + location.getName() + "')]");
 		waitForElementTobeDisplayed(locaionNameOnGrid);
 		if (isElementDisplayed(locaionNameOnGrid)) {
-			passStep("Location " + location.getName() + " has been created succefully");
+			passStep("Location " + location.getName() + " has been displayed on grid");
+			passStep("Location creation is successful ...!!!");
 		}
 
 	}
