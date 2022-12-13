@@ -48,7 +48,8 @@ public class MarketsPage extends BaseClass {
 		By marketNameOnMarketsGrid = By.xpath("//td[contains(text(),'" + market.getName() + "')]");
 		waitForElementTobeDisplayed(marketNameOnMarketsGrid);
 		if (isElementDisplayed(marketNameOnMarketsGrid)) {
-			passStep("Market " + market.getName() + " has been created succefully");
+			passStep("Market " + market.getName() + " has been displayed on grid");
+			passStep("Market creation is successful ...!!!");
 		}
 
 	}

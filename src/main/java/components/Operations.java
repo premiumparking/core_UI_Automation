@@ -75,6 +75,23 @@ public class Operations extends Extent_Reports {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
+	public void clickOnButton(By ele) {
+		waitForElementTobeDisplayed(ele);
+		WebElement element = BaseClass.driver.findElement(ele);
+		waitForPageLoad(1);
+		if (isElementDisplayed(ele) && element.isEnabled()) {
+			highlightElement(element);
+			element.click();
+			waitForPageLoad(2);
+		}
+
+	}
+
+	/*
+	 * This method is to click on BUTTON
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
 	public void clickOnButton_using_Actions(By ele, String field) {
 		waitForElementTobeDisplayed(ele);
 		WebElement element = BaseClass.driver.findElement(ele);
@@ -153,10 +170,10 @@ public class Operations extends Extent_Reports {
 		if (isElementDisplayed(ele, field) && element.isEnabled()) {
 			highlightElement(element);
 			if (element.isSelected()) {
-				passStep(field + "' is already selected");
+				passStep(field + " is already selected");
 			} else {
 				element.click();
-				passStep(field + "' is selected");
+				passStep(field + " is selected");
 			}
 		}
 	}
@@ -172,10 +189,10 @@ public class Operations extends Extent_Reports {
 		if (isElementDisplayed(ele, field) && element.isEnabled()) {
 			highlightElement(element);
 			if (element.isSelected()) {
-				passStep(field + "' is already selected");
+				passStep(field + " is already selected");
 			} else {
 				element.click();
-				passStep(field + "' is selected");
+				passStep(field + " is selected");
 			}
 		}
 	}
@@ -192,10 +209,10 @@ public class Operations extends Extent_Reports {
 			highlightElement(element);
 			if (element.isSelected()) {
 				element.click();
-				passStep(field + "' is unselected");
+				passStep(field + " is unselected");
 			} else {
 				element.click();
-				passStep(field + "' is already uselected");
+				passStep(field + " is already uselected");
 			}
 		}
 	}
@@ -223,9 +240,10 @@ public class Operations extends Extent_Reports {
 	 */
 	public static void highlightElement(WebElement element) {
 		JavascriptExecutor js = (JavascriptExecutor) BaseClass.driver;
-		//js.executeScript("arguments[0].setAttribute('style', 'background: #828383; border: 3px solid red;');", element);
+		// js.executeScript("arguments[0].setAttribute('style', 'background: #828383;
+		// border: 3px solid red;');", element);
 		js.executeScript("arguments[0].setAttribute('style', 'border: 3px solid red;');", element);
-		//js.executeScript("arguments[0].style.border='3px solid red'');", element);
+		// js.executeScript("arguments[0].style.border='3px solid red'');", element);
 	}
 
 	/*
@@ -280,7 +298,7 @@ public class Operations extends Extent_Reports {
 		WebElement element = BaseClass.driver.findElement(ele);
 		if (isElementDisplayed(ele) && element.isEnabled()) {
 			highlightElement(element);
-			element.clear();
+			// element.clear();
 			element.sendKeys(text);
 			element.sendKeys(Keys.ARROW_DOWN);
 			waitForPageLoad(1);
