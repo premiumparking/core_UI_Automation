@@ -5,8 +5,9 @@ import java.util.List;
 import org.testng.annotations.Test;
 
 import components.BaseClass;
-import dataModel.Profile;
+import dataModel.OD.Profile;
 import pageObjects.OD.BusinessAccountsPage;
+import pageObjects.OD.LoginPage;
 import utils.Excel_Operations;
 
 /*
@@ -19,6 +20,7 @@ import utils.Excel_Operations;
 public class MassImport_BusinessAccounts extends BaseClass {
 
 	Excel_Operations excel_Ops = new Excel_Operations();
+	LoginPage  loginPage = new LoginPage ();
 	BusinessAccountsPage businessAccountsPage = new BusinessAccountsPage();
 
 	List<Profile> profiles;

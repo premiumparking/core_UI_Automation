@@ -1,4 +1,4 @@
-package dataModel;
+package dataModel.OD;
 
 import java.io.Serializable;
 

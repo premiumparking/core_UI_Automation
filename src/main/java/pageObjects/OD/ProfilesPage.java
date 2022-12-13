@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import components.BaseClass;
-import dataModel.Profile;
+import dataModel.OD.Profile;
 
 /*
  * Class which contains the web elements and performs Profile page activities (methods)

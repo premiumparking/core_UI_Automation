@@ -1,11 +1,11 @@
-package testcases.OD.AdmiralEnforcement;
+package testcases.Admiral;
 
 import java.util.List;
 
 import org.testng.annotations.Test;
 
 import components.BaseClass;
-import dataModel.Citation;
+import dataModel.Admiral.Citation;
 import pageObjects.Admiral.Adm_HomePage;
 import pageObjects.Admiral.Adm_LoginPage;
 import pageObjects.Admiral.CitationsPage;

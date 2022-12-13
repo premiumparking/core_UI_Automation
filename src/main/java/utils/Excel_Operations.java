@@ -7,11 +7,11 @@ import java.util.List;
 
 import com.poiji.bind.Poiji;
 
+import dataModel.Admiral.Citation;
+import dataModel.OD.Profile;
+
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import dataModel.Citation;
-import dataModel.Profile;
 
 /*
  * Class is to handle the Excel operations i.e. getting test data from excel and binding to Java object

@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import components.BaseClass;
-import dataModel.Profile;
+import dataModel.OD.Profile;
 
 /*
  * Class which contains the web elements and performs Business accounts page activities (methods)

@@ -1,4 +1,4 @@
-package dataModel;
+package dataModel.Admiral;
 
 import java.io.Serializable;
 

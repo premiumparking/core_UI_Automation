@@ -14,7 +14,7 @@ import components.BaseClass;
 public class LoginPage extends BaseClass {
 
 	// ****************** WEB ELEMENTS ****************************//
-	By textbox_UserName = By.id("user_email");
+	public By textbox_UserName = By.id("user_email");
 	By textbox_Password = By.id("user_password");
 	By button_SignIn = By.xpath(".//input[@value='Sign In']");
 
@@ -25,8 +25,8 @@ public class LoginPage extends BaseClass {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public HomePage login() {
-		_enterText(textbox_UserName, BaseClass.username, "Username field");
-		_enterText(textbox_Password, BaseClass.password, "Password field");
+		enterText(textbox_UserName, BaseClass.username);
+		enterText(textbox_Password, BaseClass.password);
 		clickOnButton(button_SignIn, "Sign In button");
 		HomePage homePage = new HomePage();
 		waitForElementTobeDisplayed(homePage.label_OperatorDashboard);
