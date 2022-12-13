@@ -6,8 +6,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-import dataModel.Market;
-import dataModel.Operator;
+import dataModel.OD.Location;
+import dataModel.OD.Market;
+import dataModel.OD.Operator;
 
 /*
  * Class is to handle the XML operations i.e. getting test data from xml and binding to Java object
@@ -41,23 +42,23 @@ public class XML_Operations {
 		}
 		return user;
 	}
-	
+
 	/*
-	 * This method is to load the excel sheet and it binds to Operator object and
-	 * return the Operator object
+	 * This method is to load the excel sheet and it binds to Market object and
+	 * return the Market object
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public Market getMarketTestData() {
 		JAXBContext jaxbContext;
 		Market market = null;
-		File xmlFile = new File("src\\test\\java\\testData\\market.xml");
+		File xmlFile = new File("src\\test\\java\\testData\\OD\\Market.xml");
 
 		try {
 			jaxbContext = JAXBContext.newInstance(Market.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			market = (Market) jaxbUnmarshaller.unmarshal(xmlFile);
-			// System.out.println(user);
+			// System.out.println(market);
 		}
 
 		catch (JAXBException e) {
@@ -65,6 +66,30 @@ public class XML_Operations {
 			e.printStackTrace();
 		}
 		return market;
+	}
+
+	/*
+	 * This method is to load the excel sheet and it binds to Location object and
+	 * return the Location object
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public Location getLocationTestData() {
+		JAXBContext jaxbContext;
+		Location location = null;
+		File xmlFile = new File("src\\test\\java\\testData\\OD\\Location.xml");
+
+		try {
+			jaxbContext = JAXBContext.newInstance(Location.class);
+			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+			location = (Location) jaxbUnmarshaller.unmarshal(xmlFile);
+		}
+
+		catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return location;
 	}
 
 }

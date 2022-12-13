@@ -1,0 +1,16 @@
+<location>
+	<rates>Live</rates>
+	<reservations>Enabled</reservations>
+	<durations>Enabled</durations>
+	<locationType>Normal Location</locationType>
+	<requestMonthlyParking>No</requestMonthlyParking>
+	<market>Atlanta, GA</market>
+	<name></name>
+	<propertyName>Test_Property_</propertyName>
+	<latitude>64.200844</latitude>
+	<longitude>-149.493668</longitude>
+	<address>Test_Address_</address>
+	<city>Georgia</city>
+	<zip>30005</zip>
+
+</location>

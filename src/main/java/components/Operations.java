@@ -40,7 +40,7 @@ public class Operations extends Extent_Reports {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public void _enterText(By ele, String text, String field) {
+	public void enterText(By ele, String text) {
 		waitForElementTobeDisplayed(ele);
 		WebElement element = BaseClass.driver.findElement(ele);
 		if (isElementDisplayed(ele) && element.isEnabled()) {
@@ -147,7 +147,7 @@ public class Operations extends Extent_Reports {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public void selectRadiobutton(By ele, String field) {
+	public void select_Radiobutton(By ele, String field) {
 		waitForElementTobeDisplayed(ele);
 		WebElement element = BaseClass.driver.findElement(ele);
 		if (isElementDisplayed(ele, field) && element.isEnabled()) {
@@ -157,6 +157,45 @@ public class Operations extends Extent_Reports {
 			} else {
 				element.click();
 				passStep(field + "' is selected");
+			}
+		}
+	}
+
+	/*
+	 * This method is to select CHECKBOX
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public void select_Checkbox(By ele, String field) {
+		waitForElementTobeDisplayed(ele);
+		WebElement element = BaseClass.driver.findElement(ele);
+		if (isElementDisplayed(ele, field) && element.isEnabled()) {
+			highlightElement(element);
+			if (element.isSelected()) {
+				passStep(field + "' is already selected");
+			} else {
+				element.click();
+				passStep(field + "' is selected");
+			}
+		}
+	}
+
+	/*
+	 * This method is to unselect CHECKBOX
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public void unselect_Checkbox(By ele, String field) {
+		waitForElementTobeDisplayed(ele);
+		WebElement element = BaseClass.driver.findElement(ele);
+		if (isElementDisplayed(ele, field) && element.isEnabled()) {
+			highlightElement(element);
+			if (element.isSelected()) {
+				element.click();
+				passStep(field + "' is unselected");
+			} else {
+				element.click();
+				passStep(field + "' is already uselected");
 			}
 		}
 	}
@@ -184,7 +223,9 @@ public class Operations extends Extent_Reports {
 	 */
 	public static void highlightElement(WebElement element) {
 		JavascriptExecutor js = (JavascriptExecutor) BaseClass.driver;
-		js.executeScript("arguments[0].setAttribute('style', 'background: #828383; border: 2px solid red;');", element);
+		//js.executeScript("arguments[0].setAttribute('style', 'background: #828383; border: 3px solid red;');", element);
+		js.executeScript("arguments[0].setAttribute('style', 'border: 3px solid red;');", element);
+		//js.executeScript("arguments[0].style.border='3px solid red'');", element);
 	}
 
 	/*
@@ -288,23 +329,32 @@ public class Operations extends Extent_Reports {
 		element.click();
 	}
 
+	/*
+	 * This method is to hit the enter key
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
 	public void hitEnter(By ele) {
 		WebElement element = BaseClass.driver.findElement(ele);
 		element.sendKeys(Keys.ENTER);
 	}
 
+	/*
+	 * This method is click based on x,y coordinates
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
 	public void clickWithPoints(By ele) {
 		WebElement element = BaseClass.driver.findElement(ele);
 		// Used points class to get x and y coordinates of element.
-		//Point point = element.getLocation();
-		//int xcord = point.getX();
-		//System.out.println("Position of the webelement from left side is " + xcord + " pixels");
-		//int ycord = point.getY();
-		//System.out.println("Position of the webelement from top side is " + ycord + " pixels");
+		Point point = element.getLocation();
+		int xcord = point.getX();
+		int ycord = point.getY();
+
 		// Using Actions class
 		Actions action = new Actions(BaseClass.driver);
-		// clicking on the logo based on x coordinate and y coordinate
-		// you will be redirecting to the home page of softwaretestingmaterial.com
-		action.moveToElement(element, 994, 448).click().build().perform();
+
+		// clicking on the element based on x coordinate and y coordinate
+		action.moveToElement(element, xcord, ycord).click().build().perform();
 	}
 }

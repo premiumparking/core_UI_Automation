@@ -8,11 +8,18 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
+import java.util.Random;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -34,10 +41,9 @@ public class BaseClass extends Operations {
 	FileInputStream fis;
 	public static WebDriver driver = null;
 	protected static HomePage homePage;
-	protected static LoginPage loginPage;
+	// protected static LoginPage loginPage;
 	protected static ProfilesPage profilePage;
-	protected static String username, password, adm_username, adm_password,adm_url;
-
+	protected static String username, password, adm_username, adm_password, adm_url, browser, headless;
 
 	/*
 	 * This method is to load data from application.properties files
@@ -59,6 +65,8 @@ public class BaseClass extends Operations {
 		adm_url = config.getProperty("adm_url");
 		adm_username = config.getProperty("adm_username");
 		adm_password = config.getProperty("adm_password");
+		browser = config.getProperty("browser");
+		headless = config.getProperty("headless");
 
 	}
 
@@ -73,14 +81,38 @@ public class BaseClass extends Operations {
 	public void launchBrowser(Method testMethod) throws InterruptedException, IOException {
 
 		loadProperties();
-		WebDriverManager.chromedriver().setup();
-		// System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-		driver = new ChromeDriver();
+
+		if (browser.equalsIgnoreCase("Chrome")) {
+			WebDriverManager.chromedriver().setup();
+			// System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("headless");
+			driver = new ChromeDriver();
+
+		}
+
+		else if (browser.equalsIgnoreCase("Firefox")) {
+			WebDriverManager.firefoxdriver().setup();
+
+			FirefoxOptions options = new FirefoxOptions();
+			options.addArguments("headless");
+			driver = new FirefoxDriver();
+
+		}
+
+		else if (browser.equalsIgnoreCase("Edge")) {
+			WebDriverManager.edgedriver().setup();
+
+			EdgeOptions options = new EdgeOptions();
+			options.addArguments("headless");
+			driver = new EdgeDriver();
+
+		}
 		driver.manage().window().maximize();
-		// ((HasAuthentication) driver).register(UsernameAndPassword.of("pp-admin",
-		// "premium"));
+
 		test = report.startTest(getTestCaseName(testMethod));
-		report.addSystemInfo("Browser", "Chrome");
+		report.addSystemInfo("Browser", browser);
 		waitForPageLoad(1);
 
 	}
@@ -114,16 +146,10 @@ public class BaseClass extends Operations {
 	 * Author : Venu Thota (venu.t@comakeit.com)
 	 */
 	public LoginPage launchApplication() {
-
 		driver.get(appplicationUrl);
-		// waitForPageLoad(10);
-		// driver.get("https://pp-admin:admin@manage.release.premiumparking.com/");
-		// driver.switchTo().alert().sendKeys("pp-admin");
-		// acceptAlert();
-		// waitForPageLoad(10);
-
 		passStep("Launched the application <b>" + appplicationUrl + "</b>");
-		loginPage = new LoginPage();
+		LoginPage loginPage = new LoginPage();
+		waitForElementTobeDisplayed(loginPage.textbox_UserName);
 		return loginPage;
 	}
 
@@ -192,6 +218,16 @@ public class BaseClass extends Operations {
 		if (isElementDisplayed(loginPage.textbox_UserName))
 			passStep("Launched the Admiral Enforcement application <b>" + adm_url + "</b>");
 		return loginPage;
+	}
+	
+	/*
+	 * Usage : To generate 4 digit random number which is used as a location number
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
+	 */
+	public String get4DigitRandomNumber() {
+		Random random = new Random();
+		return String.format("%04d", random.nextInt(10000));
 	}
 
 }

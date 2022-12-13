@@ -25,8 +25,8 @@ public class Adm_LoginPage extends BaseClass {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public Adm_HomePage login() {
-		_enterText(textbox_UserName, BaseClass.adm_username, "Username field");
-		_enterText(textbox_Password, BaseClass.adm_password, "Password field");
+		enterText(textbox_UserName, BaseClass.adm_username);
+		enterText(textbox_Password, BaseClass.adm_password);
 		clickOnButton(button_SignIn, "Login In button");
 		Adm_HomePage homePage = new Adm_HomePage();
 		waitForElementTobeDisplayed(homePage.menu_Citations);
