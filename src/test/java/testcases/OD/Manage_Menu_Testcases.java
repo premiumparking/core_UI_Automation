@@ -1,21 +1,20 @@
 package testcases.OD;
 
+import dataModel.OD.Venue;
 import org.testng.annotations.Test;
 
 import components.BaseClass;
 import components.Constants;
 import dataModel.OD.Location;
 import dataModel.OD.Market;
-import pageObjects.OD.LoginPage;
-import pageObjects.OD.MarketsPage;
-import pageObjects.OD.VirtualLocationsPage;
-import pageObjects.OD.LocationsPage;
+import pageObjects.OD.*;
 import utils.XML_Operations;
 
 public class Manage_Menu_Testcases extends BaseClass {
 	XML_Operations xml_Ops = new XML_Operations();
 	LoginPage loginPage = new LoginPage();
 	MarketsPage marketsPage = new MarketsPage();
+	VenuesPage venuesPage = new VenuesPage();
 	LocationsPage locationsPage = new LocationsPage();
 	VirtualLocationsPage vl_Page = new VirtualLocationsPage();
 
@@ -72,6 +71,18 @@ public class Manage_Menu_Testcases extends BaseClass {
 		vl_Page = homePage.navigateToVirtualLocationsPage();
 		String vl_name = "Test_Virtual_Location_" + getTimestamp();
 		vl_Page.create_VirtualLocation(vl_name, Constants.VIRTUAL_LOCATIONS);
+
+	}
+
+	@Test(groups = { "smoke", "regression" })
+	public void TC_04_Create_Venue() {
+
+		loginPage = launchApplication();
+		homePage = loginPage.login();
+		venuesPage = homePage.navigateToVenuesPage();
+		Venue venue = xml_Ops.getVenueTestData();
+		venue.setName(venue.getName() + getTimestamp());
+		venuesPage.create_Venue(venue);
 
 	}
 

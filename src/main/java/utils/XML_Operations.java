@@ -9,6 +9,7 @@ import javax.xml.bind.Unmarshaller;
 import dataModel.OD.Location;
 import dataModel.OD.Market;
 import dataModel.OD.Operator;
+import dataModel.OD.Venue;
 
 /*
  * Class is to handle the XML operations i.e. getting test data from xml and binding to Java object
@@ -90,6 +91,25 @@ public class XML_Operations {
 			e.printStackTrace();
 		}
 		return location;
+	}
+
+	public Venue getVenueTestData() {
+		JAXBContext jaxbContext;
+		Venue venue = null;
+		File xmlFile = new File("src\\test\\java\\testData\\OD\\Venue.xml");
+
+		try {
+			jaxbContext = JAXBContext.newInstance(Venue.class);
+			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+			venue = (Venue) jaxbUnmarshaller.unmarshal(xmlFile);
+
+		}
+
+		catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return venue;
 	}
 
 }
