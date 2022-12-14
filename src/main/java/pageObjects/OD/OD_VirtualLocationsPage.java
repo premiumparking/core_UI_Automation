@@ -3,7 +3,6 @@ package pageObjects.OD;
 import org.openqa.selenium.By;
 
 import components.BaseClass;
-import dataModel.OD.Location;
 
 /*
  * Class which contains the web elements and performs Locations page activities (methods)
@@ -12,10 +11,10 @@ import dataModel.OD.Location;
  * 
  * Author : Venu Thota(venu.t@comakeit.com)
  */
-public class VirtualLocationsPage extends BaseClass {
+public class OD_VirtualLocationsPage extends BaseClass {
 
 	// ****************** CLASS INSTANCES ****************************//
-	HomePage homepage = new HomePage();
+	OD_HomePage homepage = new OD_HomePage();
 
 	// ****************** WEB ELEMENTS ****************************//
 	By label_OperatorDashboard = By.xpath("//span[contains(text(),'Operator Dashboard')]");
@@ -24,7 +23,6 @@ public class VirtualLocationsPage extends BaseClass {
 	By label_NewVirtualLocation = By.xpath("//h1[contains(text(),'New Virtual Location')]");
 	By textBox_virtual_location_name = By.id("virtual_location_name");
 	By textBox_locations = By.id("virtual_location_location_ids-selectized");
-
 	By button_create_VLocation = By.xpath("//input[@value='Save']");
 
 	// ****************** ACTIONS ****************************//

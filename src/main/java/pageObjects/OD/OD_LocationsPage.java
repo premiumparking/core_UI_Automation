@@ -12,10 +12,10 @@ import dataModel.OD.Location;
  * 
  * Author : Venu Thota(venu.t@comakeit.com)
  */
-public class LocationsPage extends BaseClass {
+public class OD_LocationsPage extends BaseClass {
 
 	// ****************** CLASS INSTANCES ****************************//
-	HomePage homepage = new HomePage();
+	OD_HomePage homepage = new OD_HomePage();
 
 	// ****************** WEB ELEMENTS ****************************//
 	By label_OperatorDashboard = By.xpath("//span[contains(text(),'Operator Dashboard')]");

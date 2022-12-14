@@ -17,7 +17,7 @@ import dataModel.OD.Profile;
  * 
  * Author : Venu Thota(venu.t@comakeit.com)
  */
-public class BusinessAccountsPage extends BaseClass {
+public class OD_BusinessAccountsPage extends BaseClass {
 
 	// ****************** WEB ELEMENTS ****************************//
 	By textBox_SearchByID_or_Name = By.id("groups_search");

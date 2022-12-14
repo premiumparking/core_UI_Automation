@@ -9,6 +9,7 @@
 		</groups>
 		<classes>
 			<class name="testcases.OD.Manage_Menu_Testcases" />
+			<class name="testcases.OD.Content_Menu_Testcases" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

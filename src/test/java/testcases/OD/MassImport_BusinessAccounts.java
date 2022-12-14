@@ -6,8 +6,10 @@ import org.testng.annotations.Test;
 
 import components.BaseClass;
 import dataModel.OD.Profile;
-import pageObjects.OD.BusinessAccountsPage;
-import pageObjects.OD.LoginPage;
+import pageObjects.OD.OD_BusinessAccountsPage;
+import pageObjects.OD.OD_HomePage;
+import pageObjects.OD.OD_LoginPage;
+import pageObjects.OD.OD_ProfilesPage;
 import utils.Excel_Operations;
 
 /*
@@ -19,14 +21,18 @@ import utils.Excel_Operations;
  */
 public class MassImport_BusinessAccounts extends BaseClass {
 
+	// ****************** CLASS INSTANCES ****************************//
+	OD_HomePage homePage = new OD_HomePage();
+	OD_ProfilesPage profilePage = new OD_ProfilesPage();
 	Excel_Operations excel_Ops = new Excel_Operations();
-	LoginPage  loginPage = new LoginPage ();
-	BusinessAccountsPage businessAccountsPage = new BusinessAccountsPage();
+	OD_LoginPage  loginPage = new OD_LoginPage ();
+	OD_BusinessAccountsPage businessAccountsPage = new OD_BusinessAccountsPage();
 
 	List<Profile> profiles;
 	// String fileName = "AnnapolisResidentPermits_2022_2023_Initial.xlsx";
 	String fileName = "AnnapolisResidentPermits_2022_2023.xlsx";
 
+	// ****************** TEST SCRIPTS ****************************//
 	/*
 	 * This is a test case to create profile
 	 * 
@@ -34,7 +40,7 @@ public class MassImport_BusinessAccounts extends BaseClass {
 	 */
 	@Test(priority = 1)
 	public void TC_01_CreateProfile() {
-		loginPage = launchApplication();
+		loginPage = launch_OD_Application();
 		homePage = loginPage.login();
 		profilePage = homePage.navigateToProfilesPage();
 		List<Profile> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "Profiles_4903");
@@ -52,7 +58,7 @@ public class MassImport_BusinessAccounts extends BaseClass {
 	 */
 	@Test(priority = 2)
 	public void TC_02_ImpersonateBusinessAccount() {
-		loginPage = launchApplication();
+		loginPage = launch_OD_Application();
 		homePage = loginPage.login();
 		businessAccountsPage = homePage.navigateToBusinessAccountsPage();
 		List<String> sheets = excel_Ops.get_Total_Sheets(fileName);
