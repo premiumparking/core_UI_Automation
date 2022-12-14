@@ -24,13 +24,13 @@ public class Adm_HomePage extends BaseClass {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public CitationsPage navigateToCitationsPage() {
+	public Adm_CitationsPage navigateToCitationsPage() {
 		
 		clickOnButton(menu_Citations, "Citations menu");
 		waitForPageLoad(5);
 		
 		
-		return new CitationsPage();
+		return new Adm_CitationsPage();
 	}
 	
 	

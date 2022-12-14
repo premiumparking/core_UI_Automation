@@ -15,7 +15,7 @@ import dataModel.OD.Profile;
  * 
  * Author : Venu Thota(venu.t@comakeit.com)
  */
-public class ProfilesPage extends BaseClass {
+public class OD_ProfilesPage extends BaseClass {
 
 	// ****************** WEB ELEMENTS ****************************//
 	By button_New = By.xpath("//a[contains(text(),'New')]");

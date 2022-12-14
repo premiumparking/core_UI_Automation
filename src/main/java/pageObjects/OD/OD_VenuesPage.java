@@ -4,7 +4,7 @@ import components.BaseClass;
 import dataModel.OD.Venue;
 import org.openqa.selenium.By;
 
-public class VenuesPage extends BaseClass {
+public class OD_VenuesPage extends BaseClass {
 
     // ****************** WEB ELEMENTS ****************************//
     By label_OperatorDashboard = By.xpath("//span[contains(text(),'Operator Dashboard')]");

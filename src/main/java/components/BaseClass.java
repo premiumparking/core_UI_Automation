@@ -28,23 +28,18 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pageObjects.Admiral.Adm_LoginPage;
-import pageObjects.OD.HomePage;
-import pageObjects.OD.LoginPage;
-import pageObjects.OD.ProfilesPage;
+import pageObjects.OD.OD_LoginPage;
 
 public class BaseClass extends Operations {
 
-	String appplicationUrl = null;
-	String spa_applicationUrl = null;
 	protected static String profilesURL = null;
 	protected static String businessAccountURL = null;
 	Properties config;
 	FileInputStream fis;
 	public static WebDriver driver = null;
-	protected static HomePage homePage;
-	// protected static LoginPage loginPage;
-	protected static ProfilesPage profilePage;
-	protected static String username, password, adm_username, adm_password, adm_url, browser, headless, spa_username, spa_password;
+	protected static String adm_username, adm_password, adm_url;
+	protected static String od_username, od_password, od_url;
+	protected static String browser, headless;
 
 	/*
 	 * This method is to load data from application.properties files
@@ -58,19 +53,22 @@ public class BaseClass extends Operations {
 		fis = new FileInputStream(fpath);
 
 		config.load(fis);
-		appplicationUrl = config.getProperty("url");
+		// OD credentials
+		od_url = config.getProperty("od_url");
+		od_username = config.getProperty("od_username");
+		od_password = config.getProperty("od_password");
+
 		profilesURL = config.getProperty("url_new_profile");
 		businessAccountURL = config.getProperty("url_businessaccounts");
-		username = config.getProperty("username");
-		password = config.getProperty("password");
+
+		// Admiral Enforcement Web credentials
 		adm_url = config.getProperty("adm_url");
 		adm_username = config.getProperty("adm_username");
 		adm_password = config.getProperty("adm_password");
+
+		// Browser Configurations
 		browser = config.getProperty("browser");
 		headless = config.getProperty("headless");
-		spa_applicationUrl = config.getProperty("spa_url");
-		spa_username = config.getProperty("spa_username");
-		spa_password = config.getProperty("spa_password");
 
 	}
 
@@ -145,25 +143,31 @@ public class BaseClass extends Operations {
 	}
 
 	/*
-	 * Usage : To launch application & Returns : LoginPage
+	 * Usage : To launch application & Returns : OD_LoginPage
 	 * 
 	 * Author : Venu Thota (venu.t@comakeit.com)
 	 */
-	public LoginPage launchApplication() {
-		driver.get(appplicationUrl);
-		passStep("Launched the application <b>" + appplicationUrl + "</b>");
-		LoginPage loginPage = new LoginPage();
+	public OD_LoginPage launch_OD_Application() {
+		driver.get(od_url);
+		passStep("Launched the application <b>" + od_url + "</b>");
+		OD_LoginPage loginPage = new OD_LoginPage();
 		waitForElementTobeDisplayed(loginPage.textbox_UserName);
 		return loginPage;
 	}
 
-//	public spaLoginPage launchApplication() {
-//		driver.get(appplicationUrl);
-//		passStep("Launched the application <b>" + appplicationUrl + "</b>");
-//		LoginPage loginPage = new LoginPage();
-//		waitForElementTobeDisplayed(loginPage.textbox_UserName);
-//		return loginPage;
-//	}
+	/*
+	 * Usage : To launch application & Returns : Adm_LoginPage
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
+	 */
+	public Adm_LoginPage launch_AdmiralEnforcement_Application() {
+		driver.get(adm_url);
+		Adm_LoginPage loginPage = new Adm_LoginPage();
+		waitForElementTobeDisplayed(loginPage.textbox_UserName);
+		if (isElementDisplayed(loginPage.textbox_UserName))
+			passStep("Launched the Admiral Enforcement application <b>" + adm_url + "</b>");
+		return loginPage;
+	}
 
 	/*
 	 * Usage : This method is to quit the browser
@@ -218,20 +222,6 @@ public class BaseClass extends Operations {
 		}
 	}
 
-	/*
-	 * Usage : To launch application & Returns : LoginPage
-	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
-	 */
-	public Adm_LoginPage launch_AdmiralEnforcement_Application() {
-		driver.get(adm_url);
-		Adm_LoginPage loginPage = new Adm_LoginPage();
-		waitForElementTobeDisplayed(loginPage.textbox_UserName);
-		if (isElementDisplayed(loginPage.textbox_UserName))
-			passStep("Launched the Admiral Enforcement application <b>" + adm_url + "</b>");
-		return loginPage;
-	}
-	
 	/*
 	 * Usage : To generate 4 digit random number which is used as a location number
 	 * 

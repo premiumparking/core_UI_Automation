@@ -4,13 +4,13 @@ import org.openqa.selenium.By;
 import components.BaseClass;
 
 /*
- * Class which contains the web elements and performs CitationsPage  activities (methods)
+ * Class which contains the web elements and performs Adm_CitationsPage  activities (methods)
  * 
  * Extends : BaseClass
  * 
  * Author : Venu Thota(venu.t@comakeit.com)
  */
-public class CitationsPage extends BaseClass {
+public class Adm_CitationsPage extends BaseClass {
 
 	// ****************** WEB ELEMENTS ****************************//
 	By input_Search = By.id("search-input-block");

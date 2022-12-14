@@ -145,7 +145,9 @@ public class Operations extends Extent_Reports {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public Boolean isElementDisplayed(By element) {
-		return BaseClass.driver.findElement(element).isDisplayed();
+		WebElement ele = BaseClass.driver.findElement(element);
+		highlightElement(ele);
+		return ele.isDisplayed();
 
 	}
 
@@ -198,7 +200,7 @@ public class Operations extends Extent_Reports {
 	}
 
 	/*
-	 * This method is to unselect CHECKBOX
+	 * This method is to UNselect CHECKBOX
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
@@ -243,7 +245,6 @@ public class Operations extends Extent_Reports {
 		// js.executeScript("arguments[0].setAttribute('style', 'background: #828383;
 		// border: 3px solid red;');", element);
 		js.executeScript("arguments[0].setAttribute('style', 'border: 3px solid red;');", element);
-		// js.executeScript("arguments[0].style.border='3px solid red'');", element);
 	}
 
 	/*
