@@ -157,6 +157,14 @@ public class BaseClass extends Operations {
 		return loginPage;
 	}
 
+//	public spaLoginPage launchApplication() {
+//		driver.get(appplicationUrl);
+//		passStep("Launched the application <b>" + appplicationUrl + "</b>");
+//		LoginPage loginPage = new LoginPage();
+//		waitForElementTobeDisplayed(loginPage.textbox_UserName);
+//		return loginPage;
+//	}
+
 	/*
 	 * Usage : This method is to quit the browser
 	 * 
