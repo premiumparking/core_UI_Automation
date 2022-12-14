@@ -1,0 +1,15 @@
+<venue>
+    <name>Test_venue_</name>
+    <address>West Land</address>
+    <city>Chicago</city>
+    <zip>45334</zip>
+    <latitude>64.200844</latitude>
+    <longitude>-149.493668</longitude>
+    <phone>9876543210</phone>
+    <email>test_123@yopmail.com</email>
+    <url>www.testvenue.com</url>
+    <description>Desc of venue</description>
+    <hours>24</hours>
+    <metaTagTitle>Dummy Title</metaTagTitle>
+    <metaTagDescription>Dummy description</metaTagDescription>
+</venue>

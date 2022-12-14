@@ -26,6 +26,9 @@ public class HomePage extends BaseClass {
 	By link_Users = By.xpath("//a[normalize-space(text())='Users']");
 	By link_Profiles = By.xpath("//a[normalize-space(text())='Profiles']");
 
+	By dd_Content = By.xpath("//a[normalize-space()='Content']");
+	By link_Venues = By.xpath("//a[normalize-space()='Venues']");
+
 	// ****************** ACTIONS ****************************//
 
 	/*
@@ -101,6 +104,18 @@ public class HomePage extends BaseClass {
 		clickOnButton(dd_Manage, "Manage menu");
 		clickOnButton(link_BusinessAccounts, "Business Accounts sub-menu");
 		return new BusinessAccountsPage();
+	}
+
+	public VenuesPage navigateToVenuesPage() {
+		waitForElementTobeDisplayed(dd_Content);
+		clickOnButton(dd_Content, "Content menu");
+		clickOnButton(link_Venues, "Venues Link");
+		VenuesPage venuesPage = new VenuesPage();
+		waitForElementTobeDisplayed(venuesPage.label_Venues);
+		if (isElementDisplayed(venuesPage.label_Venues)) {
+			passStep("Venues page has been loaded");
+		}
+		return venuesPage;
 	}
 
 }
