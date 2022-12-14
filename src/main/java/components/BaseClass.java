@@ -35,6 +35,7 @@ import pageObjects.OD.ProfilesPage;
 public class BaseClass extends Operations {
 
 	String appplicationUrl = null;
+	String spa_applicationUrl = null;
 	protected static String profilesURL = null;
 	protected static String businessAccountURL = null;
 	Properties config;
@@ -43,7 +44,7 @@ public class BaseClass extends Operations {
 	protected static HomePage homePage;
 	// protected static LoginPage loginPage;
 	protected static ProfilesPage profilePage;
-	protected static String username, password, adm_username, adm_password, adm_url, browser, headless;
+	protected static String username, password, adm_username, adm_password, adm_url, browser, headless, spa_username, spa_password;
 
 	/*
 	 * This method is to load data from application.properties files
@@ -67,6 +68,9 @@ public class BaseClass extends Operations {
 		adm_password = config.getProperty("adm_password");
 		browser = config.getProperty("browser");
 		headless = config.getProperty("headless");
+		spa_applicationUrl = config.getProperty("spa_url");
+		spa_username = config.getProperty("spa_username");
+		spa_password = config.getProperty("spa_password");
 
 	}
 
