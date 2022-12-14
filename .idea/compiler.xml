@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="parkOS.automation.ui" />
         <module name="parkos-od-automation-ui" />
+        <module name="OD_UI_Automation" />
       </profile>
     </annotationProcessing>
   </component>
