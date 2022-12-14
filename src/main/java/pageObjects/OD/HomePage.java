@@ -26,8 +26,8 @@ public class HomePage extends BaseClass {
 	By link_Users = By.xpath("//a[normalize-space(text())='Users']");
 	By link_Profiles = By.xpath("//a[normalize-space(text())='Profiles']");
 
-	By dd_Content = By.xpath("//a[contains(text(),'Content')]");
-	By link_Venues = By.xpath("//a[contains(text(),'Venues')]");
+	By dd_Content = By.xpath("//a[normalize-space()='Content']");
+	By link_Venues = By.xpath("//a[normalize-space()='Venues']");
 
 	// ****************** ACTIONS ****************************//
 

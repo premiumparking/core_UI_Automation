@@ -9,8 +9,8 @@ public class VenuesPage extends BaseClass {
     // ****************** WEB ELEMENTS ****************************//
     By label_OperatorDashboard = By.xpath("//span[contains(text(),'Operator Dashboard')]");
     By label_Venues = By.xpath("//h2[contains(text(),'Venues')]");
-    By button_New = By.xpath("//a[contains(text(),'New')]");
-    By label_NewVenue = By.xpath("//h1[contains(text(),'New Venue')]");
+    By button_New = By.xpath("//a[normalize-space()='New']");
+    By label_NewVenue = By.xpath("//h1[normalize-space()='New Venue']");
     By textbox_venue_name = By.id("venue_name");
     By textbox_venue_address = By.id("venue_address");
     By textbox_venue_city = By.id("venue_city");
@@ -31,7 +31,7 @@ public class VenuesPage extends BaseClass {
     // ****************** ACTIONS ****************************//
 
     /*
-     * Method to create a new Market
+     * Method to create a new Venue
      *
      * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
      */
@@ -40,8 +40,6 @@ public class VenuesPage extends BaseClass {
         waitForElementTobeDisplayed(button_New);
         clickOnButton(button_New, "Button new");
         waitForElementTobeDisplayed(label_NewVenue);
-//        if (venue.getVisible().equalsIgnoreCase("True"))
-//            select_Checkbox(checkbox_market_visible, "Checkbox_Visible");
         enterText(textbox_venue_name, venue.getName(), "Venue Name Textbox");
         enterText(textbox_venue_address, venue.getAddress(), "Venue Address Textbox");
         enterText(textbox_venue_city, venue.getCity(), "Venue City Textbox");
