@@ -8,8 +8,8 @@ import components.BaseClass;
 import dataModel.Admiral.Citation;
 import pageObjects.Admiral.Adm_HomePage;
 import pageObjects.Admiral.Adm_LoginPage;
-import pageObjects.Admiral.CitationsPage;
-import pageObjects.OD.BusinessAccountsPage;
+import pageObjects.Admiral.Adm_CitationsPage;
+import pageObjects.OD.OD_BusinessAccountsPage;
 import utils.Excel_Operations;
 
 /*
@@ -22,10 +22,10 @@ import utils.Excel_Operations;
 public class AdmiralEnforcement extends BaseClass {
 
 	Excel_Operations excel_Ops = new Excel_Operations();
-	BusinessAccountsPage businessAccountsPage = new BusinessAccountsPage();
+	OD_BusinessAccountsPage businessAccountsPage = new OD_BusinessAccountsPage();
 	Adm_LoginPage adm_LoginPage = new Adm_LoginPage();
 	Adm_HomePage adm_HomePage = new Adm_HomePage();
-	CitationsPage citationPage = new CitationsPage();
+	Adm_CitationsPage citationPage = new Adm_CitationsPage();
 
 	List<Citation> Citations;
 	String fileName = "AdmiralPaymentLinkTransactions.xlsx";

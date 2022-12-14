@@ -1,23 +1,31 @@
 package testcases.OD;
 
-import dataModel.OD.Venue;
 import org.testng.annotations.Test;
 
 import components.BaseClass;
 import components.Constants;
 import dataModel.OD.Location;
 import dataModel.OD.Market;
-import pageObjects.OD.*;
+import pageObjects.OD.OD_HomePage;
+import pageObjects.OD.OD_LocationsPage;
+import pageObjects.OD.OD_LoginPage;
+import pageObjects.OD.OD_MarketsPage;
+import pageObjects.OD.OD_VenuesPage;
+import pageObjects.OD.OD_VirtualLocationsPage;
 import utils.XML_Operations;
 
 public class Manage_Menu_Testcases extends BaseClass {
+	// ****************** CLASS INSTANCES ****************************//
 	XML_Operations xml_Ops = new XML_Operations();
-	LoginPage loginPage = new LoginPage();
-	MarketsPage marketsPage = new MarketsPage();
-	VenuesPage venuesPage = new VenuesPage();
-	LocationsPage locationsPage = new LocationsPage();
-	VirtualLocationsPage vl_Page = new VirtualLocationsPage();
+	OD_HomePage homePage = new OD_HomePage();
+	OD_LoginPage loginPage = new OD_LoginPage();
+	OD_MarketsPage marketsPage = new OD_MarketsPage();
+	OD_VenuesPage venuesPage = new OD_VenuesPage();
+	OD_LocationsPage locationsPage = new OD_LocationsPage();
+	OD_VirtualLocationsPage vl_Page = new OD_VirtualLocationsPage();
 
+	
+	// ****************** TEST SCRIPTS ****************************//
 	/*
 	 * This is a test case to create Market
 	 * 
@@ -26,7 +34,7 @@ public class Manage_Menu_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_01_Create_Market() {
 
-		loginPage = launchApplication();
+		loginPage = launch_OD_Application();
 		homePage = loginPage.login();
 		marketsPage = homePage.navigateToMarketsPage();
 		Market market = xml_Ops.getMarketTestData();
@@ -43,10 +51,10 @@ public class Manage_Menu_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_02_Create_Location() {
 		String pNumber = "P" + get4DigitRandomNumber();
-		loginPage = launchApplication();
+		loginPage = launch_OD_Application();
 		homePage = loginPage.login();
 		locationsPage = homePage.navigateToLocationsPage();
-		Location location = xml_Ops.getLocationTestData();	
+		Location location = xml_Ops.getLocationTestData();
 
 		// Setting location test data
 		location.setName(pNumber);
@@ -66,23 +74,11 @@ public class Manage_Menu_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_03_Create_VirtualLocation() {
 
-		loginPage = launchApplication();
+		loginPage = launch_OD_Application();
 		homePage = loginPage.login();
 		vl_Page = homePage.navigateToVirtualLocationsPage();
 		String vl_name = "Test_Virtual_Location_" + getTimestamp();
 		vl_Page.create_VirtualLocation(vl_name, Constants.VIRTUAL_LOCATIONS);
-
-	}
-
-	@Test(groups = { "smoke", "regression" })
-	public void TC_04_Create_Venue() {
-
-		loginPage = launchApplication();
-		homePage = loginPage.login();
-		venuesPage = homePage.navigateToVenuesPage();
-		Venue venue = xml_Ops.getVenueTestData();
-		venue.setName(venue.getName() + getTimestamp());
-		venuesPage.create_Venue(venue);
 
 	}
 

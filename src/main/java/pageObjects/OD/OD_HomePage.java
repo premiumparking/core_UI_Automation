@@ -11,7 +11,7 @@ import components.BaseClass;
  * 
  * Author : Venu Thota(venu.t@comakeit.com)
  */
-public class HomePage extends BaseClass {
+public class OD_HomePage extends BaseClass {
 
 	// ****************** WEB ELEMENTS ****************************//
 	By label_OperatorDashboard = By.xpath("//span[contains(text(),'Operator Dashboard')]");
@@ -36,11 +36,11 @@ public class HomePage extends BaseClass {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public MarketsPage navigateToMarketsPage() {
+	public OD_MarketsPage navigateToMarketsPage() {
 		waitForElementTobeDisplayed(dd_Manage);
 		clickOnButton(dd_Manage, "Manage menu");
 		clickOnButton(link_Markets, "Markets Link");
-		MarketsPage marketsPage = new MarketsPage();
+		OD_MarketsPage marketsPage = new OD_MarketsPage();
 		waitForElementTobeDisplayed(marketsPage.label_Markets);
 		if (isElementDisplayed(marketsPage.label_Markets)) {
 			passStep("Markets page has been loaded");
@@ -53,11 +53,11 @@ public class HomePage extends BaseClass {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public LocationsPage navigateToLocationsPage() {
+	public OD_LocationsPage navigateToLocationsPage() {
 		waitForElementTobeDisplayed(dd_Manage);
 		clickOnButton(dd_Manage, "Manage menu");
 		clickOnButton(link_Locations, "Locations Link");
-		LocationsPage locationsPage = new LocationsPage();
+		OD_LocationsPage locationsPage = new OD_LocationsPage();
 		waitForElementTobeDisplayed(locationsPage.label_Locations);
 		if (isElementDisplayed(locationsPage.label_Locations)) {
 			passStep("Locations page has been loaded");
@@ -66,15 +66,15 @@ public class HomePage extends BaseClass {
 	}
 	
 	/*
-	 * Method to navigate to Locations page from home page
+	 * Method to navigate to Virtual Locations page from home page
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public VirtualLocationsPage navigateToVirtualLocationsPage() {
+	public OD_VirtualLocationsPage navigateToVirtualLocationsPage() {
 		waitForElementTobeDisplayed(dd_Manage);
 		clickOnButton(dd_Manage, "Manage menu");
 		clickOnButton(link_VirtualLocations, "Virtul Locations Link");
-		VirtualLocationsPage v_locationsPage = new VirtualLocationsPage();
+		OD_VirtualLocationsPage v_locationsPage = new OD_VirtualLocationsPage();
 		waitForElementTobeDisplayed(v_locationsPage.label_VirtualLocations);
 		if (isElementDisplayed(v_locationsPage.label_VirtualLocations)) {
 			passStep("Virtual Locations page has been loaded");
@@ -87,11 +87,11 @@ public class HomePage extends BaseClass {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public ProfilesPage navigateToProfilesPage() {
+	public OD_ProfilesPage navigateToProfilesPage() {
 		waitForElementTobeDisplayed(dd_Manage);
 		clickOnButton(dd_Manage, "Manage menu");
 		clickOnButton(link_Profiles, "Profiles sub-menu");
-		return new ProfilesPage();
+		return new OD_ProfilesPage();
 	}
 
 	/*
@@ -99,18 +99,23 @@ public class HomePage extends BaseClass {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public BusinessAccountsPage navigateToBusinessAccountsPage() {
+	public OD_BusinessAccountsPage navigateToBusinessAccountsPage() {
 		waitForElementTobeDisplayed(dd_Manage);
 		clickOnButton(dd_Manage, "Manage menu");
 		clickOnButton(link_BusinessAccounts, "Business Accounts sub-menu");
-		return new BusinessAccountsPage();
+		return new OD_BusinessAccountsPage();
 	}
 
-	public VenuesPage navigateToVenuesPage() {
+	/*
+	 * Method to navigate to Venues page from home page
+	 * 
+	 * Author :  Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_VenuesPage navigateToVenuesPage() {
 		waitForElementTobeDisplayed(dd_Content);
 		clickOnButton(dd_Content, "Content menu");
 		clickOnButton(link_Venues, "Venues Link");
-		VenuesPage venuesPage = new VenuesPage();
+		OD_VenuesPage venuesPage = new OD_VenuesPage();
 		waitForElementTobeDisplayed(venuesPage.label_Venues);
 		if (isElementDisplayed(venuesPage.label_Venues)) {
 			passStep("Venues page has been loaded");

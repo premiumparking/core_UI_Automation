@@ -12,7 +12,7 @@ import dataModel.OD.Market;
  * 
  * Author : Venu Thota(venu.t@comakeit.com)
  */
-public class MarketsPage extends BaseClass {
+public class OD_MarketsPage extends BaseClass {
 
 	// ****************** WEB ELEMENTS ****************************//
 	By label_OperatorDashboard = By.xpath("//span[contains(text(),'Operator Dashboard')]");

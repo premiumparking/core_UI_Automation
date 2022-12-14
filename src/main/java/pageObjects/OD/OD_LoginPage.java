@@ -11,7 +11,7 @@ import components.BaseClass;
  * 
  * Author : Venu Thota(venu.t@comakeit.com)
  */
-public class LoginPage extends BaseClass {
+public class OD_LoginPage extends BaseClass {
 
 	// ****************** WEB ELEMENTS ****************************//
 	public By textbox_UserName = By.id("user_email");
@@ -24,14 +24,14 @@ public class LoginPage extends BaseClass {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public HomePage login() {
-		enterText(textbox_UserName, BaseClass.username);
-		enterText(textbox_Password, BaseClass.password);
+	public OD_HomePage login() {
+		enterText(textbox_UserName, BaseClass.od_username);
+		enterText(textbox_Password, BaseClass.od_password);
 		clickOnButton(button_SignIn, "Sign In button");
-		HomePage homePage = new HomePage();
+		OD_HomePage homePage = new OD_HomePage();
 		waitForElementTobeDisplayed(homePage.label_OperatorDashboard);
 		passStep("Logged in with Brendan Bodensteiner 's credentials");
-		return new HomePage();
+		return new OD_HomePage();
 
 	}
 
