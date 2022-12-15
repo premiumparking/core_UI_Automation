@@ -155,9 +155,11 @@ public class BaseClass extends Operations {
 	 */
 	public OD_LoginPage launch_OD_Application() {
 		driver.get(od_url);
-		passStep("Launched the application <b>" + od_url + "</b>");
 		OD_LoginPage loginPage = new OD_LoginPage();
 		waitForElementTobeDisplayed(loginPage.textbox_UserName);
+		if (isElementDisplayed(loginPage.textbox_UserName)) {
+			passStep("Launched OD application <b>" + od_url + "</b>");
+		}
 		return loginPage;
 	}
 
@@ -168,9 +170,11 @@ public class BaseClass extends Operations {
 	 */
 	public SPA_LoginPage launch_SPA_Application() {
 		driver.get(spa_url);
-		passStep("Launched the application <b>" + spa_url + "</b>");
 		SPA_LoginPage spaLoginPage = new SPA_LoginPage();
 		waitForElementTobeDisplayed(spaLoginPage.button_SignIn);
+		if (isElementDisplayed(spaLoginPage.button_SignIn)) {
+			passStep("Launched SPA application <b>" + spa_url + "</b>");
+		}
 		return spaLoginPage;
 	}
 
@@ -232,7 +236,7 @@ public class BaseClass extends Operations {
 	@AfterMethod(alwaysRun = true)
 	public void getResult(ITestResult result) throws IOException {
 		if (result.getStatus() == ITestResult.FAILURE) {
-			stepInfo("Failed Due to below exception : ");
+			stepInfo("<i>__Failed due to below exception__ :</i> ");
 			failStep(result.getThrowable().toString());
 			String screenshotPath = BaseClass.getScreenshot(driver, result.getName());
 
