@@ -29,6 +29,7 @@ import com.relevantcodes.extentreports.LogStatus;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pageObjects.Admiral.Adm_LoginPage;
 import pageObjects.OD.OD_LoginPage;
+import pageObjects.SPA.SPA_LoginPage;
 
 public class BaseClass extends Operations {
 
@@ -39,6 +40,7 @@ public class BaseClass extends Operations {
 	public static WebDriver driver = null;
 	protected static String adm_username, adm_password, adm_url;
 	protected static String od_username, od_password, od_url;
+	protected static String spa_url, spa_username, spa_password;
 	protected static String browser, headless;
 
 	/*
@@ -70,6 +72,10 @@ public class BaseClass extends Operations {
 		browser = config.getProperty("browser");
 		headless = config.getProperty("headless");
 
+		// SPA Credentials
+		spa_url = config.getProperty("spa_url");
+		spa_username = config.getProperty("spa_username");
+		spa_password = config.getProperty("spa_password");
 	}
 
 	/*
@@ -153,6 +159,19 @@ public class BaseClass extends Operations {
 		OD_LoginPage loginPage = new OD_LoginPage();
 		waitForElementTobeDisplayed(loginPage.textbox_UserName);
 		return loginPage;
+	}
+
+	/*
+	 * Usage : To launch application & Returns : SPA_LoginPage
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public SPA_LoginPage launch_SPA_Application() {
+		driver.get(spa_url);
+		passStep("Launched the application <b>" + spa_url + "</b>");
+		SPA_LoginPage spaLoginPage = new SPA_LoginPage();
+		waitForElementTobeDisplayed(spaLoginPage.button_SignIn);
+		return spaLoginPage;
 	}
 
 	/*
