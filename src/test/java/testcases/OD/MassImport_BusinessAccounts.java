@@ -25,7 +25,7 @@ public class MassImport_BusinessAccounts extends BaseClass {
 	OD_HomePage homePage = new OD_HomePage();
 	OD_ProfilesPage profilePage = new OD_ProfilesPage();
 	Excel_Operations excel_Ops = new Excel_Operations();
-	OD_LoginPage  loginPage = new OD_LoginPage ();
+	OD_LoginPage loginPage = new OD_LoginPage();
 	OD_BusinessAccountsPage businessAccountsPage = new OD_BusinessAccountsPage();
 
 	List<Profile> profiles;
@@ -61,26 +61,25 @@ public class MassImport_BusinessAccounts extends BaseClass {
 		loginPage = launch_OD_Application();
 		homePage = loginPage.login();
 		businessAccountsPage = homePage.navigateToBusinessAccountsPage();
-		List<String> sheets = excel_Ops.get_Total_Sheets(fileName);
-		// for (String sheet : sheets.subList(1, sheets.size())) {
-		List<Profile> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "BA1");
+		// List<String> sheets = excel_Ops.get_Total_Sheets(fileName);
+		List<Profile> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "BA_1_New");
 		if (businessAccountsPage.isBusinessAccountExist(profiles.get(0).getBusinessAccountName(),
 				profiles.get(0).getLocation())) {
 			businessAccountsPage.imporsonateBusinessAccount(profiles.get(0));
 			for (Profile profile : profiles) {
 				if (!businessAccountsPage.isMembertExist(profile)) {
 					businessAccountsPage.add_Member(profile);
-				}
-				if (businessAccountsPage.is_CopyLink_displayed()) {
-					businessAccountsPage.activate_Member(profile.getLpNumber());
-					//businessAccountsPage.navigate_To_BusinessAcounts_Page();
-				} else {
-					businessAccountsPage.add_Vehicle(profile.getLpNumber());
+
+					if (businessAccountsPage.is_CopyLink_displayed()) {
+						businessAccountsPage.activate_Member(profile);
+						// businessAccountsPage.navigate_To_BusinessAcounts_Page();
+					} else {
+						businessAccountsPage.add_Vehicle(profile.getLpNumber());
+					}
 				}
 			}
 		}
 		businessAccountsPage.navigate_To_BusinessAcounts_Page();
-		// }
 
 	}
 

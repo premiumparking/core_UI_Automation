@@ -30,7 +30,7 @@ public class Excel_Operations {
 
 	public List<Profile> load_ProfilesData_From_ExcelSheet(String fileName, String sheetName) {
 		try {
-			File file = new File(System.getProperty("user.dir") + "\\src\\test\\resources\\" + fileName);
+			File file = new File(System.getProperty("user.dir") + "\\src\\test\\java\\testData\\OD\\" + fileName);
 			XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
 			XSSFSheet sheet = workbook.getSheet(sheetName);
 			List<Profile> profiles = Poiji.fromExcel(sheet, Profile.class);
@@ -64,8 +64,7 @@ public class Excel_Operations {
 			return null;
 		}
 	}
-	
-	
+
 	/*
 	 * This method is to load the excel sheet and it binds to Citation object and
 	 * returns list of citations
@@ -75,7 +74,7 @@ public class Excel_Operations {
 
 	public List<Citation> load_CitationData_From_ExcelSheet(String fileName, String sheetName) {
 		try {
-			File file = new File(System.getProperty("user.dir") + "\\src\\test\\java\\testData\\" + fileName);
+			File file = new File(System.getProperty("user.dir") + "\\src\\test\\java\\testData\\OD\\" + fileName);
 			XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
 			XSSFSheet sheet = workbook.getSheet(sheetName);
 			List<Citation> citations = Poiji.fromExcel(sheet, Citation.class);
