@@ -10,6 +10,7 @@ import dataModel.OD.Location;
 import dataModel.OD.Market;
 import dataModel.OD.Operator;
 import dataModel.OD.Venue;
+import dataModel.SPA.Vehicle;
 
 /*
  * Class is to handle the XML operations i.e. getting test data from xml and binding to Java object
@@ -112,4 +113,22 @@ public class XML_Operations {
 		return venue;
 	}
 
+	public Vehicle getVehicleTestData() {
+		JAXBContext jaxbContext;
+		Vehicle vehicle = null;
+		File xmlFile = new File("src\\test\\java\\testData\\SPA\\Vehicle.xml");
+
+		try {
+			jaxbContext = JAXBContext.newInstance(Vehicle.class);
+			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+			vehicle = (Vehicle) jaxbUnmarshaller.unmarshal(xmlFile);
+
+		}
+
+		catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return vehicle;
+	}
 }
