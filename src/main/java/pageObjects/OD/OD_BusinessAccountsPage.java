@@ -45,9 +45,13 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	By textBox_licencePlate = By.xpath("(//input[@name ='vehicle[license_plate]'])[1]");
 	By button_Add = By.xpath("(//input[@value='Add'])[1]");
 
-	By link_CopyLink = By.xpath(".//a[contains(text(),'copy link')]");
+	By link_CopyLink = By.xpath(".//a[contains(text(),'copy link')][1]");
 	By input_licencePlate = By.id("subscription_license_plate");
 	By button_Verify = By.xpath("//button[contains(text(),'Verify')]");
+
+	By textBox_new_Password = By.id("new_password");
+	By textBox_Confirm_new_Password = By.id("confirm_new_password");
+	By button_Create_Account = By.id("change_password");
 
 // ****************** ACTIONS ****************************//
 
@@ -150,10 +154,19 @@ public class OD_BusinessAccountsPage extends BaseClass {
 		enterText(textBox_Email, profile.getEmail(), "Email");
 		enterText(textBox_FirstName, profile.getFirstName(), "First Name");
 		enterText(textBox_LastName, profile.getLastName(), "Last Name");
-		clickOnButton(button_AddSubscription, "Add Subscription");
-		clickOnButton_using_Actions(dd_AvailabelPlans, "Availabel Plans");
-		selectFromSearch(dd_AvailabelPlans, profile.getSubRateName(), "Available Plans");
-		enterText(textBox_date, profile.getStartDate(), "Subscription Start Date");
+		String[] lpNumbers = profile.getLpNumber().split(",");
+		for (String lpNumber : lpNumbers) {
+			clickOnButton(button_AddSubscription, "Add Subscription");
+			By dd_AvailabelPlans = By.xpath("//input[contains(@id,'item-selectized')][1]");
+			clickOnButton_using_Actions(dd_AvailabelPlans, "Availabel Plans");
+			selectFromSearch(dd_AvailabelPlans, profile.getSubRateName(), "Available Plans");
+
+		}
+		// clickOnButton(button_AddSubscription, "Add Subscription");
+		// clickOnButton_using_Actions(dd_AvailabelPlans, "Availabel Plans");
+		// selectFromSearch(dd_AvailabelPlans, profile.getSubRateName(), "Available
+		// Plans");
+		// enterText(textBox_date, profile.getStartDate(), "Subscription Start Date");
 		clickOnButton(button_Save, "Save button");
 		waitForElementTobeDisplayed(button_Confirm);
 		clickOnButton(button_Confirm, "Confirm");
@@ -194,18 +207,33 @@ public class OD_BusinessAccountsPage extends BaseClass {
 		}
 	}
 
-	public void activate_Member(String licencePlate) {
+	public void activate_Member(Profile profile) {
+		By link_CopyLnk = By.xpath(".//a[contains(text(),'copy link')]");
+		//List<WebElement> link_CopyLinks = BaseClass.driver.findElements(link_CopyLnk);
+		// for (int i = 0; i < link_CopyLinks.size(); i++) {
+		// link_CopyLink = By.xpath(".//a[contains(text(),'copy link')][1]");
+
 		clickOnButton(link_CopyLink, "Copy Link");
 		String u = BaseClass.driver.findElement(link_CopyLink).getAttribute("href");
 		BaseClass.driver.get(u);
-
+		waitForPageLoad(5);
+		try {
+			// waitForElementTobeDisplayed(textBox_new_Password);
+			enterText(textBox_new_Password, profile.getEmail(), "New Password");
+			enterText(textBox_Confirm_new_Password, profile.getEmail(), "Confirm New Password");
+			clickOnButton(button_Create_Account, "Create Account");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		String[] lpns = profile.getLpNumber().split(",");
 		waitForElementTobeDisplayed(input_licencePlate);
-		enterText(input_licencePlate, licencePlate, "Licence Plate");
+		enterText(input_licencePlate, lpns[0], "Licence Plate");
 		waitForElementTobeDisplayed(button_Verify);
 		clickOnButton(button_Verify, "Verify");
 		waitForPageLoad(4);
 		BaseClass.driver.navigate().back();
 		waitForPageLoad(4);
+		// }
 
 	}
 
