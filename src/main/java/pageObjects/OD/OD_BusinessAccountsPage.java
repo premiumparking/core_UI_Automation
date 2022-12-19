@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
@@ -31,6 +32,7 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	By link_Members = By.xpath("//a[contains(text(),'Members')]");
 	By textBox_Search = By.id("search");
 	By button_Search = By.xpath("//input[@value='Search']");
+	By member_Status = By.xpath("//span[@class='people__payment-hint']");
 	By button_AddMember = By.xpath("//a[contains(text(),'Add Member')]");
 	By textBox_Email = By.id("group_membership_profile_attributes_email");
 	By textBox_FirstName = By.id("group_membership_profile_attributes_first_name");
@@ -109,12 +111,22 @@ public class OD_BusinessAccountsPage extends BaseClass {
 		}
 	}
 
+	public Boolean isMember_Not_Activated() {
+		Boolean status = false;
+		try {
+			status = isElementDisplayed(member_Status) || isElementDisplayed(link_CopyLink);
+		} catch (Exception ex) {
+			return status;
+		}
+		return status;
+	}
+
 	/*
 	 * Method to navigate to check if the member is exist or not
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public boolean isMembertExist(Profile profile) {
+	public boolean isMember_Exist(Profile profile) {
 
 		stepInfo("<b>Verifying Member : " + profile.getEmail() + "</b>");
 		waitForElementTobeDisplayed(textBox_Search);
@@ -155,17 +167,14 @@ public class OD_BusinessAccountsPage extends BaseClass {
 		enterText(textBox_FirstName, profile.getFirstName(), "First Name");
 		enterText(textBox_LastName, profile.getLastName(), "Last Name");
 		String[] lpNumbers = profile.getLpNumber().split(",");
-		for (String lpNumber : lpNumbers) {
+
+		for (int i = 1; i <= lpNumbers.length; i++) {
 			clickOnButton(button_AddSubscription, "Add Subscription");
 			By dd_AvailabelPlans = By.xpath("//input[contains(@id,'item-selectized')][1]");
 			clickOnButton_using_Actions(dd_AvailabelPlans, "Availabel Plans");
 			selectFromSearch(dd_AvailabelPlans, profile.getSubRateName(), "Available Plans");
-
 		}
-		// clickOnButton(button_AddSubscription, "Add Subscription");
-		// clickOnButton_using_Actions(dd_AvailabelPlans, "Availabel Plans");
-		// selectFromSearch(dd_AvailabelPlans, profile.getSubRateName(), "Available
-		// Plans");
+
 		// enterText(textBox_date, profile.getStartDate(), "Subscription Start Date");
 		clickOnButton(button_Save, "Save button");
 		waitForElementTobeDisplayed(button_Confirm);
@@ -175,7 +184,7 @@ public class OD_BusinessAccountsPage extends BaseClass {
 		waitForElementTobeDisplayed(link_Members);
 		clickOnButton(link_Members, "Members menu");
 		waitForPageLoad(3);
-		isMembertExist(profile);
+		isMember_Exist(profile);
 
 	}
 
@@ -209,32 +218,46 @@ public class OD_BusinessAccountsPage extends BaseClass {
 
 	public void activate_Member(Profile profile) {
 		By link_CopyLnk = By.xpath(".//a[contains(text(),'copy link')]");
-		//List<WebElement> link_CopyLinks = BaseClass.driver.findElements(link_CopyLnk);
-		// for (int i = 0; i < link_CopyLinks.size(); i++) {
-		// link_CopyLink = By.xpath(".//a[contains(text(),'copy link')][1]");
-
-		clickOnButton(link_CopyLink, "Copy Link");
-		String u = BaseClass.driver.findElement(link_CopyLink).getAttribute("href");
-		BaseClass.driver.get(u);
-		waitForPageLoad(5);
-		try {
-			// waitForElementTobeDisplayed(textBox_new_Password);
-			enterText(textBox_new_Password, profile.getEmail(), "New Password");
-			enterText(textBox_Confirm_new_Password, profile.getEmail(), "Confirm New Password");
-			clickOnButton(button_Create_Account, "Create Account");
-		} catch (Exception e) {
-			// TODO: handle exception
+		List<WebElement> link_CopyLinks = BaseClass.driver.findElements(link_CopyLnk);
+		for (int i = 1; i <= link_CopyLinks.size(); i++) {
+			link_CopyLink = By.xpath("(.//a[contains(text(),'copy link')])[" + i + "]");
+			clickOnButton(link_CopyLink, "Copy Link");
+			String url = BaseClass.driver.findElement(link_CopyLink).getAttribute("href");
+			openNewTab(url);
+			ArrayList<String> tabs = getAllTabs();
+			switch_to_Tab(tabs, 0);
+			// BaseClass.driver.get(u);
 		}
-		String[] lpns = profile.getLpNumber().split(",");
-		waitForElementTobeDisplayed(input_licencePlate);
-		enterText(input_licencePlate, lpns[0], "Licence Plate");
-		waitForElementTobeDisplayed(button_Verify);
-		clickOnButton(button_Verify, "Verify");
-		waitForPageLoad(4);
-		BaseClass.driver.navigate().back();
-		waitForPageLoad(4);
-		// }
+		waitForPageLoad(5);
+		ArrayList<String> tabs = getAllTabs();
+		if (tabs.size() > 1) {
+			for (int j = 0; j < tabs.size() - 1; j++) {
+				switch_to_Tab(tabs, (j + 1));
 
+				try {
+					// waitForElementTobeDisplayed(textBox_new_Password);
+					if (isElementDisplayed(textBox_new_Password)) {
+						enterText(textBox_new_Password, profile.getEmail(), "New Password");
+						enterText(textBox_Confirm_new_Password, profile.getEmail(), "Confirm New Password");
+						clickOnButton(button_Create_Account, "Create Account");
+					}
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				String[] lpns = profile.getLpNumber().split(",");
+				waitForElementTobeDisplayed(input_licencePlate);
+				enterText(input_licencePlate, lpns[j], "Licence Plate");
+				waitForElementTobeDisplayed(button_Verify);
+				clickOnButton(button_Verify, "Verify");
+				waitForPageLoad(4);
+				close_Tab(tabs, (j + 1));
+				// BaseClass.driver.navigate().back();
+			}
+		}
+
+		switch_to_Tab(tabs, 0); // Main Tab
+		refresh_Page();
+		waitForPageLoad(3);
 	}
 
 	/*

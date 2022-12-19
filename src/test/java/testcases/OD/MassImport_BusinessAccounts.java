@@ -43,7 +43,7 @@ public class MassImport_BusinessAccounts extends BaseClass {
 		loginPage = launch_OD_Application();
 		homePage = loginPage.login();
 		profilePage = homePage.navigateToProfilesPage();
-		List<Profile> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "Profiles_4903");
+		List<Profile> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "BA_2_New");
 		for (Profile profile : profiles) {
 			if (!profilePage.isPrfileExist(profile.getEmail())) {
 				profilePage.createProfile(profile);
@@ -62,14 +62,15 @@ public class MassImport_BusinessAccounts extends BaseClass {
 		homePage = loginPage.login();
 		businessAccountsPage = homePage.navigateToBusinessAccountsPage();
 		// List<String> sheets = excel_Ops.get_Total_Sheets(fileName);
-		List<Profile> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "BA_1_New");
+		List<Profile> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "BA_2_New");
 		if (businessAccountsPage.isBusinessAccountExist(profiles.get(0).getBusinessAccountName(),
 				profiles.get(0).getLocation())) {
 			businessAccountsPage.imporsonateBusinessAccount(profiles.get(0));
 			for (Profile profile : profiles) {
-				if (!businessAccountsPage.isMembertExist(profile)) {
+				if (!businessAccountsPage.isMember_Exist(profile)) {
 					businessAccountsPage.add_Member(profile);
-
+				}
+				if (businessAccountsPage.isMember_Not_Activated()) {
 					if (businessAccountsPage.is_CopyLink_displayed()) {
 						businessAccountsPage.activate_Member(profile);
 						// businessAccountsPage.navigate_To_BusinessAcounts_Page();
@@ -79,8 +80,7 @@ public class MassImport_BusinessAccounts extends BaseClass {
 				}
 			}
 		}
-		businessAccountsPage.navigate_To_BusinessAcounts_Page();
-
 	}
+	// businessAccountsPage.navigate_To_BusinessAcounts_Page();
 
 }
