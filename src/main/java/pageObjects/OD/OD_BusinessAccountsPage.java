@@ -219,8 +219,8 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	public void activate_Member(Profile profile) {
 		By link_CopyLnk = By.xpath(".//a[contains(text(),'copy link')]");
 		List<WebElement> link_CopyLinks = BaseClass.driver.findElements(link_CopyLnk);
-		for (int i = 1; i <= link_CopyLinks.size(); i++) {
-			link_CopyLink = By.xpath("(.//a[contains(text(),'copy link')])[" + i + "]");
+		for (int i = 0; i < link_CopyLinks.size(); i++) {
+			link_CopyLink = By.xpath("(.//a[contains(text(),'copy link')])[" + (i + 1) +	 "]");
 			clickOnButton(link_CopyLink, "Copy Link");
 			String url = BaseClass.driver.findElement(link_CopyLink).getAttribute("href");
 			openNewTab(url);
