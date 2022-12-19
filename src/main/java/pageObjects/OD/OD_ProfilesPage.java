@@ -79,9 +79,11 @@ public class OD_ProfilesPage extends BaseClass {
 					clickOnButton(row);
 					waitForPageLoad(2);
 					try {
-						By eml = By.xpath("//td[normalize-space()='" + email + "']");
-						if (isElementDisplayed(eml)) {
+						By elm = By.xpath("//td[normalize-space()='" + email.toLowerCase() + "']");
+						if (isElementDisplayed(elm)) {
+							highlightElement(BaseClass.driver.findElement(elm));
 							passStep("Profile " + email + " is available");
+							waitForPageLoad(1);
 							BaseClass.driver.navigate().back();
 							return true;
 						}
