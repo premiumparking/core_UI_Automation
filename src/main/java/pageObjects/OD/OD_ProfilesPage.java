@@ -33,6 +33,7 @@ public class OD_ProfilesPage extends BaseClass {
 	By textbox_profile_concierge_locations = By.id("profile_concierge_location_ids-selectized");
 	By button_Cancel = By.xpath("//a[contains(text(),'Cancel')]");
 	By button_Save = By.xpath("//input[@type='submit' and @value='Save']");
+	By searched_Rows = By.xpath("//tbody//tr");
 
 	// ****************** ACTIONS ****************************//
 
@@ -55,7 +56,7 @@ public class OD_ProfilesPage extends BaseClass {
 		performClick(textbox_profile_address);
 		waitForPageLoad(1);
 		clickOnButton(button_Save, "Save");
-		passStep("<b>Profile : "+profile.getEmail()+" created successfully !!! </b>");
+		passStep("<b>Profile : " + profile.getEmail() + " created successfully !!! </b>");
 		navigate_To_Profiles_Page();
 	}
 
@@ -65,15 +66,31 @@ public class OD_ProfilesPage extends BaseClass {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public boolean isPrfileExist(String email) {
-		stepInfo("<b>Verifying profile : " + email+"</b>");
+		stepInfo("<b>Verifying profile : " + email + "</b>");
 		waitForElementTobeDisplayed(searchBox);
 		enterText(searchBox, email, "Search box");
 		clickOnButton(button_Find, "Find button");
 		try {
 			List<WebElement> searchResult = BaseClass.driver.findElements(totalRows);
+
 			if (searchResult.size() >= 1) {
-				passStep("Profile " + email + " is available");
-				return true;
+				for (int i = 1; i <= searchResult.size(); i++) {
+					By row = By.xpath("((//tbody//tr)[" + i + "])//a");
+					clickOnButton(row);
+					waitForPageLoad(2);
+					try {
+						By eml = By.xpath("//td[normalize-space()='" + email + "']");
+						if (isElementDisplayed(eml)) {
+							passStep("Profile " + email + " is available");
+							BaseClass.driver.navigate().back();
+							return true;
+						}
+					} catch (Exception ex) {
+						passStep("Profile " + email + " is NOT available");
+						BaseClass.driver.navigate().back();
+					}
+				}
+
 			} else {
 				passStep("Profile " + email + " is NOT available");
 				return false;
@@ -82,7 +99,7 @@ public class OD_ProfilesPage extends BaseClass {
 			passStep("Profile " + email + " is NOT available");
 			return false;
 		}
-
+		return false;
 	}
 
 	/*

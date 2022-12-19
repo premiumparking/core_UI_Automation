@@ -1,12 +1,15 @@
 package components;
 
 import java.time.Duration;
+import java.util.ArrayList;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WindowType;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -375,5 +378,52 @@ public class Operations extends Extent_Reports {
 
 		// clicking on the element based on x coordinate and y coordinate
 		action.moveToElement(element, xcord, ycord).click().build().perform();
+	}
+
+	/*
+	 * This method is used to open new tab
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public void openNewTab(String url) {
+		//BaseClass.driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL + "t");
+		BaseClass.driver.switchTo().newWindow(WindowType.TAB);
+		BaseClass.driver.get(url);
+	}
+
+	/*
+	 * This method is used get all open tabs(windows)
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public ArrayList<String> getAllTabs() {
+		return new ArrayList<String>(BaseClass.driver.getWindowHandles());
+	}
+
+	/*
+	 * This method is used switch to the specific tab
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public void switch_to_Tab(ArrayList<String> tabs, int number) {
+		BaseClass.driver.switchTo().window(tabs.get(number));
+	}
+	
+	/*
+	 * This method is used close the specific tab
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public void close_Tab(ArrayList<String> tabs, int number) {
+		BaseClass.driver.switchTo().window(tabs.get(number)).close();
+	}
+	
+	/*
+	 * This method is used to the refresh the tab
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public void refresh_Page() {
+		BaseClass.driver.navigate().refresh();
 	}
 }
