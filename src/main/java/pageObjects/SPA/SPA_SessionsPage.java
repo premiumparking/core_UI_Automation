@@ -7,13 +7,13 @@ import org.openqa.selenium.By;
 public class SPA_SessionsPage extends BaseClass {
 
     // ****************** WEB ELEMENTS ****************************//
-    By textbox_SearchLocation = By.id("nav_search_text");
-    By locationSearch = By.xpath("(//img[@alt='Search'])[2]");
+    By textbox_SearchLocation = By.id("address-search");
+    By button_Search = By.xpath("//button[@data-testid='destination-search-button']");
     By button_Sessions = By.xpath("//button[normalize-space()='Pay to Park Now']");
     By button_ViewRate = By.xpath("//button[normalize-space()='View rate']");
     By button_ParkHere = By.xpath("//button[normalize-space()='Park here']");
     By label_Total = By.xpath("//strong[normalize-space()='Total']");
-    By textbox_LicensePlateNumber = By.xpath("(//input[@aria-label='License Plate Number *'])[1]");
+    By textbox_LicensePlateNumber = By.id("license_plate-for-1");
     By dropdown_state = By.id("state-for-1");
     By select_AnotherCard = By.xpath("//button[normalize-space()='another card']");
     By textbox_CardNumber = By.id("cardNumber");
@@ -30,8 +30,9 @@ public class SPA_SessionsPage extends BaseClass {
      * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
      */
     public void purchase_Session(String cardNumber, String expiryDate, String cvc, Vehicle vehicle){
-        enterText(textbox_SearchLocation, vehicle.getLocationNumber(), "Search Location Textbox");
-        clickOnButton(locationSearch, "Search Icon");
+        //enterText(textbox_SearchLocation, vehicle.getLocationNumber(), "Search Location Textbox");
+        selectFromSearch(textbox_SearchLocation, vehicle.getLocationNumber(), "Search Location Textbox");
+        clickOnButton(button_Search, "Search Icon");
         waitForElementTobeDisplayed(button_Sessions);
         clickOnButton(button_Sessions, "Pay to Park Now");
         clickOnButton(button_ViewRate, "View Rate");
@@ -42,7 +43,7 @@ public class SPA_SessionsPage extends BaseClass {
         clickOnButton(select_AnotherCard, "Pay with another card");
         enterText(textbox_CardNumber, cardNumber, "Card Number Textbox");
         enterText(textbox_ExpDate, expiryDate, "Expiry Date Textbox");
-        enterText(textbox_CVC, cvc, "CVC code Textbox");
+        enterText(textbox_CVC, cvc, "CC_CVC code Textbox");
         enterText(textbox_ZipCode, vehicle.getZip(), "Zip Code Textbox");
         clickOnButton(button_Pay, "Pay Button");
     }

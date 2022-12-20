@@ -1,6 +1,9 @@
 <vehicle>
     <locationNumber>P101</locationNumber>
-    <licensePlateNumber>MARAV</licensePlateNumber>
+    <licensePlateNumber>MA</licensePlateNumber>
     <state>AK - Alaska</state>
     <zip>643445</zip>
+    <ccNumber>4242424242424242</ccNumber>
+    <expiry>1246</expiry>
+    <cvc>111</cvc>
 </vehicle>

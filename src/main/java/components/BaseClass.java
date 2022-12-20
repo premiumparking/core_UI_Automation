@@ -255,4 +255,17 @@ public class BaseClass extends Operations {
 		return String.format("%04d", random.nextInt(10000));
 	}
 
+	/*
+	 * Usage : To generate 5 digit random licence plate which is used purchase a space
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
+	 */
+	public String getRandomLicencePlate() {
+		String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		Random random = new Random();
+		char letter1 = abc.charAt(random.nextInt(abc.length()));
+		char letter2 = abc.charAt(random.nextInt(abc.length()));
+		return letter1 + "" + String.format("%03d", random.nextInt(1000)).concat(letter2 + "");
+	}
+
 }
