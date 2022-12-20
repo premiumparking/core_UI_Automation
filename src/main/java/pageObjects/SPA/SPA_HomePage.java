@@ -1,6 +1,5 @@
 package pageObjects.SPA;
 
-
 import components.BaseClass;
 import org.openqa.selenium.By;
 
@@ -13,17 +12,25 @@ import org.openqa.selenium.By;
  */
 public class SPA_HomePage extends BaseClass {
 
-    // ****************** WEB ELEMENTS ****************************//
-    By link_premium_parking = By.xpath("//a[@href='https://spa.release.premiumparking.com']");
-    By textbox_SearchLocation = By.id("nav_search_text");
-    By LocationSearch = By.xpath("(//img[@alt='Search'])[2]");
-    By button_Sessions = By.xpath("//button[normalize-space()='Pay to Park Now']");
+	// ****************** WEB ELEMENTS ****************************//
 
-//    public SPA_SessionsPage navigateToSessionsPage(){
-//     //   waitForElementTobeDisplayed(label_sessions);
-//        enterText(textbox_SearchLocation, .getName(), "Venue Name Textbox");
-//
-//
-//    }
+	By textbox_Search_By_Location = By.id("address-search");
+	By textbox_Search_By_Market = By.id("market-select");
+	By button_Search = By.id("destination-search-button");
+	By button_Sessions = By.xpath("//button[normalize-space()='Pay to Park Now']");
+
+	/*
+	 * Method to navigate to Location Page
+	 *
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public SPA_LocationPage navigate_To_LocationPage(String locationName) {
+		selectFromSearch(textbox_Search_By_Location, locationName, "Location Search Box");
+		SPA_LocationPage locationPage = new SPA_LocationPage();
+		waitForElementTobeDisplayed(locationPage.textbox_Search_Location);
+		passStep("Location page has been loaded ");
+		return locationPage;
+
+	}
 
 }

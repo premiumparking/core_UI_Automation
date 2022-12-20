@@ -79,7 +79,7 @@ public class XML_Operations {
 	public Location getLocationTestData() {
 		JAXBContext jaxbContext;
 		Location location = null;
-		File xmlFile = new File("src\\test\\java\\testData\\OD\\Location.xml");
+		File xmlFile = new File("src\\test\\java\\testdata\\OD\\Location.xml");
 
 		try {
 			jaxbContext = JAXBContext.newInstance(Location.class);
@@ -97,7 +97,7 @@ public class XML_Operations {
 	public Venue getVenueTestData() {
 		JAXBContext jaxbContext;
 		Venue venue = null;
-		File xmlFile = new File("src\\test\\java\\testData\\OD\\Venue.xml");
+		File xmlFile = new File("src\\test\\java\\testdata\\OD\\Venue.xml");
 
 		try {
 			jaxbContext = JAXBContext.newInstance(Venue.class);
@@ -116,7 +116,7 @@ public class XML_Operations {
 	public Vehicle getVehicleTestData() {
 		JAXBContext jaxbContext;
 		Vehicle vehicle = null;
-		File xmlFile = new File("src\\test\\java\\testData\\SPA\\Vehicle.xml");
+		File xmlFile = new File("src\\test\\java\\testdata\\SPA\\Vehicle.xml");
 
 		try {
 			jaxbContext = JAXBContext.newInstance(Vehicle.class);
