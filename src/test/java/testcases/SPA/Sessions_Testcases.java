@@ -22,13 +22,22 @@ public class Sessions_Testcases extends BaseClass {
 	SPA_LocationPage locationPage = new SPA_LocationPage();
 
 	// ****************** TEST SCRIPTS ****************************//
+	
+/*
+ * TC_01_Purchase_Session_With_NewCard_and_NewVehicle
+ * TC_02_Purchase_Session_With_NewCard_and_ExistingVehicle
+ * TC_03_Purchase_Session_With_ExistingCard_and_NewVehicle
+ * TC_04_Purchase_Session_With_ExistingCard_and_ExistingVehicle
+ */
+	
 	/*
 	 * This is a test case to purchase session
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
-	public void TC_01_Purchase_Session() {
+	public void TC_01_Purchase_Session_With_NewCard() {
+		Boolean newCard = true;
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
 		spaHomePage = accountsPage.navigateToHomePage();
@@ -36,7 +45,7 @@ public class Sessions_Testcases extends BaseClass {
 		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
-		locationPage.purchase_Session(vehicle);
+		locationPage.purchase_Session(vehicle, newCard);
 	}
 
 }
