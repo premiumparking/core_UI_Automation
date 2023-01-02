@@ -24,10 +24,31 @@ public class Operations extends Extent_Reports {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public void enterText(By ele, String text, String field) {
+		waitForElementTobeClickable(ele);
+		WebElement element = BaseClass.driver.findElement(ele);
+		if (isElementDisplayed(ele) && element.isEnabled()) {
+			highlightElement(element);
+			element.clear();
+			element.sendKeys(text);
+			waitForPageLoad(1);
+			passStep("Entered '" + text + "' into " + field);
+		}
+	}
+
+	/*
+	 * This method is to enter text into TEXTBOX using JSE
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public void enterText_with_JSE(By ele, String text, String field) {
 		waitForElementTobeDisplayed(ele);
 		WebElement element = BaseClass.driver.findElement(ele);
 		if (isElementDisplayed(ele) && element.isEnabled()) {
 			highlightElement(element);
+
+			JavascriptExecutor jse = (JavascriptExecutor) BaseClass.driver;
+
+		//	jse.executeScript("document.getElementById('pass').value = 'mukeshotwani';");
 			element.clear();
 			element.sendKeys(text);
 			waitForPageLoad(1);
@@ -260,6 +281,16 @@ public class Operations extends Extent_Reports {
 	}
 
 	/*
+	 * Usage :Explicit wait for the element to be clickable
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
+	 */
+	public void waitForElementTobeClickable(By locator) {
+		WebDriverWait wait = new WebDriverWait(BaseClass.driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.elementToBeClickable(locator));
+	}
+
+	/*
 	 * Usage : Force wait to hold the execution for the given specific time period
 	 * 
 	 * Author : Venu Thota (venu.t@comakeit.com)
@@ -385,7 +416,8 @@ public class Operations extends Extent_Reports {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public void openNewTab(String url) {
-		//BaseClass.driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL + "t");
+		// BaseClass.driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +
+		// "t");
 		BaseClass.driver.switchTo().newWindow(WindowType.TAB);
 		BaseClass.driver.get(url);
 	}
@@ -407,7 +439,7 @@ public class Operations extends Extent_Reports {
 	public void switch_to_Tab(ArrayList<String> tabs, int number) {
 		BaseClass.driver.switchTo().window(tabs.get(number));
 	}
-	
+
 	/*
 	 * This method is used close the specific tab
 	 * 
@@ -416,7 +448,7 @@ public class Operations extends Extent_Reports {
 	public void close_Tab(ArrayList<String> tabs, int number) {
 		BaseClass.driver.switchTo().window(tabs.get(number)).close();
 	}
-	
+
 	/*
 	 * This method is used to the refresh the tab
 	 * 

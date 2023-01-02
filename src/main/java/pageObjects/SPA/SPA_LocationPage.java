@@ -1,6 +1,8 @@
 package pageObjects.SPA;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+
 import components.BaseClass;
 import dataModel.SPA.Vehicle;
 
@@ -37,7 +39,7 @@ public class SPA_LocationPage extends BaseClass {
 	 *
 	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
 	 */
-	public void purchase_Session(Vehicle vehicle) {
+	public void purchase_Session(Vehicle vehicle, Boolean isNewCard) {
 		waitForElementTobeDisplayed(button_Sessions);
 		clickOnButton(button_Sessions, "Pay to Park Now");
 		clickOnButton(button_ViewRate, "View Rate");
@@ -45,10 +47,15 @@ public class SPA_LocationPage extends BaseClass {
 		waitForElementTobeDisplayed(label_Total);
 		enterText(textbox_LicensePlateNumber, vehicle.getLicensePlateNumber(), "License Plate Number Textbox");
 		selectFromSearch(dropdown_state, vehicle.getState(), "License Plate State dropdown");
-		clickOnButton(select_AnotherCard, "Pay with another card");
-		enterText(textbox_CardNumber, vehicle.getCcNumber(), "Card Number Textbox");
-		enterText(textbox_ExpDate, vehicle.getExpiry(), "Expiry Date Textbox");
-		enterText(textbox_CVC, vehicle.getCvc(), "CC_CVC code Textbox");
+		if (isNewCard) {
+			clickOnButton(select_AnotherCard, "Pay with another card");
+			// iframe[@title='Secure card number input frame']
+			// iframe[@title='Secure expiration date input frame']
+			enterText(textbox_CardNumber, vehicle.getCcNumber(), "Card Number Textbox");
+			enterText(textbox_ExpDate, vehicle.getExpiry(), "Expiry Date Textbox");
+			enterText(textbox_CVC, vehicle.getCvc(), "CC_CVC code Textbox");
+			BaseClass.driver.switchTo().defaultContent();
+		}
 		enterText(textbox_ZipCode, vehicle.getZip(), "Zip Code Textbox");
 		clickOnButton(button_Pay, "Pay Button");
 	}
