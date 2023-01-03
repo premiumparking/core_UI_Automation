@@ -6,4 +6,5 @@
     <ccNumber>4242424242424242</ccNumber>
     <expiry>1246</expiry>
     <cvc>111</cvc>
+    <amount>10</amount>
 </vehicle>
