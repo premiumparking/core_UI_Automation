@@ -48,7 +48,9 @@ public class Operations extends Extent_Reports {
 
 			JavascriptExecutor jse = (JavascriptExecutor) BaseClass.driver;
 
-		//	jse.executeScript("document.getElementById('pass').value = 'mukeshotwani';");
+			jse.executeScript("arguments[0].value='" + text + "';", element);
+
+			// jse.executeScript("document.getElementById('pass').value = 'mukeshotwani';");
 			element.clear();
 			element.sendKeys(text);
 			waitForPageLoad(1);
@@ -456,5 +458,15 @@ public class Operations extends Extent_Reports {
 	 */
 	public void refresh_Page() {
 		BaseClass.driver.navigate().refresh();
+	}
+
+	/*
+	 * This method is used to the refresh the tab
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public void switchToIframe(By ele) {
+		WebElement iframe = BaseClass.driver.findElement(ele);
+		BaseClass.driver.switchTo().frame(iframe);
 	}
 }

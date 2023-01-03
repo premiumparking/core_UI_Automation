@@ -41,7 +41,7 @@ public class BaseClass extends Operations {
 	protected static String adm_username, adm_password, adm_url;
 	protected static String od_username, od_password, od_url;
 	protected static String spa_url, spa_username, spa_password;
-	protected static String browser, headless;
+	protected String browser, headless;
 
 	/*
 	 * This method is to load data from application.properties files
@@ -90,31 +90,36 @@ public class BaseClass extends Operations {
 
 		loadProperties();
 
-		if (browser.equalsIgnoreCase("Chrome")) {
+		switch (browser.toLowerCase()) {
+		case "chrome":
 			WebDriverManager.chromedriver().setup();
-			// System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 
-			ChromeOptions options = new ChromeOptions();
-			options.addArguments("headless");
-			driver = new ChromeDriver();
-
-		}
-
-		else if (browser.equalsIgnoreCase("Firefox")) {
+			if (headless.toLowerCase().contentEquals("true")) {
+				ChromeOptions options = new ChromeOptions();
+				options.addArguments("--headless");
+				driver = new ChromeDriver(options);
+			} else
+				driver = new ChromeDriver();
+			break;
+		case "firefox":
 			WebDriverManager.firefoxdriver().setup();
 
-			FirefoxOptions options = new FirefoxOptions();
-			options.addArguments("headless");
-			driver = new FirefoxDriver();
-
-		}
-
-		else if (browser.equalsIgnoreCase("Edge")) {
+			if (headless.toLowerCase().contentEquals("true")) {
+				FirefoxOptions options = new FirefoxOptions();
+				options.addArguments("--headless");
+				driver = new FirefoxDriver(options);
+			} else
+				driver = new FirefoxDriver();
+			break;
+		default:
 			WebDriverManager.edgedriver().setup();
-
-			EdgeOptions options = new EdgeOptions();
-			options.addArguments("headless");
-			driver = new EdgeDriver();
+			if (headless.toLowerCase().contentEquals("true")) {
+				EdgeOptions options = new EdgeOptions();
+				options.addArguments("--headless");
+				driver = new EdgeDriver(options);
+			} else
+				driver = new EdgeDriver();
+			break;
 
 		}
 		driver.manage().window().maximize();
@@ -256,7 +261,8 @@ public class BaseClass extends Operations {
 	}
 
 	/*
-	 * Usage : To generate 5 digit random licence plate which is used purchase a space
+	 * Usage : To generate 5 digit random licence plate which is used purchase a
+	 * space
 	 * 
 	 * Author : Venu Thota (venu.t@comakeit.com)
 	 */
