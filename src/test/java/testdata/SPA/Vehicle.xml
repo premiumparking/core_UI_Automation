@@ -7,4 +7,5 @@
     <expiry>1246</expiry>
     <cvc>111</cvc>
     <amount>10</amount>
+    <promoCode>PPFSTEST</promoCode>
 </vehicle>
