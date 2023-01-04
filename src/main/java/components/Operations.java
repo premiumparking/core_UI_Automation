@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageObjects.TextPay.TextPay_HomePage;
 import reports.Extent_Reports;
 
 public class Operations extends Extent_Reports {
@@ -469,31 +470,38 @@ public class Operations extends Extent_Reports {
 		WebElement iframe = BaseClass.driver.findElement(ele);
 		BaseClass.driver.switchTo().frame(iframe);
 	}
-	
+
 	/*
 	 * This method is used to choose time on timebar
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public void changeTime(String id, String time) {		
+	public void changeTimeBar(String id, String time) {
 		JavascriptExecutor jse = (JavascriptExecutor) BaseClass.driver;
 
-		//jse.executeScript("arguments[0].value='" + time + "';", element);
-		jse.executeScript("document.getElementById('"+id+"').value='"+time+"'");
+		// jse.executeScript("arguments[0].value='" + time + "';", element);
+		jse.executeScript("document.getElementById('" + id + "').value='" + time + "'");
 	}
-	
+
 	/*
 	 * This method is used to choose time on timebar
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public void changeTimeBar(By from, By to, String time) {		
-		
-		WebElement Felement = BaseClass.driver.findElement(from);
-		WebElement Telement = BaseClass.driver.findElement(to);
-		 Actions act=new Actions(BaseClass.driver);					
+	public void changeTime(String time) {
+		TextPay_HomePage tph = new TextPay_HomePage();
+		WebElement timeBar = BaseClass.driver.findElement(tph.duration_Bar);
+		// WebElement Telement = BaseClass.driver.findElement(to);
+		Actions act = new Actions(BaseClass.driver);
 
-			//Dragged and dropped.		
-		         act.dragAndDrop(Felement, Telement).build().perform();	
+		int xOffset = timeBar.getLocation().getX();
+		int yOffset = timeBar.getLocation().getY();
+
+		if (time.equalsIgnoreCase("1"))
+			xOffset = -500;
+		else if (time.equalsIgnoreCase("2"))
+			xOffset = -200;
+
+		act.dragAndDropBy(timeBar, xOffset, yOffset).perform();
 	}
 }
