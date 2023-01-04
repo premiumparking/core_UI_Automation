@@ -12,7 +12,7 @@ import pageObjects.SPA.SPA_LoginPage;
 import pageObjects.SPA.SPA_SessionsPage;
 import utils.XML_Operations;
 
-public class Sessions_Testcases extends BaseClass {
+public class SPA_Sessions_Testcases extends BaseClass {
 	// ****************** CLASS INSTANCES ****************************//
 	XML_Operations xml_Ops = new XML_Operations();
 	SPA_HomePage spaHomePage = new SPA_HomePage();

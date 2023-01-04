@@ -11,6 +11,7 @@ import dataModel.OD.Market;
 import dataModel.OD.Operator;
 import dataModel.OD.Venue;
 import dataModel.SPA.Vehicle;
+import dataModel.TextPay.Guest;
 
 /*
  * Class is to handle the XML operations i.e. getting test data from xml and binding to Java object
@@ -130,5 +131,24 @@ public class XML_Operations {
 			e.printStackTrace();
 		}
 		return vehicle;
+	}
+
+	public Guest getGuestTestData() {
+		JAXBContext jaxbContext;
+		Guest guest = null;
+		File xmlFile = new File("src\\test\\java\\testdata\\TextPay\\Guest.xml");
+
+		try {
+			jaxbContext = JAXBContext.newInstance(Guest.class);
+			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+			guest = (Guest) jaxbUnmarshaller.unmarshal(xmlFile);
+
+		}
+
+		catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return guest;
 	}
 }

@@ -1,0 +1,12 @@
+<guest>
+    <locationNumber>101</locationNumber>
+    <licensePlateNumber>MA</licensePlateNumber>
+    <state>AK - Alaska</state>
+    <zip>643445</zip>
+    <ccNumber>4242424242424242</ccNumber>
+    <expiry>1246</expiry>
+    <cvc>111</cvc>
+    <amount>10</amount>
+    <timeInHours>10</timeInHours>
+    <parkingType>10</parkingType>
+</guest>

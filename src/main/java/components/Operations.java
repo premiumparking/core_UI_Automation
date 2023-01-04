@@ -461,12 +461,39 @@ public class Operations extends Extent_Reports {
 	}
 
 	/*
-	 * This method is used to the refresh the tab
+	 * This method is used to the switch iFrame
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public void switchToIframe(By ele) {
 		WebElement iframe = BaseClass.driver.findElement(ele);
 		BaseClass.driver.switchTo().frame(iframe);
+	}
+	
+	/*
+	 * This method is used to choose time on timebar
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public void changeTime(String id, String time) {		
+		JavascriptExecutor jse = (JavascriptExecutor) BaseClass.driver;
+
+		//jse.executeScript("arguments[0].value='" + time + "';", element);
+		jse.executeScript("document.getElementById('"+id+"').value='"+time+"'");
+	}
+	
+	/*
+	 * This method is used to choose time on timebar
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public void changeTimeBar(By from, By to, String time) {		
+		
+		WebElement Felement = BaseClass.driver.findElement(from);
+		WebElement Telement = BaseClass.driver.findElement(to);
+		 Actions act=new Actions(BaseClass.driver);					
+
+			//Dragged and dropped.		
+		         act.dragAndDrop(Felement, Telement).build().perform();	
 	}
 }
