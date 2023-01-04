@@ -32,6 +32,7 @@ public class TextPay_HomePage extends BaseClass {
 	public By button_ViewRate = By.xpath("//button[normalize-space()='View Rate']");
 	public By label_Time = By.xpath("//span[@data-testid='test-time-unit']");
 	public By label_Cost = By.xpath("//span[normalize-space()='Total']/following-sibling::span");
+	public By duration_Bar = By.xpath("//input[@id='custom-duration']");
 	
 	
 	
@@ -58,7 +59,8 @@ public class TextPay_HomePage extends BaseClass {
 			waitForElementTobeClickable(button_RegularSpace);
 			clickOnButton(button_RegularSpace, "Regular Space");
 			waitForPageLoad(3);
-			changeTime(timeBar_ID, guest.getTimeInHours());
+			//changeTime(timeBar_ID, guest.getTimeInHours());
+			changeTime(guest.getTimeInHours());
 			clickOnButton(button_ViewRate,"View Rate button");
 			waitForElementTobeClickable(label_Time);
 			assertEquals(getElementText(label_Time), guest.getTimeInHours()+" Hours");
