@@ -30,6 +30,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import pageObjects.Admiral.Adm_LoginPage;
 import pageObjects.OD.OD_LoginPage;
 import pageObjects.SPA.SPA_LoginPage;
+import pageObjects.TextPay.TextPay_HomePage;
 
 public class BaseClass extends Operations {
 
@@ -41,6 +42,7 @@ public class BaseClass extends Operations {
 	protected static String adm_username, adm_password, adm_url;
 	protected static String od_username, od_password, od_url;
 	protected static String spa_url, spa_username, spa_password;
+	protected static String textpay_url;
 	protected String browser, headless;
 
 	/*
@@ -55,7 +57,7 @@ public class BaseClass extends Operations {
 		fis = new FileInputStream(fpath);
 
 		config.load(fis);
-		// OD credentials
+		// OD Configurations
 		od_url = config.getProperty("od_url");
 		od_username = config.getProperty("od_username");
 		od_password = config.getProperty("od_password");
@@ -63,7 +65,7 @@ public class BaseClass extends Operations {
 		profilesURL = config.getProperty("url_new_profile");
 		businessAccountURL = config.getProperty("url_businessaccounts");
 
-		// Admiral Enforcement Web credentials
+		// Admiral Enforcement Web Configurations
 		adm_url = config.getProperty("adm_url");
 		adm_username = config.getProperty("adm_username");
 		adm_password = config.getProperty("adm_password");
@@ -72,10 +74,13 @@ public class BaseClass extends Operations {
 		browser = config.getProperty("browser");
 		headless = config.getProperty("headless");
 
-		// SPA Credentials
+		// SPA Configurations
 		spa_url = config.getProperty("spa_url");
 		spa_username = config.getProperty("spa_username");
 		spa_password = config.getProperty("spa_password");
+
+		// TextPay configurations
+		textpay_url = config.getProperty("textpay_url");
 	}
 
 	/*
@@ -195,6 +200,20 @@ public class BaseClass extends Operations {
 		if (isElementDisplayed(loginPage.textbox_UserName))
 			passStep("Launched the Admiral Enforcement application <b>" + adm_url + "</b>");
 		return loginPage;
+	}
+
+	/*
+	 * Usage : To launch TextPay application
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
+	 */
+	public TextPay_HomePage launch_TextPay_Application() {
+		driver.get(textpay_url);
+		TextPay_HomePage tp_homePage = new TextPay_HomePage();
+		waitForElementTobeDisplayed(tp_homePage.link_Guest);
+		if (isElementDisplayed(tp_homePage.link_Guest))
+			passStep("Launched the Textpay application <b>" + textpay_url + "</b>");
+		return tp_homePage;
 	}
 
 	/*

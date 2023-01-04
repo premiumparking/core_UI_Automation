@@ -81,5 +81,14 @@ public class Manage_Menu_Testcases extends BaseClass {
 		vl_Page.create_VirtualLocation(vl_name, Constants.VIRTUAL_LOCATIONS);
 
 	}
+	
+	
+	/*
+	 * TC_04_Create_EventRate
+	 * TC_05_Create_Blockout
+	 * TC_06_Create_Whitelist
+	 * TC_07_Create_Promocode
+	 * TC_08_Create_User
+	 */
 
 }
