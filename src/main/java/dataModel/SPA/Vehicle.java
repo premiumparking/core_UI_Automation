@@ -19,6 +19,8 @@ public class Vehicle implements Serializable {
 	private String cvc;
 	private String amount;
 	private String promoCode;
+	private String timeInHours;
+
 	public String getLicensePlateNumber() {
 		return licensePlateNumber;
 	}
@@ -68,7 +70,10 @@ public class Vehicle implements Serializable {
 		this.amount = amount;
 	}
 	public String getPromoCode() { return promoCode;}
-	public void setPromoCode(String promoCode) {this.promoCode = promoCode;	}
+	public void setPromoCode(String promoCode) { this.promoCode = promoCode; }
+	public String getTimeInHours() { return timeInHours; }
+	public void setTimeInHours(String timeInHours) { this.timeInHours = timeInHours; }
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -76,7 +81,7 @@ public class Vehicle implements Serializable {
 	public String toString() {
 		return "Vehicle [licensePlateNumber=" + licensePlateNumber + ", state=" + state + ", zip=" + zip
 				+ ", locationNumber=" + locationNumber + ", ccNumber=" + ccNumber + ", expiry=" + expiry + ", cvc="
-				+ cvc + ", amount=" + amount + ", promoCode=" + promoCode +"]";
+				+ cvc + ", amount=" + amount + ", promoCode=" + promoCode +", timeInHours=" + timeInHours +"]";
 	}
 
 	

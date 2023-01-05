@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageObjects.SPA.SPA_LocationPage;
 import pageObjects.TextPay.TextPay_HomePage;
 import reports.Extent_Reports;
 
@@ -503,5 +504,20 @@ public class Operations extends Extent_Reports {
 			xOffset = -200;
 
 		act.dragAndDropBy(timeBar, xOffset, yOffset).perform();
+	}
+
+	public void changeTimeSPA(String time) {
+		SPA_LocationPage tph = new SPA_LocationPage();
+		WebElement timeBar = BaseClass.driver.findElement(tph.duration_Bar);
+		// WebElement element = BaseClass.driver.findElement(to);
+		Actions act = new Actions(BaseClass.driver);
+
+		int xOffset = timeBar.getLocation().getX();
+		int yOffset = timeBar.getLocation().getY();
+
+		if (time.equalsIgnoreCase("1"))
+			yOffset = -500;
+
+		act.dragAndDropBy(timeBar, -xOffset, yOffset).perform();
 	}
 }

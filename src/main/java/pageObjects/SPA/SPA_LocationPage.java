@@ -18,6 +18,7 @@ public class SPA_LocationPage extends BaseClass {
 	By textbox_Search_Location = By.id("address-search");
 	By button_Search = By.xpath("//button[@data-testid='destination-search-button']");
 	By button_Sessions = By.xpath("//button[normalize-space()='Pay to Park Now']");
+	By button_Reservations = By.xpath("//a[normalize-space()='Reserve Parking in Advance']");
 	By button_ViewRate = By.xpath("//button[normalize-space()='View rate']");
 	By button_ParkHere = By.xpath("//button[normalize-space()='Park here']");
 	By label_Total = By.xpath("//strong[normalize-space()='Total']");
@@ -48,6 +49,7 @@ public class SPA_LocationPage extends BaseClass {
 	By label_startTime = By.xpath("//li[@data-testid='test-start_time']");
 	By label_endTime = By.xpath("//li[@data-testid='test-end_time']");
 	By label_amountCharged = By.xpath("//div[@data-cy='purchase-details-total']/h4[2]");
+	public By duration_Bar = By.xpath("//input[@id='custom-duration']");
 
 	// ****************** ACTIONS ****************************//
 	/*
@@ -55,9 +57,13 @@ public class SPA_LocationPage extends BaseClass {
 	 *
 	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
 	 */
-	public void purchase_Session(Vehicle vehicle, Boolean isNewVehicle, Boolean isNewCard, Boolean isPromoCode, Boolean isPayButton) {
+	public void purchase_Session(Vehicle vehicle, Boolean isNewVehicle, Boolean chooseTime, Boolean isNewCard, Boolean isPromoCode, Boolean isPayButton) {
 		waitForElementTobeDisplayed(button_Sessions);
 		clickOnButton(button_Sessions, "Pay to Park Now");
+		waitForPageLoad(3);
+		if (chooseTime) {
+			changeTimeSPA(vehicle.getTimeInHours());
+		}
 		clickOnButton(button_ViewRate, "View Rate");
 		clickOnButton(button_ParkHere, "Park Here");
 		waitForElementTobeDisplayed(label_Total);
@@ -105,7 +111,58 @@ public class SPA_LocationPage extends BaseClass {
 		}
 	}
 
-	public void verify_Purchase_Details(Vehicle vehicle, boolean newSession) {
+	public void purchase_Reservation(Vehicle vehicle, Boolean isNewVehicle, Boolean isNewCard, Boolean isPromoCode, Boolean isPayButton) {
+		waitForElementTobeDisplayed(button_Reservations);
+		clickOnButton(button_Reservations, "Reserve Parking in Advance");
+		clickOnButton(button_ViewRate, "View Rate");
+		clickOnButton(button_ParkHere, "Park Here");
+		waitForElementTobeDisplayed(label_Total);
+		if (isNewVehicle) {
+			enterText(textbox_LicensePlateNumber, vehicle.getLicensePlateNumber(), "License Plate Number Textbox");
+			selectFromSearch(dropdown_state, vehicle.getState(), "License Plate State dropdown");
+		} else {
+			selectFromSearch(textbox_LicensePlateNumber, vehicle.getLicensePlateNumber(),
+					"License Plate Number Textbox");
+		}
+		if (isNewCard) {
+			try {
+				if (isElementDisplayed(select_AnotherCard))
+					clickOnButton(select_AnotherCard, "Pay with another card");
+			} catch (Exception ex) {
+			}
+			switchToIframe(iframe_cardNumber);
+			enterText(textbox_CardNumber, vehicle.getCcNumber(), "Card Number Textbox");
+			BaseClass.driver.switchTo().defaultContent();
+			switchToIframe(iframe_expDate);
+			enterText(textbox_ExpDate, vehicle.getExpiry(), "Expiry Date Textbox");
+			BaseClass.driver.switchTo().defaultContent();
+			switchToIframe(iframe_CVC);
+			enterText(textbox_CVC, vehicle.getCvc(), "CC_CVC code Textbox");
+			BaseClass.driver.switchTo().defaultContent();
+			enterText(textbox_ZipCode, vehicle.getZip(), "Zip Code Textbox");
+		}else {
+			isElementDisplayed(existing_card);
+		}
+		if (isPromoCode) {
+			isElementDisplayed(select_promocode);
+			clickOnButton(select_promocode, "Add Promocode");
+			enterText(textbox_promocode, vehicle.getPromoCode(), "Promo Code Textbox");
+			waitForElementTobeDisplayed(button_addPromocode);
+			clickOnButton(button_addPromocode, "Add Promo Code Button");
+		}
+		vehicle.setAmount(getElementText(total_amount));
+		if (isPayButton) {
+			isElementDisplayed(button_Pay);
+			clickOnButton(button_Pay, "Pay Button");
+		} else {
+			waitForElementTobeDisplayed(button_Start_Parking);
+			isElementDisplayed(button_Start_Parking);
+			clickOnButton(button_Start_Parking, "Start Parking Button");
+		}
+	}
+
+
+	public void verify_Purchase_Details(Vehicle vehicle, boolean newSession, boolean newReservation) {
 		waitForElementTobeDisplayed(label_confirmationTitle);
 		if (isElementDisplayed(label_confirmationTitle)) {
 			passStep("Displayed : " + getElementText(label_confirmationTitle));
@@ -114,8 +171,13 @@ public class SPA_LocationPage extends BaseClass {
 			if (newSession) {
 				assertEquals(getElementText(label_purchaseType), "NEW SESSION");
 				passStep("Session Type :" + getElementText(label_purchaseType));
+			//	assertEquals(getElementText(label_rateName), "24 Hrs");
 			}
-			assertEquals(getElementText(label_rateName), "24 Hours");
+			if (newReservation) {
+				assertEquals(getElementText(label_purchaseType), "NEW RESERVATION");
+				passStep("Reservation Type :" + getElementText(label_purchaseType));
+				assertEquals(getElementText(label_rateName), "24 Hrs");
+			}
 			passStep("Rate name :" + getElementText(label_rateName));
 			assertEquals(getElementText(label_lecencePlateName), vehicle.getLicensePlateNumber());
 			passStep("Licence Plate :" + getElementText(label_lecencePlateName));

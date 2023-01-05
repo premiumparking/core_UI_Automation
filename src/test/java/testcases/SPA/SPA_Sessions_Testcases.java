@@ -24,8 +24,11 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	 * TC_02_Purchase_Session_With_NewCard_and_ExistingVehicle
 	 * TC_03_Purchase_Session_With_ExistingCard_and_NewVehicle
 	 * TC_04_Purchase_Session_With_ExistingCard_and_ExistingVehicle
-	 * TC_05_Extend_Session_With_PromoCode_and_NewVehicle
+	 * TC_05_Purchase_Session_With_PromoCode_and_NewVehicle
 	 * TC_06_Purchase_Session_With_PromoCode_and_ExistingVehicle
+	 * TC_07_Extend_Session_for_ExistingVehicle_With_NewCard
+	 * TC_08_Extend_Session_for_ExistingVehicle_With_ExistingCard
+	 * TC_09_Extend_Session_for_ExistingVehicle_With_PromoCode
 	 */
 
 	/*
@@ -35,7 +38,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_01_Purchase_Session_With_NewCard_and_NewVehicle() {
-		Boolean newCard = true, newVehicle = true, newSession = true, newPromoCode = false, payButton = true;
+		Boolean newCard = true, newVehicle = true, chooseTime = false, newSession = true, newReservation = false, newPromoCode = false, payButton = true;
 
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
@@ -44,8 +47,8 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
-		locationPage.purchase_Session(vehicle, newVehicle, newCard, newPromoCode, payButton);
-		locationPage.verify_Purchase_Details(vehicle, newSession);
+		locationPage.purchase_Session(vehicle, newVehicle, chooseTime, newCard, newPromoCode, payButton);
+		locationPage.verify_Purchase_Details(vehicle, newSession, newReservation);
 	}
 
 	/*
@@ -55,16 +58,17 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_02_Purchase_Session_With_NewCard_and_ExistingVehicle() {
-		Boolean newCard = true, newVehicle = false, newSession = true, newPromoCode = false, payButton = true;
+		Boolean newCard = true, newVehicle = false, chooseTime = true, newSession = true, newReservation = false, newPromoCode = false, payButton = true;
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
 		spaHomePage = accountsPage.navigateToHomePage();
 		Vehicle vehicle = xml_Ops.getVehicleTestData();
-		vehicle.setLicensePlateNumber("TS65HJ");
+		vehicle.setTimeInHours("1");
+		vehicle.setLicensePlateNumber("H297G");
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
-		locationPage.purchase_Session(vehicle, newVehicle, newCard, newPromoCode, payButton);
-		locationPage.verify_Purchase_Details(vehicle, newSession);
+		locationPage.purchase_Session(vehicle, newVehicle, chooseTime, newCard, newPromoCode, payButton);
+		locationPage.verify_Purchase_Details(vehicle, newSession, newReservation);
 	}
 
 	/*
@@ -74,7 +78,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_03_Purchase_Session_With_ExistingCard_and_NewVehicle() {
-		Boolean newCard = false, newVehicle = true, newSession = true, newPromoCode = false, payButton = true;
+		Boolean newCard = false, newVehicle = true, chooseTime = false, newSession = true, newReservation = false, newPromoCode = false, payButton = true;
 
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
@@ -83,8 +87,8 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
-		locationPage.purchase_Session(vehicle, newVehicle, newCard, newPromoCode, payButton);
-		locationPage.verify_Purchase_Details(vehicle, newSession);
+		locationPage.purchase_Session(vehicle, newVehicle, chooseTime, newCard, newPromoCode, payButton);
+		locationPage.verify_Purchase_Details(vehicle, newSession, newReservation);
 	}
 
 	/*
@@ -94,26 +98,27 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_04_Purchase_Session_With_ExistingCard_and_ExistingVehicle() {
-		Boolean newCard = false, newVehicle = true, newSession = true, newPromoCode = false, payButton = true;
+		Boolean newCard = false, newVehicle = false, chooseTime = true, newSession = true, newReservation = false, newPromoCode = false, payButton = true;
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
 		spaHomePage = accountsPage.navigateToHomePage();
 		Vehicle vehicle = xml_Ops.getVehicleTestData();
-		vehicle.setLicensePlateNumber("TS65HJ");
+		vehicle.setTimeInHours("1");
+		vehicle.setLicensePlateNumber("U287W");
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
-		locationPage.purchase_Session(vehicle, newVehicle, newCard, newPromoCode, payButton);
-		locationPage.verify_Purchase_Details(vehicle, newSession);
+		locationPage.purchase_Session(vehicle, newVehicle, chooseTime, newCard, newPromoCode, payButton);
+		locationPage.verify_Purchase_Details(vehicle, newSession, newReservation);
 	}
 
 	/*
-	 * This is a test case to extend session with new vehicle and promocode
+	 * This is a test case to purchase session with new vehicle and promocode
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_05_Purchase_Session_With_PromoCode_and_NewVehicle() {
-		Boolean newCard = false, newVehicle = true, newSession = true, newPromoCode = true, payButton = false;
+		Boolean newCard = false, newVehicle = true, chooseTime = false, newSession = true, newReservation = false, newPromoCode = true, payButton = false;
 
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
@@ -122,22 +127,89 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
-		locationPage.purchase_Session(vehicle, newVehicle, newCard, newPromoCode, payButton);
-		locationPage.verify_Purchase_Details(vehicle, newSession);
+		locationPage.purchase_Session(vehicle, newVehicle, chooseTime, newCard, newPromoCode, payButton);
+		locationPage.verify_Purchase_Details(vehicle, newSession, newReservation);
 	}
 
+	/*
+	 * This is a test case to purchase session with existing vehicle and promocode
+	 *
+	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_06_Purchase_Session_With_PromoCode_and_ExistingVehicle() {
-		Boolean newCard = false, newVehicle = false, newSession = true, newPromoCode = true, payButton = false;
+		Boolean newCard = false, newVehicle = false, chooseTime = true, newSession = true, newReservation = false, newPromoCode = true, payButton = false;
 
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
 		spaHomePage = accountsPage.navigateToHomePage();
 		Vehicle vehicle = xml_Ops.getVehicleTestData();
+		vehicle.setTimeInHours("1");
 		vehicle.setLicensePlateNumber("TS65HJ");
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
-		locationPage.purchase_Session(vehicle, newVehicle, newCard, newPromoCode, payButton);
-		locationPage.verify_Purchase_Details(vehicle, newSession);
+		locationPage.purchase_Session(vehicle, newVehicle, chooseTime, newCard, newPromoCode, payButton);
+		locationPage.verify_Purchase_Details(vehicle, newSession, newReservation);
+	}
+
+	/*
+	 * This is a test case to extend session with existing vehicle and new card
+	 *
+	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_07_Extend_Session_for_ExistingVehicle_With_NewCard() {
+		Boolean newCard = true, newVehicle = false, chooseTime = true, newSession = true, newReservation = false, newPromoCode = false, payButton = true;
+		spaLoginPage = launch_SPA_Application();
+		accountsPage = spaLoginPage.login();
+		spaHomePage = accountsPage.navigateToHomePage();
+		Vehicle vehicle = xml_Ops.getVehicleTestData();
+		vehicle.setTimeInHours("1");
+		vehicle.setLicensePlateNumber("W318T");
+		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+		locationPage.purchase_Session(vehicle, newVehicle, chooseTime, newCard, newPromoCode, payButton);
+		locationPage.verify_Purchase_Details(vehicle, newSession, newReservation);
+	}
+
+	/*
+	 * This is a test case to extend session with existing vehicle and existing card
+	 *
+	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_08_Extend_Session_for_ExistingVehicle_With_ExistingCard() {
+		Boolean newCard = false, newVehicle = false, chooseTime = true, newSession = true, newReservation = false, newPromoCode = false, payButton = true;
+		spaLoginPage = launch_SPA_Application();
+		accountsPage = spaLoginPage.login();
+		spaHomePage = accountsPage.navigateToHomePage();
+		Vehicle vehicle = xml_Ops.getVehicleTestData();
+		vehicle.setTimeInHours("1");
+		vehicle.setLicensePlateNumber("E358P");
+		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+		locationPage.purchase_Session(vehicle, newVehicle, chooseTime, newCard, newPromoCode, payButton);
+		locationPage.verify_Purchase_Details(vehicle, newSession, newReservation);
+	}
+
+	/*
+	 * This is a test case to extend session with existing vehicle and promocode
+	 *
+	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_09_Extend_Session_for_ExistingVehicle_With_PromoCode() {
+		Boolean newCard = false, newVehicle = false, chooseTime = true, newSession = true, newReservation = false, newPromoCode = true, payButton = false;
+
+		spaLoginPage = launch_SPA_Application();
+		accountsPage = spaLoginPage.login();
+		spaHomePage = accountsPage.navigateToHomePage();
+		Vehicle vehicle = xml_Ops.getVehicleTestData();
+		vehicle.setTimeInHours("1");
+		vehicle.setLicensePlateNumber("G873K");
+		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+		locationPage.purchase_Session(vehicle, newVehicle, chooseTime, newCard, newPromoCode, payButton);
+		locationPage.verify_Purchase_Details(vehicle, newSession, newReservation);
 	}
 }
