@@ -11,7 +11,6 @@ import pageObjects.SPA.SPA_AccountsPage;
 import pageObjects.SPA.SPA_HomePage;
 import pageObjects.SPA.SPA_LocationPage;
 import pageObjects.SPA.SPA_LoginPage;
-import pageObjects.SPA.SPA_SessionsPage;
 import pageObjects.TextPay.TextPay_HomePage;
 import utils.XML_Operations;
 
@@ -40,7 +39,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		Boolean newCard = true, newVehicle = true, newSession = true;
 		Guest guest = xml_Ops.getGuestTestData();
 		guest.setLicensePlateNumber(getRandomLicencePlate());
-		guest.setTimeInHours("2");
+		guest.setTimeInHours("1");
 		guest.setParkingType("Regular Space");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);

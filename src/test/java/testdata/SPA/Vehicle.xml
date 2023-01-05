@@ -1,5 +1,5 @@
 <vehicle>
-    <locationNumber>P101</locationNumber>
+    <locationNumber>P094</locationNumber>
     <licensePlateNumber>MA</licensePlateNumber>
     <state>AK - Alaska</state>
     <zip>643445</zip>
@@ -7,4 +7,6 @@
     <expiry>1246</expiry>
     <cvc>111</cvc>
     <amount>10</amount>
+    <promoCode>PPFSTEST</promoCode>
+    <timeInHours>10</timeInHours>
 </vehicle>
