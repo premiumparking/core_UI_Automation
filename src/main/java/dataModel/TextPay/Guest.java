@@ -20,6 +20,8 @@ public class Guest implements Serializable {
 	private String amount;
 	private String timeInHours;
 	private String parkingType;
+	private String promocode;
+	private String paymentVia;
 
 	public String getParkingType() {
 		return parkingType;
@@ -103,6 +105,22 @@ public class Guest implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getPromocode() {
+		return promocode;
+	}
+
+	public void setPromocode(String promocode) {
+		this.promocode = promocode;
+	}
+
+	public String getPaymentVia() {
+		return paymentVia;
+	}
+
+	public void setPaymentVia(String paymentVia) {
+		this.paymentVia = paymentVia;
 	}
 
 }

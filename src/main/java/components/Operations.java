@@ -103,7 +103,7 @@ public class Operations extends Extent_Reports {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public void clickOnButton(By ele) {
-		waitForElementTobeDisplayed(ele);
+		waitForElementTobeClickable(ele);
 		WebElement element = BaseClass.driver.findElement(ele);
 		waitForPageLoad(1);
 		if (isElementDisplayed(ele) && element.isEnabled()) {

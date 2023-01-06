@@ -151,4 +151,107 @@ public class XML_Operations {
 		}
 		return guest;
 	}
+
+	/*
+	 * This method is to load the data from XML file and bind it to the respective
+	 * JAVA object
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public Object getTestData(String model) {
+		JAXBContext jaxbContext;
+		File xmlFile;
+
+		switch (model.toLowerCase()) {
+		case "guest":
+			Guest guest = null;
+			xmlFile = new File("src\\test\\java\\testdata\\TextPay\\Guest.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(Guest.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				guest = (Guest) jaxbUnmarshaller.unmarshal(xmlFile);
+
+			} catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return guest;
+
+		case "vehicle":
+			Vehicle vehicle = null;
+			xmlFile = new File("src\\test\\java\\testdata\\SPA\\Vehicle.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(Vehicle.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				vehicle = (Vehicle) jaxbUnmarshaller.unmarshal(xmlFile);
+
+			} catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return vehicle;
+
+		case "location":
+			Location location = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\Location.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(Location.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				location = (Location) jaxbUnmarshaller.unmarshal(xmlFile);
+			}
+
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return location;
+		case "operator":
+			Operator user = null;
+			xmlFile = new File("src\\test\\java\\testData\\operator.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(Operator.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				user = (Operator) jaxbUnmarshaller.unmarshal(xmlFile);
+				// System.out.println(user);
+			}
+
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return user;
+		case "market":
+			Market market = null;
+			xmlFile = new File("src\\test\\java\\testData\\OD\\Market.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(Market.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				market = (Market) jaxbUnmarshaller.unmarshal(xmlFile);
+				// System.out.println(market);
+			}
+
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return market;
+		case "venue":
+			Venue venue = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\Venue.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(Venue.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				venue = (Venue) jaxbUnmarshaller.unmarshal(xmlFile);
+
+			}
+
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return venue;
+		}
+
+		return null;
+	}
 }
