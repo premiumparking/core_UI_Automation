@@ -1,12 +1,19 @@
 <vehicle>
-    <locationNumber>P094</locationNumber>
-    <licensePlateNumber>MA</licensePlateNumber>
-    <state>AK - Alaska</state>
-    <zip>643445</zip>
-    <ccNumber>4242424242424242</ccNumber>
-    <expiry>1246</expiry>
-    <cvc>111</cvc>
-    <amount>10</amount>
-    <promoCode>PPFSTEST</promoCode>
-    <timeInHours>10</timeInHours>
+	<locationNumber>P094</locationNumber>
+	<licensePlateNumber>MA</licensePlateNumber>
+	<state>AK - Alaska</state>
+	<zip>643445</zip>
+	<ccNumber>4242424242424242</ccNumber>
+	<expiry>1246</expiry>
+	<cvc>111</cvc>
+	<amount>10</amount>
+	<timeInHours>2</timeInHours>
+	<promoCode>PPFSTEST</promoCode>
+	<isItNewCard>true</isItNewCard>
+	<isItNewVehicle>true</isItNewVehicle>
+	<extendTime>10</extendTime>
+	<itItNewSession>true</itItNewSession>
+	<isItNewnewReservation>true</isItNewnewReservation>
+	<payOption>card</payOption>
+	<isItExtended>true</isItExtended>
 </vehicle>

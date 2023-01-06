@@ -17,6 +17,9 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	SPA_AccountsPage accountsPage = new SPA_AccountsPage();
 	SPA_LocationPage locationPage = new SPA_LocationPage();
 
+	// ****************** TEST DATA ****************************//
+	Vehicle vehicle = (Vehicle) xml_Ops.getTestData("vehicle");
+
 	// ****************** TEST SCRIPTS ****************************//
 
 	/*
@@ -26,190 +29,426 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	 * TC_04_Purchase_Session_With_ExistingCard_and_ExistingVehicle
 	 * TC_05_Purchase_Session_With_PromoCode_and_NewVehicle
 	 * TC_06_Purchase_Session_With_PromoCode_and_ExistingVehicle
-	 * TC_07_Extend_Session_for_ExistingVehicle_With_NewCard
-	 * TC_08_Extend_Session_for_ExistingVehicle_With_ExistingCard
-	 * TC_09_Extend_Session_for_ExistingVehicle_With_PromoCode
+	 * TC_07_Purchase_And_Extend_Session_With_NewCard
+	 * TC_08_Purchase_And_Extend_Session_With_ExistingCard
+	 * TC_09_Purchase_And_Extend_Session_With_PromoCode
+	 * TC_10_Purchase_Session_With_NewCard_and_Extend_with_ExistingCard
+	 * TC_11_Purchase_Session_With_NewCard_and_Extend_with_Promocode
+	 * TC_12_Purchase_Session_With_ExistingCard_and_Extend_with_NewCard
+	 * TC_13_Purchase_Session_With_ExistingCard_and_Extend_with_Promocode
+	 * TC_14_Purchase_Session_With_Promocode_and_Extend_with_NewCard
+	 * TC_15_Purchase_Session_With_Promocode_and_Extend_with_ExistingCard
 	 */
 
 	/*
-	 * This is a test case to purchase session with new vehicle and new payment method
+	 * This is a test case to purchase session with new vehicle and new card payment
+	 * method
 	 *
-	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_01_Purchase_Session_With_NewCard_and_NewVehicle() {
-		Boolean newCard = true, newVehicle = true, chooseTime = false, newSession = true, newReservation = false, newPromoCode = false, payButton = true;
+
+		vehicle.setIsItNewCard(true);
+		vehicle.setIsItNewVehicle(true);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewnewReservation(false);
+		vehicle.setPayOption("card");
+		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
 		spaHomePage = accountsPage.navigateToHomePage();
-		Vehicle vehicle = xml_Ops.getVehicleTestData();
-		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
-		locationPage.purchase_Session(vehicle, newVehicle, chooseTime, newCard, newPromoCode, payButton);
-		locationPage.verify_Purchase_Details(vehicle, newSession, newReservation);
+		locationPage.purchase_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
 	}
 
 	/*
-	 * This is a test case to purchase session with existing vehicle and new payment method
+	 * This is a test case to purchase session with existing vehicle and new card
+	 * payment method
 	 *
-	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_02_Purchase_Session_With_NewCard_and_ExistingVehicle() {
-		Boolean newCard = true, newVehicle = false, chooseTime = true, newSession = true, newReservation = false, newPromoCode = false, payButton = true;
+		vehicle.setLocationNumber("P400");
+		vehicle.setIsItNewCard(true);
+		vehicle.setIsItNewVehicle(false);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewnewReservation(false);
+		vehicle.setPayOption("card");
+		vehicle.setTimeInHours("1");
+		vehicle.setLicensePlateNumber("H297G");
+
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
 		spaHomePage = accountsPage.navigateToHomePage();
-		Vehicle vehicle = xml_Ops.getVehicleTestData();
-		vehicle.setTimeInHours("1");
-		vehicle.setLicensePlateNumber("H297G");
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
-		locationPage.purchase_Session(vehicle, newVehicle, chooseTime, newCard, newPromoCode, payButton);
-		locationPage.verify_Purchase_Details(vehicle, newSession, newReservation);
+		locationPage.purchase_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
 	}
 
 	/*
-	 * This is a test case to purchase session with new vehicle and existing card payment method
+	 * This is a test case to purchase session with new vehicle and existing card
+	 * payment payment method
 	 *
-	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_03_Purchase_Session_With_ExistingCard_and_NewVehicle() {
-		Boolean newCard = false, newVehicle = true, chooseTime = false, newSession = true, newReservation = false, newPromoCode = false, payButton = true;
+
+		vehicle.setIsItNewCard(false);
+		vehicle.setIsItNewVehicle(true);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewnewReservation(false);
+		vehicle.setPayOption("card");
+		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
 		spaHomePage = accountsPage.navigateToHomePage();
-		Vehicle vehicle = xml_Ops.getVehicleTestData();
-		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
-		locationPage.purchase_Session(vehicle, newVehicle, chooseTime, newCard, newPromoCode, payButton);
-		locationPage.verify_Purchase_Details(vehicle, newSession, newReservation);
+		locationPage.purchase_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
 	}
 
 	/*
-	 * This is a test case to purchase session with existing vehicle and existing card payment method
+	 * This is a test case to purchase session with existing vehicle and existing
+	 * card payment method
 	 *
-	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_04_Purchase_Session_With_ExistingCard_and_ExistingVehicle() {
-		Boolean newCard = false, newVehicle = false, chooseTime = true, newSession = true, newReservation = false, newPromoCode = false, payButton = true;
+
+		vehicle.setLocationNumber("P400");
+		vehicle.setIsItNewCard(false);
+		vehicle.setIsItNewVehicle(false);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewnewReservation(false);
+		vehicle.setPayOption("card");
+		vehicle.setTimeInHours("1");
+		vehicle.setLicensePlateNumber("H297G");
+
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
 		spaHomePage = accountsPage.navigateToHomePage();
-		Vehicle vehicle = xml_Ops.getVehicleTestData();
-		vehicle.setTimeInHours("1");
-		vehicle.setLicensePlateNumber("U287W");
+
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
-		locationPage.purchase_Session(vehicle, newVehicle, chooseTime, newCard, newPromoCode, payButton);
-		locationPage.verify_Purchase_Details(vehicle, newSession, newReservation);
+		locationPage.purchase_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
 	}
 
 	/*
 	 * This is a test case to purchase session with new vehicle and promocode
 	 *
-	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_05_Purchase_Session_With_PromoCode_and_NewVehicle() {
-		Boolean newCard = false, newVehicle = true, chooseTime = false, newSession = true, newReservation = false, newPromoCode = true, payButton = false;
+
+		vehicle.setIsItNewCard(true);
+		vehicle.setIsItNewVehicle(true);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewnewReservation(false);
+		vehicle.setPayOption("promocode");
+		vehicle.setPromoCode("PPFSTEST");
+		vehicle.setTimeInHours("1");
+		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
 		spaHomePage = accountsPage.navigateToHomePage();
-		Vehicle vehicle = xml_Ops.getVehicleTestData();
-		vehicle.setLicensePlateNumber(getRandomLicencePlate());
+
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
-		locationPage.purchase_Session(vehicle, newVehicle, chooseTime, newCard, newPromoCode, payButton);
-		locationPage.verify_Purchase_Details(vehicle, newSession, newReservation);
+		locationPage.purchase_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
 	}
 
 	/*
 	 * This is a test case to purchase session with existing vehicle and promocode
 	 *
-	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_06_Purchase_Session_With_PromoCode_and_ExistingVehicle() {
-		Boolean newCard = false, newVehicle = false, chooseTime = true, newSession = true, newReservation = false, newPromoCode = true, payButton = false;
-
-		spaLoginPage = launch_SPA_Application();
-		accountsPage = spaLoginPage.login();
-		spaHomePage = accountsPage.navigateToHomePage();
-		Vehicle vehicle = xml_Ops.getVehicleTestData();
+		vehicle.setLocationNumber("P400");
+		vehicle.setIsItNewCard(true);
+		vehicle.setIsItNewVehicle(false);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewnewReservation(false);
+		vehicle.setPayOption("promocode");
+		vehicle.setPromoCode("PPFSTEST");
 		vehicle.setTimeInHours("1");
 		vehicle.setLicensePlateNumber("TS65HJ");
-		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
-
-		locationPage.purchase_Session(vehicle, newVehicle, chooseTime, newCard, newPromoCode, payButton);
-		locationPage.verify_Purchase_Details(vehicle, newSession, newReservation);
-	}
-
-	/*
-	 * This is a test case to extend session with existing vehicle and new card
-	 *
-	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
-	 */
-	@Test(groups = { "smoke", "regression" })
-	public void TC_07_Extend_Session_for_ExistingVehicle_With_NewCard() {
-		Boolean newCard = true, newVehicle = false, chooseTime = true, newSession = true, newReservation = false, newPromoCode = false, payButton = true;
-		spaLoginPage = launch_SPA_Application();
-		accountsPage = spaLoginPage.login();
-		spaHomePage = accountsPage.navigateToHomePage();
-		Vehicle vehicle = xml_Ops.getVehicleTestData();
-		vehicle.setTimeInHours("1");
-		vehicle.setLicensePlateNumber("W318T");
-		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
-
-		locationPage.purchase_Session(vehicle, newVehicle, chooseTime, newCard, newPromoCode, payButton);
-		locationPage.verify_Purchase_Details(vehicle, newSession, newReservation);
-	}
-
-	/*
-	 * This is a test case to extend session with existing vehicle and existing card
-	 *
-	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
-	 */
-	@Test(groups = { "smoke", "regression" })
-	public void TC_08_Extend_Session_for_ExistingVehicle_With_ExistingCard() {
-		Boolean newCard = false, newVehicle = false, chooseTime = true, newSession = true, newReservation = false, newPromoCode = false, payButton = true;
-		spaLoginPage = launch_SPA_Application();
-		accountsPage = spaLoginPage.login();
-		spaHomePage = accountsPage.navigateToHomePage();
-		Vehicle vehicle = xml_Ops.getVehicleTestData();
-		vehicle.setTimeInHours("1");
-		vehicle.setLicensePlateNumber("E358P");
-		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
-
-		locationPage.purchase_Session(vehicle, newVehicle, chooseTime, newCard, newPromoCode, payButton);
-		locationPage.verify_Purchase_Details(vehicle, newSession, newReservation);
-	}
-
-	/*
-	 * This is a test case to extend session with existing vehicle and promocode
-	 *
-	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
-	 */
-	@Test(groups = { "smoke", "regression" })
-	public void TC_09_Extend_Session_for_ExistingVehicle_With_PromoCode() {
-		Boolean newCard = false, newVehicle = false, chooseTime = true, newSession = true, newReservation = false, newPromoCode = true, payButton = false;
 
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
 		spaHomePage = accountsPage.navigateToHomePage();
-		Vehicle vehicle = xml_Ops.getVehicleTestData();
-		vehicle.setTimeInHours("1");
-		vehicle.setLicensePlateNumber("G873K");
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
-		locationPage.purchase_Session(vehicle, newVehicle, chooseTime, newCard, newPromoCode, payButton);
-		locationPage.verify_Purchase_Details(vehicle, newSession, newReservation);
+		locationPage.purchase_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+	}
+
+	/*
+	 * This is a test case to purchase and extend session using new card payment
+	 *
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_07_Purchase_And_Extend_Session_With_NewCard() {
+
+		vehicle.setIsItNewCard(true);
+		vehicle.setIsItNewVehicle(true);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewnewReservation(false);
+		vehicle.setPayOption("card");
+		vehicle.setLicensePlateNumber(getRandomLicencePlate());
+
+		spaLoginPage = launch_SPA_Application();
+		accountsPage = spaLoginPage.login();
+		spaHomePage = accountsPage.navigateToHomePage();
+		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+		locationPage.purchase_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+		locationPage.extend_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+	}
+
+	/*
+	 * This is a test case to purchase and extend session using existing card
+	 * payment
+	 *
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_08_Purchase_And_Extend_Session_With_ExistingCard() {
+
+		vehicle.setIsItNewCard(false);
+		vehicle.setIsItNewVehicle(true);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewnewReservation(false);
+		vehicle.setPayOption("card");
+		vehicle.setLicensePlateNumber(getRandomLicencePlate());
+
+		spaLoginPage = launch_SPA_Application();
+		accountsPage = spaLoginPage.login();
+		spaHomePage = accountsPage.navigateToHomePage();
+		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+		locationPage.purchase_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+		locationPage.extend_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+	}
+
+	/*
+	 * This is a test case to purchase and extend session using promocode
+	 *
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_09_Purchase_And_Extend_Session_With_PromoCode() {
+
+		vehicle.setIsItNewCard(false);
+		vehicle.setIsItNewVehicle(true);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewnewReservation(false);
+		vehicle.setPayOption("promocode");
+		vehicle.setPromoCode("PPFSTEST");
+		vehicle.setLicensePlateNumber(getRandomLicencePlate());
+
+		spaLoginPage = launch_SPA_Application();
+		accountsPage = spaLoginPage.login();
+		spaHomePage = accountsPage.navigateToHomePage();
+		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+		locationPage.purchase_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+		locationPage.extend_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+	}
+
+	/*
+	 * This is a test case to purchase session with new card payment and extend with
+	 * existing card
+	 *
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_10_Purchase_Session_With_NewCard_and_Extend_with_ExistingCard() {
+
+		vehicle.setIsItNewCard(true);
+		vehicle.setIsItNewVehicle(true);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewnewReservation(false);
+		vehicle.setPayOption("card");
+		vehicle.setLicensePlateNumber(getRandomLicencePlate());
+
+		spaLoginPage = launch_SPA_Application();
+		accountsPage = spaLoginPage.login();
+		spaHomePage = accountsPage.navigateToHomePage();
+		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+		locationPage.purchase_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+		vehicle.setIsItNewCard(false);
+		locationPage.extend_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+	}
+
+	/*
+	 * This is a test case to purchase session with new card payment and extend with
+	 * promocode
+	 *
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_11_Purchase_Session_With_NewCard_and_Extend_with_Promocode() {
+
+		vehicle.setIsItNewCard(true);
+		vehicle.setIsItNewVehicle(true);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewnewReservation(false);
+		vehicle.setPayOption("card");
+		vehicle.setLicensePlateNumber(getRandomLicencePlate());
+
+		spaLoginPage = launch_SPA_Application();
+		accountsPage = spaLoginPage.login();
+		spaHomePage = accountsPage.navigateToHomePage();
+		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+		locationPage.purchase_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+		vehicle.setIsItNewCard(false);
+		vehicle.setPayOption("promocode");
+		vehicle.setPromoCode("PPFSTEST");
+		locationPage.extend_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+	}
+
+	/*
+	 * This is a test case to purchase session with existing card payment and extend
+	 * with new card
+	 *
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_12_Purchase_Session_With_ExistingCard_and_Extend_with_NewCard() {
+
+		vehicle.setIsItNewCard(false);
+		vehicle.setIsItNewVehicle(true);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewnewReservation(false);
+		vehicle.setPayOption("card");
+		vehicle.setLicensePlateNumber(getRandomLicencePlate());
+
+		spaLoginPage = launch_SPA_Application();
+		accountsPage = spaLoginPage.login();
+		spaHomePage = accountsPage.navigateToHomePage();
+		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+		locationPage.purchase_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+		vehicle.setIsItNewCard(true);
+		locationPage.extend_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+	}
+
+	/*
+	 * This is a test case to purchase session with existing card payment and extend
+	 * with promocode
+	 *
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_13_Purchase_Session_With_ExistingCard_and_Extend_with_Promocode() {
+
+		vehicle.setIsItNewCard(false);
+		vehicle.setIsItNewVehicle(true);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewnewReservation(false);
+		vehicle.setPayOption("card");
+		vehicle.setLicensePlateNumber(getRandomLicencePlate());
+
+		spaLoginPage = launch_SPA_Application();
+		accountsPage = spaLoginPage.login();
+		spaHomePage = accountsPage.navigateToHomePage();
+		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+		locationPage.purchase_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+		vehicle.setPayOption("promocode");
+		vehicle.setPromoCode("PPFSTEST");
+		locationPage.extend_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+	}
+
+	/*
+	 * This is a test case to purchase session with promocode card payment and
+	 * extend with new card
+	 *
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_14_Purchase_Session_With_Promocode_and_Extend_with_NewCard() {
+
+		vehicle.setIsItNewCard(false);
+		vehicle.setIsItNewVehicle(true);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewnewReservation(false);
+		vehicle.setPayOption("promocode");
+		vehicle.setPromoCode("PPFSTEST");
+		vehicle.setLicensePlateNumber(getRandomLicencePlate());
+
+		spaLoginPage = launch_SPA_Application();
+		accountsPage = spaLoginPage.login();
+		spaHomePage = accountsPage.navigateToHomePage();
+		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+		locationPage.purchase_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+		vehicle.setPayOption("card");
+		vehicle.setIsItNewCard(true);
+		locationPage.extend_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+	}
+
+	/*
+	 * This is a test case to purchase session with existing card payment and extend
+	 * with promocode
+	 *
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_15_Purchase_Session_With_Promocode_and_Extend_with_ExistingCard() {
+
+		vehicle.setIsItNewCard(false);
+		vehicle.setIsItNewVehicle(true);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewnewReservation(false);
+		vehicle.setPayOption("promocode");
+		vehicle.setPromoCode("PPFSTEST");
+		vehicle.setLicensePlateNumber(getRandomLicencePlate());
+
+		spaLoginPage = launch_SPA_Application();
+		accountsPage = spaLoginPage.login();
+		spaHomePage = accountsPage.navigateToHomePage();
+		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+		locationPage.purchase_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+		vehicle.setPayOption("card");
+		vehicle.setIsItNewCard(false);
+		locationPage.extend_Session(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
 	}
 }
