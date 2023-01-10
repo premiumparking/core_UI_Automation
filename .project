@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>parkOS.automation.UI</name>
+	<name>core.automation.ui</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -22,7 +22,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1673334295379</id>
+			<id>0</id>
 			<name></name>
 			<type>30</type>
 			<matcher>

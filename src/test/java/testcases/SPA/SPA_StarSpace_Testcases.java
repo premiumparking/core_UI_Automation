@@ -47,7 +47,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      */
     @Test(groups = { "smoke", "regression" })
     public void TC_01_Purchase_Star_Space_With_NewCard_and_NewVehicle() {
-
+    	vehicle.setLocationNumber(getRandomLocation());
         vehicle.setIsItNewCard(true);
         vehicle.setIsItNewVehicle(true);
         vehicle.setIsItNewSession(true);
@@ -71,7 +71,8 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      */
     @Test(groups = { "smoke", "regression" })
     public void TC_02_Purchase_Star_Space_With_NewCard_and_ExistingVehicle() {
-        vehicle.setIsItNewCard(true);
+    	vehicle.setLocationNumber(getRandomLocation());
+    	vehicle.setIsItNewCard(true);
         vehicle.setIsItNewVehicle(false);
         vehicle.setIsItNewSession(true);
         vehicle.setIsItNewReservation(false);
@@ -94,7 +95,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      */
     @Test(groups = { "smoke", "regression" })
     public void TC_03_Purchase_Star_Space_With_ExistingCard_and_NewVehicle() {
-
+    	vehicle.setLocationNumber(getRandomLocation());
         vehicle.setIsItNewCard(false);
         vehicle.setIsItNewVehicle(true);
         vehicle.setIsItNewSession(true);
@@ -118,7 +119,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      */
     @Test(groups = { "smoke", "regression" })
     public void TC_04_Purchase_Star_Space_With_ExistingCard_and_ExistingVehicle() {
-
+    	vehicle.setLocationNumber(getRandomLocation());
         vehicle.setIsItNewCard(false);
         vehicle.setIsItNewVehicle(false);
         vehicle.setIsItNewSession(true);
@@ -143,7 +144,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      */
     @Test(groups = { "smoke", "regression" })
     public void TC_05_Purchase_Star_Space_With_PromoCode_and_NewVehicle() {
-
+    	vehicle.setLocationNumber(getRandomLocation());
         vehicle.setIsItNewCard(true);
         vehicle.setIsItNewVehicle(true);
         vehicle.setIsItNewSession(true);
@@ -168,7 +169,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      */
     @Test(groups = { "smoke", "regression" })
     public void TC_06_Purchase_Star_Space_With_PromoCode_and_ExistingVehicle() {
-
+    	vehicle.setLocationNumber(getRandomLocation());
         vehicle.setIsItNewCard(true);
         vehicle.setIsItNewVehicle(false);
         vehicle.setIsItNewSession(true);
@@ -192,7 +193,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      */
     @Test(groups = { "smoke", "regression" })
     public void TC_07_Purchase_And_Extend_Star_Space_With_NewCard() {
-
+    	vehicle.setLocationNumber(getRandomLocation());
         vehicle.setIsItNewCard(true);
         vehicle.setIsItNewVehicle(true);
         vehicle.setIsItNewSession(true);
@@ -218,7 +219,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      */
     @Test(groups = { "smoke", "regression" })
     public void TC_08_Purchase_And_Extend_Star_Space_With_ExistingCard() {
-
+    	vehicle.setLocationNumber(getRandomLocation());
         vehicle.setIsItNewCard(false);
         vehicle.setIsItNewVehicle(true);
         vehicle.setIsItNewSession(true);
@@ -244,7 +245,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      */
     @Test(groups = { "smoke", "regression" })
     public void TC_09_Purchase_And_Extend_Star_Space_With_PromoCode() {
-
+    	vehicle.setLocationNumber(getRandomLocation());
         vehicle.setIsItNewCard(false);
         vehicle.setIsItNewVehicle(true);
         vehicle.setIsItNewSession(true);
@@ -270,7 +271,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      */
     @Test(groups = { "smoke", "regression" })
     public void TC_10_Purchase_Star_Space_With_NewCard_and_Extend_with_ExistingCard() {
-
+    	vehicle.setLocationNumber(getRandomLocation());
         vehicle.setIsItNewCard(true);
         vehicle.setIsItNewVehicle(true);
         vehicle.setIsItNewSession(true);
@@ -297,7 +298,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      */
     @Test(groups = { "smoke", "regression" })
     public void TC_11_Purchase_Star_Space_With_NewCard_and_Extend_with_Promocode() {
-
+    	vehicle.setLocationNumber(getRandomLocation());
         vehicle.setIsItNewCard(true);
         vehicle.setIsItNewVehicle(true);
         vehicle.setIsItNewSession(true);
@@ -325,7 +326,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      */
     @Test(groups = { "smoke", "regression" })
     public void TC_12_Purchase_Star_Space_With_ExistingCard_and_Extend_with_NewCard() {
-
+    	vehicle.setLocationNumber(getRandomLocation());
         vehicle.setIsItNewCard(false);
         vehicle.setIsItNewVehicle(true);
         vehicle.setIsItNewSession(true);
@@ -352,7 +353,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      */
     @Test(groups = { "smoke", "regression" })
     public void TC_13_Purchase_Star_Space_With_ExistingCard_and_Extend_with_Promocode() {
-
+    	vehicle.setLocationNumber(getRandomLocation());
         vehicle.setIsItNewCard(false);
         vehicle.setIsItNewVehicle(true);
         vehicle.setIsItNewSession(true);
@@ -379,7 +380,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      */
     @Test(groups = { "smoke", "regression" })
     public void TC_14_Purchase_Star_Space_With_Promocode_and_Extend_with_NewCard() {
-
+    	vehicle.setLocationNumber(getRandomLocation());
         vehicle.setIsItNewCard(false);
         vehicle.setIsItNewVehicle(true);
         vehicle.setIsItNewSession(true);
@@ -407,7 +408,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      */
     @Test(groups = { "smoke", "regression" })
     public void TC_15_Purchase_Star_Space_With_Promocode_and_Extend_with_ExistingCard() {
-
+    	vehicle.setLocationNumber(getRandomLocation());
         vehicle.setIsItNewCard(false);
         vehicle.setIsItNewVehicle(true);
         vehicle.setIsItNewSession(true);

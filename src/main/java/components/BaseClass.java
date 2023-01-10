@@ -293,4 +293,18 @@ public class BaseClass extends Operations {
 		return letter1 + "" + String.format("%03d", random.nextInt(1000)).concat(letter2 + "");
 	}
 
+	/*
+	 * Usage : To get random location from list of Locations space
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
+	 */
+	public String getRandomLocation() {
+
+		String[] locations = Constants.LOCATIONS;
+		Random random = new Random();
+		int index = random.nextInt(locations.length);
+
+		return locations[index];
+	}
+
 }

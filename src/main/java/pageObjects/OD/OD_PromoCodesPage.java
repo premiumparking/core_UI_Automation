@@ -99,7 +99,7 @@ public class OD_PromoCodesPage extends BaseClass {
 		String discount = promocode.getDiscount().split("%")[0];
 		enterText(textBox_Discount, discount, "Discount text box");
 		selectDropdown(dd_DiscountType, "%", "Discount Type");
-		passStep("Selected Min Hours : Unlimited"); // If we don'e enter any, it is unlimited by default
+		passStep("Selected Min Hours : Unlimited"); // If we don't enter any, it is unlimited by default
 		//enterText(textBox_MaxHours, promocode.getMaxHours(), "Max Hours text box");
 		String BA_Name = promocode.getBusinessAccountName().equalsIgnoreCase("VIP") ? "5578"
 				: promocode.getBusinessAccountName(); // ID of VIP is 5578
@@ -157,11 +157,11 @@ public class OD_PromoCodesPage extends BaseClass {
 		} catch (Exception ex) {
 			selectFromSearch(dd_Option_Reservation, "Reservation", "Available Types input");
 		}
-		passStep("Selected Subscription Valid Periods : Unlimited"); // If we don'e enter any, it is unlimited by
+		passStep("Selected Subscription Valid Periods : Unlimited"); // If we don't enter any, it is unlimited by
 																		// default
-		passStep("Selected Available locations : Unlimited"); // If we don'e enter any, it is unlimited by default
+		passStep("Selected Available locations : Unlimited"); // If we don't enter any, it is unlimited by default
 		enterText(textBox_Notes, promocode.getNotes(), "Notes field");
-		passStep("Selected Quantity : Unlimited"); // If we don'e enter any, it is unlimited by default
+		passStep("Selected Quantity : Unlimited"); // If we don't enter any, it is unlimited by default
 		waitForElementTobeClickable(button_Save);
 		// clickOnButton(button_Save, "Save button");
 		waitForElementTobeDisplayed(label_PromoCodes);

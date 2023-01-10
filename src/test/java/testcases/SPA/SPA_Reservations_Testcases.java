@@ -46,7 +46,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 
 	@Test(groups = { "smoke", "regression" })
 	public void TC_01_Purchase_Reservation_With_NewCard_and_NewVehicle() {
-
+		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItFutureReservation(false);
 		vehicle.setIsItNewCard(true);
 		vehicle.setIsItNewVehicle(true);
@@ -72,7 +72,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_02_Purchase_Reservation_With_NewCard_and_ExistingVehicle() {
 
-		vehicle.setLocationNumber("P094");
+		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItFutureReservation(false);
 		vehicle.setIsItNewCard(true);
 		vehicle.setIsItNewVehicle(false);
@@ -97,7 +97,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_03_Purchase_Reservation_With_ExistingCard_and_NewVehicle() {
-
+		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItFutureReservation(false);
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(true);
@@ -122,7 +122,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_04_Purchase_Reservation_With_ExistingCard_and_ExistingVehicle() {
-
+		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItFutureReservation(false);
 		vehicle.setLocationNumber("P094");
 		vehicle.setIsItNewCard(false);
@@ -148,7 +148,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_05_Purchase_Reservation_With_PromoCode_and_NewVehicle() {
-
+		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItFutureReservation(false);
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(true);
@@ -175,7 +175,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	public void TC_06_Purchase_Reservation_With_PromoCode_and_ExistingVehicle() {
 
 		vehicle.setIsItFutureReservation(false);
-		vehicle.setLocationNumber("P400");
+		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItFutureReservation(false);
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(false);
@@ -195,7 +195,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 
 	@Test(groups = { "smoke", "regression" })
 	public void TC_07_Purchase_Future_Reservation_With_NewCard_and_NewVehicle() {
-
+		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItFutureReservation(true);
 		vehicle.setIsItNewCard(true);
 		vehicle.setIsItNewVehicle(true);
@@ -221,7 +221,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_08_Purchase_Future_Reservation_With_NewCard_and_ExistingVehicle() {
 
-		vehicle.setLocationNumber("P400");
+		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItFutureReservation(true);
 		vehicle.setIsItNewCard(true);
 		vehicle.setIsItNewVehicle(false);
@@ -246,7 +246,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_09_Purchase_Future_Reservation_With_ExistingCard_and_NewVehicle() {
-
+		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItFutureReservation(true);
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(true);
@@ -273,7 +273,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	public void TC_10_Purchase_Future_Reservation_With_ExistingCard_and_ExistingVehicle() {
 
 		vehicle.setIsItFutureReservation(true);
-		vehicle.setLocationNumber("P400");
+		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(false);
 		vehicle.setIsItNewSession(false);
@@ -297,7 +297,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_11_Purchase_Future_Reservation_With_PromoCode_and_NewVehicle() {
-
+		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItFutureReservation(true);
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(true);
@@ -323,7 +323,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_12_Purchase_Future_Reservation_With_PromoCode_and_ExistingVehicle() {
 
-		vehicle.setLocationNumber("P094");
+		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItFutureReservation(true);
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(false);
