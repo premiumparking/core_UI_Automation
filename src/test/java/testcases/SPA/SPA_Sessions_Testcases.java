@@ -52,7 +52,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewCard(true);
 		vehicle.setIsItNewVehicle(true);
 		vehicle.setIsItNewSession(true);
-		vehicle.setIsItNewnewReservation(false);
+		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("card");
 		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 
@@ -77,7 +77,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewCard(true);
 		vehicle.setIsItNewVehicle(false);
 		vehicle.setIsItNewSession(true);
-		vehicle.setIsItNewnewReservation(false);
+		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("card");
 		vehicle.setTimeInHours("1");
 		vehicle.setLicensePlateNumber("H297G");
@@ -92,8 +92,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase session with new vehicle and existing card
-	 * payment payment method
+	 * This is a test case to purchase session with new vehicle and existing card payment method
 	 *
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
@@ -103,7 +102,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(true);
 		vehicle.setIsItNewSession(true);
-		vehicle.setIsItNewnewReservation(false);
+		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("card");
 		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 
@@ -129,7 +128,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(false);
 		vehicle.setIsItNewSession(true);
-		vehicle.setIsItNewnewReservation(false);
+		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("card");
 		vehicle.setTimeInHours("1");
 		vehicle.setLicensePlateNumber("H297G");
@@ -155,9 +154,8 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewCard(true);
 		vehicle.setIsItNewVehicle(true);
 		vehicle.setIsItNewSession(true);
-		vehicle.setIsItNewnewReservation(false);
+		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("promocode");
-		vehicle.setPromoCode("PPFSTEST");
 		vehicle.setTimeInHours("1");
 		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 
@@ -182,9 +180,8 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewCard(true);
 		vehicle.setIsItNewVehicle(false);
 		vehicle.setIsItNewSession(true);
-		vehicle.setIsItNewnewReservation(false);
+		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("promocode");
-		vehicle.setPromoCode("PPFSTEST");
 		vehicle.setTimeInHours("1");
 		vehicle.setLicensePlateNumber("TS65HJ");
 
@@ -208,7 +205,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewCard(true);
 		vehicle.setIsItNewVehicle(true);
 		vehicle.setIsItNewSession(true);
-		vehicle.setIsItNewnewReservation(false);
+		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("card");
 		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 
@@ -235,7 +232,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(true);
 		vehicle.setIsItNewSession(true);
-		vehicle.setIsItNewnewReservation(false);
+		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("card");
 		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 
@@ -261,9 +258,8 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(true);
 		vehicle.setIsItNewSession(true);
-		vehicle.setIsItNewnewReservation(false);
+		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("promocode");
-		vehicle.setPromoCode("PPFSTEST");
 		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 
 		spaLoginPage = launch_SPA_Application();
@@ -289,7 +285,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewCard(true);
 		vehicle.setIsItNewVehicle(true);
 		vehicle.setIsItNewSession(true);
-		vehicle.setIsItNewnewReservation(false);
+		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("card");
 		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 
@@ -317,7 +313,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewCard(true);
 		vehicle.setIsItNewVehicle(true);
 		vehicle.setIsItNewSession(true);
-		vehicle.setIsItNewnewReservation(false);
+		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("card");
 		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 
@@ -330,7 +326,6 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		locationPage.verify_Purchase_Details(vehicle);
 		vehicle.setIsItNewCard(false);
 		vehicle.setPayOption("promocode");
-		vehicle.setPromoCode("PPFSTEST");
 		locationPage.extend_Session(vehicle);
 		locationPage.verify_Purchase_Details(vehicle);
 	}
@@ -347,7 +342,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(true);
 		vehicle.setIsItNewSession(true);
-		vehicle.setIsItNewnewReservation(false);
+		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("card");
 		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 
@@ -375,7 +370,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(true);
 		vehicle.setIsItNewSession(true);
-		vehicle.setIsItNewnewReservation(false);
+		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("card");
 		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 
@@ -387,7 +382,6 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		locationPage.purchase_Session(vehicle);
 		locationPage.verify_Purchase_Details(vehicle);
 		vehicle.setPayOption("promocode");
-		vehicle.setPromoCode("PPFSTEST");
 		locationPage.extend_Session(vehicle);
 		locationPage.verify_Purchase_Details(vehicle);
 	}
@@ -404,9 +398,8 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(true);
 		vehicle.setIsItNewSession(true);
-		vehicle.setIsItNewnewReservation(false);
+		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("promocode");
-		vehicle.setPromoCode("PPFSTEST");
 		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 
 		spaLoginPage = launch_SPA_Application();
@@ -434,9 +427,8 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(true);
 		vehicle.setIsItNewSession(true);
-		vehicle.setIsItNewnewReservation(false);
+		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("promocode");
-		vehicle.setPromoCode("PPFSTEST");
 		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 
 		spaLoginPage = launch_SPA_Application();

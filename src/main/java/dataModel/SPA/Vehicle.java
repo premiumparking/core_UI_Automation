@@ -32,8 +32,17 @@ public class Vehicle implements Serializable {
 	private Boolean isItNewCard;
 	private Boolean isItNewVehicle;
 	private Boolean isItNewSession;
-	private Boolean isItNewnewReservation;
+	private Boolean isItNewReservation;
 	private Boolean isItExtended;
+	private Boolean isItFutureReservation;
+
+	public Boolean getIsItNewReservation() { return isItNewReservation;	}
+
+	public void setIsItNewReservation(Boolean itNewReservation) { isItNewReservation = itNewReservation; }
+
+	public Boolean getIsItFutureReservation() {	return isItFutureReservation;}
+
+	public void setIsItFutureReservation(Boolean itFutureReservation) {	isItFutureReservation = itFutureReservation;}
 
 	public Boolean getIsItExtended() {
 		return isItExtended;
@@ -163,13 +172,6 @@ public class Vehicle implements Serializable {
 		this.isItNewSession = isItNewSession;
 	}
 
-	public Boolean getIsItNewnewReservation() {
-		return isItNewnewReservation;
-	}
-
-	public void setIsItNewnewReservation(Boolean isItNewnewReservation) {
-		this.isItNewnewReservation = isItNewnewReservation;
-	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -182,7 +184,7 @@ public class Vehicle implements Serializable {
 				+ cvc + ", amount=" + amount + ", promoCode=" + promoCode + ", timeInHours=" + timeInHours
 				+ ", extendTime=" + extendTime + ", payOption=" + payOption + ", isItNewCard=" + isItNewCard
 				+ ", isItNewVehicle=" + isItNewVehicle + ", isItNewSession=" + isItNewSession
-				+ ", isItNewnewReservation=" + isItNewnewReservation + ", isItExtended=" + isItExtended + "]";
+				+ ", isItNewnewReservation=" + isItNewReservation + ", isItExtended=" + isItExtended + ", isItFutureReservation=" + isItFutureReservation + "]";
 	}
 
 }

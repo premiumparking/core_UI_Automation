@@ -1,5 +1,5 @@
 <vehicle>
-	<locationNumber>P094</locationNumber>
+	<locationNumber>P101</locationNumber>
 	<licensePlateNumber>MA</licensePlateNumber>
 	<state>AK - Alaska</state>
 	<zip>643445</zip>
@@ -13,7 +13,8 @@
 	<isItNewVehicle>true</isItNewVehicle>
 	<extendTime>10</extendTime>
 	<itItNewSession>true</itItNewSession>
-	<isItNewnewReservation>true</isItNewnewReservation>
+	<isItNewReservation>true</isItNewReservation>
 	<payOption>card</payOption>
 	<isItExtended>true</isItExtended>
+	<isItFutureReservation>true</isItFutureReservation>
 </vehicle>

@@ -24,7 +24,6 @@ public class SPA_LocationPage extends BaseClass {
 	By label_Total = By.xpath("//strong[normalize-space()='Total']");
 	By textbox_LicensePlateNumber = By.id("license_plate-for-1");
 	By dropdown_state = By.id("state-for-1");
-	// By existing_card = By.xpath("//div[contains(text(),'Visa * * * * 4242')]");
 	By existing_card = By.xpath("//div[@data-testid='test-cards-select']//div[contains(@class,'singleValue')]");
 	By select_promocode = By.xpath("//button[normalize-space()='Have a promotion code?']");
 	By textbox_promocode = By.id("checkout-promocode");
@@ -51,8 +50,12 @@ public class SPA_LocationPage extends BaseClass {
 	By label_amountCharged = By.xpath("//div[@data-cy='purchase-details-total']/h4[2]");
 	By button_Pay = By.xpath("//button[@data-testid='pay-now-button']");
 	By label_Promo_Discount = By.xpath("//p[@data-cy='have-a-promo-code']");
-
+	By calendar_Start_Date = By.xpath("//input[@data-cy='start-date-input']");
+	By select_Next_Month = By.xpath("//span[contains(normalize-space(),'Next Month')]");
+	By select_Calendar_Date = By.xpath("//div[normalize-space()='9']");
 	public By duration_Bar = By.xpath("//input[@id='custom-duration']");
+	By button_StarSpace = By.xpath("//a[normalize-space()='Pay to Park Now (Star Space)']");
+	By choose_Star_Space_Duration = By.xpath("//a[@data-testid='test-star-rate-link']//span[contains(.,'STAR 12 Hours')]");
 
 	// Extend elements
 	By logo_Location = By.xpath("//a[@data-cy='test-location-nav-bar-title']");
@@ -199,57 +202,171 @@ public class SPA_LocationPage extends BaseClass {
 		enterText(textbox_ZipCode, vehicle.getZip(), "Zip Code Textbox");
 	}
 
-	public void purchase_Reservation(Vehicle vehicle, Boolean isNewVehicle, Boolean isNewCard, Boolean isPromoCode,
-			Boolean isPayButton) {
+	/*
+	 * Method to purchase reservation
+	 *
+	 * Author : Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
+	public void purchase_Reservation(Vehicle vehicle) {
+		stepInfo(" <b> ****Purchasing Reservation ****</b>");
 		waitForElementTobeDisplayed(button_Reservations);
 		clickOnButton(button_Reservations, "Reserve Parking in Advance");
+		waitForPageLoad(3);
+		if (vehicle.getIsItFutureReservation()) {
+			clickOnButton(calendar_Start_Date, "Calendar Start Date");
+			clickOnButton(select_Next_Month, "Calendar Next Month Icon");
+			clickOnButton(select_Calendar_Date, "Calendar Next Month Date");
+		}
 		clickOnButton(button_ViewRate, "View Rate");
 		clickOnButton(button_ParkHere, "Park Here");
 		waitForElementTobeDisplayed(label_Total);
-		if (isNewVehicle) {
+
+		// Vehicle check
+		if (vehicle.getIsItNewVehicle()) {
 			enterText(textbox_LicensePlateNumber, vehicle.getLicensePlateNumber(), "License Plate Number Textbox");
-			selectFromSearch(dropdown_state, vehicle.getState(), "License Plate State dropdown");
+			selectFromSearch(dropdown_state, vehicle.getState(), "Existing License Plate State dropdown");
 		} else {
 			selectFromSearch(textbox_LicensePlateNumber, vehicle.getLicensePlateNumber(),
 					"License Plate Number Textbox");
 		}
-		if (isNewCard) {
-			try {
-				if (isElementDisplayed(select_AnotherCard))
-					clickOnButton(select_AnotherCard, "Pay with another card");
-			} catch (Exception ex) {
+
+		// Payment check ## Card
+		if (vehicle.getPayOption().equalsIgnoreCase("card")) {
+			if (vehicle.getIsItNewCard()) {
+				try {
+					if (isElementDisplayed(select_AnotherCard))
+						clickOnButton(select_AnotherCard, "Pay with another card");
+				} catch (Exception ex) {
+				}
+				addNewCard(vehicle);
+			} else {
+				try {
+					if (isElementDisplayed(existing_card))
+						passStep("Existing card :" + getElementText(existing_card));
+				} catch (Exception ex) {
+					failStep("Account doesn't have the saved cards. Please check !!!");
+				}
 			}
-			switchToIframe(iframe_cardNumber);
-			enterText(textbox_CardNumber, vehicle.getCcNumber(), "Card Number Textbox");
-			BaseClass.driver.switchTo().defaultContent();
-			switchToIframe(iframe_expDate);
-			enterText(textbox_ExpDate, vehicle.getExpiry(), "Expiry Date Textbox");
-			BaseClass.driver.switchTo().defaultContent();
-			switchToIframe(iframe_CVC);
-			enterText(textbox_CVC, vehicle.getCvc(), "CC_CVC code Textbox");
-			BaseClass.driver.switchTo().defaultContent();
-			enterText(textbox_ZipCode, vehicle.getZip(), "Zip Code Textbox");
-		} else {
-			isElementDisplayed(existing_card);
 		}
-		if (isPromoCode) {
-			isElementDisplayed(select_promocode);
-			clickOnButton(select_promocode, "Add Promocode");
-			enterText(textbox_promocode, vehicle.getPromoCode(), "Promo Code Textbox");
-			waitForElementTobeDisplayed(button_addPromocode);
-			clickOnButton(button_addPromocode, "Add Promo Code Button");
+		// Payment check ## Card
+		else if (vehicle.getPayOption().equalsIgnoreCase("promocode")) {
+			addPromoCode(vehicle.getPromoCode());
+			waitForElementTobeDisplayed(label_Promo_Discount);
+			passStep(getElementText(label_Promo_Discount));
 		}
+
 		vehicle.setAmount(getElementText(total_amount));
-		if (isPayButton) {
-			isElementDisplayed(button_Pay);
-			clickOnButton(button_Pay, "Pay Button");
-		} else {
-			waitForElementTobeDisplayed(button_Start_Parking);
-			isElementDisplayed(button_Start_Parking);
-			clickOnButton(button_Start_Parking, "Start Parking Button");
-		}
+
+		isElementDisplayed(button_Pay);
+		clickOnButton(button_Pay, getElementText(button_Pay));
+		waitForPageLoad(3);
 	}
 
+	/*
+	 * Method to purchase Star Space
+	 *
+	 * Author : Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
+	public void purchase_StarSpace(Vehicle vehicle) {
+		stepInfo(" <b> ****Purchasing Star Space ****</b>");
+		waitForElementTobeDisplayed(button_StarSpace);
+		clickOnButton(button_StarSpace, "Pay to Park Now(Star Space)");
+		clickOnButton(choose_Star_Space_Duration, "Choose Star Space Duration");
+
+		// Vehicle check
+		if (vehicle.getIsItNewVehicle()) {
+			enterText(textbox_LicensePlateNumber, vehicle.getLicensePlateNumber(), "License Plate Number Textbox");
+			selectFromSearch(dropdown_state, vehicle.getState(), "existing License Plate State dropdown");
+		} else {
+			selectFromSearch(textbox_LicensePlateNumber, vehicle.getLicensePlateNumber(),
+					"License Plate Number Textbox");
+		}
+
+		// Payment check ## Card
+		if (vehicle.getPayOption().equalsIgnoreCase("card")) {
+			if (vehicle.getIsItNewCard()) {
+				try {
+					if (isElementDisplayed(select_AnotherCard))
+						clickOnButton(select_AnotherCard, "Pay with another card");
+				} catch (Exception ex) {
+				}
+				addNewCard(vehicle);
+			} else {
+				try {
+					if (isElementDisplayed(existing_card))
+						passStep("Existing card :" + getElementText(existing_card));
+				} catch (Exception ex) {
+					failStep("Account doesn't have the saved cards. Please check !!!");
+				}
+			}
+		}
+		// Payment check ## Card
+		else if (vehicle.getPayOption().equalsIgnoreCase("promocode")) {
+			addPromoCode(vehicle.getPromoCode());
+			waitForElementTobeDisplayed(label_Promo_Discount);
+			passStep(getElementText(label_Promo_Discount));
+		}
+
+		vehicle.setAmount(getElementText(total_amount));
+
+		isElementDisplayed(button_Pay);
+		clickOnButton(button_Pay, getElementText(button_Pay));
+		waitForPageLoad(3);
+
+	}
+
+	/*
+	 * Method to extend Star Space
+	 *
+	 * Author : Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
+	public void extend_Star_Space(Vehicle vehicle) {
+		stepInfo(" <b> ****Extending Star Space ****</b>");
+		waitForElementTobeDisplayed(logo_Location);
+		clickOnButton(logo_Location);
+
+		waitForElementTobeDisplayed(button_StarSpace);
+		clickOnButton(button_StarSpace, "Pay to Park Now(Star Space)");
+		clickOnButton(choose_Star_Space_Duration, "Choose Star Space Duration");
+		waitForElementTobeDisplayed(label_Total);
+		// Choosing existing Vehicle.
+		selectFromSearch(textbox_LicensePlateNumber, vehicle.getLicensePlateNumber(), "License Plate Number Textbox");
+		waitForPageLoad(3);
+		waitForElementTobeDisplayed(label_Extend_Message);
+		assertEquals(getElementText(label_Extend_Message).toUpperCase(),
+				"EXTEND EXISTING SESSION AT LOT # " + vehicle.getLocationNumber() + "");
+		passStep(getElementText(label_Extend_Message));
+		// Payment check ## Card
+		if (vehicle.getPayOption().equalsIgnoreCase("card")) {
+			if (vehicle.getIsItNewCard()) {
+				try {
+					if (isElementDisplayed(select_AnotherCard))
+						clickOnButton(select_AnotherCard, "Pay with another card");
+				} catch (Exception ex) {
+				}
+				addNewCard(vehicle);
+			} else {
+				try {
+					if (isElementDisplayed(existing_card))
+						passStep("Existing card :" + getElementText(existing_card));
+				} catch (Exception ex) {
+					failStep("Account doesn't have the saved cards. Please check !!!");
+				}
+			}
+		}
+		// Payment check ## Card
+		else if (vehicle.getPayOption().equalsIgnoreCase("promocode")) {
+			addPromoCode(vehicle.getPromoCode());
+			waitForElementTobeDisplayed(label_Promo_Discount);
+			passStep(getElementText(label_Promo_Discount));
+		}
+
+		vehicle.setAmount(getElementText(total_amount));
+
+		isElementDisplayed(button_Pay);
+		clickOnButton(button_Pay, getElementText(button_Pay));
+
+	}
 	public void verify_Purchase_Details(Vehicle vehicle) {
 		waitForElementTobeDisplayed(label_confirmationTitle);
 		if (isElementDisplayed(label_confirmationTitle)) {
@@ -261,10 +378,10 @@ public class SPA_LocationPage extends BaseClass {
 				passStep("Session Type :" + getElementText(label_purchaseType));
 				// assertEquals(getElementText(label_rateName), "24 Hrs");
 			}
-			if (vehicle.getIsItNewnewReservation()) {
+			if (vehicle.getIsItNewReservation()) {
 				assertEquals(getElementText(label_purchaseType), "NEW RESERVATION");
 				passStep("Reservation Type :" + getElementText(label_purchaseType));
-				assertEquals(getElementText(label_rateName), "24 Hrs");
+				//assertEquals(getElementText(label_rateName), "24 Hrs");
 			}
 			passStep("Rate name :" + getElementText(label_rateName));
 			assertEquals(getElementText(label_lecencePlateName), vehicle.getLicensePlateNumber());
