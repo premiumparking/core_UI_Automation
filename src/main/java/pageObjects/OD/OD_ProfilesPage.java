@@ -6,10 +6,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import components.BaseClass;
-import dataModel.OD.Profile;
+import dataModel.OD.Profile_Bulk;
 
 /*
- * Class which contains the web elements and performs Profile page activities (methods)
+ * Class which contains the web elements and performs Profile_Bulk page activities (methods)
  * 
  * Extends : BaseClass
  * 
@@ -42,7 +42,7 @@ public class OD_ProfilesPage extends BaseClass {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public void createProfile(Profile profile) {
+	public void createProfile(Profile_Bulk profile) {
 		passStep("Creating profile : " + profile.getEmail());
 
 		waitForElementTobeDisplayed(button_New);
@@ -56,7 +56,7 @@ public class OD_ProfilesPage extends BaseClass {
 		performClick(textbox_profile_address);
 		waitForPageLoad(1);
 		clickOnButton(button_Save, "Save");
-		passStep("<b>Profile : " + profile.getEmail() + " created successfully !!! </b>");
+		passStep("<b>Profile: " + profile.getEmail() + " created successfully !!! </b>");
 		navigate_To_Profiles_Page();
 	}
 

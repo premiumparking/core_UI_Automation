@@ -1,11 +1,11 @@
-package testcases.OD;
+package testcases.OD.Prod;
 
 import java.util.List;
 
 import org.testng.annotations.Test;
 
 import components.BaseClass;
-import dataModel.OD.Profile;
+import dataModel.OD.Profile_Bulk;
 import pageObjects.OD.OD_BusinessAccountsPage;
 import pageObjects.OD.OD_HomePage;
 import pageObjects.OD.OD_LoginPage;
@@ -28,7 +28,7 @@ public class MassImport_BusinessAccounts extends BaseClass {
 	OD_LoginPage loginPage = new OD_LoginPage();
 	OD_BusinessAccountsPage businessAccountsPage = new OD_BusinessAccountsPage();
 
-	List<Profile> profiles;
+	List<Profile_Bulk> profiles;
 	// String fileName = "AnnapolisResidentPermits_2022_2023_Initial.xlsx";
 	String fileName = "Missing_emails.xlsx";
 
@@ -43,8 +43,8 @@ public class MassImport_BusinessAccounts extends BaseClass {
 		loginPage = launch_OD_Application();
 		homePage = loginPage.login();
 		profilePage = homePage.navigateToProfilesPage();
-		List<Profile> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "BA2");
-		for (Profile profile : profiles) {
+		List<Profile_Bulk> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "BA2");
+		for (Profile_Bulk profile : profiles) {
 			if (!profilePage.isPrfileExist(profile.getEmail())) {
 				profilePage.createProfile(profile);
 			}
@@ -62,11 +62,11 @@ public class MassImport_BusinessAccounts extends BaseClass {
 		homePage = loginPage.login();
 		businessAccountsPage = homePage.navigateToBusinessAccountsPage();
 		// List<String> sheets = excel_Ops.get_Total_Sheets(fileName);
-		List<Profile> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "BA1");
+		List<Profile_Bulk> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "BA1");
 		if (businessAccountsPage.isBusinessAccountExist(profiles.get(0).getBusinessAccountName(),
 				profiles.get(0).getLocation())) {
 			businessAccountsPage.imporsonateBusinessAccount(profiles.get(0));
-			for (Profile profile : profiles) {
+			for (Profile_Bulk profile : profiles) {
 				if (!businessAccountsPage.isMember_Exist(profile)) {
 					businessAccountsPage.add_Member(profile);
 				}

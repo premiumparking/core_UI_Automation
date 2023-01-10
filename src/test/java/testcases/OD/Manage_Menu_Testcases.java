@@ -10,6 +10,7 @@ import pageObjects.OD.OD_HomePage;
 import pageObjects.OD.OD_LocationsPage;
 import pageObjects.OD.OD_LoginPage;
 import pageObjects.OD.OD_MarketsPage;
+import pageObjects.OD.OD_PromoCodesPage;
 import pageObjects.OD.OD_VenuesPage;
 import pageObjects.OD.OD_VirtualLocationsPage;
 import utils.XML_Operations;
@@ -23,6 +24,7 @@ public class Manage_Menu_Testcases extends BaseClass {
 	OD_VenuesPage venuesPage = new OD_VenuesPage();
 	OD_LocationsPage locationsPage = new OD_LocationsPage();
 	OD_VirtualLocationsPage vl_Page = new OD_VirtualLocationsPage();
+	OD_PromoCodesPage promoPage = new OD_PromoCodesPage();
 
 	
 	// ****************** TEST SCRIPTS ****************************//
@@ -79,6 +81,21 @@ public class Manage_Menu_Testcases extends BaseClass {
 		vl_Page = homePage.navigateToVirtualLocationsPage();
 		String vl_name = "Test_Virtual_Location_" + getTimestamp();
 		vl_Page.create_VirtualLocation(vl_name, Constants.VIRTUAL_LOCATIONS);
+
+	}
+	
+	/*
+	 * This is a test case to create PromoCode_Bulk
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_07_Create_PromoCode() {
+
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		promoPage = homePage.navigateToPromoCodesPage();	
+		promoPage.create_PromoCode(null); // Need to chage this
 
 	}
 	

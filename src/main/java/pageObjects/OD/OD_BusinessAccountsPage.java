@@ -6,7 +6,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import components.BaseClass;
-import dataModel.OD.Profile;
+import dataModel.OD.Profile_Bulk;
 
 /*
  * Class which contains the web elements and performs Business accounts page activities (methods)
@@ -59,7 +59,7 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public void imporsonateBusinessAccount(Profile profile) {
+	public void imporsonateBusinessAccount(Profile_Bulk profile) {
 
 		try {
 			List<WebElement> searchResult = BaseClass.driver.findElements(totalRows);
@@ -123,7 +123,7 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public boolean isMember_Exist(Profile profile) {
+	public boolean isMember_Exist(Profile_Bulk profile) {
 
 		stepInfo("<b>Verifying Member : " + profile.getEmail() + "</b>");
 		waitForElementTobeDisplayed(textBox_Search);
@@ -155,7 +155,7 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public void add_Member(Profile profile) {
+	public void add_Member(Profile_Bulk profile) {
 		stepInfo("Adding member : " + profile.getEmail());
 		waitForElementTobeDisplayed(button_AddMember);
 		clickOnButton(button_AddMember, "Add Member");
@@ -213,7 +213,7 @@ public class OD_BusinessAccountsPage extends BaseClass {
 		}
 	}
 
-	public void activate_Member(Profile profile) {
+	public void activate_Member(Profile_Bulk profile) {
 		By link_CopyLnk = By.xpath(".//a[contains(text(),'copy link')]");
 		List<WebElement> link_CopyLinks = BaseClass.driver.findElements(link_CopyLnk);
 		for (int i = 0; i < link_CopyLinks.size(); i++) {

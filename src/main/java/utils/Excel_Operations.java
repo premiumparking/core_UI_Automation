@@ -8,7 +8,8 @@ import java.util.List;
 import com.poiji.bind.Poiji;
 
 import dataModel.Admiral.Citation;
-import dataModel.OD.Profile;
+import dataModel.OD.Profile_Bulk;
+import dataModel.OD.PromoCode_Bulk;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -28,12 +29,12 @@ public class Excel_Operations {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 
-	public List<Profile> load_ProfilesData_From_ExcelSheet(String fileName, String sheetName) {
+	public List<Profile_Bulk> load_ProfilesData_From_ExcelSheet(String fileName, String sheetName) {
 		try {
 			File file = new File(System.getProperty("user.dir") + "\\src\\test\\java\\testData\\OD\\" + fileName);
 			XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
 			XSSFSheet sheet = workbook.getSheet(sheetName);
-			List<Profile> profiles = Poiji.fromExcel(sheet, Profile.class);
+			List<Profile_Bulk> profiles = Poiji.fromExcel(sheet, Profile_Bulk.class);
 			return profiles;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -79,6 +80,26 @@ public class Excel_Operations {
 			XSSFSheet sheet = workbook.getSheet(sheetName);
 			List<Citation> citations = Poiji.fromExcel(sheet, Citation.class);
 			return citations;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	/*
+	 * This method is to load the excel sheet and it binds to PromoCode_Bulk object
+	 * and returns list of citations
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+
+	public List<PromoCode_Bulk> load_BulkPromoCodes_From_ExcelSheet(String fileName, String sheetName) {
+		try {
+			File file = new File(System.getProperty("user.dir") + "\\src\\test\\java\\testData\\OD\\" + fileName);
+			XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
+			XSSFSheet sheet = workbook.getSheet(sheetName);
+			List<PromoCode_Bulk> promoCodes = Poiji.fromExcel(sheet, PromoCode_Bulk.class);
+			return promoCodes;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

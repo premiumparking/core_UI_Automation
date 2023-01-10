@@ -5,7 +5,13 @@ import java.io.Serializable;
 import com.poiji.annotation.ExcelCellName;
 import com.poiji.annotation.ExcelRow;
 
-public class Profile implements Serializable {
+/*
+ * This model is to create profile java object
+ * Data is getting loaded from Excel File
+ * 
+ * Author : Venu Thota(venu.t@comakeit.com)
+ */
+public class Profile_Bulk implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -57,7 +63,7 @@ public class Profile implements Serializable {
 	@ExcelCellName("LP1 Make")
 	private String lpMake;
 
-	public Profile(int rowIndex, String businessAccountName, String firstName, String lastName, String address,
+	public Profile_Bulk(int rowIndex, String businessAccountName, String firstName, String lastName, String address,
 			String email, String phoneNumber, String location, String subRateName, String subType, String subCost,
 			String payer, String startDate, String lpNumber, String lpState, String lpMake) {
 		super();
@@ -79,14 +85,14 @@ public class Profile implements Serializable {
 		this.lpMake = lpMake;
 	}
 
-	public Profile() {
+	public Profile_Bulk() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String toString() {
-		return "Profile [row=" + row + ", businessAccountName=" + businessAccountName + ", firstName=" + firstName
+		return "Profile_Bulk [row=" + row + ", businessAccountName=" + businessAccountName + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", address=" + address + ", email=" + email + ", phoneNumber="
 				+ phoneNumber + ", location=" + location + ", subRateName=" + subRateName + ", subType=" + subType
 				+ ", subCost=" + subCost + ", payer=" + payer + ", startDate=" + startDate + ", lpNumber=" + lpNumber

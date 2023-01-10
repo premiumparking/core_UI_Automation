@@ -92,7 +92,7 @@ public class Operations extends Extent_Reports {
 			highlightElement(element);
 			element.click();
 			passStep("Clicked on " + field);
-			waitForPageLoad(2);
+			// waitForPageLoad(2);
 		}
 
 	}
@@ -240,7 +240,6 @@ public class Operations extends Extent_Reports {
 				element.click();
 				passStep(field + " is unselected");
 			} else {
-				element.click();
 				passStep(field + " is already uselected");
 			}
 		}
