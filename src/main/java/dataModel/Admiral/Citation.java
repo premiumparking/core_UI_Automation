@@ -5,6 +5,13 @@ import java.io.Serializable;
 import com.poiji.annotation.ExcelCellName;
 import com.poiji.annotation.ExcelRow;
 
+/*
+ * This model is to create Citation java object
+ * Data is getting loaded from Excel File
+ * 
+ * Author : Venu Thota(venu.t@comakeit.com)
+ */
+
 public class Citation implements Serializable {
 
 	private static final long serialVersionUID = 1L;

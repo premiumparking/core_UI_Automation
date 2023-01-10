@@ -6,6 +6,13 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/*
+ * This model is to create location java object
+ * Data is getting loaded from XML File
+ * 
+ * Author : Venu Thota(venu.t@comakeit.com)
+ */
+
 @XmlRootElement(name = "location")
 @XmlAccessorType(XmlAccessType.PROPERTY)
 public class Location implements Serializable {

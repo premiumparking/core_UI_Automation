@@ -64,7 +64,7 @@ public class OD_HomePage extends BaseClass {
 		}
 		return locationsPage;
 	}
-	
+
 	/*
 	 * Method to navigate to Virtual Locations page from home page
 	 * 
@@ -95,6 +95,23 @@ public class OD_HomePage extends BaseClass {
 	}
 
 	/*
+	 * Method to navigate to Virtual Locations page from home page
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public OD_PromoCodesPage navigateToPromoCodesPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_PromoCodes, "menu : " + getElementText(link_PromoCodes));
+		OD_PromoCodesPage promoCodePage = new OD_PromoCodesPage();
+		waitForElementTobeDisplayed(promoCodePage.label_PromoCodes);
+		if (isElementDisplayed(promoCodePage.label_PromoCodes)) {
+			passStep("Promo Codes page has been loaded");
+		}
+		return promoCodePage;
+	}
+
+	/*
 	 * Method to navigate to BusinessAccounts page from home page
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
@@ -109,7 +126,7 @@ public class OD_HomePage extends BaseClass {
 	/*
 	 * Method to navigate to Venues page from home page
 	 * 
-	 * Author :  Pavan Prasad (pavanprasad.v@comakeit.com)
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
 	 */
 	public OD_VenuesPage navigateToVenuesPage() {
 		waitForElementTobeDisplayed(dd_Content);

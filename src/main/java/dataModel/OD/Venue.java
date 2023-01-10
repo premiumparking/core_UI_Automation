@@ -5,6 +5,12 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
+/*
+ * This model is to create Venue java object
+ * Data is getting loaded from XML File
+ * 
+ * Author : Venu Thota(venu.t@comakeit.com)
+ */
 @XmlRootElement(name = "venue")
 @XmlAccessorType(XmlAccessType.PROPERTY)
 public class Venue implements Serializable {
