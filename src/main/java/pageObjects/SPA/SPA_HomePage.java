@@ -25,6 +25,7 @@ public class SPA_HomePage extends BaseClass {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public SPA_LocationPage navigate_To_LocationPage(String locationName) {
+		waitForPageLoad(2);
 		selectFromSearch(textbox_Search_By_Location, locationName, "Location Search Box");
 		SPA_LocationPage locationPage = new SPA_LocationPage();
 		waitForElementTobeDisplayed(locationPage.textbox_Search_Location);

@@ -7,8 +7,12 @@
     <expiry>1246</expiry>
     <cvc>111</cvc>
     <amount>10</amount>
-    <timeInHours>10</timeInHours>
+    <timeInHours>12</timeInHours>
     <parkingType>10</parkingType>
     <promocode>PPFSTEST</promocode>
     <paymentVia>card</paymentVia>
+    <vehicleType>newVehicle</vehicleType>
+    <make>BMW</make>
+    <type>SUV</type>
+    <color>Black</color>
 </guest>

@@ -29,6 +29,26 @@ public class Guest implements Serializable {
 	private String parkingType;
 	private String promocode;
 	private String paymentVia;
+	private String vehicleType;
+	private String make;
+	private String type;
+	private String color;
+
+	public String getMake() {	return make;	}
+
+	public void setMake(String make) {	this.make = make;	}
+
+	public String getType() {	return type;	}
+
+	public void setType(String type) {	this.type = type;	}
+
+	public String getColor() {	return color;	}
+
+	public void setColor(String color) { this.color = color; }
+
+	public String getVehicleType() { return vehicleType; }
+
+	public void setVehicleType(String vehicleType) { this.vehicleType = vehicleType; }
 
 	public String getParkingType() {
 		return parkingType;
@@ -38,13 +58,9 @@ public class Guest implements Serializable {
 		this.parkingType = parkingType;
 	}
 
-	public String getTimeInHours() {
-		return timeInHours;
-	}
+	public String getTimeInHours() { return timeInHours; }
 
-	public void setTimeInHours(String timeInHours) {
-		this.timeInHours = timeInHours;
-	}
+	public void setTimeInHours(String timeInHours) { this.timeInHours = timeInHours; }
 
 	public String getLicensePlateNumber() {
 		return licensePlateNumber;
