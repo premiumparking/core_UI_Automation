@@ -177,6 +177,7 @@ public class SPA_LocationPage extends BaseClass {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public void addPromoCode(String promocode) {
+		waitForElementTobeDisplayed(select_promocode);
 		isElementDisplayed(select_promocode);
 		clickOnButton(select_promocode, "Add Promocode");
 		enterText(textbox_promocode, promocode, "Promo Code Textbox");
@@ -190,6 +191,7 @@ public class SPA_LocationPage extends BaseClass {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public void addNewCard(Vehicle vehicle) {
+		waitForElementTobeDisplayed(iframe_cardNumber);
 		switchToIframe(iframe_cardNumber);
 		enterText(textbox_CardNumber, vehicle.getCcNumber(), "Card Number Textbox");
 		BaseClass.driver.switchTo().defaultContent();
@@ -368,6 +370,7 @@ public class SPA_LocationPage extends BaseClass {
 
 	}
 	public void verify_Purchase_Details(Vehicle vehicle) {
+		stepInfo(" <b> ****Verifying Purchase Details ****</b>");
 		waitForElementTobeDisplayed(label_confirmationTitle);
 		if (isElementDisplayed(label_confirmationTitle)) {
 			passStep("Confirmation message is : " + getElementText(label_confirmationTitle));
