@@ -27,6 +27,7 @@ public class SPA_HomePage extends BaseClass {
 	public SPA_LocationPage navigate_To_LocationPage(String locationName) {
 		waitForPageLoad(2);
 		selectFromSearch(textbox_Search_By_Location, locationName, "Location Search Box");
+		waitForPageLoad(2);
 		SPA_LocationPage locationPage = new SPA_LocationPage();
 		waitForElementTobeDisplayed(locationPage.textbox_Search_Location);
 		passStep("Location page has been loaded ");

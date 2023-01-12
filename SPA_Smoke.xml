@@ -11,6 +11,7 @@
             <class name="testcases.SPA.SPA_Sessions_Testcases" />
             <class name="testcases.SPA.SPA_Reservations_Testcases" />
             <class name="testcases.SPA.SPA_StarSpace_Testcases" />
+            <class name="testcases.SPA.SPA_ChargingSpace_Testcases" />
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->
