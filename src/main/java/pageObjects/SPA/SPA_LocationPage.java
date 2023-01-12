@@ -17,18 +17,18 @@ public class SPA_LocationPage extends BaseClass {
 	// ****************** WEB ELEMENTS ****************************//
 	By textbox_Search_Location = By.id("address-search");
 	By button_Search = By.xpath("//button[@data-testid='destination-search-button']");
-	By button_Sessions = By.xpath("//button[normalize-space()='Pay to Park Now']");
-	By button_Reservations = By.xpath("//a[normalize-space()='Reserve Parking in Advance']");
+	By button_Sessions = By.xpath("//button[@data-testid='test-pay-to-park-now']");
+	By button_Reservations = By.xpath("//a[@data-testid='test-reserve-parking-in-advance']");
 	By button_ViewRate = By.xpath("//button[normalize-space()='View rate']");
 	By button_ParkHere = By.xpath("//button[normalize-space()='Park here']");
-	By label_Total = By.xpath("//strong[normalize-space()='Total']");
+	By label_Total = By.xpath("//p[@data-testid='test-total']//strong[1]");
 	By textbox_LicensePlateNumber = By.id("license_plate-for-1");
 	By dropdown_state = By.id("state-for-1");
 	By existing_card = By.xpath("//div[@data-testid='test-cards-select']//div[contains(@class,'singleValue')]");
-	By select_promocode = By.xpath("//button[normalize-space()='Have a promotion code?']");
+	By select_promocode = By.xpath("//button[@data-testid='apply-promo-code-link']");
 	By textbox_promocode = By.id("checkout-promocode");
 	By button_addPromocode = By.xpath("//button[@data-testid='add-promo-code-button']");
-	By select_AnotherCard = By.xpath("//button[normalize-space()='another card']");
+	By select_AnotherCard = By.xpath("//button[@data-testid='test-another-card']");
 	By button_Start_Parking = By.xpath("//button[@type='submit' and contains(text(),'Start Parking')]");
 	By textbox_CardNumber = By.name("cardnumber");
 	By textbox_ExpDate = By.name("exp-date");
@@ -54,8 +54,10 @@ public class SPA_LocationPage extends BaseClass {
 	By select_Next_Month = By.xpath("//span[contains(normalize-space(),'Next Month')]");
 	By select_Calendar_Date = By.xpath("//div[normalize-space()='9']");
 	public By duration_Bar = By.xpath("//input[@id='custom-duration']");
-	By button_StarSpace = By.xpath("//a[normalize-space()='Pay to Park Now (Star Space)']");
-	By choose_Star_Space_Duration = By.xpath("//a[@data-testid='test-star-rate-link']//span[contains(.,'STAR 12 Hours')]");
+	By button_StarSpace = By.xpath("//a[@data-testid='test-pay-to-park-now-star-space']");
+	By button_ChargingSpace = By.xpath("//a[@data-testid='test-pay-to-park-now-charging-space']");
+	By choose_Star_Space_Duration = By.xpath("//div[@data-testid='test-star-session-form']//a[2]");
+	By choose_Charging_Space_Duration = By.xpath("//div[@data-testid='test-charging-session-form']//a[3]");
 
 	// Extend elements
 	By logo_Location = By.xpath("//a[@data-cy='test-location-nav-bar-title']");
@@ -109,9 +111,8 @@ public class SPA_LocationPage extends BaseClass {
 			waitForElementTobeDisplayed(label_Promo_Discount);
 			passStep(getElementText(label_Promo_Discount));
 		}
-
+		waitForPageLoad(3);
 		vehicle.setAmount(getElementText(total_amount));
-
 		isElementDisplayed(button_Pay);
 		clickOnButton(button_Pay, getElementText(button_Pay));
 		waitForPageLoad(3);
@@ -164,9 +165,8 @@ public class SPA_LocationPage extends BaseClass {
 			waitForElementTobeDisplayed(label_Promo_Discount);
 			passStep(getElementText(label_Promo_Discount));
 		}
-
+		waitForPageLoad(3);
 		vehicle.setAmount(getElementText(total_amount));
-
 		isElementDisplayed(button_Pay);
 		clickOnButton(button_Pay, getElementText(button_Pay));
 	}
@@ -256,9 +256,8 @@ public class SPA_LocationPage extends BaseClass {
 			waitForElementTobeDisplayed(label_Promo_Discount);
 			passStep(getElementText(label_Promo_Discount));
 		}
-
+		waitForPageLoad(3);
 		vehicle.setAmount(getElementText(total_amount));
-
 		isElementDisplayed(button_Pay);
 		clickOnButton(button_Pay, getElementText(button_Pay));
 		waitForPageLoad(3);
@@ -308,9 +307,8 @@ public class SPA_LocationPage extends BaseClass {
 			waitForElementTobeDisplayed(label_Promo_Discount);
 			passStep(getElementText(label_Promo_Discount));
 		}
-
+		waitForPageLoad(3);
 		vehicle.setAmount(getElementText(total_amount));
-
 		isElementDisplayed(button_Pay);
 		clickOnButton(button_Pay, getElementText(button_Pay));
 		waitForPageLoad(3);
@@ -362,13 +360,115 @@ public class SPA_LocationPage extends BaseClass {
 			waitForElementTobeDisplayed(label_Promo_Discount);
 			passStep(getElementText(label_Promo_Discount));
 		}
-
+		waitForPageLoad(3);
 		vehicle.setAmount(getElementText(total_amount));
-
 		isElementDisplayed(button_Pay);
 		clickOnButton(button_Pay, getElementText(button_Pay));
+	}
+
+	/*
+	 * Method to purchase Charging Space
+	 *
+	 * Author : Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
+	public void purchase_ChargingSpace(Vehicle vehicle) {
+		stepInfo(" <b> ****Purchasing Charging Space ****</b>");
+		waitForElementTobeDisplayed(button_ChargingSpace);
+		clickOnButton(button_ChargingSpace, "Pay to Park Now(Charging Space)");
+		clickOnButton(choose_Charging_Space_Duration, "Choose Charging Space Duration");
+
+		// Vehicle check
+		if (vehicle.getIsItNewVehicle()) {
+			enterText(textbox_LicensePlateNumber, vehicle.getLicensePlateNumber(), "License Plate Number Textbox");
+			selectFromSearch(dropdown_state, vehicle.getState(), "existing License Plate State dropdown");
+		} else {
+			selectFromSearch(textbox_LicensePlateNumber, vehicle.getLicensePlateNumber(),
+					"License Plate Number Textbox");
+		}
+
+		// Payment check ## Card
+		if (vehicle.getPayOption().equalsIgnoreCase("card")) {
+			if (vehicle.getIsItNewCard()) {
+				try {
+					if (isElementDisplayed(select_AnotherCard))
+						clickOnButton(select_AnotherCard, "Pay with another card");
+				} catch (Exception ex) {
+				}
+				addNewCard(vehicle);
+			} else {
+				try {
+					if (isElementDisplayed(existing_card))
+						passStep("Existing card :" + getElementText(existing_card));
+				} catch (Exception ex) {
+					failStep("Account doesn't have the saved cards. Please check !!!");
+				}
+			}
+		}
+		// Payment check ## Card
+		else if (vehicle.getPayOption().equalsIgnoreCase("promocode")) {
+			addPromoCode(vehicle.getPromoCode());
+			waitForElementTobeDisplayed(label_Promo_Discount);
+			passStep(getElementText(label_Promo_Discount));
+		}
+		waitForPageLoad(3);
+		vehicle.setAmount(getElementText(total_amount));
+		isElementDisplayed(button_Pay);
+		clickOnButton(button_Pay, getElementText(button_Pay));
+		waitForPageLoad(3);
 
 	}
+
+	/*
+	 * Method to extend Charging Space
+	 *
+	 * Author : Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
+	public void extend_Charging_Space(Vehicle vehicle) {
+		stepInfo(" <b> ****Extending Charging Space ****</b>");
+		waitForElementTobeDisplayed(logo_Location);
+		clickOnButton(logo_Location);
+
+		waitForElementTobeDisplayed(button_ChargingSpace);
+		clickOnButton(button_ChargingSpace, "Pay to Park Now(Charging Space)");
+		clickOnButton(choose_Charging_Space_Duration, "Choose Charging Space Duration");
+		waitForElementTobeDisplayed(label_Total);
+		// Choosing existing Vehicle.
+		selectFromSearch(textbox_LicensePlateNumber, vehicle.getLicensePlateNumber(), "License Plate Number Textbox");
+		waitForPageLoad(3);
+		waitForElementTobeDisplayed(label_Extend_Message);
+		assertEquals(getElementText(label_Extend_Message).toUpperCase(),
+				"EXTEND EXISTING SESSION AT LOT # " + vehicle.getLocationNumber() + "");
+		passStep(getElementText(label_Extend_Message));
+		// Payment check ## Card
+		if (vehicle.getPayOption().equalsIgnoreCase("card")) {
+			if (vehicle.getIsItNewCard()) {
+				try {
+					if (isElementDisplayed(select_AnotherCard))
+						clickOnButton(select_AnotherCard, "Pay with another card");
+				} catch (Exception ex) {
+				}
+				addNewCard(vehicle);
+			} else {
+				try {
+					if (isElementDisplayed(existing_card))
+						passStep("Existing card :" + getElementText(existing_card));
+				} catch (Exception ex) {
+					failStep("Account doesn't have the saved cards. Please check !!!");
+				}
+			}
+		}
+		// Payment check ## Card
+		else if (vehicle.getPayOption().equalsIgnoreCase("promocode")) {
+			addPromoCode(vehicle.getPromoCode());
+			waitForElementTobeDisplayed(label_Promo_Discount);
+			passStep(getElementText(label_Promo_Discount));
+		}
+		waitForPageLoad(3);
+		vehicle.setAmount(getElementText(total_amount));
+		isElementDisplayed(button_Pay);
+		clickOnButton(button_Pay, getElementText(button_Pay));
+	}
+
 	public void verify_Purchase_Details(Vehicle vehicle) {
 		stepInfo(" <b> ****Verifying Purchase Details ****</b>");
 		waitForElementTobeDisplayed(label_confirmationTitle);
