@@ -94,57 +94,31 @@ public class TextPay_HomePage extends BaseClass {
 		enterText(location_searchBox, guest.getLocationNumber(), "Location Searchbox");
 		waitForElementTobeClickable(location_searchResult);
 		clickOnButton(location_searchResult, getElementText(location_searchResult));
+		// Vehicle Type
 		if (guest.getVehicleType().equalsIgnoreCase("newVehicle")) {
-			enterText(textBox_LicencePlate, guest.getLicensePlateNumber(), "Licence Plate box");
-			waitForPageLoad(2);
-			selectDropdown(dd_LicenceState, guest.getState(), "Licence State dropdown");
-			String state = guest.getState().split("-")[1].trim().toUpperCase(); // AK - Alaska --> ALASKA
-			assertEquals(getElementText(label_StateOnFrame), state);
-			assertEquals(getElementText(label_PlateOnFrame), guest.getLicensePlateNumber());
-			clickOnButton(button_Continue_1of4, "Continue button");
+			addNewVehicle(guest);
 		} else if(guest.getVehicleType().equalsIgnoreCase("unknownVehicle")) {
-			clickOnButton(button_Unknown_Vehicle,"I don't know my License Plate");
-			waitForElementTobeDisplayed(dd_Vehicle_Make);
-			selectFromSearch(dd_Vehicle_Make, guest.getMake(), "Vehicle Make");
-			selectFromSearch(dd_Vehicle_Type, guest.getType(), "Vehicle Type");
-			selectFromSearch(dd_Vehicle_Color, guest.getColor(), "Vehicle Color");
-			clickOnButton(button_Continue_1of4, "Continue button");
+			addUnknownVehicle(guest);
 		}
+		clickOnButton(button_Continue_1of4, "Continue button");
 
+		// Space Type
 		if (guest.getParkingType().equalsIgnoreCase("Regular Space")) {
-			waitForElementTobeClickable(button_RegularSpace);
-			clickOnButton(button_RegularSpace, "Regular Space");
-			waitForPageLoad(3);
-			waitForElementTobeDisplayed(button_ViewRate);
-			// changeTime(timeBar_ID, guest.getTimeInHours());
-			//changeTime(guest.getTimeInHours());
-			clickOnButton(button_ViewRate, "View Rate button");
+			regularSpace();
 			waitForElementTobeClickable(label_Time_Regular_Space);
 			assertEquals(getElementText(label_Time_Regular_Space), guest.getTimeInHours() + " Hours");
 			clickOnButton(button_Continue_3of4, "continue button");
 			waitForElementTobeDisplayed(label_Review_Pay);
 			assertEquals(getElementText(label_Time_Regular_Space), guest.getTimeInHours() + " Hours");
 		} else if(guest.getParkingType().equalsIgnoreCase("Star Space")) {
-			waitForElementTobeClickable(button_StarSpace);
-			clickOnButton(button_StarSpace, "Star Space");
-			waitForPageLoad(3);
-			waitForElementTobeDisplayed(choose_Star_Space_Duration);
-			clickOnButton(choose_Star_Space_Duration, "Choose Star Space Duration");
-			// changeTime(timeBar_ID, guest.getTimeInHours());
-			// changeTime(guest.getTimeInHours());
+			starSpace();
 			waitForElementTobeClickable(label_Time_Star_Space);
 			assertEquals(getElementText(label_Time_Star_Space), "STAR " + guest.getTimeInHours() + " Hours");
 			clickOnButton(button_Continue_3of4, "continue button");
 			waitForElementTobeDisplayed(label_Review_Pay);
 			assertEquals(getElementText(label_Time_Star_Space), "STAR " + guest.getTimeInHours() + " Hours");
 		} else if(guest.getParkingType().equalsIgnoreCase("Charging Space")) {
-			waitForElementTobeClickable(button_ChargingSpace);
-			clickOnButton(button_ChargingSpace, "Charging Space");
-			waitForPageLoad(3);
-			waitForElementTobeDisplayed(choose_Charging_Space_Duration);
-			clickOnButton(choose_Charging_Space_Duration, "Choose Charging Space Duration");
-			// changeTime(timeBar_ID, guest.getTimeInHours());
-			// changeTime(guest.getTimeInHours());
+			chargingSpace();
 			waitForElementTobeClickable(label_Time_Charging_Space);
 			assertEquals(getElementText(label_Time_Charging_Space),  guest.getTimeInHours() + " hour");
 			clickOnButton(button_Continue_3of4, "continue button");
@@ -154,34 +128,85 @@ public class TextPay_HomePage extends BaseClass {
 
 		// Payment
 		if (guest.getPaymentVia().equalsIgnoreCase("card")) {
-			waitForElementTobeDisplayed(iframe_cardNumber);
-			switchToIframe(iframe_cardNumber);
-			enterText(textbox_CardNumber, guest.getCcNumber(), "Card Number Textbox");
-			BaseClass.driver.switchTo().defaultContent();
-			switchToIframe(iframe_expDate);
-			enterText(textbox_ExpDate, guest.getExpiry(), "Expiry Date Textbox");
-			BaseClass.driver.switchTo().defaultContent();
-			switchToIframe(iframe_CVC);
-			enterText(textbox_CVC, guest.getCvc(), "CC_CVC code Textbox");
-			BaseClass.driver.switchTo().defaultContent();
-			enterText(textbox_ZipCode, guest.getZip(), "Zip Code Textbox");
+			addNewCard(guest);
 			waitForElementTobeClickable(button_Pay);
 			waitForElementTobeDisplayed(label_Cost);
 			guest.setAmount(getElementText(label_Cost));
 			clickOnButton(button_Pay, "Pay button");
 		}
 		else if(guest.getPaymentVia().equalsIgnoreCase("promocode")) {
-			waitForElementTobeClickable(link_PromoCode);
-			clickOnButton(link_PromoCode,"Promo code link");
-			waitForElementTobeDisplayed(textBox_Promocode);
-			enterText(textBox_Promocode, guest.getPromocode(),"Promo Code box");
-			clickOnButton(button_add_Promocode,"Add Promo Code");
+			addPromoCode(guest);
 			waitForElementTobeClickable(button_startParking);
 			waitForElementTobeDisplayed(label_Cost);
 			guest.setAmount(getElementText(label_Cost));
 			clickOnButton(button_startParking, "Start Parking button");
 		}
-		
+	}
+
+	public void addNewVehicle(Guest guest){
+		enterText(textBox_LicencePlate, guest.getLicensePlateNumber(), "Licence Plate box");
+		waitForPageLoad(2);
+		selectDropdown(dd_LicenceState, guest.getState(), "Licence State dropdown");
+		String state = guest.getState().split("-")[1].trim().toUpperCase(); // AK - Alaska --> ALASKA
+		assertEquals(getElementText(label_StateOnFrame), state);
+		assertEquals(getElementText(label_PlateOnFrame), guest.getLicensePlateNumber());
+	}
+
+	public void addUnknownVehicle(Guest guest){
+		clickOnButton(button_Unknown_Vehicle,"I don't know my License Plate");
+		waitForElementTobeDisplayed(dd_Vehicle_Make);
+		selectFromSearch(dd_Vehicle_Make, guest.getMake(), "Vehicle Make");
+		selectFromSearch(dd_Vehicle_Type, guest.getType(), "Vehicle Type");
+		selectFromSearch(dd_Vehicle_Color, guest.getColor(), "Vehicle Color");
+	}
+
+	public void regularSpace(){
+		waitForElementTobeClickable(button_RegularSpace);
+		clickOnButton(button_RegularSpace, "Regular Space");
+		waitForPageLoad(3);
+		waitForElementTobeDisplayed(button_ViewRate);
+		// changeTime(timeBar_ID, guest.getTimeInHours());
+		//changeTime(guest.getTimeInHours());
+		clickOnButton(button_ViewRate, "View Rate button");
+	}
+
+	public void starSpace(){
+		waitForElementTobeClickable(button_StarSpace);
+		clickOnButton(button_StarSpace, "Star Space");
+		waitForPageLoad(3);
+		waitForElementTobeDisplayed(choose_Star_Space_Duration);
+		clickOnButton(choose_Star_Space_Duration, "Choose Star Space Duration");
+
+	}
+
+	public void chargingSpace(){
+		waitForElementTobeClickable(button_ChargingSpace);
+		clickOnButton(button_ChargingSpace, "Charging Space");
+		waitForPageLoad(3);
+		waitForElementTobeDisplayed(choose_Charging_Space_Duration);
+		clickOnButton(choose_Charging_Space_Duration, "Choose Charging Space Duration");
+	}
+
+	public void addPromoCode(Guest guest){
+		waitForElementTobeClickable(link_PromoCode);
+		clickOnButton(link_PromoCode,"Promo code link");
+		waitForElementTobeDisplayed(textBox_Promocode);
+		enterText(textBox_Promocode, guest.getPromocode(),"Promo Code box");
+		clickOnButton(button_add_Promocode,"Add Promo Code");
+	}
+
+	public void addNewCard(Guest guest){
+		waitForElementTobeDisplayed(iframe_cardNumber);
+		switchToIframe(iframe_cardNumber);
+		enterText(textbox_CardNumber, guest.getCcNumber(), "Card Number Textbox");
+		BaseClass.driver.switchTo().defaultContent();
+		switchToIframe(iframe_expDate);
+		enterText(textbox_ExpDate, guest.getExpiry(), "Expiry Date Textbox");
+		BaseClass.driver.switchTo().defaultContent();
+		switchToIframe(iframe_CVC);
+		enterText(textbox_CVC, guest.getCvc(), "CC_CVC code Textbox");
+		BaseClass.driver.switchTo().defaultContent();
+		enterText(textbox_ZipCode, guest.getZip(), "Zip Code Textbox");
 
 	}
 
