@@ -100,10 +100,11 @@ public class OD_PromoCodesPage extends BaseClass {
 		enterText(textBox_Discount, discount, "Discount text box");
 		selectDropdown(dd_DiscountType, "%", "Discount Type");
 		passStep("Selected Min Hours : Unlimited"); // If we don't enter any, it is unlimited by default
-		//enterText(textBox_MaxHours, promocode.getMaxHours(), "Max Hours text box");
+		// enterText(textBox_MaxHours, promocode.getMaxHours(), "Max Hours text box");
 		String BA_Name = promocode.getBusinessAccountName().equalsIgnoreCase("VIP") ? "5578"
 				: promocode.getBusinessAccountName(); // ID of VIP is 5578
-		selectFromSearch(dd_BusinessAccount, BA_Name, "Businaess Account Name");
+		// not selecting the business account if we wanted to choose all locations.
+		// selectFromSearch(dd_BusinessAccount, BA_Name, "Businaess Account Name");
 
 		for (String weekday : Constants.WEEKDAYS) {
 			By day = By.xpath(
@@ -117,7 +118,7 @@ public class OD_PromoCodesPage extends BaseClass {
 				selectFromSearch(textBox_Weekdays, weekday, "Active weekday");
 			}
 		}
-		String startDate = promocode.getStartDate().split(" ")[0]; // 01/01/2023 12:00 AM (CST)
+		String startDate = promocode.getStartDate().split(" ")[0]; // 01/01/2023 12:00 AM (CST) --> 01/01/2023
 		String endDate = promocode.getEndDate().split(" ")[0];
 		enterText(textBox_StartsAt, startDate, "Start Date");
 		enterText(textBox_EndsAt, endDate, "End Date");
@@ -163,7 +164,7 @@ public class OD_PromoCodesPage extends BaseClass {
 		enterText(textBox_Notes, promocode.getNotes(), "Notes field");
 		passStep("Selected Quantity : Unlimited"); // If we don't enter any, it is unlimited by default
 		waitForElementTobeClickable(button_Save);
-		// clickOnButton(button_Save, "Save button");
+		clickOnButton(button_Save, "Save button");
 		waitForElementTobeDisplayed(label_PromoCodes);
 		assertEquals(isPromoCodeExist(promocode.getPromoCode()), true);
 	}
