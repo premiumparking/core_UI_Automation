@@ -40,7 +40,7 @@ public class Bulk_Creation_Of_PromoCodes extends BaseClass {
 		loginPage = launch_OD_Application();
 		homePage = loginPage.login();
 		promoCodePage = homePage.navigateToPromoCodesPage();
-		List<PromoCode_Bulk> promoCodes = excel_Ops.load_BulkPromoCodes_From_ExcelSheet(fileName, "Staging");
+		List<PromoCode_Bulk> promoCodes = excel_Ops.load_BulkPromoCodes_From_ExcelSheet(fileName, "VIP Promos");
 		for (PromoCode_Bulk promoCode : promoCodes) {
 			if (!promoCodePage.isPromoCodeExist(promoCode.getPromoCode())) {
 				promoCodePage.create_PromoCode(promoCode);

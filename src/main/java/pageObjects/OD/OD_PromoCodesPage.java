@@ -42,22 +42,28 @@ public class OD_PromoCodesPage extends BaseClass {
 	By textBox_StartsAt = By.id("discount_form_starts_at");
 	By textBox_EndsAt = By.id("discount_form_ends_at");
 	By dd_OncePerUser = By.id("discount_form_once_per_user-selectized");
+	By dd_OncePerUser_Text = By.xpath("//input[@id='discount_form_once_per_user-selectized']/preceding-sibling::div");
 	By dd_OncePerUser_No = By.xpath(
 			"//input[@id='discount_form_once_per_user-selectized']/parent::div/following-sibling::div//div[normalize-space()='No'] ");
 	By dd_OncePerUser_Yes = By.xpath(
 			"//input[@id='discount_form_once_per_user-selectized']/parent::div/following-sibling::div//div[normalize-space()='Yes'] ");
 	By dd_BeforeParkingStarts = By.id("discount_form_before_parking_starts-selectized");
+	By dd_BeforeParkingStarts_Text = By
+			.xpath("//input[@id='discount_form_before_parking_starts-selectized']/preceding-sibling::div");
 	By dd_BFS_Yes = By.xpath(
 			"//input[@id='discount_form_before_parking_starts-selectized']/parent::div/following-sibling::div//div[normalize-space()='Yes'] ");
 	By dd_BFS_No = By.xpath(
 			"//input[@id='discount_form_before_parking_starts-selectized']/parent::div/following-sibling::div//div[normalize-space()='No'] ");
 	By dd_EventExcempt = By.id("discount_form_event_exempt-selectized");
+	By dd_EventExcempt_Text = By.xpath("//input[@id='discount_form_event_exempt-selectized']/preceding-sibling::div");
 	By dd_EventExcempt_Yes = By.xpath(
 			"//input[@id='discount_form_event_exempt-selectized']/parent::div/following-sibling::div//div[normalize-space()='Yes'] ");
 	By dd_EventExcempt_No = By.xpath(
 			"//input[@id='discount_form_event_exempt-selectized']/parent::div/following-sibling::div//div[normalize-space()='No'] ");
 
 	By dd_RefundServiceFee = By.id("discount_form_refund_service_fee-selectized");
+	By dd_RefundServiceFee_Text = By
+			.xpath("//input[@id='discount_form_refund_service_fee-selectized']/preceding-sibling::div");
 	By dd_RSF_Yes = By.xpath(
 			"//input[@id='discount_form_refund_service_fee-selectized']/parent::div/following-sibling::div//div[normalize-space()='Yes'] ");
 	By dd_RSF_No = By.xpath(
@@ -123,22 +129,30 @@ public class OD_PromoCodesPage extends BaseClass {
 		enterText(textBox_StartsAt, startDate, "Start Date");
 		enterText(textBox_EndsAt, endDate, "End Date");
 
-		clickOnButton(dd_OncePerUser, "Once Per User dropdown");
-		By dd_OPU = promocode.getOncePerAccount().equalsIgnoreCase("Yes") ? dd_OncePerUser_Yes : dd_OncePerUser_No;
-		clickOnButton(dd_OPU, getElementText(dd_OPU) + " on Once Per User dropdown");
+		if (!getElementText(dd_OncePerUser_Text).equalsIgnoreCase(promocode.getOncePerAccount())) {
+			clickOnButton(dd_OncePerUser, "Once Per User dropdown");
+			By dd_OPU = promocode.getOncePerAccount().equalsIgnoreCase("Yes") ? dd_OncePerUser_Yes : dd_OncePerUser_No;
+			clickOnButton(dd_OPU, getElementText(dd_OPU) + " on Once Per User dropdown");
+		}
 
-		clickOnButton(dd_BeforeParkingStarts, "Before Parking Starts dropdown");
-		By dd_BFS = promocode.getBeforeParkingStarts().equalsIgnoreCase("Yes") ? dd_BFS_Yes : dd_BFS_No;
-		clickOnButton(dd_BFS, getElementText(dd_BFS) + " on Before Parking Starts dropdown");
+		if (!getElementText(dd_BeforeParkingStarts_Text).equalsIgnoreCase(promocode.getOncePerAccount())) {
+			clickOnButton(dd_BeforeParkingStarts, "Before Parking Starts dropdown");
+			By dd_BFS = promocode.getBeforeParkingStarts().equalsIgnoreCase("Yes") ? dd_BFS_Yes : dd_BFS_No;
+			clickOnButton(dd_BFS, getElementText(dd_BFS) + " on Before Parking Starts dropdown");
+		}
 
-		clickOnButton(dd_EventExcempt, "Event Excempt dropdown");
-		By dd_EE = promocode.getEventExempt().equalsIgnoreCase("Yes") ? dd_EventExcempt_Yes : dd_EventExcempt_No;
-		clickOnButton(dd_EE, getElementText(dd_EE) + " on Event Excepmt dropdown");
+		if (!getElementText(dd_EventExcempt_Text).equalsIgnoreCase(promocode.getOncePerAccount())) {
+			clickOnButton(dd_EventExcempt, "Event Excempt dropdown");
+			By dd_EE = promocode.getEventExempt().equalsIgnoreCase("Yes") ? dd_EventExcempt_Yes : dd_EventExcempt_No;
+			clickOnButton(dd_EE, getElementText(dd_EE) + " on Event Excepmt dropdown");
+		}
 
-		clickOnButton(dd_RefundServiceFee, "Refund Service Fee Dropdown");
-		By dd_RSF = promocode.getRefundServiceFee().equalsIgnoreCase("Yes") ? dd_RSF_Yes : dd_RSF_No;
-		clickOnButton(dd_RSF, getElementText(dd_RSF) + " on Refund Service Fee dropdown");
-
+		if (!getElementText(dd_RefundServiceFee_Text).equalsIgnoreCase(promocode.getOncePerAccount())) {
+			clickOnButton(dd_RefundServiceFee, "Refund Service Fee Dropdown");
+			By dd_RSF = promocode.getRefundServiceFee().equalsIgnoreCase("Yes") ? dd_RSF_Yes : dd_RSF_No;
+			clickOnButton(dd_RSF, getElementText(dd_RSF) + " on Refund Service Fee dropdown");
+		}
+		
 		if (promocode.getNoDiscount().equalsIgnoreCase("No"))
 			unselect_Checkbox(checkBox_NoDiscount, "Check Box : 'No discount or validation restrictions'");
 		else
