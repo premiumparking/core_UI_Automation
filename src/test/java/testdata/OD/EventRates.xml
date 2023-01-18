@@ -1,0 +1,10 @@
+<eventRates>
+    <externalName>Test_Name_</externalName>
+    <internalName>test_event_rates</internalName>
+    <rateGroupTitle>Test_Rate_Group_</rateGroupTitle>
+    <rateLocation>P9800</rateLocation>
+    <rateName>Test_Rate_</rateName>
+    <rateMinutes>60</rateMinutes>
+    <ratePrice>10</ratePrice>
+    <ratePreTaxPrice>9</ratePreTaxPrice>
+</eventRates>

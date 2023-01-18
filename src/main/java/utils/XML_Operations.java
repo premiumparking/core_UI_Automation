@@ -6,10 +6,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-import dataModel.OD.Location;
-import dataModel.OD.Market;
-import dataModel.OD.Operator;
-import dataModel.OD.Venue;
+import dataModel.OD.*;
 import dataModel.SPA.Vehicle;
 import dataModel.TextPay.Guest;
 
@@ -205,6 +202,53 @@ public class XML_Operations {
 				e.printStackTrace();
 			}
 			return location;
+
+		case "event_rates":
+			EventRates eventRates = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\EventRates.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(EventRates.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				eventRates = (EventRates) jaxbUnmarshaller.unmarshal(xmlFile);
+			}
+
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return eventRates;
+
+		case "blackout":
+			Blackout blackout = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\Blackout.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(Blackout.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				blackout = (Blackout) jaxbUnmarshaller.unmarshal(xmlFile);
+			}
+
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return blackout;
+
+		case "whitelist":
+			Whitelist whitelist = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\Whitelist.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(Whitelist.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				whitelist = (Whitelist) jaxbUnmarshaller.unmarshal(xmlFile);
+			}
+
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return whitelist;
+
+
 		case "operator":
 			Operator user = null;
 			xmlFile = new File("src\\test\\java\\testData\\operator.xml");

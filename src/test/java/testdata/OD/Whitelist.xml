@@ -1,0 +1,11 @@
+<whitelist>
+    <state>Alaska</state>
+    <licensePlate>Ma</licensePlate>
+    <accountNumber>1231231</accountNumber>
+    <name>Testwhitelist</name>
+    <vehicleMake>BMW</vehicleMake>
+    <vehicleColor>Black</vehicleColor>
+    <accessLevel>Easy</accessLevel>
+    <permitNumber>2023</permitNumber>
+    <location>P9801</location>
+</whitelist>

@@ -1,0 +1,7 @@
+<blackout>
+    <market>New Orleans</market>
+    <blackoutName>Test_Blackout_</blackoutName>
+    <blackoutStartTime>2023</blackoutStartTime>
+    <blackoutEndTime>2023</blackoutEndTime>
+    <blackoutLocation>P9800</blackoutLocation>
+</blackout>
