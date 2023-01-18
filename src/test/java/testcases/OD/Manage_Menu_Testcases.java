@@ -1,18 +1,11 @@
 package testcases.OD;
 
+import dataModel.OD.*;
 import org.testng.annotations.Test;
 
 import components.BaseClass;
 import components.Constants;
-import dataModel.OD.Location;
-import dataModel.OD.Market;
-import pageObjects.OD.OD_HomePage;
-import pageObjects.OD.OD_LocationsPage;
-import pageObjects.OD.OD_LoginPage;
-import pageObjects.OD.OD_MarketsPage;
-import pageObjects.OD.OD_PromoCodesPage;
-import pageObjects.OD.OD_VenuesPage;
-import pageObjects.OD.OD_VirtualLocationsPage;
+import pageObjects.OD.*;
 import utils.XML_Operations;
 
 public class Manage_Menu_Testcases extends BaseClass {
@@ -25,6 +18,9 @@ public class Manage_Menu_Testcases extends BaseClass {
 	OD_LocationsPage locationsPage = new OD_LocationsPage();
 	OD_VirtualLocationsPage vl_Page = new OD_VirtualLocationsPage();
 	OD_PromoCodesPage promoPage = new OD_PromoCodesPage();
+	OD_EventRatesPage eventRatesPage = new OD_EventRatesPage();
+	OD_BlackoutsPage blackoutsPage = new OD_BlackoutsPage();
+	OD_WhitelistPage whitelistPage = new OD_WhitelistPage();
 
 	
 	// ****************** TEST SCRIPTS ****************************//
@@ -82,6 +78,59 @@ public class Manage_Menu_Testcases extends BaseClass {
 		String vl_name = "Test_Virtual_Location_" + getTimestamp();
 		vl_Page.create_VirtualLocation(vl_name, Constants.VIRTUAL_LOCATIONS);
 
+	}
+
+	/*
+	 * This is a test case to create Event Rates
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_04_Create_EventRate() {
+
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		eventRatesPage = homePage.navigateToEventRatesPage();
+		EventRates eventRates = (EventRates) xml_Ops.getTestData("event_rates");
+		eventRates.setExternalName(eventRates.getExternalName() + getTimestamp());
+		eventRates.setRateGroupTitle(eventRates.getRateGroupTitle() + getTimestamp());
+		eventRates.setRateName(eventRates.getRateName() + getTimestamp());
+		eventRatesPage.create_EventRates(eventRates);
+	}
+
+	/*
+	 * This is a test case to create Blackout
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_05_Create_Blackout() {
+
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		blackoutsPage = homePage.navigateToBlackoutsPage();
+		Blackout blackout = (Blackout) xml_Ops.getTestData("blackout");
+		blackout.setBlackoutName(blackout.getBlackoutName() + getTimestamp());
+		blackout.setBlackoutStartTime(getTimestamp());
+		blackout.setBlackoutEndTime(getTimestamp());
+		blackoutsPage.create_Blackout(blackout);
+	}
+
+	/*
+	 * This is a test case to create Whitelist
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_06_Create_Whitelist() {
+
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		whitelistPage = homePage.navigateToWhitelistsPage();
+		Whitelist whitelist = (Whitelist) xml_Ops.getTestData("whitelist");
+		whitelist.setLicensePlate(getRandomLicencePlate());
+		whitelist.setName(whitelist.getName() + getTimestamp());
+		whitelistPage.create_Whitelist(whitelist);
 	}
 	
 	/*

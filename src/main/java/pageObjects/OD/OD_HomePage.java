@@ -22,6 +22,7 @@ public class OD_HomePage extends BaseClass {
 	By link_VirtualLocations = By.xpath("//a[normalize-space(text())='Virtual Locations']");
 	By link_EventRates = By.xpath("//a[normalize-space(text())='Event Rates']");
 	By link_Blackouts = By.xpath("//a[normalize-space(text())='Blackouts']");
+	By link_Whitelist = By.xpath("//a[normalize-space(text())='Whitelist']");
 	By link_PromoCodes = By.xpath("//a[normalize-space(text())='Promo Codes']");
 	By link_Users = By.xpath("//a[normalize-space(text())='Users']");
 	By link_Profiles = By.xpath("//a[normalize-space(text())='Profiles']");
@@ -80,6 +81,57 @@ public class OD_HomePage extends BaseClass {
 			passStep("Virtual Locations page has been loaded");
 		}
 		return v_locationsPage;
+	}
+
+	/*
+	 * Method to navigate to Event Rates page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_EventRatesPage navigateToEventRatesPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_EventRates, "Event Rates Link");
+		OD_EventRatesPage eventRatesPage = new OD_EventRatesPage();
+		waitForElementTobeDisplayed(eventRatesPage.label_EventRates);
+		if (isElementDisplayed(eventRatesPage.label_EventRates)) {
+			passStep("Event Rates page has been loaded");
+		}
+		return eventRatesPage;
+	}
+
+	/*
+	 * Method to navigate to Blackouts page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_BlackoutsPage navigateToBlackoutsPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_Blackouts, "Blackouts Link");
+		OD_BlackoutsPage blackoutsPage = new OD_BlackoutsPage();
+		waitForElementTobeDisplayed(blackoutsPage.label_Blackouts);
+		if (isElementDisplayed(blackoutsPage.label_Blackouts)) {
+			passStep("Blackouts page has been loaded");
+		}
+		return blackoutsPage;
+	}
+
+	/*
+	 * Method to navigate to Whitelists page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_WhitelistPage navigateToWhitelistsPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_Whitelist, "Whitelist Link");
+		OD_WhitelistPage whitelistPage = new OD_WhitelistPage();
+		waitForElementTobeDisplayed(whitelistPage.label_Whitelists);
+		if (isElementDisplayed(whitelistPage.label_Whitelists)) {
+			passStep("Whitelists page has been loaded");
+		}
+		return whitelistPage;
 	}
 
 	/*
