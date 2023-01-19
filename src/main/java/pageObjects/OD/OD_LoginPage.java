@@ -30,7 +30,7 @@ public class OD_LoginPage extends BaseClass {
 		clickOnButton(button_SignIn, "Sign In button");
 		OD_HomePage homePage = new OD_HomePage();
 		waitForElementTobeDisplayed(homePage.label_OperatorDashboard);
-		passStep("Logged in with Brendan Bodensteiner 's credentials");
+		passStep("Logged in successfully");
 		return new OD_HomePage();
 
 	}

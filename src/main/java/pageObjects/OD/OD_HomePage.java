@@ -30,6 +30,9 @@ public class OD_HomePage extends BaseClass {
 	By dd_Content = By.xpath("//a[normalize-space()='Content']");
 	By link_Venues = By.xpath("//a[normalize-space()='Venues']");
 
+	By dd_Reports = By.xpath("//a[normalize-space()='Reports']");
+	By link_LocationRevenues = By.xpath("//a[normalize-space()='Location Revenues']");
+
 	// ****************** ACTIONS ****************************//
 
 	/*
@@ -241,6 +244,20 @@ public class OD_HomePage extends BaseClass {
 			passStep("Venues page has been loaded");
 		}
 		return venuesPage;
+	}
+
+	/*
+	 * Method to navigate to Location Revenue Page under reports
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public OD_LocationRevenuePage navigateToLocationRevenuePage() {
+		waitForElementTobeDisplayed(dd_Reports);
+		clickOnButton(dd_Reports, "Reports menu");
+		clickOnButton(link_LocationRevenues, "Location Revenues sub-menu");
+		OD_LocationRevenuePage loc_Rev_Page = new OD_LocationRevenuePage();
+		waitForElementTobeDisplayed(loc_Rev_Page.label_LocationRevenues);
+		return loc_Rev_Page;
 	}
 
 }
