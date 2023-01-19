@@ -248,6 +248,50 @@ public class XML_Operations {
 			}
 			return whitelist;
 
+		case "promocode":
+			PromoCode promoCode = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\PromoCode.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(PromoCode.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				promoCode = (PromoCode) jaxbUnmarshaller.unmarshal(xmlFile);
+			}
+
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return promoCode;
+
+		case "user":
+			User user1 = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\User.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(User.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				user1 = (User) jaxbUnmarshaller.unmarshal(xmlFile);
+			}
+
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return user1;
+
+		case "profile":
+			Profile profile1 = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\Profile.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(Profile.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				profile1 = (Profile) jaxbUnmarshaller.unmarshal(xmlFile);
+			}
+
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return profile1;
 
 		case "operator":
 			Operator user = null;

@@ -17,13 +17,31 @@ public class Manage_Menu_Testcases extends BaseClass {
 	OD_VenuesPage venuesPage = new OD_VenuesPage();
 	OD_LocationsPage locationsPage = new OD_LocationsPage();
 	OD_VirtualLocationsPage vl_Page = new OD_VirtualLocationsPage();
-	OD_PromoCodesPage promoPage = new OD_PromoCodesPage();
 	OD_EventRatesPage eventRatesPage = new OD_EventRatesPage();
 	OD_BlackoutsPage blackoutsPage = new OD_BlackoutsPage();
 	OD_WhitelistPage whitelistPage = new OD_WhitelistPage();
+	OD_PromoCodesPage promoCodePage = new OD_PromoCodesPage();
+	OD_UsersPage usersPage = new OD_UsersPage();
+	OD_ProfilesPage profilesPage = new OD_ProfilesPage();
 
 	
 	// ****************** TEST SCRIPTS ****************************//
+
+	/*
+	 * TC_01_Create_Market
+	 * TC_02_Create_Location
+	 * TC_03_Create_VirtualLocation
+	 * TC_04_Create_EventRate
+	 * TC_05_Create_Blackout
+	 * TC_06_Create_Whitelist
+	 * TC_07_Create_PromoCode
+	 * TC_08_Create_User
+	 * TC_09_Create_Profile
+	 * TC_10_Create_Client
+	 * TC_11_Create_Fee
+	 *
+	 */
+
 	/*
 	 * This is a test case to create Market
 	 * 
@@ -134,27 +152,58 @@ public class Manage_Menu_Testcases extends BaseClass {
 	}
 	
 	/*
-	 * This is a test case to create PromoCode_Bulk
+	 * This is a test case to create PromoCode
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_07_Create_PromoCode() {
 
 		loginPage = launch_OD_Application();
 		homePage = loginPage.login();
-		promoPage = homePage.navigateToPromoCodesPage();	
-		promoPage.create_PromoCode(null); // Need to chage this
+		promoCodePage = homePage.navigateToPromoCodesPage();
+		PromoCode promoCode = (PromoCode) xml_Ops.getTestData("promocode");
+		promoCode.setPromoCode(getRandomPromoCode());
+		promoCodePage.create_PromoCode(promoCode);
 
 	}
-	
-	
+
 	/*
-	 * TC_04_Create_EventRate
-	 * TC_05_Create_Blockout
-	 * TC_06_Create_Whitelist
-	 * TC_07_Create_Promocode
-	 * TC_08_Create_User
+	 * This is a test case to create User
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
 	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_08_Create_User() {
+
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		usersPage = homePage.navigateToUsersPage();
+		User user = (User) xml_Ops.getTestData("user");
+		user.setLastName(user.getLastName() + getTimestamp());
+		user.setEmail(user.getEmail() + getTimestamp() + "@yopmail.com");
+		usersPage.create_User(user);
+
+	}
+
+	/*
+	 * This is a test case to create Profile
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_09_Create_Profile() {
+
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		profilesPage = homePage.navigateToProfilesPage();
+		Profile profile = (Profile) xml_Ops.getTestData("profile");
+		profile.setLastName(profile.getLastName() + getTimestamp());
+		profile.setEmail(profile.getEmail() + getTimestamp() + "@yopmail.com");
+		profile.setPhone(getRandomPhoneNumber());
+		profilesPage.create_Profile(profile);
+
+
+	}
 
 }

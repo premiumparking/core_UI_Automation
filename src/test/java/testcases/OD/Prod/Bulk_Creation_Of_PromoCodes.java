@@ -8,7 +8,7 @@ import components.BaseClass;
 import dataModel.OD.PromoCode_Bulk;
 import pageObjects.OD.OD_HomePage;
 import pageObjects.OD.OD_LoginPage;
-import pageObjects.OD.OD_PromoCodesPage;
+import pageObjects.OD.OD_BulkPromoCodesPage;
 import utils.Excel_Operations;
 
 /*
@@ -22,7 +22,7 @@ public class Bulk_Creation_Of_PromoCodes extends BaseClass {
 
 	// ****************** CLASS INSTANCES ****************************//
 	OD_HomePage homePage = new OD_HomePage();
-	OD_PromoCodesPage promoCodePage = new OD_PromoCodesPage();
+	OD_BulkPromoCodesPage promoCodePage = new OD_BulkPromoCodesPage();
 	Excel_Operations excel_Ops = new Excel_Operations();
 	OD_LoginPage loginPage = new OD_LoginPage();
 
@@ -39,7 +39,7 @@ public class Bulk_Creation_Of_PromoCodes extends BaseClass {
 	public void TC_01_CreateBulkPromoCode() {
 		loginPage = launch_OD_Application();
 		homePage = loginPage.login();
-		promoCodePage = homePage.navigateToPromoCodesPage();
+		promoCodePage = homePage.navigateToBulkPromoCodesPage();
 		List<PromoCode_Bulk> promoCodes = excel_Ops.load_BulkPromoCodes_From_ExcelSheet(fileName, "VIP Promos");
 		for (PromoCode_Bulk promoCode : promoCodes) {
 			if (!promoCodePage.isPromoCodeExist(promoCode.getPromoCode())) {
