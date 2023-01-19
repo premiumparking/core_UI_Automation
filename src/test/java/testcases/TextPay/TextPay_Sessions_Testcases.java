@@ -1,8 +1,8 @@
 package testcases.TextPay;
 
 import components.BaseClass;
-import dataModel.SPA.Vehicle;
 import dataModel.TextPay.Guest;
+import dataModel.TextPay.PurchaseDetails;
 
 import org.testng.annotations.Test;
 
@@ -13,6 +13,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	// ****************** CLASS INSTANCES ****************************//
 	XML_Operations xml_Ops = new XML_Operations();
 	TextPay_HomePage tp_HomePage = new TextPay_HomePage();
+	PurchaseDetails purchaseDetails = new PurchaseDetails();
 
 	// ****************** TEST DATA ****************************//
 	Guest guest = (Guest) xml_Ops.getTestData("guest");
@@ -35,7 +36,8 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 */
 
 	/*
-	 * This is a test case to purchase regular space session as a guest with new vehicle and new payment method
+	 * This is a test case to purchase regular space session as a guest with new
+	 * vehicle and new payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -43,17 +45,30 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_01_Purchase_Regular_Space_as_Guest_With_NewCard_and_NewVehicle() {
 
-		guest.setLicensePlateNumber(getRandomLicencePlate());
+		String licencePlate = getRandomLicencePlate();
+		guest.setLicensePlateNumber(licencePlate);
 		guest.setVehicleType("newVehicle");
 		guest.setParkingType("Regular Space");
 		guest.setPaymentVia("card");
+		guest.setCcNumber("4242424242424242");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
-		tp_HomePage.verify_Purchase_Details(guest);
+		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
+
+		// Set the purchase details for location revenue page verification
+		purchaseDetails.setChannel("TextPay");
+		purchaseDetails.setPurchaseType("Session");
+		purchaseDetails.setPaymentOption("card");
+		purchaseDetails.setPaymentOption("card");
+		purchaseDetails.setPaymentMethod("Visa **** 4242");
+
+		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+
 	}
 
 	/*
-	 * This is a test case to purchase regular space session as a guest with new vehicle and promocode payment method
+	 * This is a test case to purchase regular space session as a guest with new
+	 * vehicle and promocode payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -66,11 +81,21 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
-		tp_HomePage.verify_Purchase_Details(guest);
+		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
+		
+		// Set the purchase details for location revenue page verification
+		purchaseDetails.setChannel("TextPay");
+		purchaseDetails.setPurchaseType("Session");
+		purchaseDetails.setPaymentOption("promocode");
+		purchaseDetails.setPromocode("PROMO100");
+
+		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+
 	}
 
 	/*
-	 * This is a test case to purchase regular space session as a guest for unknown vehicle with new card payment method
+	 * This is a test case to purchase regular space session as a guest for unknown
+	 * vehicle with new card payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -83,11 +108,12 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("card");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
-		tp_HomePage.verify_Purchase_Details(guest);
+		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 	}
 
 	/*
-	 * This is a test case to purchase regular space session as a guest for unknown vehicle with promocode payment method
+	 * This is a test case to purchase regular space session as a guest for unknown
+	 * vehicle with promocode payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -100,11 +126,12 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
-		tp_HomePage.verify_Purchase_Details(guest);
+		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 	}
 
 	/*
-	 * This is a test case to purchase star space session as a guest for unknown vehicle with promocode payment method
+	 * This is a test case to purchase star space session as a guest for unknown
+	 * vehicle with promocode payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -117,11 +144,12 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("card");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
-		tp_HomePage.verify_Purchase_Details(guest);
+		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 	}
 
 	/*
-	 * This is a test case to purchase star space session as a guest with new vehicle and promocode payment method
+	 * This is a test case to purchase star space session as a guest with new
+	 * vehicle and promocode payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -134,11 +162,12 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
-		tp_HomePage.verify_Purchase_Details(guest);
+		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 	}
 
 	/*
-	 * This is a test case to purchase star space session as a guest for unknown vehicle with new card payment method
+	 * This is a test case to purchase star space session as a guest for unknown
+	 * vehicle with new card payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -151,11 +180,12 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("card");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
-		tp_HomePage.verify_Purchase_Details(guest);
+		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 	}
 
 	/*
-	 * This is a test case to purchase star space session as a guest for unknown vehicle with promocode payment method
+	 * This is a test case to purchase star space session as a guest for unknown
+	 * vehicle with promocode payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -168,11 +198,12 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
-		tp_HomePage.verify_Purchase_Details(guest);
+		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 	}
 
 	/*
-	 * This is a test case to purchase charging space session as a guest for unknown vehicle with promocode payment method
+	 * This is a test case to purchase charging space session as a guest for unknown
+	 * vehicle with promocode payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -186,11 +217,12 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setTimeInHours("2");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
-		tp_HomePage.verify_Purchase_Details(guest);
+		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 	}
 
 	/*
-	 * This is a test case to purchase charging space session as a guest with new vehicle and promocode payment method
+	 * This is a test case to purchase charging space session as a guest with new
+	 * vehicle and promocode payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -204,11 +236,12 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setTimeInHours("2");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
-		tp_HomePage.verify_Purchase_Details(guest);
+		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 	}
 
 	/*
-	 * This is a test case to purchase charging space session as a guest for unknown vehicle with new card payment method
+	 * This is a test case to purchase charging space session as a guest for unknown
+	 * vehicle with new card payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -222,11 +255,12 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setTimeInHours("2");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
-		tp_HomePage.verify_Purchase_Details(guest);
+		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 	}
 
 	/*
-	 * This is a test case to purchase charging space session as a guest for unknown vehicle with promocode payment method
+	 * This is a test case to purchase charging space session as a guest for unknown
+	 * vehicle with promocode payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -240,7 +274,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setTimeInHours("2");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
-		tp_HomePage.verify_Purchase_Details(guest);
+		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 	}
 
 }
