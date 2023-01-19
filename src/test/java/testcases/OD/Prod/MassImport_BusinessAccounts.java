@@ -9,7 +9,7 @@ import dataModel.OD.Profile_Bulk;
 import pageObjects.OD.OD_BusinessAccountsPage;
 import pageObjects.OD.OD_HomePage;
 import pageObjects.OD.OD_LoginPage;
-import pageObjects.OD.OD_ProfilesPage;
+import pageObjects.OD.OD_BulkProfilesPage;
 import utils.Excel_Operations;
 
 /*
@@ -23,7 +23,7 @@ public class MassImport_BusinessAccounts extends BaseClass {
 
 	// ****************** CLASS INSTANCES ****************************//
 	OD_HomePage homePage = new OD_HomePage();
-	OD_ProfilesPage profilePage = new OD_ProfilesPage();
+	OD_BulkProfilesPage profilePage = new OD_BulkProfilesPage();
 	Excel_Operations excel_Ops = new Excel_Operations();
 	OD_LoginPage loginPage = new OD_LoginPage();
 	OD_BusinessAccountsPage businessAccountsPage = new OD_BusinessAccountsPage();
@@ -42,7 +42,7 @@ public class MassImport_BusinessAccounts extends BaseClass {
 	public void TC_01_CreateProfile() {
 		loginPage = launch_OD_Application();
 		homePage = loginPage.login();
-		profilePage = homePage.navigateToProfilesPage();
+		profilePage = homePage.navigateToBulkProfilesPage();
 		List<Profile_Bulk> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "BA2");
 		for (Profile_Bulk profile : profiles) {
 			if (!profilePage.isPrfileExist(profile.getEmail())) {

@@ -135,15 +135,66 @@ public class OD_HomePage extends BaseClass {
 	}
 
 	/*
-	 * Method to navigate to profiles page from home page
-	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Method to navigate to Promo codes page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_PromoCodesPage navigateToPromoCodesPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_PromoCodes, "Promo Codes Link");
+		OD_PromoCodesPage promoCodePage = new OD_PromoCodesPage();
+		waitForElementTobeDisplayed(promoCodePage.label_PromoCodes);
+		if (isElementDisplayed(promoCodePage.label_PromoCodes)) {
+			passStep("Promo codes page has been loaded");
+		}
+		return promoCodePage;
+	}
+
+	/*
+	 * Method to navigate to Users page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_UsersPage navigateToUsersPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_Users, "Users Link");
+		OD_UsersPage usersPage = new OD_UsersPage();
+		waitForElementTobeDisplayed(usersPage.label_Users);
+		if (isElementDisplayed(usersPage.label_Users)) {
+			passStep("Users page has been loaded");
+		}
+		return usersPage;
+	}
+
+	/*
+	 * Method to navigate to Profiles page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
 	 */
 	public OD_ProfilesPage navigateToProfilesPage() {
 		waitForElementTobeDisplayed(dd_Manage);
 		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_Profiles, "Profiles Link");
+		OD_ProfilesPage profilesPage = new OD_ProfilesPage();
+		waitForElementTobeDisplayed(profilesPage.label_Profiles);
+		if (isElementDisplayed(profilesPage.label_Profiles)) {
+			passStep("Profiles page has been loaded");
+		}
+		return profilesPage;
+	}
+
+	/*
+	 * Method to navigate to profiles page from home page
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public OD_BulkProfilesPage navigateToBulkProfilesPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
 		clickOnButton(link_Profiles, "Profiles sub-menu");
-		return new OD_ProfilesPage();
+		return new OD_BulkProfilesPage();
 	}
 
 	/*
@@ -151,11 +202,11 @@ public class OD_HomePage extends BaseClass {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public OD_PromoCodesPage navigateToPromoCodesPage() {
+	public OD_BulkPromoCodesPage navigateToBulkPromoCodesPage() {
 		waitForElementTobeDisplayed(dd_Manage);
 		clickOnButton(dd_Manage, "Manage menu");
 		clickOnButton(link_PromoCodes, "menu : " + getElementText(link_PromoCodes));
-		OD_PromoCodesPage promoCodePage = new OD_PromoCodesPage();
+		OD_BulkPromoCodesPage promoCodePage = new OD_BulkPromoCodesPage();
 		waitForElementTobeDisplayed(promoCodePage.label_PromoCodes);
 		if (isElementDisplayed(promoCodePage.label_PromoCodes)) {
 			passStep("Promo Codes page has been loaded");

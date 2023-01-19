@@ -294,6 +294,29 @@ public class BaseClass extends Operations {
 	}
 
 	/*
+	 * Usage : To generate random promo code
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public String getRandomPromoCode() {
+		String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		Random random = new Random();
+		char letter1 = abc.charAt(random.nextInt(abc.length()));
+		char letter2 = abc.charAt(random.nextInt(abc.length()));
+		return letter1 + "" + String.format("%05d", random.nextInt(1000)).concat(letter2 + "");
+	}
+
+	/*
+	 * Usage : To generate random phone number
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public String getRandomPhoneNumber() {
+		Random random = new Random();
+		return String.format("%010d", random.nextInt(1000));
+	}
+
+	/*
 	 * Usage : To get random location from list of Locations space
 	 * 
 	 * Author : Venu Thota (venu.t@comakeit.com)
