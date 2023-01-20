@@ -4,11 +4,12 @@
 	<test thread-count="5" name="Test">
 		<groups>
 			<run>
-				<include name="smoke"></include>
+				<include name="regression"></include>
 			</run>
 		</groups>
 		<classes>
 			<class name="testcases.OD.Manage_Menu_Testcases" />
+			<class name="testcases.OD.Content_Menu_Testcases" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

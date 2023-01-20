@@ -21,6 +21,8 @@ public class OD_LocationRevenuePage extends BaseClass {
 	By label_LocationRevenues = By.xpath("//h1[normalize-space()='Location Revenues']");
 	By searchBox = By.id("location_revenue_search_order_invoice_lp");
 	By button_Find = By.xpath("//input[@value='Find']");
+	By orderNumber, locationName, channel, licencePlate, durationInWords, totalAmount, transactionType, promoCode,
+			paymentMethod, product, rateName;
 
 	// ****************** ACTIONS ****************************//
 
@@ -32,16 +34,18 @@ public class OD_LocationRevenuePage extends BaseClass {
 	public void verify_LocationRevenueData(PurchaseDetails purchaseDetails) {
 
 		String orderNum = purchaseDetails.getOrderNumber();
-		By orderNumber, locationName, channel, licencePlate, durationInWords, totalAmount, transactionType, promoCode,
-				paymentMethod;
+
+		;
 		if (purchaseDetails.getPaymentOption().equalsIgnoreCase("card")) {
 			orderNumber = By.xpath("//a[normalize-space()='" + orderNum + "']");
 
 			locationName = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[1]");
 			channel = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[4]");
+			product = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[3]");
 			licencePlate = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[12]");
 			durationInWords = By
 					.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[18]");
+			rateName = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[19]");
 			totalAmount = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[23]");
 			transactionType = By
 					.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[34]");
@@ -52,11 +56,13 @@ public class OD_LocationRevenuePage extends BaseClass {
 
 			locationName = By
 					.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[1]");
+			product = By.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[3]");
 			channel = By.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[4]");
 			licencePlate = By
 					.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[12]");
 			durationInWords = By
 					.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[18]");
+			rateName = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[19]");
 			totalAmount = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[23]");
 			transactionType = By
 					.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[34]");
@@ -72,10 +78,12 @@ public class OD_LocationRevenuePage extends BaseClass {
 		waitForPageLoad(3);
 		waitForElementTobeDisplayed(orderNumber);
 		passStep("Order Number : " + getElementText(orderNumber));
-		passStep("Location Name : " + getElementText(locationName));
+		passStep("Location Name : " + getElementText(locationName));	
+		passStep("Product : " + getElementText(product));
 		passStep("Channel : " + getElementText(channel));
 		passStep("Licence Plate : " + getElementText(licencePlate));
 		passStep("Duration in words : " + getElementText(durationInWords));
+		passStep("Rate Name : " + getElementText(rateName));
 		passStep("Total AMount : " + getElementText(totalAmount));
 		passStep("Transaction Type : " + getElementText(transactionType));
 
@@ -84,6 +92,7 @@ public class OD_LocationRevenuePage extends BaseClass {
 
 		assertEquals(getElementText(orderNumber), purchaseDetails.getOrderNumber());
 		assertEquals(getElementText(locationName), purchaseDetails.getLocationNumber());
+		assertEquals(getElementText(product), purchaseDetails.getSpaceType());
 		assertEquals(getElementText(channel), purchaseDetails.getChannel());
 		assertEquals(getElementText(licencePlate), purchaseDetails.getLicencePlate());
 		assertEquals(getElementText(durationInWords).toLowerCase(), purchaseDetails.getDurationInWords().toLowerCase());

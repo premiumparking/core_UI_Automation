@@ -234,19 +234,36 @@ public class TextPay_HomePage extends BaseClass {
 			assertEquals(getElementText(label_conf_location), "Location Number:P" + guest.getLocationNumber());
 			passStep(getElementText(label_conf_location));
 
-			if (guest.getParkingType().equalsIgnoreCase("Regular Space"))
+			if (guest.getParkingType().equalsIgnoreCase("Regular Space")) {
 				assertEquals(getElementText(label_conf_spaceType), "Space Type:Regular");
+				purchaseDetails.setSpaceType("On Demand");
+			}
+			else if (guest.getParkingType().equalsIgnoreCase("Star Space")) {
+				assertEquals(getElementText(label_conf_spaceType), "Space Type:Star");
+				purchaseDetails.setSpaceType("Star Spaces");
+			}
+			else if (guest.getParkingType().equalsIgnoreCase("Charging Space")) {
+				assertEquals(getElementText(label_conf_spaceType), "Space Type:Charging");
+				purchaseDetails.setSpaceType("Charging Spaces");
+			}
 			passStep(getElementText(label_conf_spaceType));
 			passStep(getElementText(label_conf_address));
 
-			String licencePlateInfo = guest.getLicensePlateNumber() + "/" + guest.getState().split(" ")[0];
+			String licencePlateInfo;
+			if (guest.getVehicleType().equalsIgnoreCase("unknownVehicle"))
+				licencePlateInfo = guest.getColor() + " " + guest.getType() + " " + guest.getMake();
+
+			else
+				licencePlateInfo = guest.getLicensePlateNumber() + "/" + guest.getState().split(" ")[0];
 			assertEquals(getElementText(label_conf_vehicleInfo), licencePlateInfo);
 			passStep(getElementText(label_conf_vehicleData));
 			passStep(getElementText(label_conf_confirmationNumber));
 			assertEquals(getElementText(label_amountCharged), guest.getAmount());
 			passStep("Amount Charged :" + getElementText(label_amountCharged));
 
+			purchaseDetails.setChannel("TextPay");	
 			purchaseDetails.setOrderNumber(getElementText(confirmationNumber));
+			purchaseDetails.setPurchaseType("Session");
 			purchaseDetails.setLocationNumber(guest.getLocationNumber());
 			purchaseDetails.setLicencePlate(guest.getLicensePlateNumber());
 			purchaseDetails.setDurationInWords(getElementText(label_conf_duration));

@@ -43,7 +43,8 @@ public class BaseClass extends Operations {
 	protected static String od_username, od_password, od_url;
 	protected static String spa_url, spa_username, spa_password;
 	protected static String textpay_url;
-	protected String browser, headless;
+	protected String headless;
+	protected String browser;
 
 	/*
 	 * This method is to load data from application.properties files
@@ -72,7 +73,7 @@ public class BaseClass extends Operations {
 
 		// Browser Configurations
 		browser = config.getProperty("browser");
-		headless = config.getProperty("headless");
+		this.headless = config.getProperty("headless");
 
 		// SPA Configurations
 		spa_url = config.getProperty("spa_url");
@@ -94,12 +95,12 @@ public class BaseClass extends Operations {
 	public void launchBrowser(Method testMethod) throws InterruptedException, IOException {
 
 		loadProperties();
-
+		// this.headless1 = Boolean.parseBoolean(headless);
 		switch (browser.toLowerCase()) {
 		case "chrome":
 			WebDriverManager.chromedriver().setup();
 
-			if (headless.toLowerCase().contentEquals("true")) {
+			if ("true".equals(this.headless)) {
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--headless");
 				driver = new ChromeDriver(options);

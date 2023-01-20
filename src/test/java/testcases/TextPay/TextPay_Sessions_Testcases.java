@@ -56,12 +56,8 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
-		purchaseDetails.setChannel("TextPay");
-		purchaseDetails.setPurchaseType("Session");
-		purchaseDetails.setPaymentOption("card");
 		purchaseDetails.setPaymentOption("card");
 		purchaseDetails.setPaymentMethod("Visa **** 4242");
-
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 
 	}
@@ -82,13 +78,10 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
-		
-		// Set the purchase details for location revenue page verification
-		purchaseDetails.setChannel("TextPay");
-		purchaseDetails.setPurchaseType("Session");
-		purchaseDetails.setPaymentOption("promocode");
-		purchaseDetails.setPromocode("PROMO100");
 
+		// Set the purchase details for location revenue page verification
+		purchaseDetails.setPaymentOption("promocode");
+		purchaseDetails.setPromocode(guest.getPromocode());
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 
 	}
@@ -102,13 +95,20 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_03_Purchase_Regular_Space_as_Guest_for_UnknownVehicle_with_NewCard() {
 
-		guest.setLicensePlateNumber(getRandomLicencePlate());
+		guest.setLicensePlateNumber("UNKNOWN");
 		guest.setVehicleType("unknownVehicle");
 		guest.setParkingType("Regular Space");
 		guest.setPaymentVia("card");
+		guest.setCcNumber("4242424242424242");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
+
+		// Set the purchase details for location revenue page verification
+		purchaseDetails.setPaymentOption("card");
+		purchaseDetails.setPaymentMethod("Visa **** 4242");
+
+		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 	/*
@@ -120,13 +120,19 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_04_Purchase_Regular_Space_as_Guest_for_UnknownVehicle_with_PromoCode() {
 
-		guest.setLicensePlateNumber(getRandomLicencePlate());
+		guest.setLicensePlateNumber("UNKNOWN");
 		guest.setVehicleType("unknownVehicle");
 		guest.setParkingType("Regular Space");
 		guest.setPaymentVia("promocode");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
+
+		// Set the purchase details for location revenue page verification
+		purchaseDetails.setPaymentOption("promocode");
+		purchaseDetails.setPromocode(guest.getPromocode());
+
+		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 	/*
@@ -142,9 +148,16 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setVehicleType("newVehicle");
 		guest.setParkingType("Star Space");
 		guest.setPaymentVia("card");
+		guest.setCcNumber("4242424242424242");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
+
+		// Set the purchase details for location revenue page verification
+		purchaseDetails.setPaymentOption("card");
+		purchaseDetails.setPaymentMethod("Visa **** 4242");
+
+		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 	/*
@@ -163,6 +176,11 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
+
+		// Set the purchase details for location revenue page verification
+		purchaseDetails.setPaymentOption("promocode");
+		purchaseDetails.setPromocode(guest.getPromocode());
+		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 	/*
@@ -174,13 +192,20 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_07_Purchase_Star_Space_as_Guest_for_UnknownVehicle_with_NewCard() {
 
-		guest.setLicensePlateNumber(getRandomLicencePlate());
+		guest.setLicensePlateNumber("UNKNOWN");
 		guest.setVehicleType("unknownVehicle");
 		guest.setParkingType("Star Space");
 		guest.setPaymentVia("card");
+		guest.setCcNumber("4242424242424242");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
+
+		// Set the purchase details for location revenue page verification
+		purchaseDetails.setPaymentOption("card");
+		purchaseDetails.setPaymentMethod("Visa **** 4242");
+
+		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 	/*
@@ -192,13 +217,18 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_08_Purchase_Star_Space_as_Guest_for_UnknownVehicle_with_PromoCode() {
 
-		guest.setLicensePlateNumber(getRandomLicencePlate());
+		guest.setLicensePlateNumber("UNKNOWN");
 		guest.setVehicleType("unknownVehicle");
 		guest.setParkingType("Star Space");
 		guest.setPaymentVia("promocode");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
+
+		// Set the purchase details for location revenue page verification
+		purchaseDetails.setPaymentOption("promocode");
+		purchaseDetails.setPromocode(guest.getPromocode());
+		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 	/*
@@ -214,10 +244,17 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setVehicleType("newVehicle");
 		guest.setParkingType("Charging Space");
 		guest.setPaymentVia("card");
+		guest.setCcNumber("4242424242424242");
 		guest.setTimeInHours("2");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
+
+		// Set the purchase details for location revenue page verification
+		purchaseDetails.setPaymentOption("card");
+		purchaseDetails.setPaymentMethod("Visa **** 4242");
+
+		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 	/*
@@ -237,6 +274,11 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
+
+		// Set the purchase details for location revenue page verification
+		purchaseDetails.setPaymentOption("promocode");
+		purchaseDetails.setPromocode(guest.getPromocode());
+		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 	/*
@@ -248,14 +290,21 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_11_Charging_Star_Space_as_Guest_for_UnknownVehicle_with_NewCard() {
 
-		guest.setLicensePlateNumber(getRandomLicencePlate());
+		guest.setLicensePlateNumber("UNKNOWN");
 		guest.setVehicleType("unknownVehicle");
 		guest.setParkingType("Charging Space");
 		guest.setPaymentVia("card");
+		guest.setCcNumber("4242424242424242");
 		guest.setTimeInHours("2");
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
+
+		// Set the purchase details for location revenue page verification
+		purchaseDetails.setPaymentOption("card");
+		purchaseDetails.setPaymentMethod("Visa **** 4242");
+
+		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 	/*
@@ -267,7 +316,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_12_Charging_Star_Space_as_Guest_for_UnknownVehicle_with_PromoCode() {
 
-		guest.setLicensePlateNumber(getRandomLicencePlate());
+		guest.setLicensePlateNumber("UNKNOWN");
 		guest.setVehicleType("unknownVehicle");
 		guest.setParkingType("Charging Space");
 		guest.setPaymentVia("promocode");
@@ -275,6 +324,11 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		tp_HomePage = launch_TextPay_Application();
 		tp_HomePage.purchase_Session_AsGuest(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
+
+		// Set the purchase details for location revenue page verification
+		purchaseDetails.setPaymentOption("promocode");
+		purchaseDetails.setPromocode(guest.getPromocode());
+		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 }
