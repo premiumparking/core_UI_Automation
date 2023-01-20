@@ -13,6 +13,7 @@ public class PurchaseDetails {
 	String amountCharged;
 	String paymentOption;
 	String paymentMethod;
+	String spaceType;
 
 	public String getOrderNumber() {
 		return orderNumber;
@@ -110,4 +111,13 @@ public class PurchaseDetails {
 		this.paymentMethod = paymentMethod;
 	}
 
+	public String getSpaceType() {
+		return spaceType;
+	}
+
+	public void setSpaceType(String spaceType) {
+		this.spaceType = spaceType;
+	}
+
+	
 }
