@@ -293,6 +293,67 @@ public class XML_Operations {
 			}
 			return profile1;
 
+		case "client":
+			Client client = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\Client.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(Client.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				client = (Client) jaxbUnmarshaller.unmarshal(xmlFile);
+			}
+
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return client;
+
+		case "fee":
+			Fee fee = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\Fee.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(Fee.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				fee = (Fee) jaxbUnmarshaller.unmarshal(xmlFile);
+			}
+
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return fee;
+
+		case "role":
+			Role role = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\Role.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(Role.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				role = (Role) jaxbUnmarshaller.unmarshal(xmlFile);
+			}
+
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return role;
+
+		case "glcode":
+			GLCode glCode = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\GLCode.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(GLCode.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				glCode = (GLCode) jaxbUnmarshaller.unmarshal(xmlFile);
+			}
+
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return glCode;
+
+
 		case "operator":
 			Operator user = null;
 			xmlFile = new File("src\\test\\java\\testData\\operator.xml");
