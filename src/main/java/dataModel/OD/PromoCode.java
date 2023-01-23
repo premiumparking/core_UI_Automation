@@ -19,6 +19,8 @@ public class PromoCode implements Serializable {
     private String promoCode;
     private String amountOfUsers;
     private String discount;
+    private String amountOfCodes;
+    private String batchName;
     private String discountType;
     private String startsAt;
     private String endsAt;
@@ -80,8 +82,24 @@ public class PromoCode implements Serializable {
         this.promoCodeNotes = promoCodeNotes;
     }
 
+    public String getAmountOfCodes() {
+        return amountOfCodes;
+    }
+
+    public void setAmountOfCodes(String amountOfCodes) {
+        this.amountOfCodes = amountOfCodes;
+    }
+
+    public String getBatchName() {
+        return batchName;
+    }
+
+    public void setBatchName(String batchName) {
+        this.batchName = batchName;
+    }
+
     @Override
     public String toString() {
-        return "PromoCode [promoCode=" + promoCode + ", amountOfUsers=" + amountOfUsers + ",discount=" + discount + ", discountType=" + discountType + ", startsAt=" + startsAt + ", endsAt=" + endsAt + ",promoCodeNotes=" + promoCodeNotes + "]";
+        return "PromoCode [promoCode=" + promoCode + ", amountOfUsers=" + amountOfUsers + ",discount=" + discount + ", discountType=" + discountType + ", startsAt=" + startsAt + ", endsAt=" + endsAt + ",promoCodeNotes=" + promoCodeNotes + ", amountOfCodes=" + amountOfCodes + ",batchName=" + batchName + "]";
     }
 }

@@ -23,6 +23,12 @@ public class Manage_Menu_Testcases extends BaseClass {
 	OD_PromoCodesPage promoCodePage = new OD_PromoCodesPage();
 	OD_UsersPage usersPage = new OD_UsersPage();
 	OD_ProfilesPage profilesPage = new OD_ProfilesPage();
+	OD_ClientsPage clientsPage = new OD_ClientsPage();
+	OD_FeesPage feesPage = new OD_FeesPage();
+	OD_TextPayJobsPage textPayJobsPage = new OD_TextPayJobsPage();
+	OD_GLCodesPage glCodesPage = new OD_GLCodesPage();
+	OD_TextPayRequestsPage textPayRequestsPage = new OD_TextPayRequestsPage();
+	OD_RolesPage rolesPage = new OD_RolesPage();
 
 	
 	// ****************** TEST SCRIPTS ****************************//
@@ -39,6 +45,10 @@ public class Manage_Menu_Testcases extends BaseClass {
 	 * TC_09_Create_Profile
 	 * TC_10_Create_Client
 	 * TC_11_Create_Fee
+	 * TC_12_Create_TextPay_Job
+	 * TC_13_Create_GL_Code
+	 * TC_14_Create_TextPay_Request
+	 * TC_15_Create_Role
 	 *
 	 */
 
@@ -164,7 +174,9 @@ public class Manage_Menu_Testcases extends BaseClass {
 		promoCodePage = homePage.navigateToPromoCodesPage();
 		PromoCode promoCode = (PromoCode) xml_Ops.getTestData("promocode");
 		promoCode.setPromoCode(getRandomPromoCode());
-		promoCodePage.create_PromoCode(promoCode);
+		promoCodePage.create_CustomPromoCode(promoCode);
+		promoCode.setBatchName(promoCode.getBatchName() + getTimestamp());
+		promoCodePage.create_AutoGeneratePromoCode(promoCode);
 
 	}
 
@@ -203,6 +215,108 @@ public class Manage_Menu_Testcases extends BaseClass {
 		profile.setPhone(getRandomPhoneNumber());
 		profilesPage.create_Profile(profile);
 
+	}
+
+	/*
+	 * This is a test case to create Client
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_10_Create_Client() {
+
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		clientsPage = homePage.navigateToClientsPage();
+		Client client = (Client) xml_Ops.getTestData("client");
+		client.setClientName(client.getClientName() + getTimestamp());
+		clientsPage.create_client(client);
+
+	}
+
+	/*
+	 * This is a test case to create Fee
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_11_Create_Fee() {
+
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		feesPage = homePage.navigateToFeesPage();
+		Fee fee = (Fee) xml_Ops.getTestData("fee");
+		fee.setFeeLocation(getRandomLocation());
+		fee.setPercentage(getRandomNumber());
+		fee.setAmount(getRandomNumber());
+		feesPage.create_Fee(fee);
+
+	}
+
+	/*
+	 * This is a test case to create text pay job
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_12_Create_TextPay_Job() {
+
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		textPayJobsPage = homePage.navigateToTextPayJobsPage();
+		String TP_Job_name = "TextPay_Job_" + getTimestamp();
+		textPayJobsPage.create_TextPayJob(TP_Job_name);
+
+	}
+
+	/*
+	 * This is a test case to create GL Code
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_13_Create_GL_Code() {
+
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		glCodesPage = homePage.navigateToGLCodesPage();
+		GLCode glCode = (GLCode) xml_Ops.getTestData("glcode");
+		glCode.setCode(glCode.getCode() + getTimestamp());
+		glCodesPage.create_glCode(glCode);
+
+	}
+
+	/*
+	 * This is a test case to send text pay request
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_14_Create_TextPay_Request() {
+
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		textPayRequestsPage = homePage.navigateToTextPayRequestsPage();
+		String TPR_phone = getRandomPhoneNumber();
+		String TPR_location = getRandomLocation();
+		textPayRequestsPage.create_TextPayRequest(TPR_phone, TPR_location);
+
+	}
+
+	/*
+	 * This is a test case to create role
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_15_Create_Role() {
+
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		rolesPage = homePage.navigateToRolesPage();
+		Role role = (Role) xml_Ops.getTestData("role");
+		role.setRoleName(role.getRoleName() + getTimestamp());
+		rolesPage.create_Role(role);
 
 	}
 

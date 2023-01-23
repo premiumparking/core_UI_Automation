@@ -31,13 +31,12 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	 * TC_06_Purchase_Session_With_PromoCode_and_ExistingVehicle
 	 * TC_07_Purchase_And_Extend_Session_With_NewCard
 	 * TC_08_Purchase_And_Extend_Session_With_ExistingCard
-	 * TC_09_Purchase_And_Extend_Session_With_PromoCode
-	 * TC_10_Purchase_Session_With_NewCard_and_Extend_with_ExistingCard
-	 * TC_11_Purchase_Session_With_NewCard_and_Extend_with_Promocode
-	 * TC_12_Purchase_Session_With_ExistingCard_and_Extend_with_NewCard
-	 * TC_13_Purchase_Session_With_ExistingCard_and_Extend_with_Promocode
-	 * TC_14_Purchase_Session_With_Promocode_and_Extend_with_NewCard
-	 * TC_15_Purchase_Session_With_Promocode_and_Extend_with_ExistingCard
+	 * TC_09_Purchase_Session_With_NewCard_and_Extend_with_ExistingCard
+	 * TC_10_Purchase_Session_With_NewCard_and_Extend_with_PromoCode
+	 * TC_11_Purchase_Session_With_ExistingCard_and_Extend_with_NewCard
+	 * TC_12_Purchase_Session_With_ExistingCard_and_Extend_with_PromoCode
+	 * TC_13_Purchase_Session_With_PromoCode_and_Extend_with_NewCard
+	 * TC_14_Purchase_Session_With_PromoCode_and_Extend_with_ExistingCard
 	 */
 
 	/*
@@ -81,7 +80,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("card");
 		vehicle.setTimeInHours("1");
-		vehicle.setLicensePlateNumber("H297G");
+		vehicle.setLicensePlateNumber("MARAV123");
 
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
@@ -133,7 +132,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("card");
 		vehicle.setTimeInHours("1");
-		vehicle.setLicensePlateNumber("H297G");
+		vehicle.setLicensePlateNumber("MARAV123");
 
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
@@ -185,7 +184,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("promocode");
 		vehicle.setTimeInHours("1");
-		vehicle.setLicensePlateNumber("TS65HJ");
+		vehicle.setLicensePlateNumber("MARAV123");
 
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
@@ -250,39 +249,13 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase and extend session using promocode
-	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
-	 */
-	@Test(groups = { "smoke", "regression" })
-	public void TC_09_Purchase_And_Extend_Session_With_PromoCode() {
-		vehicle.setLocationNumber(getRandomLocation());
-		vehicle.setIsItNewCard(false);
-		vehicle.setIsItNewVehicle(true);
-		vehicle.setIsItNewSession(true);
-		vehicle.setIsItNewReservation(false);
-		vehicle.setPayOption("promocode");
-		vehicle.setLicensePlateNumber(getRandomLicencePlate());
-
-		spaLoginPage = launch_SPA_Application();
-		accountsPage = spaLoginPage.login();
-		spaHomePage = accountsPage.navigateToHomePage();
-		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
-
-		locationPage.purchase_Session(vehicle);
-		locationPage.verify_Purchase_Details(vehicle);
-		locationPage.extend_Session(vehicle);
-		locationPage.verify_Purchase_Details(vehicle);
-	}
-
-	/*
 	 * This is a test case to purchase session with new card payment and extend with
 	 * existing card
 	 *
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
-	public void TC_10_Purchase_Session_With_NewCard_and_Extend_with_ExistingCard() {
+	public void TC_09_Purchase_Session_With_NewCard_and_Extend_with_ExistingCard() {
 		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItNewCard(true);
 		vehicle.setIsItNewVehicle(true);
@@ -310,7 +283,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
-	public void TC_11_Purchase_Session_With_NewCard_and_Extend_with_Promocode() {
+	public void TC_10_Purchase_Session_With_NewCard_and_Extend_with_PromoCode() {
 		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItNewCard(true);
 		vehicle.setIsItNewVehicle(true);
@@ -339,7 +312,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
-	public void TC_12_Purchase_Session_With_ExistingCard_and_Extend_with_NewCard() {
+	public void TC_11_Purchase_Session_With_ExistingCard_and_Extend_with_NewCard() {
 		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(true);
@@ -367,7 +340,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
-	public void TC_13_Purchase_Session_With_ExistingCard_and_Extend_with_Promocode() {
+	public void TC_12_Purchase_Session_With_ExistingCard_and_Extend_with_PromoCode() {
 		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(true);
@@ -395,7 +368,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
-	public void TC_14_Purchase_Session_With_Promocode_and_Extend_with_NewCard() {
+	public void TC_13_Purchase_Session_With_PromoCode_and_Extend_with_NewCard() {
 		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(true);
@@ -424,7 +397,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
-	public void TC_15_Purchase_Session_With_Promocode_and_Extend_with_ExistingCard() {
+	public void TC_14_Purchase_Session_With_PromoCode_and_Extend_with_ExistingCard() {
 		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItNewCard(false);
 		vehicle.setIsItNewVehicle(true);

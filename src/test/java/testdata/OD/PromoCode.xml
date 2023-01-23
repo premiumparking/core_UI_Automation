@@ -1,9 +1,11 @@
 <promocode>
     <promoCode>MA</promoCode>
     <amountOfUsers>1000</amountOfUsers>
+    <amountOfCodes>2</amountOfCodes>
+    <batchName>Test_Batch_</batchName>
     <discount>100</discount>
     <discountType>%</discountType>
     <startsAt>01/01/2023</startsAt>
     <endsAt>01/01/2025</endsAt>
-    <promoCodeNotes>TestPromoCodes</promoCodeNotes>
+    <promoCodeNotes>TestPromoCode</promoCodeNotes>
 </promocode>

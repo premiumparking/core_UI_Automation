@@ -31,13 +31,12 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      * TC_06_Purchase_Star_Space_With_PromoCode_and_ExistingVehicle
      * TC_07_Purchase_And_Extend_Star_Space_With_NewCard
      * TC_08_Purchase_And_Extend_Star_Space_With_ExistingCard
-     * TC_09_Purchase_And_Extend_Star_Space_With_PromoCode
-     * TC_10_Purchase_Star_Space_With_NewCard_and_Extend_with_ExistingCard
-     * TC_11_Purchase_Star_Space_With_NewCard_and_Extend_with_Promocode
-     * TC_12_Purchase_Star_Space_With_ExistingCard_and_Extend_with_NewCard
-     * TC_13_Purchase_Star_Space_With_ExistingCard_and_Extend_with_Promocode
-     * TC_14_Purchase_Star_Space_With_Promocode_and_Extend_with_NewCard
-     * TC_15_Purchase_Star_Space_With_Promocode_and_Extend_with_ExistingCard
+     * TC_09_Purchase_Star_Space_With_NewCard_and_Extend_with_ExistingCard
+     * TC_10_Purchase_Star_Space_With_NewCard_and_Extend_with_PromoCode
+     * TC_11_Purchase_Star_Space_With_ExistingCard_and_Extend_with_NewCard
+     * TC_12_Purchase_Star_Space_With_ExistingCard_and_Extend_with_PromoCode
+     * TC_13_Purchase_Star_Space_With_PromoCode_and_Extend_with_NewCard
+     * TC_14_Purchase_Star_Space_With_PromoCode_and_Extend_with_ExistingCard
      */
 
     /*
@@ -77,7 +76,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
         vehicle.setIsItNewSession(true);
         vehicle.setIsItNewReservation(false);
         vehicle.setPayOption("card");
-        vehicle.setLicensePlateNumber("H297G");
+        vehicle.setLicensePlateNumber("MARAV123");
 
         spaLoginPage = launch_SPA_Application();
         accountsPage = spaLoginPage.login();
@@ -125,7 +124,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
         vehicle.setIsItNewSession(true);
         vehicle.setIsItNewReservation(false);
         vehicle.setPayOption("card");
-        vehicle.setLicensePlateNumber("H297G");
+        vehicle.setLicensePlateNumber("MARAV123");
 
         spaLoginPage = launch_SPA_Application();
         accountsPage = spaLoginPage.login();
@@ -175,7 +174,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
         vehicle.setIsItNewSession(true);
         vehicle.setIsItNewReservation(false);
         vehicle.setPayOption("promocode");
-        vehicle.setLicensePlateNumber("TS65HJ");
+        vehicle.setLicensePlateNumber("MARAV123");
 
         spaLoginPage = launch_SPA_Application();
         accountsPage = spaLoginPage.login();
@@ -239,38 +238,12 @@ public class SPA_StarSpace_Testcases extends BaseClass {
     }
 
     /*
-     * This is a test case to purchase and extend star space using promocode
-     *
-     * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
-     */
-    @Test(groups = { "smoke", "regression" })
-    public void TC_09_Purchase_And_Extend_Star_Space_With_PromoCode() {
-
-        vehicle.setIsItNewCard(false);
-        vehicle.setIsItNewVehicle(true);
-        vehicle.setIsItNewSession(true);
-        vehicle.setIsItNewReservation(false);
-        vehicle.setPayOption("promocode");
-        vehicle.setLicensePlateNumber(getRandomLicencePlate());
-
-        spaLoginPage = launch_SPA_Application();
-        accountsPage = spaLoginPage.login();
-        spaHomePage = accountsPage.navigateToHomePage();
-        locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
-
-        locationPage.purchase_StarSpace(vehicle);
-        locationPage.verify_Purchase_Details(vehicle);
-        locationPage.extend_Star_Space(vehicle);
-        locationPage.verify_Purchase_Details(vehicle);
-    }
-
-    /*
      * This is a test case to purchase star space with new card payment and extend with existing card
      *
      * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
      */
     @Test(groups = { "smoke", "regression" })
-    public void TC_10_Purchase_Star_Space_With_NewCard_and_Extend_with_ExistingCard() {
+    public void TC_09_Purchase_Star_Space_With_NewCard_and_Extend_with_ExistingCard() {
 
         vehicle.setIsItNewCard(true);
         vehicle.setIsItNewVehicle(true);
@@ -297,7 +270,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
      */
     @Test(groups = { "smoke", "regression" })
-    public void TC_11_Purchase_Star_Space_With_NewCard_and_Extend_with_Promocode() {
+    public void TC_10_Purchase_Star_Space_With_NewCard_and_Extend_with_PromoCode() {
 
         vehicle.setIsItNewCard(true);
         vehicle.setIsItNewVehicle(true);
@@ -325,7 +298,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
      */
     @Test(groups = { "smoke", "regression" })
-    public void TC_12_Purchase_Star_Space_With_ExistingCard_and_Extend_with_NewCard() {
+    public void TC_11_Purchase_Star_Space_With_ExistingCard_and_Extend_with_NewCard() {
 
         vehicle.setIsItNewCard(false);
         vehicle.setIsItNewVehicle(true);
@@ -352,7 +325,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
      */
     @Test(groups = { "smoke", "regression" })
-    public void TC_13_Purchase_Star_Space_With_ExistingCard_and_Extend_with_Promocode() {
+    public void TC_12_Purchase_Star_Space_With_ExistingCard_and_Extend_with_PromoCode() {
 
         vehicle.setIsItNewCard(false);
         vehicle.setIsItNewVehicle(true);
@@ -379,7 +352,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
      */
     @Test(groups = { "smoke", "regression" })
-    public void TC_14_Purchase_Star_Space_With_Promocode_and_Extend_with_NewCard() {
+    public void TC_13_Purchase_Star_Space_With_PromoCode_and_Extend_with_NewCard() {
 
         vehicle.setIsItNewCard(false);
         vehicle.setIsItNewVehicle(true);
@@ -407,7 +380,7 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
      */
     @Test(groups = { "smoke", "regression" })
-    public void TC_15_Purchase_Star_Space_With_Promocode_and_Extend_with_ExistingCard() {
+    public void TC_14_Purchase_Star_Space_With_PromoCode_and_Extend_with_ExistingCard() {
 
         vehicle.setIsItNewCard(false);
         vehicle.setIsItNewVehicle(true);

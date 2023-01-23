@@ -317,6 +317,16 @@ public class BaseClass extends Operations {
 	}
 
 	/*
+	 * Usage : To generate random number
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public String getRandomNumber() {
+		Random random = new Random();
+		return String.format("%02d", random.nextInt(100));
+	}
+
+	/*
 	 * Usage : To get random location from list of Locations space
 	 * 
 	 * Author : Venu Thota (venu.t@comakeit.com)

@@ -79,7 +79,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 		vehicle.setIsItNewSession(false);
 		vehicle.setIsItNewReservation(true);
 		vehicle.setPayOption("card");
-		vehicle.setLicensePlateNumber("H297G");
+		vehicle.setLicensePlateNumber("MARAV123");
 
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
@@ -130,7 +130,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 		vehicle.setIsItNewSession(false);
 		vehicle.setIsItNewReservation(true);
 		vehicle.setPayOption("card");
-		vehicle.setLicensePlateNumber("H297G");
+		vehicle.setLicensePlateNumber("MARAV123");
 
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
@@ -182,7 +182,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 		vehicle.setIsItNewSession(false);
 		vehicle.setIsItNewReservation(true);
 		vehicle.setPayOption("promocode");
-		vehicle.setLicensePlateNumber("TS65HJ");
+		vehicle.setLicensePlateNumber("MARAV123");
 
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
@@ -228,7 +228,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 		vehicle.setIsItNewSession(false);
 		vehicle.setIsItNewReservation(true);
 		vehicle.setPayOption("card");
-		vehicle.setLicensePlateNumber("H297G");
+		vehicle.setLicensePlateNumber("MARAV123");
 
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
@@ -279,7 +279,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 		vehicle.setIsItNewSession(false);
 		vehicle.setIsItNewReservation(true);
 		vehicle.setPayOption("card");
-		vehicle.setLicensePlateNumber("H297G");
+		vehicle.setLicensePlateNumber("MARAV123");
 
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
@@ -330,7 +330,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 		vehicle.setIsItNewSession(false);
 		vehicle.setIsItNewReservation(true);
 		vehicle.setPayOption("promocode");
-		vehicle.setLicensePlateNumber("TS65HJ");
+		vehicle.setLicensePlateNumber("MARAV123");
 
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();

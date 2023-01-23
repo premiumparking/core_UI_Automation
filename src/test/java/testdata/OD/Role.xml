@@ -1,0 +1,5 @@
+<role>
+    <roleName>Test_Role_</roleName>
+    <users>Test User</users>
+    <accessLevel>View</accessLevel>
+</role>

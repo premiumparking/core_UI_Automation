@@ -26,6 +26,12 @@ public class OD_HomePage extends BaseClass {
 	By link_PromoCodes = By.xpath("//a[normalize-space(text())='Promo Codes']");
 	By link_Users = By.xpath("//a[normalize-space(text())='Users']");
 	By link_Profiles = By.xpath("//a[normalize-space(text())='Profiles']");
+	By link_clients = By.xpath("//a[normalize-space(text())='Clients']");
+	By link_fees = By.xpath("//a[normalize-space(text())='Fees']");
+	By link_textPay_jobs = By.xpath("//a[normalize-space(text())='TextPay Jobs']");
+	By link_glCodes = By.xpath("//a[normalize-space(text())='GL Codes']");
+	By link_textPay_requests = By.xpath("//a[normalize-space(text())='TextPay Requests']");
+	By link_roles = By.xpath("//a[normalize-space(text())='Roles']");
 
 	By dd_Content = By.xpath("//a[normalize-space()='Content']");
 	By link_Venues = By.xpath("//a[normalize-space()='Venues']");
@@ -186,6 +192,108 @@ public class OD_HomePage extends BaseClass {
 			passStep("Profiles page has been loaded");
 		}
 		return profilesPage;
+	}
+
+	/*
+	 * Method to navigate to Clients page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_ClientsPage navigateToClientsPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_clients, "Clients Link");
+		OD_ClientsPage clientsPage = new OD_ClientsPage();
+		waitForElementTobeDisplayed(clientsPage.label_Clients);
+		if (isElementDisplayed(clientsPage.label_Clients)) {
+			passStep("Clients page has been loaded");
+		}
+		return clientsPage;
+	}
+
+	/*
+	 * Method to navigate to Fees page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_FeesPage navigateToFeesPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_fees, "Fees Link");
+		OD_FeesPage feesPage = new OD_FeesPage();
+		waitForElementTobeDisplayed(feesPage.label_Fees);
+		if (isElementDisplayed(feesPage.label_Fees)) {
+			passStep("Fees page has been loaded");
+		}
+		return feesPage;
+	}
+
+	/*
+	 * Method to navigate to Text Pay Jobs page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_TextPayJobsPage navigateToTextPayJobsPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_textPay_jobs, "Text Pay Jobs Link");
+		OD_TextPayJobsPage textPayJobsPage = new OD_TextPayJobsPage();
+		waitForElementTobeDisplayed(textPayJobsPage.label_TextPayJobs);
+		if (isElementDisplayed(textPayJobsPage.label_TextPayJobs)) {
+			passStep("Text Pay Jobs page has been loaded");
+		}
+		return textPayJobsPage;
+	}
+
+	/*
+	 * Method to navigate to GL Codes page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_GLCodesPage navigateToGLCodesPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_glCodes, "GL Codes Link");
+		OD_GLCodesPage glCodesPage = new OD_GLCodesPage();
+		waitForElementTobeDisplayed(glCodesPage.label_GLCodes);
+		if (isElementDisplayed(glCodesPage.label_GLCodes)) {
+			passStep("GL Codes page has been loaded");
+		}
+		return glCodesPage;
+	}
+
+	/*
+	 * Method to navigate to Text Pay Requests page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_TextPayRequestsPage navigateToTextPayRequestsPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_textPay_requests, "Text Pay Requests Link");
+		OD_TextPayRequestsPage textPayRequestsPage = new OD_TextPayRequestsPage();
+		waitForElementTobeDisplayed(textPayRequestsPage.label_TextPayRequests);
+		if (isElementDisplayed(textPayRequestsPage.label_TextPayRequests)) {
+			passStep("Text Pay Requests page has been loaded");
+		}
+		return textPayRequestsPage;
+	}
+
+	/*
+	 * Method to navigate to Roles page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_RolesPage navigateToRolesPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_roles, "Roles Link");
+		OD_RolesPage rolesPage = new OD_RolesPage();
+		waitForElementTobeDisplayed(rolesPage.label_Roles);
+		if (isElementDisplayed(rolesPage.label_Roles)) {
+			passStep("Roles page has been loaded");
+		}
+		return rolesPage;
 	}
 
 	/*
