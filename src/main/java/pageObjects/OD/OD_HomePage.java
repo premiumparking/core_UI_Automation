@@ -32,9 +32,16 @@ public class OD_HomePage extends BaseClass {
 	By link_glCodes = By.xpath("//a[normalize-space(text())='GL Codes']");
 	By link_textPay_requests = By.xpath("//a[normalize-space(text())='TextPay Requests']");
 	By link_roles = By.xpath("//a[normalize-space(text())='Roles']");
+	By link_invoices = By.xpath("//a[normalize-space(text())='Invoices']");
+	By link_partnerSales = By.xpath("//a[normalize-space(text())='Partner Sales']");
 
 	By dd_Content = By.xpath("//a[normalize-space()='Content']");
 	By link_Venues = By.xpath("//a[normalize-space()='Venues']");
+	By link_Features = By.xpath("//a[normalize-space()='Features']");
+	By link_Help = By.xpath("//a[normalize-space()='Help']");
+	By link_Jobs = By.xpath("//a[normalize-space()='Jobs']");
+	By link_Settings = By.xpath("//a[normalize-space()='Settings']");
+
 
 	By dd_Reports = By.xpath("//a[normalize-space()='Reports']");
 	By link_LocationRevenues = By.xpath("//a[normalize-space()='Location Revenues']");
@@ -297,6 +304,40 @@ public class OD_HomePage extends BaseClass {
 	}
 
 	/*
+	 * Method to navigate to Invoices page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_InvoicesPage navigateToInvoicesPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_invoices, "Invoices Link");
+		OD_InvoicesPage invoicesPage = new OD_InvoicesPage();
+		waitForElementTobeDisplayed(invoicesPage.label_Invoices);
+		if (isElementDisplayed(invoicesPage.label_Invoices)) {
+			passStep("Invoices page has been loaded");
+		}
+		return invoicesPage;
+	}
+
+	/*
+	 * Method to navigate to partner sales page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_PartnerSalesPage navigateToPartnerSalesPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_partnerSales, "Partner Sales Link");
+		OD_PartnerSalesPage partnerSalesPage = new OD_PartnerSalesPage();
+		waitForElementTobeDisplayed(partnerSalesPage.label_PartnerSales);
+		if (isElementDisplayed(partnerSalesPage.label_PartnerSales)) {
+			passStep("Partner Sales page has been loaded");
+		}
+		return partnerSalesPage;
+	}
+
+	/*
 	 * Method to navigate to profiles page from home page
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
@@ -352,6 +393,74 @@ public class OD_HomePage extends BaseClass {
 			passStep("Venues page has been loaded");
 		}
 		return venuesPage;
+	}
+
+	/*
+	 * Method to navigate to Features page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_FeaturesPage navigateToFeaturesPage() {
+		waitForElementTobeDisplayed(dd_Content);
+		clickOnButton(dd_Content, "Content menu");
+		clickOnButton(link_Features, "Features Link");
+		OD_FeaturesPage featuresPage = new OD_FeaturesPage();
+		waitForElementTobeDisplayed(featuresPage.label_Features);
+		if (isElementDisplayed(featuresPage.label_Features)) {
+			passStep("Features page has been loaded");
+		}
+		return featuresPage;
+	}
+
+	/*
+	 * Method to navigate to Help page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_HelpPage navigateToHelpPage() {
+		waitForElementTobeDisplayed(dd_Content);
+		clickOnButton(dd_Content, "Content menu");
+		clickOnButton(link_Help, "Help Link");
+		OD_HelpPage helpPage = new OD_HelpPage();
+		waitForElementTobeDisplayed(helpPage.label_Helps);
+		if (isElementDisplayed(helpPage.label_Helps)) {
+			passStep("Features page has been loaded");
+		}
+		return helpPage;
+	}
+
+	/*
+	 * Method to navigate to Jobs page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_JobsPage navigateToJobsPage() {
+		waitForElementTobeDisplayed(dd_Content);
+		clickOnButton(dd_Content, "Content menu");
+		clickOnButton(link_Jobs, "Jobs Link");
+		OD_JobsPage jobsPage = new OD_JobsPage();
+		waitForElementTobeDisplayed(jobsPage.label_Jobs);
+		if (isElementDisplayed(jobsPage.label_Jobs)) {
+			passStep("Jobs page has been loaded");
+		}
+		return jobsPage;
+	}
+
+	/*
+	 * Method to navigate to Settings page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_SettingsPage navigateToSettingsPage() {
+		waitForElementTobeDisplayed(dd_Content);
+		clickOnButton(dd_Content, "Content menu");
+		clickOnButton(link_Settings, "Settings Link");
+		OD_SettingsPage settingsPage = new OD_SettingsPage();
+		waitForElementTobeDisplayed(settingsPage.label_Settings);
+		if (isElementDisplayed(settingsPage.label_Settings)) {
+			passStep("Settings page has been loaded");
+		}
+		return settingsPage;
 	}
 
 	/*

@@ -29,6 +29,8 @@ public class Manage_Menu_Testcases extends BaseClass {
 	OD_GLCodesPage glCodesPage = new OD_GLCodesPage();
 	OD_TextPayRequestsPage textPayRequestsPage = new OD_TextPayRequestsPage();
 	OD_RolesPage rolesPage = new OD_RolesPage();
+	OD_InvoicesPage invoicesPage = new OD_InvoicesPage();
+	OD_PartnerSalesPage partnerSalesPage = new OD_PartnerSalesPage();
 
 	
 	// ****************** TEST SCRIPTS ****************************//
@@ -49,6 +51,8 @@ public class Manage_Menu_Testcases extends BaseClass {
 	 * TC_13_Create_GL_Code
 	 * TC_14_Create_TextPay_Request
 	 * TC_15_Create_Role
+	 * TC_16_Create_Invoice
+	 * TC_17_Create_Partner_Sale
 	 *
 	 */
 
@@ -317,6 +321,40 @@ public class Manage_Menu_Testcases extends BaseClass {
 		Role role = (Role) xml_Ops.getTestData("role");
 		role.setRoleName(role.getRoleName() + getTimestamp());
 		rolesPage.create_Role(role);
+	}
+
+	/*
+	 * This is a test case to create invoice
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_16_Create_Invoice() {
+
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		invoicesPage = homePage.navigateToInvoicesPage();
+		Invoice invoice = (Invoice) xml_Ops.getTestData("invoice");
+		invoice.setInvoiceLocation(getRandomLocation());
+		invoicesPage.create_Invoice(invoice);
+	}
+
+	/*
+	 * This is a test case to create partner product
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_17_Create_Partner_Sale() {
+
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		partnerSalesPage = homePage.navigateToPartnerSalesPage();
+		PartnerSale partnerSale = (PartnerSale) xml_Ops.getTestData("partner");
+		partnerSale.setCompanyName(partnerSale.getCompanyName() + getTimestamp());
+		partnerSale.setProductName(partnerSale.getProductName() + getTimestamp());
+		partnerSale.setEmail(partnerSale.getEmail() + getTimestamp() + "@yopmail.com");
+		partnerSalesPage.create_partnerProduct(partnerSale);
 
 	}
 
