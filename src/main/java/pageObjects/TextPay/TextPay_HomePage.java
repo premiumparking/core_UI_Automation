@@ -244,7 +244,7 @@ public class TextPay_HomePage extends BaseClass {
 			}
 			else if (guest.getParkingType().equalsIgnoreCase("Charging Space")) {
 				assertEquals(getElementText(label_conf_spaceType), "Space Type:Charging");
-				purchaseDetails.setSpaceType("Charging Spaces");
+				purchaseDetails.setSpaceType("On Demand");
 			}
 			passStep(getElementText(label_conf_spaceType));
 			passStep(getElementText(label_conf_address));
