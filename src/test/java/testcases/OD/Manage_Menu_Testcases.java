@@ -32,7 +32,6 @@ public class Manage_Menu_Testcases extends BaseClass {
 	OD_InvoicesPage invoicesPage = new OD_InvoicesPage();
 	OD_PartnerSalesPage partnerSalesPage = new OD_PartnerSalesPage();
 
-	
 	// ****************** TEST SCRIPTS ****************************//
 
 	/*
@@ -67,7 +66,7 @@ public class Manage_Menu_Testcases extends BaseClass {
 		loginPage = launch_OD_Application();
 		homePage = loginPage.login();
 		marketsPage = homePage.navigateToMarketsPage();
-		Market market = xml_Ops.getMarketTestData();
+		Market market = (Market) xml_Ops.getTestData("market");
 		market.setName(market.getName() + getTimestamp());
 		marketsPage.create_Market(market);
 
@@ -84,7 +83,7 @@ public class Manage_Menu_Testcases extends BaseClass {
 		loginPage = launch_OD_Application();
 		homePage = loginPage.login();
 		locationsPage = homePage.navigateToLocationsPage();
-		Location location = xml_Ops.getLocationTestData();
+		Location location = (Location) xml_Ops.getTestData("location");
 
 		// Setting location test data
 		location.setName(pNumber);
@@ -164,7 +163,7 @@ public class Manage_Menu_Testcases extends BaseClass {
 		whitelist.setName(whitelist.getName() + getTimestamp());
 		whitelistPage.create_Whitelist(whitelist);
 	}
-	
+
 	/*
 	 * This is a test case to create PromoCode
 	 * 
