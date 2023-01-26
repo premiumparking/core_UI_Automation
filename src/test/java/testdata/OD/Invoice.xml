@@ -1,0 +1,8 @@
+<invoice>
+    <invoicePayer>Test</invoicePayer>
+    <invoiceLocation>P9802</invoiceLocation>
+    <invoiceStartsAt>2023/1/1</invoiceStartsAt>
+    <invoiceEndsAt>2024/1/25</invoiceEndsAt>
+    <invoiceDollarAmount>10</invoiceDollarAmount>
+    <invoiceNumber>10233</invoiceNumber>
+</invoice>

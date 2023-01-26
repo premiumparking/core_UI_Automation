@@ -323,6 +323,36 @@ public class XML_Operations {
 			}
 			return fee;
 
+		case "invoice":
+			Invoice invoice = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\Invoice.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(Invoice.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				invoice = (Invoice) jaxbUnmarshaller.unmarshal(xmlFile);
+			}
+
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return invoice;
+
+		case "partner":
+			PartnerSale partnerSale = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\PartnerSales.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(PartnerSale.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				partnerSale = (PartnerSale) jaxbUnmarshaller.unmarshal(xmlFile);
+			}
+
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return partnerSale;
+
 		case "role":
 			Role role = null;
 			xmlFile = new File("src\\test\\java\\testdata\\OD\\Role.xml");
@@ -378,12 +408,12 @@ public class XML_Operations {
 				market = (Market) jaxbUnmarshaller.unmarshal(xmlFile);
 				// System.out.println(market);
 			}
-
 			catch (JAXBException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return market;
+
 		case "venue":
 			Venue venue = null;
 			xmlFile = new File("src\\test\\java\\testdata\\OD\\Venue.xml");
@@ -391,16 +421,42 @@ public class XML_Operations {
 				jaxbContext = JAXBContext.newInstance(Venue.class);
 				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 				venue = (Venue) jaxbUnmarshaller.unmarshal(xmlFile);
-
 			}
-
 			catch (JAXBException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return venue;
-		}
 
+		case "feature":
+			Feature feature = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\Feature.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(Feature.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				feature = (Feature) jaxbUnmarshaller.unmarshal(xmlFile);
+			}
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return feature;
+
+		case "job":
+			Job job = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\Job.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(Job.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				job = (Job) jaxbUnmarshaller.unmarshal(xmlFile);
+			}
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return job;
+
+	}
 		return null;
 	}
 }
