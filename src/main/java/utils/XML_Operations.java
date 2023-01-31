@@ -307,6 +307,19 @@ public class XML_Operations {
 			}
 			return feature;
 
+		case "banner":
+			Banner banner = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\Banner.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(Banner.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				banner = (Banner) jaxbUnmarshaller.unmarshal(xmlFile);
+			} catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return banner;
+
 		case "job":
 			Job job = null;
 			xmlFile = new File("src\\test\\java\\testdata\\OD\\Job.xml");
@@ -319,6 +332,32 @@ public class XML_Operations {
 				e.printStackTrace();
 			}
 			return job;
+
+		case "color_theme":
+			ColorTheme colorTheme = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\ColorTheme.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(ColorTheme.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				colorTheme = (ColorTheme) jaxbUnmarshaller.unmarshal(xmlFile);
+			} catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return colorTheme;
+
+		case "cash_deposit":
+			CashDeposit cashDeposit = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\CashDeposit.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(CashDeposit.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				cashDeposit = (CashDeposit) jaxbUnmarshaller.unmarshal(xmlFile);
+			} catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return cashDeposit;
 
 		}
 		return null;

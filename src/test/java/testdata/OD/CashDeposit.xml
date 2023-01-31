@@ -1,0 +1,9 @@
+<cashDeposit>
+    <bagNumber>3098884</bagNumber>
+    <pullDate>2024/1/30</pullDate>
+    <marketGroup>New Orleans</marketGroup>
+    <cdLocation>P9801</cdLocation>
+    <employeeName>test1@mail.com</employeeName>
+    <shift>General</shift>
+    <attachments>\src\test\java\testdata\OD\Images\dummypic1.jpg</attachments>
+</cashDeposit>

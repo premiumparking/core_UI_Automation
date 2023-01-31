@@ -34,13 +34,20 @@ public class OD_HomePage extends BaseClass {
 	By link_roles = By.xpath("//a[normalize-space(text())='Roles']");
 	By link_invoices = By.xpath("//a[normalize-space(text())='Invoices']");
 	By link_partnerSales = By.xpath("//a[normalize-space(text())='Partner Sales']");
+	By link_cashDeposits = By.xpath("//a[normalize-space(text())='Cash Deposits']");
 
 	By dd_Content = By.xpath("//a[normalize-space()='Content']");
 	By link_Venues = By.xpath("//a[normalize-space()='Venues']");
 	By link_Features = By.xpath("//a[normalize-space()='Features']");
+	By link_Banners = By.xpath("//a[normalize-space()='Banners']");
 	By link_Help = By.xpath("//a[normalize-space()='Help']");
 	By link_Jobs = By.xpath("//a[normalize-space()='Jobs']");
 	By link_Settings = By.xpath("//a[normalize-space()='Settings']");
+	By link_ColorThemes = By.xpath("//a[normalize-space()='Color Themes']");
+	By link_ParkingOperators = By.xpath("//a[normalize-space()='Parking Operators']");
+	By link_StaticPageGroups = By.xpath("//a[normalize-space()='Static Page Groups']");
+	By link_ContactReasons = By.xpath("//a[normalize-space()='Contact Reasons']");
+	By link_SupportArticles = By.xpath("//a[normalize-space()='Support Articles']");
 
 
 	By dd_Reports = By.xpath("//a[normalize-space()='Reports']");
@@ -338,6 +345,23 @@ public class OD_HomePage extends BaseClass {
 	}
 
 	/*
+	 * Method to navigate to partner cash deposits page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_CashDepositsPage navigateToCashDepositsPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_cashDeposits, "Cash Deposits Link");
+		OD_CashDepositsPage cashDepositsPage = new OD_CashDepositsPage();
+		waitForElementTobeDisplayed(cashDepositsPage.label_CashDeposits);
+		if (isElementDisplayed(cashDepositsPage.label_CashDeposits)) {
+			passStep("Cash Deposits page has been loaded");
+		}
+		return cashDepositsPage;
+	}
+
+	/*
 	 * Method to navigate to profiles page from home page
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
@@ -461,6 +485,108 @@ public class OD_HomePage extends BaseClass {
 			passStep("Settings page has been loaded");
 		}
 		return settingsPage;
+	}
+
+	/*
+	 * Method to navigate to Banners page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_BannersPage navigateToBannersPage() {
+		waitForElementTobeDisplayed(dd_Content);
+		clickOnButton(dd_Content, "Content menu");
+		clickOnButton(link_Banners, "Banners Link");
+		OD_BannersPage bannersPage = new OD_BannersPage();
+		waitForElementTobeDisplayed(bannersPage.label_Banners);
+		if (isElementDisplayed(bannersPage.label_Banners)) {
+			passStep("Banners page has been loaded");
+		}
+		return bannersPage;
+	}
+
+	/*
+	 * Method to navigate to Color Themes page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_ColorThemesPage navigateToColorThemesPage() {
+		waitForElementTobeDisplayed(dd_Content);
+		clickOnButton(dd_Content, "Content menu");
+		clickOnButton(link_ColorThemes, "Color Themes Link");
+		OD_ColorThemesPage colorThemesPage = new OD_ColorThemesPage();
+		waitForElementTobeDisplayed(colorThemesPage.label_ColorThemes);
+		if (isElementDisplayed(colorThemesPage.label_ColorThemes)) {
+			passStep("Color Themes Page has been loaded");
+		}
+		return colorThemesPage;
+	}
+
+	/*
+	 * Method to navigate to Parking Operators page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_ParkingOperatorsPage navigateToParkingOperatorsPage() {
+		waitForElementTobeDisplayed(dd_Content);
+		clickOnButton(dd_Content, "Content menu");
+		clickOnButton(link_ParkingOperators, "Parking Operators Link");
+		OD_ParkingOperatorsPage parkingOperatorsPage = new OD_ParkingOperatorsPage();
+		waitForElementTobeDisplayed(parkingOperatorsPage.label_ParkingOperators);
+		if (isElementDisplayed(parkingOperatorsPage.label_ParkingOperators)) {
+			passStep("Parking Operators Page has been loaded");
+		}
+		return parkingOperatorsPage;
+	}
+
+	/*
+	 * Method to navigate to Static Page Groups page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_StaticPageGroupsPage navigateToStaticPageGroupsPage() {
+		waitForElementTobeDisplayed(dd_Content);
+		clickOnButton(dd_Content, "Content menu");
+		clickOnButton(link_StaticPageGroups, "Static Page Groups Link");
+		OD_StaticPageGroupsPage staticPageGroupsPage = new OD_StaticPageGroupsPage();
+		waitForElementTobeDisplayed(staticPageGroupsPage.label_StaticPageGroup);
+		if (isElementDisplayed(staticPageGroupsPage.label_StaticPageGroup)) {
+			passStep("Static Page Groups Page has been loaded");
+		}
+		return staticPageGroupsPage;
+	}
+
+	/*
+	 * Method to navigate to contact reasons page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_ContactReasonsPage navigateToContactReasonsPage() {
+		waitForElementTobeDisplayed(dd_Content);
+		clickOnButton(dd_Content, "Content menu");
+		clickOnButton(link_ContactReasons, "Contact Reasons Link");
+		OD_ContactReasonsPage contactReasonsPage = new OD_ContactReasonsPage();
+		waitForElementTobeDisplayed(contactReasonsPage.label_ContactReasons);
+		if (isElementDisplayed(contactReasonsPage.label_ContactReasons)) {
+			passStep("Contact Reasons Page has been loaded");
+		}
+		return contactReasonsPage;
+	}
+
+	/*
+	 * Method to navigate to support articles page from home page
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public OD_SupportArticlesPage navigateToSupportArticlesPage() {
+		waitForElementTobeDisplayed(dd_Content);
+		clickOnButton(dd_Content, "Content menu");
+		clickOnButton(link_SupportArticles, "Support Articles Link");
+		OD_SupportArticlesPage supportArticlesPage = new OD_SupportArticlesPage();
+		waitForElementTobeDisplayed(supportArticlesPage.label_SupportArticles);
+		if (isElementDisplayed(supportArticlesPage.label_SupportArticles)) {
+			passStep("Support Articles Page has been loaded");
+		}
+		return supportArticlesPage;
 	}
 
 	/*

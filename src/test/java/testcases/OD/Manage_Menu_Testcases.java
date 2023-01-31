@@ -31,6 +31,7 @@ public class Manage_Menu_Testcases extends BaseClass {
 	OD_RolesPage rolesPage = new OD_RolesPage();
 	OD_InvoicesPage invoicesPage = new OD_InvoicesPage();
 	OD_PartnerSalesPage partnerSalesPage = new OD_PartnerSalesPage();
+	OD_CashDepositsPage cashDepositsPage = new OD_CashDepositsPage();
 
 	// ****************** TEST SCRIPTS ****************************//
 
@@ -52,6 +53,7 @@ public class Manage_Menu_Testcases extends BaseClass {
 	 * TC_15_Create_Role
 	 * TC_16_Create_Invoice
 	 * TC_17_Create_Partner_Sale
+	 * TC_18_Create_Cash_Deposit
 	 *
 	 */
 
@@ -354,6 +356,23 @@ public class Manage_Menu_Testcases extends BaseClass {
 		partnerSale.setProductName(partnerSale.getProductName() + getTimestamp());
 		partnerSale.setEmail(partnerSale.getEmail() + getTimestamp() + "@yopmail.com");
 		partnerSalesPage.create_partnerProduct(partnerSale);
+
+	}
+
+	/*
+	 * This is a test case to create cash deposit
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_18_Create_Cash_Deposit() {
+
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		cashDepositsPage = homePage.navigateToCashDepositsPage();
+		CashDeposit cashDeposit = (CashDeposit) xml_Ops.getTestData("cash_deposit");
+		cashDeposit.setBagNumber(getTimestamp());
+		cashDepositsPage.create_CashDeposit(cashDeposit);
 
 	}
 

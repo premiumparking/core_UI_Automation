@@ -1,12 +1,12 @@
 <partnerSales>
     <companyName>Test_Company_</companyName>
     <productName>Test_Product_</productName>
-    <url>www.dummypartner.com</url>
+    <url>https://www.google.com/</url>
     <email>Test_</email>
     <products>Reservation</products>
     <channels>Web</channels>
     <startsAt>2023/1/1</startsAt>
     <endsAt>2024/1/25</endsAt>
-    <banner>.src\\test\\java\\testdata\\OD\\Images\\dummypic1.jpg</banner>
-    <logo>.src\\test\\java\\testdata\\OD\\Images\\dummypic2.jpg</logo>
+    <banner>\src\test\java\testdata\OD\Images\dummypic1.jpg</banner>
+    <logo>\src\test\java\testdata\OD\Images\dummypic2.jpg</logo>
 </partnerSales>

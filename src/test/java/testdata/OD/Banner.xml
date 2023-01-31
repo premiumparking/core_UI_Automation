@@ -1,0 +1,8 @@
+<banner>
+    <bannerMarket>Atlanta, GA</bannerMarket>
+    <bannerStartsAt>2023</bannerStartsAt>
+    <bannerEndsAt>2025/1/30</bannerEndsAt>
+    <bannerPhoto>\src\test\java\testdata\OD\Images\dummypic1.jpg</bannerPhoto>
+    <bannerTitle>Test_Banner_</bannerTitle>
+    <bannerBody>Dummy Banner Description</bannerBody>
+</banner>
