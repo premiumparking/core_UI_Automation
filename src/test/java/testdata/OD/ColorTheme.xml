@@ -1,0 +1,7 @@
+<colorTheme>
+    <themeName>Test_ThemeColor_</themeName>
+    <contentBoxBGColor>#ffffff</contentBoxBGColor>
+    <contentBoxTextColor>#000000</contentBoxTextColor>
+    <buttonsBGColor>#ffffff</buttonsBGColor>
+    <buttonColor>#000000</buttonColor>
+</colorTheme>

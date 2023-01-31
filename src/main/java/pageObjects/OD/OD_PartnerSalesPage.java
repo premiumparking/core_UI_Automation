@@ -51,11 +51,11 @@ public class OD_PartnerSalesPage extends BaseClass{
         selectFromSearch(textBox_partnerChannels, partnerSale.getChannels(), "Partner Channels  Textbox");
         enterText(textBox_startsAt, partnerSale.getStartsAt(), "Partner Starts At Textbox");
         enterText(textBox_endsAt, partnerSale.getEndsAt(), "Partner Ends At Textbox");
-        enterText(textBox_partnerBanner, partnerSale.getBanner(), "Partner Banner ");
-        enterText(textBox_partnerLogo, partnerSale.getLogo(), "Partner Logo");
+        enterText(textBox_partnerBanner, System.getProperty("user.dir") + partnerSale.getBanner() , "Partner Banner ");
+        enterText(textBox_partnerLogo, System.getProperty("user.dir") + partnerSale.getLogo(), "Partner Logo");
         clickOnButton(button_create_partner, "Save Button");
 
-        By productNameOnGrid = By.xpath("//h1[contains(text(),'Invoice " + partnerSale.getProductName() + "')]");
+        By productNameOnGrid = By.xpath("//td[contains(text(),'" + partnerSale.getProductName() + "')]");
         waitForElementTobeDisplayed(productNameOnGrid);
         if (isElementDisplayed(productNameOnGrid)) {
             passStep("Product Name " + partnerSale.getProductName() + " has been displayed on grid ");
