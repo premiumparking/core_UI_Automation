@@ -100,7 +100,7 @@ public class BaseClass extends Operations {
 		case "chrome":
 			WebDriverManager.chromedriver().setup();
 
-			if ("true".equals(this.headless)) {
+			if (Boolean.parseBoolean(headless)) {
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--headless");
 				driver = new ChromeDriver(options);
@@ -110,7 +110,7 @@ public class BaseClass extends Operations {
 		case "firefox":
 			WebDriverManager.firefoxdriver().setup();
 
-			if (headless.toLowerCase().contentEquals("true")) {
+			if (Boolean.parseBoolean(headless)) {
 				FirefoxOptions options = new FirefoxOptions();
 				options.addArguments("--headless");
 				driver = new FirefoxDriver(options);
@@ -119,7 +119,7 @@ public class BaseClass extends Operations {
 			break;
 		default:
 			WebDriverManager.edgedriver().setup();
-			if (headless.toLowerCase().contentEquals("true")) {
+			if (Boolean.parseBoolean(headless)) {
 				EdgeOptions options = new EdgeOptions();
 				options.addArguments("--headless");
 				driver = new EdgeDriver(options);
