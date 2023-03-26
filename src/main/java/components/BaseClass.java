@@ -14,7 +14,6 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
@@ -38,7 +37,7 @@ public class BaseClass extends Operations {
 	protected static String businessAccountURL = null;
 	Properties config;
 	FileInputStream fis;
-	public static WebDriver driver = null;
+	public static WebDriver driver;
 	protected static String adm_username, adm_password, adm_url;
 	protected static String od_username, od_password, od_url;
 	protected static String spa_url, spa_username, spa_password;
@@ -95,36 +94,34 @@ public class BaseClass extends Operations {
 	public void launchBrowser(Method testMethod) throws InterruptedException, IOException {
 
 		loadProperties();
-		// this.headless1 = Boolean.parseBoolean(headless);
+
 		switch (browser.toLowerCase()) {
 		case "chrome":
 			WebDriverManager.chromedriver().setup();
+			// System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+			ChromeOptions ch_options = new ChromeOptions();
+			if (Boolean.parseBoolean(headless))
+				ch_options.addArguments("--headless");
 
-			if (Boolean.parseBoolean(headless)) {
-				ChromeOptions options = new ChromeOptions();
-				options.addArguments("--headless");
-				driver = new ChromeDriver(options);
-			} else
-				driver = new ChromeDriver();
 			break;
 		case "firefox":
 			WebDriverManager.firefoxdriver().setup();
+			FirefoxOptions ff_options = new FirefoxOptions();
 
-			if (Boolean.parseBoolean(headless)) {
-				FirefoxOptions options = new FirefoxOptions();
-				options.addArguments("--headless");
-				driver = new FirefoxDriver(options);
-			} else
-				driver = new FirefoxDriver();
+			if (Boolean.parseBoolean(headless))
+				ff_options.addArguments("--headless");
+			ff_options.addArguments("--remote-allow-origins=*");
+			driver = new FirefoxDriver(ff_options);
+
 			break;
 		default:
 			WebDriverManager.edgedriver().setup();
-			if (Boolean.parseBoolean(headless)) {
-				EdgeOptions options = new EdgeOptions();
-				options.addArguments("--headless");
-				driver = new EdgeDriver(options);
-			} else
-				driver = new EdgeDriver();
+			EdgeOptions ed_options = new EdgeOptions();
+			if (Boolean.parseBoolean(headless))
+				ed_options.addArguments("--headless");
+
+			ed_options.addArguments("--remote-allow-origins=*");
+			driver = new EdgeDriver(ed_options);
 			break;
 
 		}
@@ -147,7 +144,7 @@ public class BaseClass extends Operations {
 		String className = name.substring(name.lastIndexOf(".") + 1);
 
 		return "<span style='color:#d64161;'>" + className + " : </span> " + "<span style='color:#4040a1;'>"
-		+ testMethod.getName() + " : </span> ";
+				+ testMethod.getName() + " : </span> ";
 	}
 
 	/*
