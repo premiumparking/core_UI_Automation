@@ -35,7 +35,7 @@ public class OD_LocationRevenuePage extends BaseClass {
 
 		String orderNum = purchaseDetails.getOrderNumber();
 
-		;
+		
 		if (purchaseDetails.getPaymentOption().equalsIgnoreCase("card")) {
 			orderNumber = By.xpath("//a[normalize-space()='" + orderNum + "']");
 
@@ -75,7 +75,8 @@ public class OD_LocationRevenuePage extends BaseClass {
 		waitForElementTobeClickable(button_Find);
 		clickOnButton_using_Actions(button_Find, "Button Find");
 		// clickOnButton(button_Find, "Button Find");
-		waitForPageLoad(3);
+		waitForPageLoad(60);
+		clickOnButton_using_Actions(button_Find, "Button Find");
 		waitForElementTobeDisplayed(orderNumber);
 		passStep("Order Number : " + getElementText(orderNumber));
 		passStep("Location Name : " + getElementText(locationName));	

@@ -279,7 +279,7 @@ public class Operations extends Extent_Reports {
 	 * Author : Venu Thota (venu.t@comakeit.com)
 	 */
 	public void waitForElementTobeDisplayed(By locator) {
-		WebDriverWait wait = new WebDriverWait(BaseClass.driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(BaseClass.driver, Duration.ofSeconds(90));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
 
@@ -289,7 +289,7 @@ public class Operations extends Extent_Reports {
 	 * Author : Venu Thota (venu.t@comakeit.com)
 	 */
 	public void waitForElementTobeClickable(By locator) {
-		WebDriverWait wait = new WebDriverWait(BaseClass.driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(BaseClass.driver, Duration.ofSeconds(90));
 		wait.until(ExpectedConditions.elementToBeClickable(locator));
 	}
 
