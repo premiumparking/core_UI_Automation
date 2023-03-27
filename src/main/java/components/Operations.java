@@ -519,4 +519,15 @@ public class Operations extends Extent_Reports {
 
 		act.dragAndDropBy(timeBar, -xOffset, yOffset).perform();
 	}
+
+	public void scrollToElement(By ele) {
+
+		WebElement element = BaseClass.driver.findElement(ele);
+
+		JavascriptExecutor js = (JavascriptExecutor) BaseClass.driver;
+
+		// Scrolling down the page till the element is found
+		js.executeScript("arguments[0].scrollIntoView();", element);
+		passStep("Scrolled down to  "+element.getText());
+	}
 }

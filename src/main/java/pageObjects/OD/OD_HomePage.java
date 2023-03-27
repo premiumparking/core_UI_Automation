@@ -250,6 +250,7 @@ public class OD_HomePage extends BaseClass {
 	public OD_TextPayJobsPage navigateToTextPayJobsPage() {
 		waitForElementTobeDisplayed(dd_Manage);
 		clickOnButton(dd_Manage, "Manage menu");
+		scrollToElement(link_textPay_jobs);
 		clickOnButton(link_textPay_jobs, "Text Pay Jobs Link");
 		OD_TextPayJobsPage textPayJobsPage = new OD_TextPayJobsPage();
 		waitForElementTobeDisplayed(textPayJobsPage.label_TextPayJobs);
@@ -267,6 +268,7 @@ public class OD_HomePage extends BaseClass {
 	public OD_GLCodesPage navigateToGLCodesPage() {
 		waitForElementTobeDisplayed(dd_Manage);
 		clickOnButton(dd_Manage, "Manage menu");
+		scrollToElement(link_glCodes);
 		clickOnButton(link_glCodes, "GL Codes Link");
 		OD_GLCodesPage glCodesPage = new OD_GLCodesPage();
 		waitForElementTobeDisplayed(glCodesPage.label_GLCodes);
@@ -284,6 +286,7 @@ public class OD_HomePage extends BaseClass {
 	public OD_TextPayRequestsPage navigateToTextPayRequestsPage() {
 		waitForElementTobeDisplayed(dd_Manage);
 		clickOnButton(dd_Manage, "Manage menu");
+		scrollToElement(link_textPay_requests);
 		clickOnButton(link_textPay_requests, "Text Pay Requests Link");
 		OD_TextPayRequestsPage textPayRequestsPage = new OD_TextPayRequestsPage();
 		waitForElementTobeDisplayed(textPayRequestsPage.label_TextPayRequests);
@@ -301,6 +304,7 @@ public class OD_HomePage extends BaseClass {
 	public OD_RolesPage navigateToRolesPage() {
 		waitForElementTobeDisplayed(dd_Manage);
 		clickOnButton(dd_Manage, "Manage menu");
+		scrollToElement(link_roles);
 		clickOnButton(link_roles, "Roles Link");
 		OD_RolesPage rolesPage = new OD_RolesPage();
 		waitForElementTobeDisplayed(rolesPage.label_Roles);
@@ -335,6 +339,7 @@ public class OD_HomePage extends BaseClass {
 	public OD_PartnerSalesPage navigateToPartnerSalesPage() {
 		waitForElementTobeDisplayed(dd_Manage);
 		clickOnButton(dd_Manage, "Manage menu");
+		scrollToElement(link_partnerSales);
 		clickOnButton(link_partnerSales, "Partner Sales Link");
 		OD_PartnerSalesPage partnerSalesPage = new OD_PartnerSalesPage();
 		waitForElementTobeDisplayed(partnerSalesPage.label_PartnerSales);
@@ -352,6 +357,7 @@ public class OD_HomePage extends BaseClass {
 	public OD_CashDepositsPage navigateToCashDepositsPage() {
 		waitForElementTobeDisplayed(dd_Manage);
 		clickOnButton(dd_Manage, "Manage menu");
+		scrollToElement(link_cashDeposits);
 		clickOnButton(link_cashDeposits, "Cash Deposits Link");
 		OD_CashDepositsPage cashDepositsPage = new OD_CashDepositsPage();
 		waitForElementTobeDisplayed(cashDepositsPage.label_CashDeposits);
