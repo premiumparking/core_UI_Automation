@@ -14,6 +14,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
@@ -100,9 +101,12 @@ public class BaseClass extends Operations {
 			WebDriverManager.chromedriver().setup();
 			// System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 			ChromeOptions ch_options = new ChromeOptions();
+
 			if (Boolean.parseBoolean(headless))
 				ch_options.addArguments("--headless");
 
+			ch_options.addArguments("--remote-allow-origins=*");
+			driver = new ChromeDriver(ch_options);
 			break;
 		case "firefox":
 			WebDriverManager.firefoxdriver().setup();
