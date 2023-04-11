@@ -29,6 +29,7 @@ import com.relevantcodes.extentreports.LogStatus;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pageObjects.Admiral.Adm_LoginPage;
 import pageObjects.OD.OD_LoginPage;
+import pageObjects.SPA.SPA_AccountsPage;
 import pageObjects.SPA.SPA_LoginPage;
 import pageObjects.TextPay.TextPay_HomePage;
 
@@ -45,6 +46,8 @@ public class BaseClass extends Operations {
 	protected static String textpay_url;
 	protected String headless;
 	protected String browser;
+	SPA_LoginPage spaLoginPage;
+	SPA_AccountsPage accountsPage;
 
 	/*
 	 * This method is to load data from application.properties files
@@ -340,6 +343,18 @@ public class BaseClass extends Operations {
 		int index = random.nextInt(locations.length);
 
 		return locations[index];
+	}
+	
+	
+	/*
+	 * Usage : To get random location from list of Locations space
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
+	 */
+	public String Add_NewVehicle() {
+		spaLoginPage = launch_SPA_Application();
+		accountsPage = spaLoginPage.login();
+		return accountsPage.add_New_Vehicle();
 	}
 
 }

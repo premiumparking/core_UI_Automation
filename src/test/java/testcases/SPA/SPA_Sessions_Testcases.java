@@ -80,10 +80,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("card");
 		vehicle.setTimeInHours("1");
-		vehicle.setLicensePlateNumber("MARAV123");
-
-		spaLoginPage = launch_SPA_Application();
-		accountsPage = spaLoginPage.login();
+		vehicle.setLicensePlateNumber(Add_NewVehicle());
 		spaHomePage = accountsPage.navigateToHomePage();
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
@@ -132,10 +129,8 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("card");
 		vehicle.setTimeInHours("1");
-		vehicle.setLicensePlateNumber("MARAV123");
-
-		spaLoginPage = launch_SPA_Application();
-		accountsPage = spaLoginPage.login();
+		
+		vehicle.setLicensePlateNumber(Add_NewVehicle());
 		spaHomePage = accountsPage.navigateToHomePage();
 
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
@@ -184,10 +179,8 @@ public class SPA_Sessions_Testcases extends BaseClass {
 		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("promocode");
 		vehicle.setTimeInHours("1");
-		vehicle.setLicensePlateNumber("MARAV123");
-
-		spaLoginPage = launch_SPA_Application();
-		accountsPage = spaLoginPage.login();
+		
+		vehicle.setLicensePlateNumber(Add_NewVehicle());
 		spaHomePage = accountsPage.navigateToHomePage();
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
