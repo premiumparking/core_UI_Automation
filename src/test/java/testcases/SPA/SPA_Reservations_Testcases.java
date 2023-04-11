@@ -39,7 +39,8 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	 */
 
 	/*
-	 * This is a test case to purchase reservation with new vehicle and new card payment method
+	 * This is a test case to purchase reservation with new vehicle and new card
+	 * payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -65,7 +66,8 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase reservation with existing vehicle and new card payment method
+	 * This is a test case to purchase reservation with existing vehicle and new
+	 * card payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -79,10 +81,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 		vehicle.setIsItNewSession(false);
 		vehicle.setIsItNewReservation(true);
 		vehicle.setPayOption("card");
-		vehicle.setLicensePlateNumber("MARAV123");
-
-		spaLoginPage = launch_SPA_Application();
-		accountsPage = spaLoginPage.login();
+		vehicle.setLicensePlateNumber(Add_NewVehicle());
 		spaHomePage = accountsPage.navigateToHomePage();
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
@@ -91,7 +90,8 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase reservation with new vehicle and existing card payment method
+	 * This is a test case to purchase reservation with new vehicle and existing
+	 * card payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -116,7 +116,8 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase reservation with existing vehicle and existing card payment method
+	 * This is a test case to purchase reservation with existing vehicle and
+	 * existing card payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -130,10 +131,8 @@ public class SPA_Reservations_Testcases extends BaseClass {
 		vehicle.setIsItNewSession(false);
 		vehicle.setIsItNewReservation(true);
 		vehicle.setPayOption("card");
-		vehicle.setLicensePlateNumber("MARAV123");
 
-		spaLoginPage = launch_SPA_Application();
-		accountsPage = spaLoginPage.login();
+		vehicle.setLicensePlateNumber(Add_NewVehicle());
 		spaHomePage = accountsPage.navigateToHomePage();
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
@@ -142,7 +141,8 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase reservation with new vehicle and promocode payment method
+	 * This is a test case to purchase reservation with new vehicle and promocode
+	 * payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -167,7 +167,8 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase reservation with existing vehicle and promocode payment method
+	 * This is a test case to purchase reservation with existing vehicle and
+	 * promocode payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -182,11 +183,10 @@ public class SPA_Reservations_Testcases extends BaseClass {
 		vehicle.setIsItNewSession(false);
 		vehicle.setIsItNewReservation(true);
 		vehicle.setPayOption("promocode");
-		vehicle.setLicensePlateNumber("MARAV123");
 
-		spaLoginPage = launch_SPA_Application();
-		accountsPage = spaLoginPage.login();
+		vehicle.setLicensePlateNumber(Add_NewVehicle());
 		spaHomePage = accountsPage.navigateToHomePage();
+
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
 		locationPage.purchase_Reservation(vehicle);
@@ -214,7 +214,8 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase future reservation with existing vehicle and new card payment method
+	 * This is a test case to purchase future reservation with existing vehicle and
+	 * new card payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -228,10 +229,8 @@ public class SPA_Reservations_Testcases extends BaseClass {
 		vehicle.setIsItNewSession(false);
 		vehicle.setIsItNewReservation(true);
 		vehicle.setPayOption("card");
-		vehicle.setLicensePlateNumber("MARAV123");
 
-		spaLoginPage = launch_SPA_Application();
-		accountsPage = spaLoginPage.login();
+		vehicle.setLicensePlateNumber(Add_NewVehicle());
 		spaHomePage = accountsPage.navigateToHomePage();
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
@@ -240,7 +239,8 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase future reservation with new vehicle and existing card payment method
+	 * This is a test case to purchase future reservation with new vehicle and
+	 * existing card payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -265,7 +265,8 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase future reservation with existing vehicle and existing card payment method
+	 * This is a test case to purchase future reservation with existing vehicle and
+	 * existing card payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -279,10 +280,8 @@ public class SPA_Reservations_Testcases extends BaseClass {
 		vehicle.setIsItNewSession(false);
 		vehicle.setIsItNewReservation(true);
 		vehicle.setPayOption("card");
-		vehicle.setLicensePlateNumber("MARAV123");
 
-		spaLoginPage = launch_SPA_Application();
-		accountsPage = spaLoginPage.login();
+		vehicle.setLicensePlateNumber(Add_NewVehicle());
 		spaHomePage = accountsPage.navigateToHomePage();
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
@@ -291,7 +290,8 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase future reservation with new vehicle and promocode payment method
+	 * This is a test case to purchase future reservation with new vehicle and
+	 * promocode payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -316,7 +316,8 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase future reservation with existing vehicle and promocode payment method
+	 * This is a test case to purchase future reservation with existing vehicle and
+	 * promocode payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -330,16 +331,13 @@ public class SPA_Reservations_Testcases extends BaseClass {
 		vehicle.setIsItNewSession(false);
 		vehicle.setIsItNewReservation(true);
 		vehicle.setPayOption("promocode");
-		vehicle.setLicensePlateNumber("MARAV123");
 
-		spaLoginPage = launch_SPA_Application();
-		accountsPage = spaLoginPage.login();
+		vehicle.setLicensePlateNumber(Add_NewVehicle());
 		spaHomePage = accountsPage.navigateToHomePage();
 		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
 
 		locationPage.purchase_Reservation(vehicle);
 		locationPage.verify_Purchase_Details(vehicle);
 	}
-
 
 }

@@ -43,9 +43,9 @@ public class SPA_AccountsPage extends BaseClass {
 	}
 
 	/*
-	 * Method to Add a new vehicle
-	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Usage : To get random location from list of Locations space
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
 	 */
 	public String add_New_Vehicle() {
 		

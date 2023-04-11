@@ -45,18 +45,6 @@ public class SPA_ChargingSpace_Testcases extends BaseClass {
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
-	public String Add_NewVehicle() {
-		spaLoginPage = launch_SPA_Application();
-		accountsPage = spaLoginPage.login();
-		return accountsPage.add_New_Vehicle();
-	}
-
-	/*
-	 * This is a test case to purchase charging space with new vehicle and new card
-	 * payment method
-	 *
-	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
-	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_01_Purchase_Charging_Space_With_NewCard_and_NewVehicle() {
 
