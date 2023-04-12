@@ -484,12 +484,13 @@ public class SPA_LocationPage extends BaseClass {
 			if (vehicle.getIsItNewReservation()) {
 				assertEquals(getElementText(label_purchaseType), "NEW RESERVATION");
 				passStep("Reservation Type :" + getElementText(label_purchaseType));
-				//assertEquals(getElementText(label_rateName), "24 Hrs");
+				// assertEquals(getElementText(label_rateName), "24 Hrs");
 			}
 			passStep("Rate name :" + getElementText(label_rateName));
 			assertEquals(getElementText(label_lecencePlateName), vehicle.getLicensePlateNumber());
 			passStep("Licence Plate :" + getElementText(label_lecencePlateName));
-			assertEquals(getElementText(label_location), "Location Number:" + vehicle.getLocationNumber());
+			String locName = Integer.parseInt(vehicle.getLocationNumber().split("P")[1]) + "";
+			assertEquals(getElementText(label_location), "Location Number:P" + locName);
 			passStep(getElementText(label_location));
 			passStep(getElementText(label_startTime));
 			passStep(getElementText(label_endTime));
