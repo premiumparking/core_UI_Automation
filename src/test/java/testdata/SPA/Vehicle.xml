@@ -9,6 +9,7 @@
 	<amount>10</amount>
 	<timeInHours>2</timeInHours>
 	<promoCode>PROMO100</promoCode>
+	<fixedPromoCode>TESTPP50</fixedPromoCode>
 	<isItNewCard>true</isItNewCard>
 	<isItNewVehicle>true</isItNewVehicle>
 	<extendTime>10</extendTime>

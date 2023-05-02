@@ -27,20 +27,19 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	 * TC_02_Purchase_Reservation_With_NewCard_and_ExistingVehicle
 	 * TC_03_Purchase_Reservation_With_ExistingCard_and_NewVehicle
 	 * TC_04_Purchase_Reservation_With_ExistingCard_and_ExistingVehicle
-	 * TC_05_Purchase_Reservation_With_PromoCode_and_NewVehicle
-	 * TC_06_Purchase_Reservation_With_PromoCode_and_ExistingVehicle
+	 * TC_05_Purchase_Reservation_With_100%Discount_PromoCode_and_NewVehicle
+	 * TC_06_Purchase_Reservation_With_100%Discount_PromoCode_and_ExistingVehicle
 	 * TC_07_Purchase_Future_Reservation_With_NewCard_and_NewVehicle
 	 * TC_08_Purchase_Future_Reservation_With_NewCard_and_ExistingVehicle
 	 * TC_09_Purchase_Future_Reservation_With_ExistingCard_and_NewVehicle
 	 * TC_10_Purchase_Future_Reservation_With_ExistingCard_and_ExistingVehicle
-	 * TC_11_Purchase_Future_Reservation_With_PromoCode_and_NewVehicle
-	 * TC_12_Purchase_Future_Reservation_With_PromoCode_and_ExistingVehicle
+	 * TC_11_Purchase_Future_Reservation_With_100%Discount_PromoCode_and_NewVehicle
+	 * TC_12_Purchase_Future_Reservation_With_100%Discount_PromoCode_and_ExistingVehicle
 	 *
 	 */
 
 	/*
-	 * This is a test case to purchase reservation with new vehicle and new card
-	 * payment method
+	 * This is a test case to purchase reservation with new vehicle and new card payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -66,8 +65,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase reservation with existing vehicle and new
-	 * card payment method
+	 * This is a test case to purchase reservation with existing vehicle and new card payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -90,8 +88,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase reservation with new vehicle and existing
-	 * card payment method
+	 * This is a test case to purchase reservation with new vehicle and existing card payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -116,8 +113,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase reservation with existing vehicle and
-	 * existing card payment method
+	 * This is a test case to purchase reservation with existing vehicle and existing card payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -141,13 +137,12 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase reservation with new vehicle and promocode
-	 * payment method
+	 * This is a test case to purchase reservation with new vehicle and 100% discount promoCode payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
-	public void TC_05_Purchase_Reservation_With_PromoCode_and_NewVehicle() {
+	public void TC_05_Purchase_Reservation_With_100Percent_Discount_PromoCode_and_NewVehicle() {
 		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItFutureReservation(false);
 		vehicle.setIsItNewCard(false);
@@ -167,13 +162,12 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase reservation with existing vehicle and
-	 * promocode payment method
+	 * This is a test case to purchase reservation with existing vehicle and 100% discount promoCode payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
-	public void TC_06_Purchase_Reservation_With_PromoCode_and_ExistingVehicle() {
+	public void TC_06_Purchase_Reservation_With_100Percent_Discount_PromoCode_and_ExistingVehicle() {
 
 		vehicle.setIsItFutureReservation(false);
 		vehicle.setLocationNumber(getRandomLocation());
@@ -193,6 +187,11 @@ public class SPA_Reservations_Testcases extends BaseClass {
 		locationPage.verify_Purchase_Details(vehicle);
 	}
 
+	/*
+	 * This is a test case to purchase future reservation with new vehicle and new card payment method
+	 *
+	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_07_Purchase_Future_Reservation_With_NewCard_and_NewVehicle() {
 		vehicle.setLocationNumber(getRandomLocation());
@@ -214,8 +213,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase future reservation with existing vehicle and
-	 * new card payment method
+	 * This is a test case to purchase future reservation with existing vehicle and new card payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -239,8 +237,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase future reservation with new vehicle and
-	 * existing card payment method
+	 * This is a test case to purchase future reservation with new vehicle and existing card payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -265,8 +262,7 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase future reservation with existing vehicle and
-	 * existing card payment method
+	 * This is a test case to purchase future reservation with existing vehicle and existing card payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
@@ -290,13 +286,12 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase future reservation with new vehicle and
-	 * promocode payment method
+	 * This is a test case to purchase future reservation with new vehicle and 100% discount promoCode payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
-	public void TC_11_Purchase_Future_Reservation_With_PromoCode_and_NewVehicle() {
+	public void TC_11_Purchase_Future_Reservation_With_100Percent_Discount_PromoCode_and_NewVehicle() {
 		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItFutureReservation(true);
 		vehicle.setIsItNewCard(false);
@@ -316,13 +311,12 @@ public class SPA_Reservations_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase future reservation with existing vehicle and
-	 * promocode payment method
+	 * This is a test case to purchase future reservation with existing vehicle and 100% discount promoCode payment method
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
-	public void TC_12_Purchase_Future_Reservation_With_PromoCode_and_ExistingVehicle() {
+	public void TC_12_Purchase_Future_Reservation_With_100Percent_Discount_PromoCode_and_ExistingVehicle() {
 
 		vehicle.setLocationNumber(getRandomLocation());
 		vehicle.setIsItFutureReservation(true);
