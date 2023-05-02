@@ -27,16 +27,16 @@ public class SPA_StarSpace_Testcases extends BaseClass {
      * TC_02_Purchase_Star_Space_With_NewCard_and_ExistingVehicle
      * TC_03_Purchase_Star_Space_With_ExistingCard_and_NewVehicle
      * TC_04_Purchase_Star_Space_With_ExistingCard_and_ExistingVehicle
-     * TC_05_Purchase_Star_Space_With_PromoCode_and_NewVehicle
-     * TC_06_Purchase_Star_Space_With_PromoCode_and_ExistingVehicle
+     * TC_05_Purchase_Star_Space_With_100%Discount_PromoCode_and_NewVehicle
+     * TC_06_Purchase_Star_Space_With_100%Discount_PromoCode_and_ExistingVehicle
      * TC_07_Purchase_And_Extend_Star_Space_With_NewCard
      * TC_08_Purchase_And_Extend_Star_Space_With_ExistingCard
      * TC_09_Purchase_Star_Space_With_NewCard_and_Extend_with_ExistingCard
-     * TC_10_Purchase_Star_Space_With_NewCard_and_Extend_with_PromoCode
+     * TC_10_Purchase_Star_Space_With_NewCard_and_Extend_with_100%Discount_PromoCode
      * TC_11_Purchase_Star_Space_With_ExistingCard_and_Extend_with_NewCard
-     * TC_12_Purchase_Star_Space_With_ExistingCard_and_Extend_with_PromoCode
-     * TC_13_Purchase_Star_Space_With_PromoCode_and_Extend_with_NewCard
-     * TC_14_Purchase_Star_Space_With_PromoCode_and_Extend_with_ExistingCard
+     * TC_12_Purchase_Star_Space_With_ExistingCard_and_Extend_with_100%Discount_PromoCode
+     * TC_13_Purchase_Star_Space_With_100%Discount_PromoCode_and_Extend_with_NewCard
+     * TC_14_Purchase_Star_Space_With_100%Discount_PromoCode_and_Extend_with_ExistingCard
      */
 
     /*
@@ -132,12 +132,12 @@ public class SPA_StarSpace_Testcases extends BaseClass {
     }
 
     /*
-     * This is a test case to purchase star space with new vehicle and promocode
+     * This is a test case to purchase star space with new vehicle and 100% discount promoCode
      *
      * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
      */
     @Test(groups = { "smoke", "regression" })
-    public void TC_05_Purchase_Star_Space_With_PromoCode_and_NewVehicle() {
+    public void TC_05_Purchase_Star_Space_With_100Percent_Discount_PromoCode_and_NewVehicle() {
 
         vehicle.setIsItNewCard(true);
         vehicle.setIsItNewVehicle(true);
@@ -157,12 +157,12 @@ public class SPA_StarSpace_Testcases extends BaseClass {
     }
 
     /*
-     * This is a test case to purchase star space with existing vehicle and promocode
+     * This is a test case to purchase star space with existing vehicle and 100% discount promoCode
      *
      * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
      */
     @Test(groups = { "smoke", "regression" })
-    public void TC_06_Purchase_Star_Space_With_PromoCode_and_ExistingVehicle() {
+    public void TC_06_Purchase_Star_Space_With_100Percent_Discount_PromoCode_and_ExistingVehicle() {
 
         vehicle.setIsItNewCard(true);
         vehicle.setIsItNewVehicle(false);
@@ -257,12 +257,12 @@ public class SPA_StarSpace_Testcases extends BaseClass {
     }
 
     /*
-     * This is a test case to purchase star space with new card payment and extend with promocode
+     * This is a test case to purchase star space with new card payment and extend with 100% discount promoCode
      *
      * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
      */
     @Test(groups = { "smoke", "regression" })
-    public void TC_10_Purchase_Star_Space_With_NewCard_and_Extend_with_PromoCode() {
+    public void TC_10_Purchase_Star_Space_With_NewCard_and_Extend_with_100Percent_Discount_PromoCode() {
 
         vehicle.setIsItNewCard(true);
         vehicle.setIsItNewVehicle(true);
@@ -312,12 +312,12 @@ public class SPA_StarSpace_Testcases extends BaseClass {
     }
 
     /*
-     * This is a test case to purchase star space with existing card payment and extend with promocode
+     * This is a test case to purchase star space with existing card payment and extend with 100% discount promoCode
      *
      * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
      */
     @Test(groups = { "smoke", "regression" })
-    public void TC_12_Purchase_Star_Space_With_ExistingCard_and_Extend_with_PromoCode() {
+    public void TC_12_Purchase_Star_Space_With_ExistingCard_and_Extend_with_100Percent_Discount_PromoCode() {
 
         vehicle.setIsItNewCard(false);
         vehicle.setIsItNewVehicle(true);
@@ -339,12 +339,12 @@ public class SPA_StarSpace_Testcases extends BaseClass {
     }
 
     /*
-     * This is a test case to purchase star space with promocode card payment and extend with new card
+     * This is a test case to purchase star space with 100% discount promoCode card payment and extend with new card
      *
      * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
      */
     @Test(groups = { "smoke", "regression" })
-    public void TC_13_Purchase_Star_Space_With_PromoCode_and_Extend_with_NewCard() {
+    public void TC_13_Purchase_Star_Space_With_100Percent_Discount_PromoCode_and_Extend_with_NewCard() {
 
         vehicle.setIsItNewCard(false);
         vehicle.setIsItNewVehicle(true);
@@ -367,12 +367,12 @@ public class SPA_StarSpace_Testcases extends BaseClass {
     }
 
     /*
-     * This is a test case to purchase star space with existing card payment and extend with promocode
+     * This is a test case to purchase star space with existing card payment and extend with 100% discount promoCode
      *
      * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
      */
     @Test(groups = { "smoke", "regression" })
-    public void TC_14_Purchase_Star_Space_With_PromoCode_and_Extend_with_ExistingCard() {
+    public void TC_14_Purchase_Star_Space_With_100Percent_Discount_PromoCode_and_Extend_with_ExistingCard() {
 
         vehicle.setIsItNewCard(false);
         vehicle.setIsItNewVehicle(true);

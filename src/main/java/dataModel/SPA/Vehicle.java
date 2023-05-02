@@ -32,6 +32,7 @@ public class Vehicle implements Serializable {
 	private String cvc;
 	private String amount;
 	private String promoCode;
+	private String fixedPromoCode;
 	private String timeInHours;
 	private String extendTime;
 	private String payOption;
@@ -128,6 +129,14 @@ public class Vehicle implements Serializable {
 
 	public void setPromoCode(String promoCode) {
 		this.promoCode = promoCode;
+	}
+
+	public String getFixedPromoCode() {
+		return fixedPromoCode;
+	}
+
+	public void setFixedPromoCode(String fixedPromoCode) {
+		this.fixedPromoCode = fixedPromoCode;
 	}
 
 	public String getTimeInHours() {
