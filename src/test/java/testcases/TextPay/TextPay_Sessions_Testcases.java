@@ -34,6 +34,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * TC_10_Purchase_Charging_Space_as_Guest_With_PromoCode_and_NewVehicle
 	 * TC_11_Purchase_Charging_Space_as_Guest_for_UnknownVehicle_with_NewCard
 	 * TC_12_Purchase_Charging_Space_as_Guest_for_UnknownVehicle_with_PromoCode
+	 * TC_13_Purchase_Regular_Space_with_PEEKProduct_as_Guest_With_NewCard_and_NewVehicle
 	 */
 
 	/*
@@ -46,6 +47,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_01_Purchase_Regular_Space_as_Guest_With_NewCard_and_NewVehicle() {
 
+		guest.setLocationNumber(getRandomLocation());
 		String licencePlate = getRandomLicencePlate();
 		guest.setLicensePlateNumber(licencePlate);
 		guest.setVehicleType("newVehicle");
@@ -53,13 +55,13 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("card");
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest);
+		tp_HomePage.purchase_Session_AsGuest(guest, false);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
 		purchaseDetails.setPaymentOption("card");
 		purchaseDetails.setPaymentMethod(Constants.VISA_CARD_TYPE);
-		//tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		// tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 
 	}
 
@@ -72,18 +74,19 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_02_Purchase_Regular_Space_as_Guest_With_PromoCode_and_NewVehicle() {
 
+		guest.setLocationNumber(getRandomLocation());
 		guest.setLicensePlateNumber(getRandomLicencePlate());
 		guest.setVehicleType("newVehicle");
 		guest.setParkingType(Constants.REGULAR_SPACE);
 		guest.setPaymentVia("promocode");
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest);
+		tp_HomePage.purchase_Session_AsGuest(guest, false);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
 		purchaseDetails.setPaymentOption("promocode");
 		purchaseDetails.setPromocode(guest.getPromocode());
-		//tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		// tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 
 	}
 
@@ -96,20 +99,21 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_03_Purchase_Regular_Space_as_Guest_for_UnknownVehicle_with_NewCard() {
 
+		guest.setLocationNumber(getRandomLocation());
 		guest.setLicensePlateNumber(Constants.UNKNOWN);
 		guest.setVehicleType("unknownVehicle");
 		guest.setParkingType(Constants.REGULAR_SPACE);
 		guest.setPaymentVia("card");
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest);
+		tp_HomePage.purchase_Session_AsGuest(guest, false);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
 		purchaseDetails.setPaymentOption("card");
 		purchaseDetails.setPaymentMethod(Constants.VISA_CARD_TYPE);
 
-		//tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		// tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 	/*
@@ -121,19 +125,20 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_04_Purchase_Regular_Space_as_Guest_for_UnknownVehicle_with_PromoCode() {
 
+		guest.setLocationNumber(getRandomLocation());
 		guest.setLicensePlateNumber(Constants.UNKNOWN);
 		guest.setVehicleType("unknownVehicle");
 		guest.setParkingType(Constants.REGULAR_SPACE);
 		guest.setPaymentVia("promocode");
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest);
+		tp_HomePage.purchase_Session_AsGuest(guest, false);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
 		purchaseDetails.setPaymentOption("promocode");
 		purchaseDetails.setPromocode(guest.getPromocode());
 
-		//tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		// tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 	/*
@@ -145,20 +150,22 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_05_Purchase_Star_Space_as_Guest_With_NewCard_and_NewVehicle() {
 
+		guest.setLocationNumber(getRandomLocation());
 		guest.setLicensePlateNumber(getRandomLicencePlate());
 		guest.setVehicleType("newVehicle");
 		guest.setParkingType(Constants.STAR_SPACE);
 		guest.setPaymentVia("card");
+		guest.setTimeInHours(Constants._2_Hrs);
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest);
+		tp_HomePage.purchase_Session_AsGuest(guest, false);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
 		purchaseDetails.setPaymentOption("card");
 		purchaseDetails.setPaymentMethod(Constants.VISA_CARD_TYPE);
 
-		//tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		// tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 	/*
@@ -170,18 +177,20 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_06_Purchase_Star_Space_as_Guest_With_PromoCode_and_NewVehicle() {
 
+		guest.setLocationNumber(getRandomLocation());
 		guest.setLicensePlateNumber(getRandomLicencePlate());
 		guest.setVehicleType("newVehicle");
 		guest.setParkingType(Constants.STAR_SPACE);
 		guest.setPaymentVia("promocode");
+		guest.setTimeInHours(Constants._5_Hrs);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest);
+		tp_HomePage.purchase_Session_AsGuest(guest, false);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
 		purchaseDetails.setPaymentOption("promocode");
 		purchaseDetails.setPromocode(guest.getPromocode());
-		//tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		// tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 	/*
@@ -193,20 +202,22 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_07_Purchase_Star_Space_as_Guest_for_UnknownVehicle_with_NewCard() {
 
+		guest.setLocationNumber(getRandomLocation());
 		guest.setLicensePlateNumber(Constants.UNKNOWN);
 		guest.setVehicleType("unknownVehicle");
 		guest.setParkingType(Constants.STAR_SPACE);
 		guest.setPaymentVia("card");
+		guest.setTimeInHours(Constants._1_Hr);
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest);
+		tp_HomePage.purchase_Session_AsGuest(guest, false);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
 		purchaseDetails.setPaymentOption("card");
 		purchaseDetails.setPaymentMethod(Constants.VISA_CARD_TYPE);
 
-		//tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		// tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 	/*
@@ -218,18 +229,20 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_08_Purchase_Star_Space_as_Guest_for_UnknownVehicle_with_PromoCode() {
 
+		guest.setLocationNumber(getRandomLocation());
 		guest.setLicensePlateNumber(Constants.UNKNOWN);
 		guest.setVehicleType("unknownVehicle");
 		guest.setParkingType(Constants.STAR_SPACE);
 		guest.setPaymentVia("promocode");
+		guest.setTimeInHours(Constants._2_Hrs);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest);
+		tp_HomePage.purchase_Session_AsGuest(guest, false);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
 		purchaseDetails.setPaymentOption("promocode");
 		purchaseDetails.setPromocode(guest.getPromocode());
-		//tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		// tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 	/*
@@ -241,21 +254,22 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_09_Purchase_Charging_Space_as_Guest_With_NewCard_and_NewVehicle() {
 
+		guest.setLocationNumber(getRandomLocation());
 		guest.setLicensePlateNumber(getRandomLicencePlate());
 		guest.setVehicleType("newVehicle");
 		guest.setParkingType(Constants.CHARGING_SPACE);
 		guest.setPaymentVia("card");
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
-		guest.setTimeInHours("2");
+		guest.setTimeInHours(Constants._2_Hrs);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest);
+		tp_HomePage.purchase_Session_AsGuest(guest, false);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
 		purchaseDetails.setPaymentOption("card");
 		purchaseDetails.setPaymentMethod(Constants.VISA_CARD_TYPE);
 
-		//tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		// tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 	/*
@@ -265,21 +279,22 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
-	public void TC_10_Charging_Star_Space_as_Guest_With_PromoCode_and_NewVehicle() {
+	public void TC_10_Charging_Space_as_Guest_With_PromoCode_and_NewVehicle() {
 
+		guest.setLocationNumber(getRandomLocation());
 		guest.setLicensePlateNumber(getRandomLicencePlate());
 		guest.setVehicleType("newVehicle");
 		guest.setParkingType(Constants.CHARGING_SPACE);
 		guest.setPaymentVia("promocode");
-		guest.setTimeInHours("2");
+		guest.setTimeInHours(Constants._5_Hrs);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest);
+		tp_HomePage.purchase_Session_AsGuest(guest, false);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
 		purchaseDetails.setPaymentOption("promocode");
 		purchaseDetails.setPromocode(guest.getPromocode());
-		//tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		// tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 	/*
@@ -289,23 +304,24 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
-	public void TC_11_Charging_Star_Space_as_Guest_for_UnknownVehicle_with_NewCard() {
+	public void TC_11_Charging_Space_as_Guest_for_UnknownVehicle_with_NewCard() {
 
+		guest.setLocationNumber(getRandomLocation());
 		guest.setLicensePlateNumber(Constants.UNKNOWN);
 		guest.setVehicleType("unknownVehicle");
 		guest.setParkingType(Constants.CHARGING_SPACE);
 		guest.setPaymentVia("card");
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
-		guest.setTimeInHours("2");
+		guest.setTimeInHours(Constants._1_Hr);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest);
+		tp_HomePage.purchase_Session_AsGuest(guest, false);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
 		purchaseDetails.setPaymentOption("card");
 		purchaseDetails.setPaymentMethod(Constants.VISA_CARD_TYPE);
 
-		//tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		// tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
 	}
 
 	/*
@@ -317,19 +333,48 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_12_Charging_Star_Space_as_Guest_for_UnknownVehicle_with_PromoCode() {
 
+		guest.setLocationNumber(getRandomLocation());
 		guest.setLicensePlateNumber(Constants.UNKNOWN);
 		guest.setVehicleType("unknownVehicle");
 		guest.setParkingType(Constants.CHARGING_SPACE);
 		guest.setPaymentVia("promocode");
-		guest.setTimeInHours("2");
+		guest.setTimeInHours(Constants._2_Hrs);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest);
+		tp_HomePage.purchase_Session_AsGuest(guest, false);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
 		purchaseDetails.setPaymentOption("promocode");
 		purchaseDetails.setPromocode(guest.getPromocode());
-		//tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		// tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+	}
+
+	/*
+	 * This is a test case to purchase regular space session as a guest with new
+	 * vehicle and new payment method
+	 *
+	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
+
+	@Test(groups = { "smoke", "regression" })
+	public void TC_13_Purchase_Regular_Space_with_PEEKProduct_as_Guest_With_NewCard_and_NewVehicle() {
+
+		guest.setLocationNumber(getRandom_PEEK_Location());
+		String licencePlate = getRandomLicencePlate();
+		guest.setLicensePlateNumber(licencePlate);
+		guest.setVehicleType("newVehicle");
+		guest.setParkingType(Constants.REGULAR_SPACE);
+		guest.setPaymentVia("card");
+		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
+		tp_HomePage = launch_TextPay_Application();
+		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
+
+		// Set the purchase details for location revenue page verification
+		purchaseDetails.setPaymentOption("card");
+		purchaseDetails.setPaymentMethod(Constants.VISA_CARD_TYPE);
+		// tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+
 	}
 
 }

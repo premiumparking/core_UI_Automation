@@ -345,6 +345,20 @@ public class BaseClass extends Operations {
 		return locations[index];
 	}
 	
+	/*
+	 * Usage : To get random PEEK location from list of Locations space
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
+	 */
+	public String getRandom_PEEK_Location() {
+
+		String[] locations = Constants.PEEK_LOCATIONS;
+		Random random = new Random();
+		int index = random.nextInt(locations.length);
+
+		return locations[index];
+	}
+	
 	
 	/*
 	 * Usage : To get random location from list of Locations space

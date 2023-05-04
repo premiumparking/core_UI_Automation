@@ -135,6 +135,26 @@ public class Operations extends Extent_Reports {
 	}
 
 	/*
+	 * This method is to click on BUTTON
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public void clickOnButton_using_JSE(By ele, String field) {
+
+		//waitForElementTobeDisplayed(ele);
+		WebElement element = BaseClass.driver.findElement(ele);
+		waitForPageLoad(1);
+		if (isElementDisplayed(ele) && element.isEnabled()) {
+			highlightElement(element);
+			JavascriptExecutor js = (JavascriptExecutor) BaseClass.driver;
+			js.executeScript("arguments[0].click();", BaseClass.driver.findElement(ele));
+			passStep("Clicked on " + field);
+			waitForPageLoad(2);
+		}
+
+	}
+
+	/*
 	 * This method is to verify whether the element is DISPLAYED or NOT and will
 	 * include in the report
 	 * 
@@ -528,6 +548,6 @@ public class Operations extends Extent_Reports {
 
 		// Scrolling down the page till the element is found
 		js.executeScript("arguments[0].scrollIntoView();", element);
-		passStep("Scrolled down to  "+element.getText());
+		passStep("Scrolled down to  " + element.getText());
 	}
 }
