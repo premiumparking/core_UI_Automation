@@ -40,13 +40,25 @@ public class TextPay_HomePage extends BaseClass {
 	By button_StarSpace = By.xpath("//strong[normalize-space()='Star Space']");
 	By button_ChargingSpace = By.xpath("//strong[normalize-space()='Charging Space']");
 	By button_ViewRate = By.xpath("//button[normalize-space()='View Rate']");
-	By choose_Star_Space_Duration = By
-			.xpath("//a[@data-testid='test-star-rate-link']//span[contains(.,'STAR 12 Hours')]");
-	By choose_Charging_Space_Duration = By
-			.xpath("//a[@data-testid='test-charging-rate-link']//span[contains(.,'2 hour')]");
+
 	By label_Time_Regular_Space = By.xpath("//span[@data-testid='test-time-unit']");
-	By label_Time_Star_Space = By.xpath("//p[contains(normalize-space(),'STAR 12 Hours')]");
-	By label_Time_Charging_Space = By.xpath("//p[contains(normalize-space(),'2 hour')]");
+
+	By time_star_1Hr = By.xpath("//strong[normalize-space()='Star 1 Hr']");
+	By time_star_2Hr = By.xpath("//strong[normalize-space()='Star 2 Hrs']");
+	By time_star_5Hr = By.xpath("//strong[normalize-space()='Star 5 Hrs']");
+
+	By label_star_1Hr = By.xpath("//p[normalize-space()='Star 1 Hr']");
+	By label_star_2Hr = By.xpath("//p[normalize-space()='Star 2 Hrs']");
+	By label_star_5Hr = By.xpath("//p[normalize-space()='Star 5 Hrs']");
+
+	By time_charging_1Hr = By.xpath("//strong[normalize-space()='Charging 1 Hr']");
+	By time_charging_2Hr = By.xpath("//strong[normalize-space()='Charging 2 Hrs']");
+	By time_charging_5Hr = By.xpath("//strong[normalize-space()='Charging 5 Hrs']");
+
+	By label_charging_1Hr = By.xpath("//p[normalize-space()='Charging 1 Hr']");
+	By label_charging_2Hr = By.xpath("//p[normalize-space()='Charging 2 Hrs']");
+	By label_charging_5Hr = By.xpath("//p[normalize-space()='Charging 5 Hrs']");
+
 	By label_Cost = By.xpath("//strong[normalize-space()='Total']/following-sibling::strong");
 	public By duration_Bar = By.xpath("//input[@id='custom-duration']");
 	By label_Ends = By.xpath("//p[contains(text(),'Ends:')]");
@@ -93,12 +105,21 @@ public class TextPay_HomePage extends BaseClass {
 	By dd_Vehicle_Type = By.id("type");
 	By dd_Vehicle_Color = By.id("color");
 
+	// PEEK Slides
+	By slide_1 = By.xpath("//button[normalize-space()='1']");
+	//By button_choose_boat_tickets = By.xpath("(//p[normalize-space()='Boat Rental'])[2]//following-sibling::div//button[@data-testid='choose-tickets-button']");
+	By button_choose_boat_tickets = By.xpath("(//p[normalize-space()='Boat Rental'])[2]//following-sibling::div//button[@data-testid='choose-tickets-button']");
+	//By button_choose_boat_tickets = By.xpath("//div[@class='slick-slide slick-active slick-current']//div//button[@type='button'][normalize-space()='Choose Tickets']");
+	By button_plus = By.xpath("(//button[@type='button'][normalize-space()='+'])[1]");
+	By button_Apply = By.xpath("//button[normalize-space()='Apply']");
+	By peek_confirmation_Message = By.xpath("//strong[normalize-space()='Added to Order']");
+
 	/*
 	 * Method to navigate to Location Page
 	 *
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public void purchase_Session_AsGuest(Guest guest) {
+	public void purchase_Session_AsGuest(Guest guest, Boolean peek) {
 		stepInfo(" <b> **** Purchasing Session as Guest ****</b>");
 		clickOnButton(link_Guest);
 		waitForElementTobeClickable(location_searchBox);
@@ -115,26 +136,56 @@ public class TextPay_HomePage extends BaseClass {
 
 		// Space Type
 		if (guest.getParkingType().equalsIgnoreCase("Regular Space")) {
-			regularSpace();
+			choose_regularSpace();
 			waitForElementTobeClickable(label_Time_Regular_Space);
 			assertEquals(getElementText(label_Time_Regular_Space), guest.getTimeInHours() + " Hours");
-			clickOnButton(button_Continue_3of4, "continue button");
-			waitForElementTobeDisplayed(label_Review_Pay);
+			if(peek)
+				add_PEEK_Tickets();
+			clickOnButton(button_Continue_3of4, getElementText(button_Continue_3of4));
 			assertEquals(getElementText(label_Time_Regular_Space), guest.getTimeInHours() + " Hours");
+			waitForElementTobeDisplayed(label_Review_Pay);
 		} else if (guest.getParkingType().equalsIgnoreCase("Star Space")) {
-			starSpace();
-			waitForElementTobeClickable(label_Time_Star_Space);
-			assertEquals(getElementText(label_Time_Star_Space), "STAR " + guest.getTimeInHours() + " Hours");
+			choose_starSpace();
+			waitForElementTobeClickable(time_star_1Hr);
+			clickOnButton(getStarTime(guest.getTimeInHours()), getElementText(getStarTime(guest.getTimeInHours())));
+			if (guest.getTimeInHours().equalsIgnoreCase("1"))
+				assertEquals(getElementText(getStarTimeLable(guest.getTimeInHours())),
+						"Star " + guest.getTimeInHours() + " Hr");
+			else
+				assertEquals(getElementText(getStarTimeLable(guest.getTimeInHours())),
+						"Star " + guest.getTimeInHours() + " Hrs");
+			if(peek)
+				add_PEEK_Tickets();
 			clickOnButton(button_Continue_3of4, "continue button");
 			waitForElementTobeDisplayed(label_Review_Pay);
-			assertEquals(getElementText(label_Time_Star_Space), "STAR " + guest.getTimeInHours() + " Hours");
+			if (guest.getTimeInHours().equalsIgnoreCase("1"))
+				assertEquals(getElementText(getStarTimeLable(guest.getTimeInHours())),
+						"Star " + guest.getTimeInHours() + " Hr");
+			else
+				assertEquals(getElementText(getStarTimeLable(guest.getTimeInHours())),
+						"Star " + guest.getTimeInHours() + " Hrs");
 		} else if (guest.getParkingType().equalsIgnoreCase("Charging Space")) {
-			chargingSpace();
-			waitForElementTobeClickable(label_Time_Charging_Space);
-			assertEquals(getElementText(label_Time_Charging_Space), guest.getTimeInHours() + " hour");
+			choose_chargingSpace();
+			waitForElementTobeClickable(time_charging_1Hr);
+			clickOnButton(getChargingTime(guest.getTimeInHours()),
+					getElementText(getChargingTime(guest.getTimeInHours())));
+			if (guest.getTimeInHours().equalsIgnoreCase("1"))
+				assertEquals(getElementText(getChargingTimeLable(guest.getTimeInHours())),
+						"Charging " + guest.getTimeInHours() + " Hr");
+			else
+				assertEquals(getElementText(getChargingTimeLable(guest.getTimeInHours())),
+						"Charging " + guest.getTimeInHours() + " Hrs");		
+		
+			if(peek)
+				add_PEEK_Tickets();
 			clickOnButton(button_Continue_3of4, "continue button");
 			waitForElementTobeDisplayed(label_Review_Pay);
-			assertEquals(getElementText(label_Time_Charging_Space), guest.getTimeInHours() + " hour");
+			if (guest.getTimeInHours().equalsIgnoreCase("1"))
+				assertEquals(getElementText(getChargingTimeLable(guest.getTimeInHours())),
+						"Charging " + guest.getTimeInHours() + " Hr");
+			else
+				assertEquals(getElementText(getChargingTimeLable(guest.getTimeInHours())),
+						"Charging " + guest.getTimeInHours() + " Hrs");
 		}
 
 		// Payment
@@ -170,7 +221,7 @@ public class TextPay_HomePage extends BaseClass {
 		selectFromSearch(dd_Vehicle_Color, guest.getColor(), "Vehicle Color");
 	}
 
-	public void regularSpace() {
+	public void  choose_regularSpace() {
 		waitForElementTobeClickable(button_RegularSpace);
 		clickOnButton(button_RegularSpace, "Regular Space");
 		waitForPageLoad(3);
@@ -180,21 +231,15 @@ public class TextPay_HomePage extends BaseClass {
 		clickOnButton(button_ViewRate, "View Rate button");
 	}
 
-	public void starSpace() {
+	public void choose_starSpace() {
 		waitForElementTobeClickable(button_StarSpace);
 		clickOnButton(button_StarSpace, "Star Space");
-		waitForPageLoad(3);
-		waitForElementTobeDisplayed(choose_Star_Space_Duration);
-		clickOnButton(choose_Star_Space_Duration, "Choose Star Space Duration");
 
 	}
 
-	public void chargingSpace() {
+	public void choose_chargingSpace() {
 		waitForElementTobeClickable(button_ChargingSpace);
 		clickOnButton(button_ChargingSpace, "Charging Space");
-		waitForPageLoad(3);
-		waitForElementTobeDisplayed(choose_Charging_Space_Duration);
-		clickOnButton(choose_Charging_Space_Duration, "Choose Charging Space Duration");
 	}
 
 	public void addPromoCode(Guest guest) {
@@ -227,7 +272,10 @@ public class TextPay_HomePage extends BaseClass {
 			passStep("Displayed : " + getElementText(label_confirmationTitle));
 			assertEquals(getElementText(label_PurchaseDetails), "Purchase Details");
 			passStep("Displayed : Purchase Details");
-			assertEquals(getElementText(label_conf_duration), guest.getTimeInHours() + " Hours");
+			if (guest.getTimeInHours().equalsIgnoreCase("1"))
+				assertEquals(getElementText(label_conf_duration), guest.getTimeInHours() + " Hour");
+			else
+				assertEquals(getElementText(label_conf_duration), guest.getTimeInHours() + " Hours");
 			passStep("Parking Duration :" + getElementText(label_conf_duration));
 
 			passStep(getElementText(label_conf_endTime));
@@ -237,12 +285,10 @@ public class TextPay_HomePage extends BaseClass {
 			if (guest.getParkingType().equalsIgnoreCase("Regular Space")) {
 				assertEquals(getElementText(label_conf_spaceType), "Space Type:Regular");
 				purchaseDetails.setSpaceType("On Demand");
-			}
-			else if (guest.getParkingType().equalsIgnoreCase("Star Space")) {
+			} else if (guest.getParkingType().equalsIgnoreCase("Star Space")) {
 				assertEquals(getElementText(label_conf_spaceType), "Space Type:Star");
 				purchaseDetails.setSpaceType("Star Spaces");
-			}
-			else if (guest.getParkingType().equalsIgnoreCase("Charging Space")) {
+			} else if (guest.getParkingType().equalsIgnoreCase("Charging Space")) {
 				assertEquals(getElementText(label_conf_spaceType), "Space Type:Charging");
 				purchaseDetails.setSpaceType("On Demand");
 			}
@@ -261,7 +307,7 @@ public class TextPay_HomePage extends BaseClass {
 			assertEquals(getElementText(label_amountCharged), guest.getAmount());
 			passStep("Amount Charged :" + getElementText(label_amountCharged));
 
-			purchaseDetails.setChannel("TextPay");	
+			purchaseDetails.setChannel("TextPay");
 			purchaseDetails.setOrderNumber(getElementText(confirmationNumber));
 			purchaseDetails.setPurchaseType("Session");
 			purchaseDetails.setLocationNumber(guest.getLocationNumber());
@@ -280,6 +326,55 @@ public class TextPay_HomePage extends BaseClass {
 		od_homePage = od_loginPage.login();
 		od_locRevenuePage = od_homePage.navigateToLocationRevenuePage();
 		od_locRevenuePage.verify_LocationRevenueData(purchaseDetails);
+
+	}
+
+	public By getStarTime(String time) {
+		if (time.equalsIgnoreCase("1"))
+			return By.xpath("//strong[normalize-space()='Star " + time + " Hr']");
+		else
+			return By.xpath("//strong[normalize-space()='Star " + time + " Hrs']");
+
+	}
+
+	public By getChargingTime(String time) {
+		if (time.equalsIgnoreCase("1"))
+			return By.xpath("//strong[normalize-space()='Charging " + time + " Hr']");
+		else
+			return By.xpath("//strong[normalize-space()='Charging " + time + " Hrs']");
+
+	}
+
+	public By getStarTimeLable(String time) {
+		if (time.equalsIgnoreCase("1"))
+			return By.xpath("//p[normalize-space()='Star " + time + " Hr']");
+		else
+			return By.xpath("//p[normalize-space()='Star " + time + " Hrs']");
+
+	}
+
+	public By getChargingTimeLable(String time) {
+		if (time.equalsIgnoreCase("1"))
+			return By.xpath("//p[normalize-space()='Charging " + time + " Hr']");
+		else
+			return By.xpath("//p[normalize-space()='Charging " + time + " Hrs']");
+
+	}
+
+	public void add_PEEK_Tickets() {
+		clickOnButton(slide_1, "slide 1");
+		clickOnButton_using_Actions(button_choose_boat_tickets, "Choose Tickets for Boat Rental");
+		clickOnButton_using_JSE(button_choose_boat_tickets, "Choose Tickets for Boat Rental");
+		waitForElementTobeClickable(button_plus);
+		clickOnButton(button_plus, getElementText(button_plus));
+		clickOnButton(button_plus, getElementText(button_plus));
+		passStep("Added 2 tickets");
+		waitForElementTobeClickable(button_Apply);
+		clickOnButton(button_Apply, getElementText(button_Apply));
+		waitForElementTobeDisplayed(peek_confirmation_Message);
+		passStep("confimation message is displayed as : "+getElementText(peek_confirmation_Message));
+		assertEquals(getElementText(peek_confirmation_Message), "Added to Order");
+		
 
 	}
 
