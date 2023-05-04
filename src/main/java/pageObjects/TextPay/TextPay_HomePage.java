@@ -5,6 +5,7 @@ import static org.testng.Assert.assertEquals;
 import org.openqa.selenium.By;
 
 import components.BaseClass;
+import components.Constants;
 import dataModel.TextPay.Guest;
 import dataModel.TextPay.PurchaseDetails;
 import pageObjects.OD.OD_HomePage;
@@ -42,22 +43,6 @@ public class TextPay_HomePage extends BaseClass {
 	By button_ViewRate = By.xpath("//button[normalize-space()='View Rate']");
 
 	By label_Time_Regular_Space = By.xpath("//span[@data-testid='test-time-unit']");
-
-	By time_star_1Hr = By.xpath("//strong[normalize-space()='Star 1 Hr']");
-	By time_star_2Hr = By.xpath("//strong[normalize-space()='Star 2 Hrs']");
-	By time_star_5Hr = By.xpath("//strong[normalize-space()='Star 5 Hrs']");
-
-	By label_star_1Hr = By.xpath("//p[normalize-space()='Star 1 Hr']");
-	By label_star_2Hr = By.xpath("//p[normalize-space()='Star 2 Hrs']");
-	By label_star_5Hr = By.xpath("//p[normalize-space()='Star 5 Hrs']");
-
-	By time_charging_1Hr = By.xpath("//strong[normalize-space()='Charging 1 Hr']");
-	By time_charging_2Hr = By.xpath("//strong[normalize-space()='Charging 2 Hrs']");
-	By time_charging_5Hr = By.xpath("//strong[normalize-space()='Charging 5 Hrs']");
-
-	By label_charging_1Hr = By.xpath("//p[normalize-space()='Charging 1 Hr']");
-	By label_charging_2Hr = By.xpath("//p[normalize-space()='Charging 2 Hrs']");
-	By label_charging_5Hr = By.xpath("//p[normalize-space()='Charging 5 Hrs']");
 
 	By label_Cost = By.xpath("//strong[normalize-space()='Total']/following-sibling::strong");
 	public By duration_Bar = By.xpath("//input[@id='custom-duration']");
@@ -107,9 +92,14 @@ public class TextPay_HomePage extends BaseClass {
 
 	// PEEK Slides
 	By slide_1 = By.xpath("//button[normalize-space()='1']");
-	//By button_choose_boat_tickets = By.xpath("(//p[normalize-space()='Boat Rental'])[2]//following-sibling::div//button[@data-testid='choose-tickets-button']");
-	By button_choose_boat_tickets = By.xpath("(//p[normalize-space()='Boat Rental'])[2]//following-sibling::div//button[@data-testid='choose-tickets-button']");
-	//By button_choose_boat_tickets = By.xpath("//div[@class='slick-slide slick-active slick-current']//div//button[@type='button'][normalize-space()='Choose Tickets']");
+	// By button_choose_boat_tickets = By.xpath("(//p[normalize-space()='Boat
+	// Rental'])[2]//following-sibling::div//button[@data-testid='choose-tickets-button']");
+	By button_choose_boat_tickets = By.xpath(
+			"(//p[normalize-space()='Boat Rental'])[2]//following-sibling::div//button[@data-testid='choose-tickets-button']");
+	// By button_choose_boat_tickets = By.xpath("//div[@class='slick-slide
+	// slick-active
+	// slick-current']//div//button[@type='button'][normalize-space()='Choose
+	// Tickets']");
 	By button_plus = By.xpath("(//button[@type='button'][normalize-space()='+'])[1]");
 	By button_Apply = By.xpath("//button[normalize-space()='Apply']");
 	By peek_confirmation_Message = By.xpath("//strong[normalize-space()='Added to Order']");
@@ -139,14 +129,34 @@ public class TextPay_HomePage extends BaseClass {
 			choose_regularSpace();
 			waitForElementTobeClickable(label_Time_Regular_Space);
 			assertEquals(getElementText(label_Time_Regular_Space), guest.getTimeInHours() + " Hours");
-			if(peek)
+			if (peek)
 				add_PEEK_Tickets();
 			clickOnButton(button_Continue_3of4, getElementText(button_Continue_3of4));
 			assertEquals(getElementText(label_Time_Regular_Space), guest.getTimeInHours() + " Hours");
 			waitForElementTobeDisplayed(label_Review_Pay);
+		} else if (guest.getParkingType().equalsIgnoreCase(Constants.SPECIAL_RATE)) {
+			choose_regularSpace_SpecialRate();
+			clickOnButton(getSpecialRateTime(guest.getTimeInHours()),
+					getElementText(getSpecialRateTime(guest.getTimeInHours())));
+
+			if (guest.getTimeInHours().equalsIgnoreCase("1"))
+				assertEquals(getElementText(getSpecialRateTimeLable(guest.getTimeInHours())),
+						"Special " + guest.getTimeInHours() + " Hr");
+			else
+				assertEquals(getElementText(getSpecialRateTimeLable(guest.getTimeInHours())),
+						"Special " + guest.getTimeInHours() + " Hrs");
+			if (peek)
+				add_PEEK_Tickets();
+			clickOnButton(button_Continue_3of4, "continue button");
+			waitForElementTobeDisplayed(label_Review_Pay);
+			if (guest.getTimeInHours().equalsIgnoreCase("1"))
+				assertEquals(getElementText(getSpecialRateTimeLable(guest.getTimeInHours())),
+						"Special " + guest.getTimeInHours() + " Hr");
+			else
+				assertEquals(getElementText(getSpecialRateTimeLable(guest.getTimeInHours())),
+						"Special " + guest.getTimeInHours() + " Hrs");
 		} else if (guest.getParkingType().equalsIgnoreCase("Star Space")) {
 			choose_starSpace();
-			waitForElementTobeClickable(time_star_1Hr);
 			clickOnButton(getStarTime(guest.getTimeInHours()), getElementText(getStarTime(guest.getTimeInHours())));
 			if (guest.getTimeInHours().equalsIgnoreCase("1"))
 				assertEquals(getElementText(getStarTimeLable(guest.getTimeInHours())),
@@ -154,7 +164,7 @@ public class TextPay_HomePage extends BaseClass {
 			else
 				assertEquals(getElementText(getStarTimeLable(guest.getTimeInHours())),
 						"Star " + guest.getTimeInHours() + " Hrs");
-			if(peek)
+			if (peek)
 				add_PEEK_Tickets();
 			clickOnButton(button_Continue_3of4, "continue button");
 			waitForElementTobeDisplayed(label_Review_Pay);
@@ -166,7 +176,6 @@ public class TextPay_HomePage extends BaseClass {
 						"Star " + guest.getTimeInHours() + " Hrs");
 		} else if (guest.getParkingType().equalsIgnoreCase("Charging Space")) {
 			choose_chargingSpace();
-			waitForElementTobeClickable(time_charging_1Hr);
 			clickOnButton(getChargingTime(guest.getTimeInHours()),
 					getElementText(getChargingTime(guest.getTimeInHours())));
 			if (guest.getTimeInHours().equalsIgnoreCase("1"))
@@ -174,9 +183,9 @@ public class TextPay_HomePage extends BaseClass {
 						"Charging " + guest.getTimeInHours() + " Hr");
 			else
 				assertEquals(getElementText(getChargingTimeLable(guest.getTimeInHours())),
-						"Charging " + guest.getTimeInHours() + " Hrs");		
-		
-			if(peek)
+						"Charging " + guest.getTimeInHours() + " Hrs");
+
+			if (peek)
 				add_PEEK_Tickets();
 			clickOnButton(button_Continue_3of4, "continue button");
 			waitForElementTobeDisplayed(label_Review_Pay);
@@ -221,7 +230,7 @@ public class TextPay_HomePage extends BaseClass {
 		selectFromSearch(dd_Vehicle_Color, guest.getColor(), "Vehicle Color");
 	}
 
-	public void  choose_regularSpace() {
+	public void choose_regularSpace() {
 		waitForElementTobeClickable(button_RegularSpace);
 		clickOnButton(button_RegularSpace, "Regular Space");
 		waitForPageLoad(3);
@@ -229,6 +238,13 @@ public class TextPay_HomePage extends BaseClass {
 		// changeTime(timeBar_ID, guest.getTimeInHours());
 		// changeTime(guest.getTimeInHours());
 		clickOnButton(button_ViewRate, "View Rate button");
+	}
+
+	public void choose_regularSpace_SpecialRate() {
+		waitForElementTobeClickable(button_RegularSpace);
+		clickOnButton(button_RegularSpace, "Regular Space");
+		waitForPageLoad(3);
+		waitForElementTobeDisplayed(button_ViewRate);
 	}
 
 	public void choose_starSpace() {
@@ -345,6 +361,14 @@ public class TextPay_HomePage extends BaseClass {
 
 	}
 
+	public By getSpecialRateTime(String time) {
+		if (time.equalsIgnoreCase("1"))
+			return By.xpath("//strong[normalize-space()='Special " + time + " Hr']");
+		else
+			return By.xpath("//strong[normalize-space()='Special " + time + " Hrs']");
+
+	}
+
 	public By getStarTimeLable(String time) {
 		if (time.equalsIgnoreCase("1"))
 			return By.xpath("//p[normalize-space()='Star " + time + " Hr']");
@@ -361,6 +385,14 @@ public class TextPay_HomePage extends BaseClass {
 
 	}
 
+	public By getSpecialRateTimeLable(String time) {
+		if (time.equalsIgnoreCase("1"))
+			return By.xpath("//p[normalize-space()='Special " + time + " Hr']");
+		else
+			return By.xpath("//p[normalize-space()='Special " + time + " Hrs']");
+
+	}
+
 	public void add_PEEK_Tickets() {
 		clickOnButton(slide_1, "slide 1");
 		clickOnButton_using_Actions(button_choose_boat_tickets, "Choose Tickets for Boat Rental");
@@ -372,9 +404,8 @@ public class TextPay_HomePage extends BaseClass {
 		waitForElementTobeClickable(button_Apply);
 		clickOnButton(button_Apply, getElementText(button_Apply));
 		waitForElementTobeDisplayed(peek_confirmation_Message);
-		passStep("confimation message is displayed as : "+getElementText(peek_confirmation_Message));
+		passStep("confimation message is displayed as : " + getElementText(peek_confirmation_Message));
 		assertEquals(getElementText(peek_confirmation_Message), "Added to Order");
-		
 
 	}
 
