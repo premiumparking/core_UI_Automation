@@ -56,8 +56,8 @@ public class SPA_LocationPage extends BaseClass {
 	public By duration_Bar = By.xpath("//input[@id='custom-duration']");
 	By button_StarSpace = By.xpath("//a[@data-testid='test-pay-to-park-now-star-space']");
 	By button_ChargingSpace = By.xpath("//a[@data-testid='test-pay-to-park-now-charging-space']");
-	By choose_Star_Space_Duration = By.xpath("//div[@data-testid='test-star-session-form']//a[2]");
-	By choose_Charging_Space_Duration = By.xpath("//div[@data-testid='test-charging-session-form']//a[3]");
+	By choose_Star_Space_Duration = By.xpath("//div[@data-testid='test-star-session-form']//a[1]");
+	By choose_Charging_Space_Duration = By.xpath("//div[@data-testid='test-charging-session-form']//a[1]");
 
 	// Extend elements
 	By logo_Location = By.xpath("//a[@data-cy='test-location-nav-bar-title']");
@@ -316,9 +316,14 @@ public class SPA_LocationPage extends BaseClass {
 				}
 			}
 		}
-		// Payment check ## Card
+		// Payment check ## Promo Code
 		else if (vehicle.getPayOption().equalsIgnoreCase("promocode")) {
 			addPromoCode(vehicle.getPromoCode());
+			waitForElementTobeDisplayed(label_Promo_Discount);
+			passStep(getElementText(label_Promo_Discount));
+		}
+		else if (vehicle.getPayOption().equalsIgnoreCase("fixedPromoCode")) {
+			addPromoCode(vehicle.getFixedPromoCode());
 			waitForElementTobeDisplayed(label_Promo_Discount);
 			passStep(getElementText(label_Promo_Discount));
 		}
@@ -369,9 +374,14 @@ public class SPA_LocationPage extends BaseClass {
 				}
 			}
 		}
-		// Payment check ## Card
+		// Payment check ## Promo Code
 		else if (vehicle.getPayOption().equalsIgnoreCase("promocode")) {
 			addPromoCode(vehicle.getPromoCode());
+			waitForElementTobeDisplayed(label_Promo_Discount);
+			passStep(getElementText(label_Promo_Discount));
+		}
+		else if (vehicle.getPayOption().equalsIgnoreCase("fixedPromoCode")) {
+			addPromoCode(vehicle.getFixedPromoCode());
 			waitForElementTobeDisplayed(label_Promo_Discount);
 			passStep(getElementText(label_Promo_Discount));
 		}
@@ -419,9 +429,14 @@ public class SPA_LocationPage extends BaseClass {
 				}
 			}
 		}
-		// Payment check ## Card
+		// Payment check ## Promo Code
 		else if (vehicle.getPayOption().equalsIgnoreCase("promocode")) {
 			addPromoCode(vehicle.getPromoCode());
+			waitForElementTobeDisplayed(label_Promo_Discount);
+			passStep(getElementText(label_Promo_Discount));
+		}
+		else if (vehicle.getPayOption().equalsIgnoreCase("fixedPromoCode")) {
+			addPromoCode(vehicle.getFixedPromoCode());
 			waitForElementTobeDisplayed(label_Promo_Discount);
 			passStep(getElementText(label_Promo_Discount));
 		}
@@ -472,9 +487,14 @@ public class SPA_LocationPage extends BaseClass {
 				}
 			}
 		}
-		// Payment check ## Card
+		// Payment check ## Promo Code
 		else if (vehicle.getPayOption().equalsIgnoreCase("promocode")) {
 			addPromoCode(vehicle.getPromoCode());
+			waitForElementTobeDisplayed(label_Promo_Discount);
+			passStep(getElementText(label_Promo_Discount));
+		}
+		else if (vehicle.getPayOption().equalsIgnoreCase("fixedPromoCode")) {
+			addPromoCode(vehicle.getFixedPromoCode());
 			waitForElementTobeDisplayed(label_Promo_Discount);
 			passStep(getElementText(label_Promo_Discount));
 		}

@@ -37,6 +37,12 @@ public class SPA_ChargingSpace_Testcases extends BaseClass {
 	 * TC_12_Purchase_Charging_Space_With_ExistingCard_and_Extend_with_100%Discount_PromoCode
 	 * TC_13_Purchase_Charging_Space_With_100%Discount_PromoCode_and_Extend_with_NewCard
 	 * TC_14_Purchase_Charging_Space_With_100%Discount_PromoCode_and_Extend_with_ExistingCard
+	 * TC_15_Purchase_Charging_Space_With_Fixed_Discount_PromoCode_and_NewVehicle
+	 * TC_16_Purchase_Charging_Space_With_Fixed_Discount_PromoCode_and_ExistingVehicle
+	 * TC_17_Purchase_Charging_Space_With_NewCard_and_Extend_with_Fixed_Discount_PromoCode
+	 * TC_18_Purchase_Charging_Space_With_ExistingCard_and_Extend_with_Fixed_Discount_PromoCode
+	 * TC_19_Purchase_Charging_Space_With_Fixed_Discount_PromoCode_and_Extend_with_NewCard
+	 * TC_20_Purchase_Charging_Space_With_Fixed_Discount_PromoCode_and_Extend_with_ExistingCard
 	 */
 
 	/*
@@ -379,6 +385,163 @@ public class SPA_ChargingSpace_Testcases extends BaseClass {
 		vehicle.setIsItNewSession(true);
 		vehicle.setIsItNewReservation(false);
 		vehicle.setPayOption("promocode");
+		vehicle.setLicensePlateNumber(getRandomLicencePlate());
+
+		spaLoginPage = launch_SPA_Application();
+		accountsPage = spaLoginPage.login();
+		spaHomePage = accountsPage.navigateToHomePage();
+		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+		locationPage.purchase_ChargingSpace(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+		vehicle.setPayOption("card");
+		vehicle.setIsItNewCard(false);
+		locationPage.extend_Charging_Space(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+	}
+
+	/*
+	 * This is a test case to purchase charging space with new vehicle and fixed discount promoCode
+	 *
+	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_15_Purchase_Charging_Space_With_Fixed_Discount_PromoCode_and_NewVehicle() {
+
+		vehicle.setIsItNewCard(false);
+		vehicle.setIsItNewVehicle(true);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewReservation(false);
+		vehicle.setPayOption("fixedPromoCode");
+		vehicle.setLicensePlateNumber(getRandomLicencePlate());
+
+		spaLoginPage = launch_SPA_Application();
+		accountsPage = spaLoginPage.login();
+		spaHomePage = accountsPage.navigateToHomePage();
+
+		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+		locationPage.purchase_ChargingSpace(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+	}
+
+	/*
+	 * This is a test case to purchase charging space with existing vehicle and fixed discount promoCode
+	 *
+	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_16_Purchase_Charging_Space_With_Fixed_Discount_PromoCode_and_ExistingVehicle() {
+
+		vehicle.setIsItNewCard(false);
+		vehicle.setIsItNewVehicle(false);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewReservation(false);
+		vehicle.setPayOption("fixedPromoCode");
+		vehicle.setLicensePlateNumber(Add_NewVehicle());
+		spaHomePage = accountsPage.navigateToHomePage();
+		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+		locationPage.purchase_ChargingSpace(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+	}
+
+	/*
+	 * This is a test case to purchase charging space with new card payment and extend with fixed discount promoCode
+	 *
+	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_17_Purchase_Charging_Space_With_NewCard_and_Extend_with_Fixed_Discount_PromoCode() {
+
+		vehicle.setIsItNewCard(true);
+		vehicle.setIsItNewVehicle(true);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewReservation(false);
+		vehicle.setPayOption("card");
+		vehicle.setLicensePlateNumber(getRandomLicencePlate());
+
+		spaLoginPage = launch_SPA_Application();
+		accountsPage = spaLoginPage.login();
+		spaHomePage = accountsPage.navigateToHomePage();
+		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+		locationPage.purchase_ChargingSpace(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+		vehicle.setIsItNewCard(false);
+		vehicle.setPayOption("fixedPromoCode");
+		locationPage.extend_Charging_Space(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+	}
+
+	/*
+	 * This is a test case to purchase charging space with existing card payment and extend with fixed discount promoCode
+	 *
+	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_18_Purchase_Charging_Space_With_ExistingCard_and_Extend_with_Fixed_Discount_PromoCode() {
+
+		vehicle.setIsItNewCard(false);
+		vehicle.setIsItNewVehicle(true);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewReservation(false);
+		vehicle.setPayOption("card");
+		vehicle.setLicensePlateNumber(getRandomLicencePlate());
+
+		spaLoginPage = launch_SPA_Application();
+		accountsPage = spaLoginPage.login();
+		spaHomePage = accountsPage.navigateToHomePage();
+		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+		locationPage.purchase_ChargingSpace(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+		vehicle.setPayOption("fixedPromoCode");
+		locationPage.extend_Charging_Space(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+	}
+
+	/*
+	 * This is a test case to purchase charging space with fixed discount promoCode payment and extend with new card
+	 *
+	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_19_Purchase_Charging_Space_With_Fixed_Discount_PromoCode_and_Extend_with_NewCard() {
+
+		vehicle.setIsItNewCard(false);
+		vehicle.setIsItNewVehicle(true);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewReservation(false);
+		vehicle.setPayOption("fixedPromoCode");
+		vehicle.setLicensePlateNumber(getRandomLicencePlate());
+
+		spaLoginPage = launch_SPA_Application();
+		accountsPage = spaLoginPage.login();
+		spaHomePage = accountsPage.navigateToHomePage();
+		locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+		locationPage.purchase_ChargingSpace(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+		vehicle.setPayOption("card");
+		vehicle.setIsItNewCard(true);
+		locationPage.extend_Charging_Space(vehicle);
+		locationPage.verify_Purchase_Details(vehicle);
+	}
+
+	/*
+	 * This is a test case to purchase charging space with fixed discount promoCode and extend with existing card payment
+	 *
+	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_20_Purchase_Charging_Space_With_Fixed_Discount_PromoCode_and_Extend_with_ExistingCard() {
+
+		vehicle.setIsItNewCard(false);
+		vehicle.setIsItNewVehicle(true);
+		vehicle.setIsItNewSession(true);
+		vehicle.setIsItNewReservation(false);
+		vehicle.setPayOption("fixedPromoCode");
 		vehicle.setLicensePlateNumber(getRandomLicencePlate());
 
 		spaLoginPage = launch_SPA_Application();
