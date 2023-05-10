@@ -200,27 +200,11 @@ public class TextPay_HomePage extends BaseClass {
 
 		// Payment
 		if (guest.getPaymentVia().equalsIgnoreCase("card")) {
-			addNewCard(guest);
-			waitForElementTobeClickable(button_Pay);
-			waitForElementTobeDisplayed(label_Cost);
-			guest.setAmount(getElementText(label_Cost));
-			clickOnButton(button_Pay, "Pay button");
+			payWithCard(guest);
 		} else if (guest.getPaymentVia().equalsIgnoreCase("promocode")) {
 			addPromoCode(guest);
 			if (guest.getPromocode().equalsIgnoreCase(Constants.PROMO50)) {
-				try {
-					if (isElementDisplayed(button_payWithCard)) {
-						clickOnButton(button_payWithCard, getElementText(button_payWithCard));
-
-					}
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				addNewCard(guest);
-				waitForElementTobeClickable(button_Pay);
-				waitForElementTobeDisplayed(label_Cost);
-				guest.setAmount(getElementText(label_Cost));
-				clickOnButton(button_Pay, "Pay button");
+				payWithCard(guest);
 			} else {
 				waitForElementTobeClickable(button_startParking);
 				waitForElementTobeDisplayed(label_Cost);
@@ -228,6 +212,23 @@ public class TextPay_HomePage extends BaseClass {
 				clickOnButton(button_startParking, "Start Parking button");
 			}
 		}
+	}
+
+	public void payWithCard(Guest guest) {
+		try {
+			waitForElementTobeClickable(button_payWithCard);
+			if (isElementDisplayed(button_payWithCard)) {
+				clickOnButton(button_payWithCard, getElementText(button_payWithCard));
+
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		addNewCard(guest);
+		waitForElementTobeClickable(button_Pay);
+		waitForElementTobeDisplayed(label_Cost);
+		guest.setAmount(getElementText(label_Cost));
+		clickOnButton(button_Pay, "Pay button");
 	}
 
 	public void addNewVehicle(Guest guest) {

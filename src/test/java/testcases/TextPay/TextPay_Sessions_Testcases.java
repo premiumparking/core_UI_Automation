@@ -463,6 +463,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setLicensePlateNumber(getRandomLicencePlate());
 		guest.setVehicleType("newVehicle");
 		guest.setParkingType(Constants.REGULAR_SPACE);
+		guest.setTimeInHours(Constants._12_Hrs);
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO50);
 		tp_HomePage = launch_TextPay_Application();
@@ -489,6 +490,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setLicensePlateNumber(Constants.UNKNOWN);
 		guest.setVehicleType("unknownVehicle");
 		guest.setParkingType(Constants.REGULAR_SPACE);
+		guest.setTimeInHours(Constants._12_Hrs);
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO50);
 		tp_HomePage = launch_TextPay_Application();
