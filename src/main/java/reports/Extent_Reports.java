@@ -36,7 +36,7 @@ public class Extent_Reports {
 		Date date = new Date();
 		String d = dateFormat.format(date).toString();
 		String timeStamp = new SimpleDateFormat("HHmmss").format(new Date());
-		String reportName = "ExtentReport_" + timeStamp;
+		String reportName = "AutomationReport_" + timeStamp;
 
 		report = new ExtentReports(
 				System.getProperty("user.dir") + "\\TestResults\\" + d + "\\" + reportName + ".html");
