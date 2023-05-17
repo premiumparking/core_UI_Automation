@@ -557,4 +557,32 @@ public class SPA_StarSpace_Testcases extends BaseClass {
         locationPage.extend_Star_Space(vehicle);
         locationPage.verify_Purchase_Details(vehicle);
     }
+
+    /*
+     * This is a test case to purchase and extend star space by rate
+     *
+     * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+     */
+    @Test(groups = { "smoke", "regression" })
+    public void TC_21_Purchase_And_Extend_Star_Space_By_Rate() {
+
+        vehicle.setIsItNewCard(true);
+        vehicle.setIsItNewVehicle(true);
+        vehicle.setIsItNewSession(true);
+        vehicle.setIsItNewReservation(false);
+        vehicle.setPayOption("card");
+        vehicle.setLicensePlateNumber(getRandomLicencePlate());
+
+        spaLoginPage = launch_SPA_Application();
+        accountsPage = spaLoginPage.login();
+        spaHomePage = accountsPage.navigateToHomePage();
+        locationPage = spaHomePage.navigate_To_LocationPage(vehicle.getLocationNumber());
+
+        locationPage.purchase_StarSpace_By_Rate(vehicle);
+        locationPage.verify_Purchase_Details(vehicle);
+        locationPage.extend_Star_Space_By_Rate(vehicle);
+        locationPage.verify_Purchase_Details(vehicle);
+
+    }
+
 }

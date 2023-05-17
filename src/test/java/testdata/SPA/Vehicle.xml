@@ -1,4 +1,5 @@
 <vehicle>
+	<email>test_</email>
 	<locationNumber>P101</locationNumber>
 	<licensePlateNumber>MA</licensePlateNumber>
 	<state>AK - Alaska</state>
@@ -18,4 +19,5 @@
 	<payOption>card</payOption>
 	<isItExtended>true</isItExtended>
 	<isItFutureReservation>true</isItFutureReservation>
+	<isItSignUpFlow>true</isItSignUpFlow>
 </vehicle>

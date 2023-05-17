@@ -58,6 +58,8 @@ public class SPA_LocationPage extends BaseClass {
 	By button_ChargingSpace = By.xpath("//a[@data-testid='test-pay-to-park-now-charging-space']");
 	By choose_Star_Space_Duration = By.xpath("//div[@data-testid='test-star-session-form']//a[1]");
 	By choose_Charging_Space_Duration = By.xpath("//div[@data-testid='test-charging-session-form']//a[1]");
+	By label_Star_Rate = By.xpath("//div//h2[normalize-space()='Star']");
+	By button_Choose_Star_Rate = By.xpath("//div//h2[normalize-space()='Star']/following-sibling::a[@data-cy='test-rate-link'][1]");
 
 	// Extend elements
 	By logo_Location = By.xpath("//a[@data-cy='test-location-nav-bar-title']");
@@ -536,4 +538,127 @@ public class SPA_LocationPage extends BaseClass {
 			}
 		}
 	}
+
+	/*
+	 * Method to purchase Star Space by Star Rate
+	 *
+	 * Author : Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public void purchase_StarSpace_By_Rate(Vehicle vehicle) {
+		stepInfo(" <b> ****Purchasing Star Space By Rate ****</b>");
+		waitForElementTobeDisplayed(label_Star_Rate);
+		try {
+			if (isElementDisplayed(label_Star_Rate))
+				passStep("Star Rates are visible");
+		} catch (Exception ex) {
+			failStep("Account doesn't have the star rates");
+		}
+		clickOnButton(button_Choose_Star_Rate, "Star Space by Rate");
+
+		// Vehicle check
+		if (vehicle.getIsItNewVehicle()) {
+			enterText(textbox_LicensePlateNumber, vehicle.getLicensePlateNumber(), "License Plate Number Textbox");
+			selectFromSearch(dropdown_state, vehicle.getState(), "existing License Plate State dropdown");
+		} else {
+			selectFromSearch(textbox_LicensePlateNumber, vehicle.getLicensePlateNumber(),
+					"License Plate Number Textbox");
+		}
+
+		// Payment check ## Card
+		if (vehicle.getPayOption().equalsIgnoreCase("card")) {
+			if (vehicle.getIsItNewCard()) {
+				try {
+					if (isElementDisplayed(select_AnotherCard))
+						clickOnButton(select_AnotherCard, "Pay with another card");
+				} catch (Exception ex) {
+				}
+				addNewCard(vehicle);
+			} else {
+				try {
+					if (isElementDisplayed(existing_card))
+						passStep("Existing card :" + getElementText(existing_card));
+				} catch (Exception ex) {
+					failStep("Account doesn't have the saved cards. Please check !!!");
+				}
+			}
+		}
+		// Payment check ## Promo Code
+		else if (vehicle.getPayOption().equalsIgnoreCase("promocode")) {
+			addPromoCode(vehicle.getPromoCode());
+			waitForElementTobeDisplayed(label_Promo_Discount);
+			passStep(getElementText(label_Promo_Discount));
+		} else if (vehicle.getPayOption().equalsIgnoreCase("fixedPromoCode")) {
+			addPromoCode(vehicle.getFixedPromoCode());
+			waitForElementTobeDisplayed(label_Promo_Discount);
+			passStep(getElementText(label_Promo_Discount));
+		}
+		waitForPageLoad(3);
+		vehicle.setAmount(getElementText(total_amount));
+		isElementDisplayed(button_Pay);
+		clickOnButton(button_Pay, getElementText(button_Pay));
+		waitForPageLoad(3);
+
+	}
+
+	/*
+	 * Method to extend Star Space by Rate
+	 *
+	 * Author : Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
+	public void extend_Star_Space_By_Rate(Vehicle vehicle) {
+		stepInfo(" <b> ****Extending Star Space ****</b>");
+		waitForElementTobeDisplayed(logo_Location);
+		clickOnButton(logo_Location);
+
+		waitForElementTobeDisplayed(label_Star_Rate);
+		try {
+			if (isElementDisplayed(label_Star_Rate))
+				passStep("Star Rates are visible");
+		} catch (Exception ex) {
+			failStep("Account doesn't have the star rates");
+		}
+		clickOnButton(button_Choose_Star_Rate, "Star Space by Rate");
+
+		// Choosing existing Vehicle.
+		selectFromSearch(textbox_LicensePlateNumber, vehicle.getLicensePlateNumber(), "License Plate Number Textbox");
+		waitForPageLoad(3);
+		waitForElementTobeDisplayed(label_Extend_Message);
+		assertEquals(getElementText(label_Extend_Message).toUpperCase(),
+				"EXTEND EXISTING SESSION AT LOT # " + vehicle.getLocationNumber() + "");
+		passStep(getElementText(label_Extend_Message));
+		// Payment check ## Card
+		if (vehicle.getPayOption().equalsIgnoreCase("card")) {
+			if (vehicle.getIsItNewCard()) {
+				try {
+					if (isElementDisplayed(select_AnotherCard))
+						clickOnButton(select_AnotherCard, "Pay with another card");
+				} catch (Exception ex) {
+				}
+				addNewCard(vehicle);
+			} else {
+				try {
+					if (isElementDisplayed(existing_card))
+						passStep("Existing card :" + getElementText(existing_card));
+				} catch (Exception ex) {
+					failStep("Account doesn't have the saved cards. Please check !!!");
+				}
+			}
+		}
+		// Payment check ## Promo Code
+		else if (vehicle.getPayOption().equalsIgnoreCase("promocode")) {
+			addPromoCode(vehicle.getPromoCode());
+			waitForElementTobeDisplayed(label_Promo_Discount);
+			passStep(getElementText(label_Promo_Discount));
+		}
+		else if (vehicle.getPayOption().equalsIgnoreCase("fixedPromoCode")) {
+			addPromoCode(vehicle.getFixedPromoCode());
+			waitForElementTobeDisplayed(label_Promo_Discount);
+			passStep(getElementText(label_Promo_Discount));
+		}
+		waitForPageLoad(3);
+		vehicle.setAmount(getElementText(total_amount));
+		isElementDisplayed(button_Pay);
+		clickOnButton(button_Pay, getElementText(button_Pay));
+	}
+
 }
