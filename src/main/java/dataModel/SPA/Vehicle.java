@@ -23,6 +23,7 @@ import java.io.Serializable;
 public class Vehicle implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private String email;
 	private String licensePlateNumber;
 	private String state;
 	private String zip;
@@ -42,6 +43,7 @@ public class Vehicle implements Serializable {
 	private Boolean isItNewReservation;
 	private Boolean isItExtended;
 	private Boolean isItFutureReservation;
+	private Boolean isItSignUpFlow;
 
 	public Boolean getIsItNewReservation() { return isItNewReservation;	}
 
@@ -58,6 +60,14 @@ public class Vehicle implements Serializable {
 	public void setIsItExtended(Boolean isItExtended) {
 		this.isItExtended = isItExtended;
 	}
+
+	public Boolean getIsItSignUpFlow() {	return isItSignUpFlow;	}
+
+	public void setIsItSignUpFlow(Boolean itSignUpFlow) {	isItSignUpFlow = itSignUpFlow;	}
+
+	public String getEmail() {	return email; }
+
+	public void setEmail(String email) { this.email = email; }
 
 	public String getLicensePlateNumber() {
 		return licensePlateNumber;
@@ -194,7 +204,7 @@ public class Vehicle implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Vehicle [licensePlateNumber=" + licensePlateNumber + ", state=" + state + ", zip=" + zip
+		return "Vehicle [licensePlateNumber=" + licensePlateNumber + ",  email=" + email + ", isItSignUpFlow=" + isItSignUpFlow + ", state=" + state + ", zip=" + zip
 				+ ", locationNumber=" + locationNumber + ", ccNumber=" + ccNumber + ", expiry=" + expiry + ", cvc="
 				+ cvc + ", amount=" + amount + ", promoCode=" + promoCode + ", timeInHours=" + timeInHours
 				+ ", extendTime=" + extendTime + ", payOption=" + payOption + ", isItNewCard=" + isItNewCard
