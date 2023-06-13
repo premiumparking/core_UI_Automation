@@ -107,6 +107,36 @@ public class OD_BusinessAccountsPage extends BaseClass {
 			return false;
 		}
 	}
+	
+	/*
+	 * Method to navigate to check if the business account exist
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public boolean isBusinessAccountExist(String businessAccountId) {
+		
+		waitForElementTobeDisplayed(textBox_SearchByID_or_Name);
+		enterText(textBox_SearchByID_or_Name, businessAccountId, "Search By ID box");
+		
+		performClick(textBox_SearchByID_or_Name);
+		clickOnButton(button_Find, "Find button");
+		try {
+
+			//WebElement id = BaseClass.driver.findElement(By.xpath("//td/a[contains(text(),'" + businessAccountId + "')]"));
+			WebElement name = BaseClass.driver.findElement(By.xpath("(//td/a[contains(text(),'"+businessAccountId+"')]/parent::td/following-sibling::td)[1]"));
+			if (name.isDisplayed()) {
+				passStep(name.getText() + " has been displayed on the search result");
+				highlightElement(name);
+				return true;
+			} else {				
+				return false;
+			}
+
+		} catch (Exception e) {
+			failStep(businessAccountId + " is NOT displayed on the search result");
+			return false;
+		}
+	}
 
 	public Boolean isMember_Not_Activated() {
 		Boolean status = false;

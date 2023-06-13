@@ -53,7 +53,7 @@ public class TextPay_HomePage extends BaseClass {
 	By label_licencePlateInfo = By.xpath("//strong[@data-testid='test-license-info']");
 	By label_Total = By.xpath("//div[@data-testid='test-total']");
 	By button_Pay = By.xpath("//button[@data-testid='pay-button']");
-	By button_payWithCard = By.xpath("//button[normalize-space()='Pay with credit card']");
+	By button_payWithCard = By.xpath("//button[normalize-space()='Pay with card']");
 	By button_startParking = By.xpath("//button[normalize-space()='Start parking']");
 
 	By link_PromoCode = By.xpath("//button[normalize-space()='Promo Code']");
@@ -216,19 +216,20 @@ public class TextPay_HomePage extends BaseClass {
 
 	public void payWithCard(Guest guest) {
 		try {
-			waitForElementTobeClickable(button_payWithCard);
 			if (isElementDisplayed(button_payWithCard)) {
 				clickOnButton(button_payWithCard, getElementText(button_payWithCard));
+
+				addNewCard(guest);
+				waitForElementTobeClickable(button_Pay);
+				waitForElementTobeDisplayed(label_Cost);
+				guest.setAmount(getElementText(label_Cost));
+				clickOnButton(button_Pay, "Pay button");
 
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		addNewCard(guest);
-		waitForElementTobeClickable(button_Pay);
-		waitForElementTobeDisplayed(label_Cost);
-		guest.setAmount(getElementText(label_Cost));
-		clickOnButton(button_Pay, "Pay button");
+
 	}
 
 	public void addNewVehicle(Guest guest) {

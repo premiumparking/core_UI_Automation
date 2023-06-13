@@ -92,6 +92,7 @@ public class Operations extends Extent_Reports {
 			highlightElement(element);
 			element.click();
 			passStep("Clicked on " + field);
+			logger.info("Clicked on " + field);
 			waitForPageLoad(2);
 		}
 

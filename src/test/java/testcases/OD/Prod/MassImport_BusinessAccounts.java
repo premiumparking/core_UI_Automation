@@ -30,7 +30,7 @@ public class MassImport_BusinessAccounts extends BaseClass {
 
 	List<Profile_Bulk> profiles;
 	// String fileName = "AnnapolisResidentPermits_2022_2023_Initial.xlsx";
-	String fileName = "Missing_emails.xlsx";
+	String fileName = "prod\\West Haven Plate list.xlsx";
 
 	// ****************** TEST SCRIPTS ****************************//
 	/*
@@ -43,10 +43,12 @@ public class MassImport_BusinessAccounts extends BaseClass {
 		loginPage = launch_OD_Application();
 		homePage = loginPage.login();
 		profilePage = homePage.navigateToBulkProfilesPage();
-		List<Profile_Bulk> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "BA2");
-		for (Profile_Bulk profile : profiles) {
-			if (!profilePage.isPrfileExist(profile.getEmail())) {
-				profilePage.createProfile(profile);
+		List<Profile_Bulk> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "1st100");
+		if (profiles != null) {
+			for (Profile_Bulk profile : profiles) {
+				//if (!profilePage.isPrfileExist(profile.getEmail())) {
+					profilePage.createProfile(profile);
+			//	}
 			}
 		}
 	}
@@ -62,9 +64,9 @@ public class MassImport_BusinessAccounts extends BaseClass {
 		homePage = loginPage.login();
 		businessAccountsPage = homePage.navigateToBusinessAccountsPage();
 		// List<String> sheets = excel_Ops.get_Total_Sheets(fileName);
-		List<Profile_Bulk> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "BA1");
-		if (businessAccountsPage.isBusinessAccountExist(profiles.get(0).getBusinessAccountName(),
-				profiles.get(0).getLocation())) {
+		List<Profile_Bulk> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "1st100");
+		if (businessAccountsPage.isBusinessAccountExist("6548")) {
+			//West Haven Rocks	-> 6548
 			businessAccountsPage.imporsonateBusinessAccount(profiles.get(0));
 			for (Profile_Bulk profile : profiles) {
 				if (!businessAccountsPage.isMember_Exist(profile)) {

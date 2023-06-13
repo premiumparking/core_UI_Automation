@@ -10,6 +10,7 @@ import com.poiji.bind.Poiji;
 import dataModel.Admiral.Citation;
 import dataModel.OD.Profile_Bulk;
 import dataModel.OD.PromoCode_Bulk;
+import reports.Extent_Reports;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -20,7 +21,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * 
  * Author : Venu Thota(venu.t@comakeit.com)
  */
-public class Excel_Operations {
+public class Excel_Operations extends Extent_Reports {
 
 	/*
 	 * This method is to load the excel sheet and it binds to Profiles object and
@@ -37,7 +38,7 @@ public class Excel_Operations {
 			List<Profile_Bulk> profiles = Poiji.fromExcel(sheet, Profile_Bulk.class);
 			return profiles;
 		} catch (Exception e) {
-			e.printStackTrace();
+			failStep(e.getMessage());
 			return null;
 		}
 	}

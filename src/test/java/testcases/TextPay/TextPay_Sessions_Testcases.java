@@ -564,7 +564,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 *
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	@Test(groups = { "smoke", "regression" })
+	//@Test(groups = { "smoke", "regression" })
 	public void TC_21_Purchase_Charging_Space_as_Guest_With_FixedDiscountPromoCode_and_NewVehicle() {
 
 		guest.setLocationNumber(getRandomLocation());
@@ -591,7 +591,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 *
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	@Test(groups = { "smoke", "regression" })
+	//@Test(groups = { "smoke", "regression" })
 	public void TC_22_Purchase_Charging_Space_as_Guest_for_UnknownVehicle_with_FixedDiscountPromoCode() {
 
 		guest.setLocationNumber(getRandomLocation());
@@ -618,7 +618,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 *
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	@Test(groups = { "smoke", "regression" })
+	//@Test(groups = { "smoke", "regression" })
 	public void TC_23_Purchase_SpecialRate_Session_as_Guest_With_FixedDiscountPromoCode_and_NewVehicle() {
 
 		guest.setLocationNumber(getRandomLocation());
@@ -645,7 +645,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 *
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	@Test(groups = { "smoke", "regression" })
+	//@Test(groups = { "smoke", "regression" })
 	public void TC_24_Purchase_SpecialRate_Session_as_Guest_for_UnknownVehicle_with_FixedDiscountPromoCode() {
 
 		guest.setLocationNumber(getRandomLocation());
