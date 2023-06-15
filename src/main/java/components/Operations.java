@@ -37,6 +37,15 @@ public class Operations extends Extent_Reports {
 		}
 	}
 
+	public void clearText(By ele ) {
+		waitForElementTobeClickable(ele);
+		WebElement element = BaseClass.driver.findElement(ele);
+		if (isElementDisplayed(ele) && element.isEnabled()) {
+			highlightElement(element);
+			element.clear();
+
+		}
+	}
 	/*
 	 * This method is to enter text into TEXTBOX using JSE
 	 * 
@@ -263,6 +272,19 @@ public class Operations extends Extent_Reports {
 				passStep(field + " is already uselected");
 			}
 		}
+	}
+
+
+	public boolean isCheckBoxChecked(By ele) {
+		waitForElementTobeDisplayed(ele);
+		WebElement element = BaseClass.driver.findElement(ele);
+		if (isElementDisplayed(ele) && element.isEnabled()) {
+			highlightElement(element);
+			if (element.isSelected()) {
+				return true;
+
+			}
+		}return false;
 	}
 
 	/*
