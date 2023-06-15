@@ -481,6 +481,15 @@ public class Operations extends Extent_Reports {
 	public void refresh_Page() {
 		BaseClass.driver.navigate().refresh();
 	}
+	
+	/*
+	 * This method is used to the go back to the previous page
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public void gotoBackPage() {
+		BaseClass.driver.navigate().back();
+	}
 
 	/*
 	 * This method is used to the switch iFrame

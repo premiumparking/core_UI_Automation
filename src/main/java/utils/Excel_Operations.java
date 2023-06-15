@@ -32,7 +32,10 @@ public class Excel_Operations extends Extent_Reports {
 
 	public List<Profile_Bulk> load_ProfilesData_From_ExcelSheet(String fileName, String sheetName) {
 		try {
-			File file = new File(System.getProperty("user.dir") + "\\src\\test\\java\\testData\\OD\\" + fileName);
+			//File file = new File("\\src\\test\\java\\testData\\OD\\" + fileName);
+			File file = new File(System.getProperty("user.dir") + "//src//test//resources//WestHavenPlatelist.xlsx");
+			//File file = new File("//core//automation//ui//src//test//java//testdata//OD//prod//WestHavenPlatelist.xlsx");
+			
 			XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
 			XSSFSheet sheet = workbook.getSheet(sheetName);
 			List<Profile_Bulk> profiles = Poiji.fromExcel(sheet, Profile_Bulk.class);
@@ -52,7 +55,7 @@ public class Excel_Operations extends Extent_Reports {
 	public List<String> get_Total_Sheets(String fileName) {
 		try {
 			List<String> sheets = new ArrayList<String>();
-			File file = new File(System.getProperty("user.dir") + "\\src\\test\\resources\\" + fileName);
+			File file = new File(System.getProperty("user.dir") + "//src//test//resources//" + fileName);
 			XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
 
 			int no_of_Sheets = workbook.getNumberOfSheets();
@@ -76,7 +79,7 @@ public class Excel_Operations extends Extent_Reports {
 
 	public List<Citation> load_CitationData_From_ExcelSheet(String fileName, String sheetName) {
 		try {
-			File file = new File(System.getProperty("user.dir") + "\\src\\test\\java\\testData\\OD\\" + fileName);
+			File file = new File(System.getProperty("user.dir") + "//src//test//java//testData//OD//" + fileName);
 			XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
 			XSSFSheet sheet = workbook.getSheet(sheetName);
 			List<Citation> citations = Poiji.fromExcel(sheet, Citation.class);
@@ -96,7 +99,7 @@ public class Excel_Operations extends Extent_Reports {
 
 	public List<PromoCode_Bulk> load_BulkPromoCodes_From_ExcelSheet(String fileName, String sheetName) {
 		try {
-			File file = new File(System.getProperty("user.dir") + "\\src\\test\\java\\testData\\OD\\" + fileName);
+			File file = new File(System.getProperty("user.dir") + "//src//test//java//testData//OD//" + fileName);
 			XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
 			XSSFSheet sheet = workbook.getSheet(sheetName);
 			List<PromoCode_Bulk> promoCodes = Poiji.fromExcel(sheet, PromoCode_Bulk.class);
