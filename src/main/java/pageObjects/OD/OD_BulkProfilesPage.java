@@ -52,9 +52,12 @@ public class OD_BulkProfilesPage extends BaseClass {
 		enterText(textbox_profile_first_name, profile.getFirstName(), "First Name field");
 		enterText(textbox_profile_last_name, profile.getLastName(), "Last Name field");
 		enterText(textbox_profile_address, profile.getAddress(), "Address field");
-		selectFromSearch(textbox_profile_concierge_locations, profile.getLocation(), "Permitted concierge locations");
+		for(String location : profile.getLocation()) {
+			selectFromSearch(textbox_profile_concierge_locations, location, "Permitted concierge locations");
+			waitForPageLoad(1);
+		}
 		performClick(textbox_profile_address);
-		waitForPageLoad(1);
+		waitForPageLoad(2);
 		clickOnButton(button_Save, "Save");
 		passStep("<b>Profile: " + profile.getEmail() + " created successfully !!! </b>");
 		navigate_To_Profiles_Page();

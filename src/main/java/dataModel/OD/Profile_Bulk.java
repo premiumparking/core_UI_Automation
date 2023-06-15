@@ -1,6 +1,7 @@
 package dataModel.OD;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.poiji.annotation.ExcelCellName;
 import com.poiji.annotation.ExcelRow;
@@ -37,7 +38,7 @@ public class Profile_Bulk implements Serializable {
 	private String phoneNumber;
 
 	@ExcelCellName("Location")
-	private String location;
+	private List<String> location;
 
 	@ExcelCellName("Sub Rate Name")
 	private String subRateName;
@@ -64,7 +65,7 @@ public class Profile_Bulk implements Serializable {
 	private String lpMake;
 
 	public Profile_Bulk(int rowIndex, String businessAccountName, String firstName, String lastName, String address,
-			String email, String phoneNumber, String location, String subRateName, String subType, String subCost,
+			String email, String phoneNumber, List<String> location, String subRateName, String subType, String subCost,
 			String payer, String startDate, String lpNumber, String lpState, String lpMake) {
 		super();
 		this.row = rowIndex;
@@ -155,11 +156,11 @@ public class Profile_Bulk implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getLocation() {
+	public List<String> getLocation() {
 		return location;
 	}
 
-	public void setLocation(String location) {
+	public void setLocation(List<String> location) {
 		this.location = location;
 	}
 

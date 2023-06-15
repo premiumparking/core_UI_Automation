@@ -5,6 +5,7 @@ import static org.testng.Assert.assertEquals;
 import org.openqa.selenium.By;
 
 import components.BaseClass;
+import components.Constants;
 import dataModel.TextPay.PurchaseDetails;
 
 /*
@@ -36,7 +37,7 @@ public class OD_LocationRevenuePage extends BaseClass {
 		String orderNum = purchaseDetails.getOrderNumber();
 
 		
-		if (purchaseDetails.getPaymentOption().equalsIgnoreCase("card")) {
+		if (purchaseDetails.getPaymentOption().equalsIgnoreCase(Constants.CARD)) {
 			orderNumber = By.xpath("//a[normalize-space()='" + orderNum + "']");
 
 			locationName = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[1]");

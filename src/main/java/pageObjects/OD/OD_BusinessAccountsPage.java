@@ -3,13 +3,10 @@ package pageObjects.OD;
 import java.util.ArrayList;
 import java.util.List;
 
-import dataModel.OD.DynamicLayout;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import components.BaseClass;
 import dataModel.OD.Profile_Bulk;
-
-import static org.testng.Assert.assertEquals;
 
 /*
  * Class which contains the web elements and performs Business accounts page activities (methods)
@@ -55,16 +52,15 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	By textBox_Confirm_new_Password = By.id("confirm_new_password");
 	By button_Create_Account = By.id("change_password");
 
-	By dynamic_Layouts_Label = By.xpath("//tr//td[contains(normalize-space(),'Dynamic Layouts:')]");
-	By dynamic_Layouts_Status = By.xpath("//tr//td[contains(normalize-space(),'Dynamic Layouts:')]/following-sibling::td");
-	By BA_Edit_Button = By.xpath("//tr//td//div//a[contains(normalize-space(),'Edit')]");
-	By dynamic_Layouts_Section = By.xpath("//div//h4[contains(normalize-space(),'Dynamic Layouts')]");
-	By label_AllowTo_Assign_Spaces = By.xpath("//div//label[contains(normalize-space(),'Allow to assign spaces')]");
-	By checkbox_AllowTo_Assign_Spaces = By.id("group_allow_assign_spaces");
-	By label_Permitted_Locations = By.xpath("//label[@for='group_dynamic_layout_permitted_location_ids-selectized']");
-	By textBox_Permitted_Locations = By.id("group_dynamic_layout_permitted_location_ids-selectized");
-	By button_Update_BA = By.xpath("//input[@type='submit']");
-
+	By link_BAName = By.xpath("//div[@class='menu__level']");
+	By link_MyAccount = By.xpath("//strong[normalize-space()='My Account']");
+	By link_Validations = By.xpath("//a[@href='/my/validations']");
+	By button_KioskMode = By.xpath("//a[normalize-space()='Kiosk Mode']");
+	By textBox_LicensePlate = By.xpath("//input[@id='validation_form_license_plate']");
+	By button_Validate = By.xpath("//button[@id='self-serve-validation-btn']");
+	By msg_Error = By.xpath("//h4[@id='error-mesg']");
+	By msg_Thankyou = By.xpath("//h1[normalize-space()='Thank You']");
+	By button_NOThanks = By.xpath("//a[normalize-space()='No, thank you']");
 // ****************** ACTIONS ****************************//
 
 	/*
@@ -117,6 +113,39 @@ public class OD_BusinessAccountsPage extends BaseClass {
 
 		} catch (Exception e) {
 			failStep(accountName + " is NOT displayed on the search result");
+			return false;
+		}
+	}
+
+	/*
+	 * Method to navigate to check if the business account exist
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public boolean isBusinessAccountExist(String businessAccountId) {
+
+		waitForElementTobeDisplayed(textBox_SearchByID_or_Name);
+		enterText(textBox_SearchByID_or_Name, businessAccountId, "Search By ID box");
+
+		performClick(textBox_SearchByID_or_Name);
+		clickOnButton(button_Find, "Find button");
+		try {
+
+			// WebElement id =
+			// BaseClass.driver.findElement(By.xpath("//td/a[contains(text(),'" +
+			// businessAccountId + "')]"));
+			WebElement name = BaseClass.driver.findElement(By.xpath(
+					"(//td/a[contains(text(),'" + businessAccountId + "')]/parent::td/following-sibling::td)[1]"));
+			if (name.isDisplayed()) {
+				passStep(name.getText() + " has been displayed on the search result");
+				highlightElement(name);
+				return true;
+			} else {
+				return false;
+			}
+
+		} catch (Exception e) {
+			failStep(businessAccountId + " is NOT displayed on the search result");
 			return false;
 		}
 	}
@@ -230,7 +259,7 @@ public class OD_BusinessAccountsPage extends BaseClass {
 		By link_CopyLnk = By.xpath(".//a[contains(text(),'copy link')]");
 		List<WebElement> link_CopyLinks = BaseClass.driver.findElements(link_CopyLnk);
 		for (int i = 0; i < link_CopyLinks.size(); i++) {
-			link_CopyLink = By.xpath("(.//a[contains(text(),'copy link')])[" + (i + 1) +	 "]");
+			link_CopyLink = By.xpath("(.//a[contains(text(),'copy link')])[" + (i + 1) + "]");
 			clickOnButton(link_CopyLink, "Copy Link");
 			String url = BaseClass.driver.findElement(link_CopyLink).getAttribute("href");
 			openNewTab(url);
@@ -282,62 +311,73 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	}
 
 	/*
-	 * Method to verify dynamic layouts
-	 *
-	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 * 
+	 * Method to validate the license plates *
+	 * 
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * 
 	 */
-	public void verify_Dynamic_Layouts(DynamicLayout dynamicLayout) {
-		stepInfo("<b>Verifying Business account : " + dynamicLayout.getBAName() + "</b>");
-		waitForElementTobeDisplayed(textBox_SearchByID_or_Name);
-		enterText(textBox_SearchByID_or_Name, dynamicLayout.getBAName(), "Search By ID box");
-		clickOnButton(button_Find, "Find button");
-		clickOnButton(row_1, "ID: " + getElementText(row_1));
 
-		stepInfo("<b>Verifying whether user can see Dynamic Layouts label on BA details screen</b>");
-		assertEquals(getElementText(dynamic_Layouts_Label), "Dynamic Layouts:" );
-		passStep(getElementText(dynamic_Layouts_Label) + " label has been displayed on the BA details screen");
+	public void validateLicensePlate(List<Profile_Bulk> profiles) {
 
-		stepInfo("<b>Verifying Verify whether user can edit business account</b>");
-		clickOnButton(BA_Edit_Button, "Edit Business Account Button");
+		waitForPageLoad(2);
+		waitForElementTobeDisplayed(link_BAName);
+		clickOnButton(link_BAName, "Business Account link");
+		waitForElementTobeDisplayed(link_MyAccount);
+		clickOnButton(link_MyAccount, "My Account link");
+		waitForElementTobeDisplayed(link_Validations);
+		clickOnButton(link_Validations, "Validations link");
+		waitForElementTobeDisplayed(button_KioskMode);
+		clickOnButton(button_KioskMode, "KIOSK MODE Button");
 
-		stepInfo("<b>Verifying whether user can see Dynamic Layouts section on the BA edit screen");
-		assertEquals(getElementText(dynamic_Layouts_Section), "Dynamic Layouts" );
-		passStep(getElementText(dynamic_Layouts_Section) + " section has been displayed on the BA edit screen");
+		waitForPageLoad(5);
+		ArrayList<String> tabs = getAllTabs();
+		if (tabs.size() > 1) {
 
-		stepInfo("<b>Verifying whether user can see Allow to assign spaces check box in BA edit screen");
-		assertEquals(getElementText(label_AllowTo_Assign_Spaces), "Allow to assign spaces" );
-		passStep(getElementText(label_AllowTo_Assign_Spaces) + " check box has been displayed on the BA edit screen");
+			switch_to_Tab(tabs, 1);
+			try {
+				for (Profile_Bulk profile : profiles) {
+					By button_Location = By.xpath("//strong[contains(text(),'P2231')]");
+					waitForElementTobeDisplayed(button_Location);
+					clickOnButton(button_Location, getElementText(button_Location));
+					waitForElementTobeDisplayed(textBox_LicensePlate);
 
-		stepInfo("<b>Verifying whether user can click on the 'Allow to assign spaces' checkbox under the dynamic layouts section</b>");
-		if (isCheckBoxChecked(checkbox_AllowTo_Assign_Spaces))
-			passStep("Allow to assign spaces checkbox is checked");
-		else select_Checkbox(checkbox_AllowTo_Assign_Spaces, "Allow to assign spaces checkbox");
+					enterText(textBox_LicensePlate, profile.getLpNumber(), "Licence Box");
+					waitForElementTobeClickable(button_Validate);
+					clickOnButton(button_Validate, "VALIDATE button");
+					try {
+						if (isElementDisplayed(msg_Error)) {
+							passStep(profile.getLpNumber() + " has already validated");
+							gotoBackPage();
+							waitForElementTobeDisplayed(textBox_LicensePlate);
+							gotoBackPage();
+							waitForElementTobeDisplayed(button_Location);
+							//break;
+						}
+					} catch (Exception e) {
+						//failStep(e.getMessage());
+					}
+					try {
+						if (isElementDisplayed(msg_Thankyou)) {
+							passStep(profile.getLpNumber() + " has been validated successfully");
+							waitForElementTobeDisplayed(button_NOThanks);
+							clickOnButton(button_NOThanks, getElementText(button_NOThanks));
+						}
+						
+					} catch (Exception e) {
+						//failStep(e.getMessage());
+					}
+				}
 
-		stepInfo("<b>Verifying whether user can see 'Permitted Locations' label under the dynamic layouts section");
-		assertEquals(getElementText(label_Permitted_Locations), "Permitted Locations" );
-		passStep(getElementText(label_Permitted_Locations) + " label has been displayed under the dynamic layouts section");
+			} catch (Exception e) {
+				failStep(e.getMessage());
+			}
+		}
 
-		stepInfo("<b>Verifying whether user can select the locations available with dynamic layouts from 'Permitted Locations' dropdown.</b>");
-		clearText(textBox_Permitted_Locations);
-		selectFromSearch(textBox_Permitted_Locations, "P0373","Permitted Locations Dropdown");
-		clickOnButton(dynamic_Layouts_Section, "Dynamic Layouts");
-
-		stepInfo("<b>Verifying whether user can save the dynamic layout changes.</b>");
-		clickOnButton(button_Update_BA, "Update Business Account Button");
-
-		stepInfo("<b>Verifying whether user can see dynamic layouts as 'active' in the BA details screen when updating with 'Allow to assign spaces' checkbox.");
-		assertEquals(getElementText(dynamic_Layouts_Status), "active" );
-		passStep("Dynamic layouts status as " + getElementText(dynamic_Layouts_Status) + " displayed in the BA details screen");
-
-		stepInfo("<b>Verifying whether user can see dynamic layouts as 'inactive' in the BA details screen when un checking with 'Allow to assign spaces' checkbox.");
-		clickOnButton(BA_Edit_Button, "Edit Business Account Button");
-		unselect_Checkbox(checkbox_AllowTo_Assign_Spaces, "Allow to assign spaces checkbox");
-		clearText(textBox_Permitted_Locations);
-		clickOnButton(button_Update_BA, "Update Business Account Button");
-		assertEquals(getElementText(dynamic_Layouts_Status), "inactive" );
-		passStep("Dynamic layouts status as " + getElementText(dynamic_Layouts_Status) + " displayed in the BA details screen");
-
-
+		switch_to_Tab(tabs, 0); // Main Tab
+		refresh_Page();
+		waitForPageLoad(3);
 
 	}
 

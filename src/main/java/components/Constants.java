@@ -19,6 +19,9 @@ public class Constants {
 	public static final String _12_Hrs = "12";
 	public static final String _1_Hr = "1";
 	public static final String _5_Hrs = "5";
+	public static final String PROMO100 = "PROMO100";
+	public static final String PROMO50 = "PROMO50";
+	public static final String CARD = "card";
 	
 
 }
