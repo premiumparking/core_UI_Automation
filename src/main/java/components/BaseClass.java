@@ -57,7 +57,7 @@ public class BaseClass extends Operations {
 	public void loadProperties() throws IOException {
 
 		config = new Properties();
-		String fpath = System.getProperty("user.dir") + "\\src\\test\\resources\\application.properties";
+		String fpath = System.getProperty("user.dir") + "//src//test//resources//application.properties";
 		fis = new FileInputStream(fpath);
 
 		config.load(fis);
@@ -248,7 +248,7 @@ public class BaseClass extends Operations {
 		File source = ts.getScreenshotAs(OutputType.FILE);
 		String timeStamp = new SimpleDateFormat("HHmmss").format(new Date());
 		String screenshot = "Failure_" + timeStamp;
-		String destination = System.getProperty("user.dir") + "\\TestResults\\" + d + "\\" + screenshot + ".png";
+		String destination = System.getProperty("user.dir") + "//TestResults//" + d + "//" + screenshot + ".png";
 
 		File finalDestination = new File(destination);
 		FileUtils.copyFile(source, finalDestination);

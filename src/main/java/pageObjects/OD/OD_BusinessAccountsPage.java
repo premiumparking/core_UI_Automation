@@ -52,6 +52,15 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	By textBox_Confirm_new_Password = By.id("confirm_new_password");
 	By button_Create_Account = By.id("change_password");
 
+	By link_BAName = By.xpath("//div[@class='menu__level']");
+	By link_MyAccount = By.xpath("//strong[normalize-space()='My Account']");
+	By link_Validations = By.xpath("//a[@href='/my/validations']");
+	By button_KioskMode = By.xpath("//a[normalize-space()='Kiosk Mode']");
+	By textBox_LicensePlate = By.xpath("//input[@id='validation_form_license_plate']");
+	By button_Validate = By.xpath("//button[@id='self-serve-validation-btn']");
+	By msg_Error = By.xpath("//h4[@id='error-mesg']");
+	By msg_Thankyou = By.xpath("//h1[normalize-space()='Thank You']");
+	By button_NOThanks = By.xpath("//a[normalize-space()='No, thank you']");
 // ****************** ACTIONS ****************************//
 
 	/*
@@ -107,28 +116,31 @@ public class OD_BusinessAccountsPage extends BaseClass {
 			return false;
 		}
 	}
-	
+
 	/*
 	 * Method to navigate to check if the business account exist
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public boolean isBusinessAccountExist(String businessAccountId) {
-		
+
 		waitForElementTobeDisplayed(textBox_SearchByID_or_Name);
 		enterText(textBox_SearchByID_or_Name, businessAccountId, "Search By ID box");
-		
+
 		performClick(textBox_SearchByID_or_Name);
 		clickOnButton(button_Find, "Find button");
 		try {
 
-			//WebElement id = BaseClass.driver.findElement(By.xpath("//td/a[contains(text(),'" + businessAccountId + "')]"));
-			WebElement name = BaseClass.driver.findElement(By.xpath("(//td/a[contains(text(),'"+businessAccountId+"')]/parent::td/following-sibling::td)[1]"));
+			// WebElement id =
+			// BaseClass.driver.findElement(By.xpath("//td/a[contains(text(),'" +
+			// businessAccountId + "')]"));
+			WebElement name = BaseClass.driver.findElement(By.xpath(
+					"(//td/a[contains(text(),'" + businessAccountId + "')]/parent::td/following-sibling::td)[1]"));
 			if (name.isDisplayed()) {
 				passStep(name.getText() + " has been displayed on the search result");
 				highlightElement(name);
 				return true;
-			} else {				
+			} else {
 				return false;
 			}
 
@@ -247,7 +259,7 @@ public class OD_BusinessAccountsPage extends BaseClass {
 		By link_CopyLnk = By.xpath(".//a[contains(text(),'copy link')]");
 		List<WebElement> link_CopyLinks = BaseClass.driver.findElements(link_CopyLnk);
 		for (int i = 0; i < link_CopyLinks.size(); i++) {
-			link_CopyLink = By.xpath("(.//a[contains(text(),'copy link')])[" + (i + 1) +	 "]");
+			link_CopyLink = By.xpath("(.//a[contains(text(),'copy link')])[" + (i + 1) + "]");
 			clickOnButton(link_CopyLink, "Copy Link");
 			String url = BaseClass.driver.findElement(link_CopyLink).getAttribute("href");
 			openNewTab(url);
@@ -296,6 +308,77 @@ public class OD_BusinessAccountsPage extends BaseClass {
 		BaseClass.driver.get(businessAccountURL);
 		waitForPageLoad(2);
 		waitForElementTobeDisplayed(textBox_SearchByID_or_Name);
+	}
+
+	/*
+	 * 
+	 * Method to validate the license plates *
+	 * 
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * 
+	 */
+
+	public void validateLicensePlate(List<Profile_Bulk> profiles) {
+
+		waitForPageLoad(2);
+		waitForElementTobeDisplayed(link_BAName);
+		clickOnButton(link_BAName, "Business Account link");
+		waitForElementTobeDisplayed(link_MyAccount);
+		clickOnButton(link_MyAccount, "My Account link");
+		waitForElementTobeDisplayed(link_Validations);
+		clickOnButton(link_Validations, "Validations link");
+		waitForElementTobeDisplayed(button_KioskMode);
+		clickOnButton(button_KioskMode, "KIOSK MODE Button");
+
+		waitForPageLoad(5);
+		ArrayList<String> tabs = getAllTabs();
+		if (tabs.size() > 1) {
+
+			switch_to_Tab(tabs, 1);
+			try {
+				for (Profile_Bulk profile : profiles) {
+					By button_Location = By.xpath("//strong[contains(text(),'P2231')]");
+					waitForElementTobeDisplayed(button_Location);
+					clickOnButton(button_Location, getElementText(button_Location));
+					waitForElementTobeDisplayed(textBox_LicensePlate);
+
+					enterText(textBox_LicensePlate, profile.getLpNumber(), "Licence Box");
+					waitForElementTobeClickable(button_Validate);
+					clickOnButton(button_Validate, "VALIDATE button");
+					try {
+						if (isElementDisplayed(msg_Error)) {
+							passStep(profile.getLpNumber() + " has already validated");
+							gotoBackPage();
+							waitForElementTobeDisplayed(textBox_LicensePlate);
+							gotoBackPage();
+							waitForElementTobeDisplayed(button_Location);
+							//break;
+						}
+					} catch (Exception e) {
+						//failStep(e.getMessage());
+					}
+					try {
+						if (isElementDisplayed(msg_Thankyou)) {
+							passStep(profile.getLpNumber() + " has been validated successfully");
+							waitForElementTobeDisplayed(button_NOThanks);
+							clickOnButton(button_NOThanks, getElementText(button_NOThanks));
+						}
+						
+					} catch (Exception e) {
+						//failStep(e.getMessage());
+					}
+				}
+
+			} catch (Exception e) {
+				failStep(e.getMessage());
+			}
+		}
+
+		switch_to_Tab(tabs, 0); // Main Tab
+		refresh_Page();
+		waitForPageLoad(3);
+
 	}
 
 }

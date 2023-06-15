@@ -46,13 +46,13 @@ public class Extent_Reports {
 		String reportName = "AutomationReport_" + timeStamp;
 
 		report = new ExtentReports(
-				System.getProperty("user.dir") + "\\TestResults\\" + d + "\\" + reportName + ".html");
+				System.getProperty("user.dir") + "//TestResults//" + d + "//" + reportName + ".html");
 
 		report.addSystemInfo("Environment", "QA").addSystemInfo("User Name", "Venu Thota (venu.t@comakeit.com)");
 
 		// Configure Log4j
 		System.setProperty("log4j.configurationFile",
-				System.getProperty("user.dir") + " \\src\\main\\java\\utils\\log4j2.xml");
+				System.getProperty("user.dir") + " //src//main//java//utils//log4j2.xml");
 
 	}
 
