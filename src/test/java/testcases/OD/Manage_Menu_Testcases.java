@@ -32,6 +32,7 @@ public class Manage_Menu_Testcases extends BaseClass {
 	OD_InvoicesPage invoicesPage = new OD_InvoicesPage();
 	OD_PartnerSalesPage partnerSalesPage = new OD_PartnerSalesPage();
 	OD_CashDepositsPage cashDepositsPage = new OD_CashDepositsPage();
+	OD_BusinessAccountsPage businessAccountsPage = new OD_BusinessAccountsPage();
 
 	// ****************** TEST SCRIPTS ****************************//
 
@@ -54,6 +55,7 @@ public class Manage_Menu_Testcases extends BaseClass {
 	 * TC_16_Create_Invoice
 	 * TC_17_Create_Partner_Sale
 	 * TC_18_Create_Cash_Deposit
+	 * TC_19_Verify_Dynamic_Layouts
 	 *
 	 */
 
@@ -373,6 +375,22 @@ public class Manage_Menu_Testcases extends BaseClass {
 		CashDeposit cashDeposit = (CashDeposit) xml_Ops.getTestData("cash_deposit");
 		cashDeposit.setBagNumber(getTimestamp());
 		cashDepositsPage.create_CashDeposit(cashDeposit);
+
+	}
+
+	/*
+	 * This is a test case to verify dynamic layouts functionality
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_19_Verify_Dynamic_Layouts_Functionality_On_BusinessAccountPage() {
+
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		businessAccountsPage = homePage.navigateToBusinessAccountsPage();
+		DynamicLayout dynamicLayout = (DynamicLayout) xml_Ops.getTestData("dynamic_layout");
+		businessAccountsPage.verify_Dynamic_Layouts(dynamicLayout);
 
 	}
 

@@ -88,9 +88,6 @@ public class MassImport_BusinessAccounts extends BaseClass {
 	/*
 	 * 
 	 * This is a test case to validate the license plates of business account
-	 * 
-	 * 
-	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 * 
 	 */
@@ -102,7 +99,7 @@ public class MassImport_BusinessAccounts extends BaseClass {
 		homePage = loginPage.login();
 		businessAccountsPage = homePage.navigateToBusinessAccountsPage();
 		// List<String> sheets = excel_Ops.get_Total_Sheets(fileName);
-		List<Profile_Bulk> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "1st100");
+		List<Profile_Bulk> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "original");
 		if (businessAccountsPage.isBusinessAccountExist("6548")) {
 			// West Haven Rocks -> 6548
 			businessAccountsPage.imporsonateBusinessAccount(profiles.get(0));

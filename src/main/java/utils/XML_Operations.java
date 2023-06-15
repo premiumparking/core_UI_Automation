@@ -359,6 +359,20 @@ public class XML_Operations {
 			}
 			return cashDeposit;
 
+		case "dynamic_layout":
+			DynamicLayout dynamicLayout = null;
+			xmlFile = new File("src\\test\\java\\testdata\\OD\\DynamicLayouts.xml");
+			try {
+				jaxbContext = JAXBContext.newInstance(DynamicLayout.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				dynamicLayout = (DynamicLayout) jaxbUnmarshaller.unmarshal(xmlFile);
+			} catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return dynamicLayout;
+
+
 		}
 		return null;
 	}
