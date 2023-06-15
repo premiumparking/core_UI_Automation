@@ -33,8 +33,8 @@ public class Excel_Operations extends Extent_Reports {
 	public List<Profile_Bulk> load_ProfilesData_From_ExcelSheet(String fileName, String sheetName) {
 		try {
 			//File file = new File("\\src\\test\\java\\testData\\OD\\" + fileName);
-			File file = new File(System.getProperty("user.dir") + "//src//test//resources//WestHavenPlatelist.xlsx");
-			//File file = new File("//core//automation//ui//src//test//java//testdata//OD//prod//WestHavenPlatelist.xlsx");
+			File file = new File(System.getProperty("user.dir") + "\\src\\test\\resources\\WestHavenPlatelist.xlsx");
+			//File file = new File(System.getProperty("user.dir")+"\\src\\test\\java\\testdata\\OD"+fileName);
 			
 			XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
 			XSSFSheet sheet = workbook.getSheet(sheetName);

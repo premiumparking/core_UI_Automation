@@ -46,7 +46,7 @@ public class Extent_Reports {
 		String reportName = "AutomationReport_" + timeStamp;
 
 		report = new ExtentReports(
-				System.getProperty("user.dir") + "//TestResults//" + d + "//" + reportName + ".html");
+				System.getProperty("user.dir") + "\\TestResults\\" + d + "\\" + reportName + ".html");
 
 		report.addSystemInfo("Environment", "QA").addSystemInfo("User Name", "Venu Thota (venu.t@comakeit.com)");
 

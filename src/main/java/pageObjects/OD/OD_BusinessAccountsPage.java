@@ -3,10 +3,13 @@ package pageObjects.OD;
 import java.util.ArrayList;
 import java.util.List;
 
+import dataModel.OD.DynamicLayout;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import components.BaseClass;
 import dataModel.OD.Profile_Bulk;
+
+import static org.testng.Assert.assertEquals;
 
 /*
  * Class which contains the web elements and performs Business accounts page activities (methods)
@@ -61,6 +64,17 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	By msg_Error = By.xpath("//h4[@id='error-mesg']");
 	By msg_Thankyou = By.xpath("//h1[normalize-space()='Thank You']");
 	By button_NOThanks = By.xpath("//a[normalize-space()='No, thank you']");
+
+
+	By dynamic_Layouts_Label = By.xpath("//tr//td[contains(normalize-space(),'Dynamic Layouts:')]");
+	By dynamic_Layouts_Status = By.xpath("//tr//td[contains(normalize-space(),'Dynamic Layouts:')]/following-sibling::td");
+	By BA_Edit_Button = By.xpath("//tr//td//div//a[contains(normalize-space(),'Edit')]");
+	By dynamic_Layouts_Section = By.xpath("//div//h4[contains(normalize-space(),'Dynamic Layouts')]");
+	By label_AllowTo_Assign_Spaces = By.xpath("//div//label[contains(normalize-space(),'Allow to assign spaces')]");
+	By checkbox_AllowTo_Assign_Spaces = By.id("group_allow_assign_spaces");
+	By label_Permitted_Locations = By.xpath("//label[@for='group_dynamic_layout_permitted_location_ids-selectized']");
+	By textBox_Permitted_Locations = By.id("group_dynamic_layout_permitted_location_ids-selectized");
+	By button_Update_BA = By.xpath("//input[@type='submit']");
 // ****************** ACTIONS ****************************//
 
 	/*
@@ -378,6 +392,66 @@ public class OD_BusinessAccountsPage extends BaseClass {
 		switch_to_Tab(tabs, 0); // Main Tab
 		refresh_Page();
 		waitForPageLoad(3);
+
+	}
+
+
+	/*
+
+	 * Method to verify dynamic layouts
+	 *
+	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
+	 */
+	public void verify_Dynamic_Layouts(DynamicLayout dynamicLayout) {
+		stepInfo("<b>Verifying Business account : " + dynamicLayout.getBAName() + "</b>");
+		waitForElementTobeDisplayed(textBox_SearchByID_or_Name);
+		enterText(textBox_SearchByID_or_Name, dynamicLayout.getBAName(), "Search By ID box");
+		clickOnButton(button_Find, "Find button");
+		clickOnButton(row_1, "ID: " + getElementText(row_1));
+
+		stepInfo("<b>Verifying whether user can see Dynamic Layouts label on BA details screen</b>");
+		assertEquals(getElementText(dynamic_Layouts_Label), "Dynamic Layouts:");
+		passStep(getElementText(dynamic_Layouts_Label) + " label has been displayed on the BA details screen");
+
+		stepInfo("<b>Verifying Verify whether user can edit business account</b>");
+		clickOnButton(BA_Edit_Button, "Edit Business Account Button");
+
+		stepInfo("<b>Verifying whether user can see Dynamic Layouts section on the BA edit screen");
+		assertEquals(getElementText(dynamic_Layouts_Section), "Dynamic Layouts");
+		passStep(getElementText(dynamic_Layouts_Section) + " section has been displayed on the BA edit screen");
+
+		stepInfo("<b>Verifying whether user can see Allow to assign spaces check box in BA edit screen");
+		assertEquals(getElementText(label_AllowTo_Assign_Spaces), "Allow to assign spaces");
+		passStep(getElementText(label_AllowTo_Assign_Spaces) + " check box has been displayed on the BA edit screen");
+
+		stepInfo("<b>Verifying whether user can click on the 'Allow to assign spaces' checkbox under the dynamic layouts section</b>");
+		if (isCheckBoxChecked(checkbox_AllowTo_Assign_Spaces))
+			passStep("Allow to assign spaces checkbox is checked");
+		else select_Checkbox(checkbox_AllowTo_Assign_Spaces, "Allow to assign spaces checkbox");
+
+		stepInfo("<b>Verifying whether user can see 'Permitted Locations' label under the dynamic layouts section");
+		assertEquals(getElementText(label_Permitted_Locations), "Permitted Locations");
+		passStep(getElementText(label_Permitted_Locations) + " label has been displayed under the dynamic layouts section");
+
+		stepInfo("<b>Verifying whether user can select the locations available with dynamic layouts from 'Permitted Locations' dropdown.</b>");
+		clearText(textBox_Permitted_Locations);
+		selectFromSearch(textBox_Permitted_Locations, "P0373", "Permitted Locations Dropdown");
+		clickOnButton(dynamic_Layouts_Section, "Dynamic Layouts");
+
+		stepInfo("<b>Verifying whether user can save the dynamic layout changes.</b>");
+		clickOnButton(button_Update_BA, "Update Business Account Button");
+
+		stepInfo("<b>Verifying whether user can see dynamic layouts as 'active' in the BA details screen when updating with 'Allow to assign spaces' checkbox.");
+		assertEquals(getElementText(dynamic_Layouts_Status), "active");
+		passStep("Dynamic layouts status as " + getElementText(dynamic_Layouts_Status) + " displayed in the BA details screen");
+
+		stepInfo("<b>Verifying whether user can see dynamic layouts as 'inactive' in the BA details screen when un checking with 'Allow to assign spaces' checkbox.");
+		clickOnButton(BA_Edit_Button, "Edit Business Account Button");
+		unselect_Checkbox(checkbox_AllowTo_Assign_Spaces, "Allow to assign spaces checkbox");
+		clearText(textBox_Permitted_Locations);
+		clickOnButton(button_Update_BA, "Update Business Account Button");
+		assertEquals(getElementText(dynamic_Layouts_Status), "inactive");
+		passStep("Dynamic layouts status as " + getElementText(dynamic_Layouts_Status) + " displayed in the BA details screen");
 
 	}
 

@@ -7,8 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="parkOS.automation.ui" />
         <module name="parkos-od-automation-ui" />
+        <module name="core.automation.ui" />
+        <module name="parkOS.automation.ui" />
         <module name="OD_UI_Automation" />
       </profile>
     </annotationProcessing>
