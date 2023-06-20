@@ -30,7 +30,7 @@ public class MassImport_BusinessAccounts extends BaseClass {
 
 	List<Profile_Bulk> profiles;
 	// String fileName = "AnnapolisResidentPermits_2022_2023_Initial.xlsx";
-	String fileName = "//prod//WestHavenPlatelist.xlsx";
+	String fileName = "//prod//WestHavenPlatelist_P2232.xlsx";
 
 	// ****************** TEST SCRIPTS ****************************//
 	/*
@@ -38,7 +38,7 @@ public class MassImport_BusinessAccounts extends BaseClass {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	@Test(priority = 1)
+	//@Test(priority = 1)
 	public void TC_01_CreateProfile() {
 		loginPage = launch_OD_Application();
 		homePage = loginPage.login();
@@ -58,7 +58,7 @@ public class MassImport_BusinessAccounts extends BaseClass {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	@Test(priority = 2)
+	//@Test(priority = 2)
 	public void TC_02_ImpersonateBusinessAccount() {
 		loginPage = launch_OD_Application();
 		homePage = loginPage.login();
@@ -83,18 +83,16 @@ public class MassImport_BusinessAccounts extends BaseClass {
 			}
 		}
 	}
-	// businessAccountsPage.navigate_To_BusinessAcounts_Page();
 
 	/*
 	 * 
-	 * This is a test case to validate the license plates of business account
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * This is a test case to validate the license plates of business account Author
+	 * : Venu Thota(venu.t@comakeit.com)
 	 * 
 	 */
 
-	@Test(priority = 3)
+	//@Test(priority = 3)
 	public void TC_03_ValidateLicensePlate() {
-
 		loginPage = launch_OD_Application();
 		homePage = loginPage.login();
 		businessAccountsPage = homePage.navigateToBusinessAccountsPage();
@@ -103,10 +101,64 @@ public class MassImport_BusinessAccounts extends BaseClass {
 		if (businessAccountsPage.isBusinessAccountExist("6548")) {
 			// West Haven Rocks -> 6548
 			businessAccountsPage.imporsonateBusinessAccount(profiles.get(0));
-
 			businessAccountsPage.validateLicensePlate(profiles);
-
 		}
 	}
-
+	
+	@Test(priority = 4)
+	public void TC_04_ValidateLicensePlate() {
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		businessAccountsPage = homePage.navigateToBusinessAccountsPage();
+		// List<String> sheets = excel_Ops.get_Total_Sheets(fileName);
+		List<Profile_Bulk> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "2ndHalf_1");
+		if (businessAccountsPage.isBusinessAccountExist("6548")) {
+			// West Haven Rocks -> 6548
+			businessAccountsPage.imporsonateBusinessAccount(profiles.get(0));
+			businessAccountsPage.validateLicensePlate(profiles);
+		}
+	}
+	
+		
+	@Test(priority = 5)
+	public void TC_05_ValidateLicensePlate() {
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		businessAccountsPage = homePage.navigateToBusinessAccountsPage();
+		// List<String> sheets = excel_Ops.get_Total_Sheets(fileName);
+		List<Profile_Bulk> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "2ndHalf_2");
+		if (businessAccountsPage.isBusinessAccountExist("6548")) {
+			// West Haven Rocks -> 6548
+			businessAccountsPage.imporsonateBusinessAccount(profiles.get(0));
+			businessAccountsPage.validateLicensePlate(profiles);
+		}
+	}
+	
+	@Test(priority = 6)
+	public void TC_06_ValidateLicensePlate() {
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		businessAccountsPage = homePage.navigateToBusinessAccountsPage();
+		// List<String> sheets = excel_Ops.get_Total_Sheets(fileName);
+		List<Profile_Bulk> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "2ndHalf_3");
+		if (businessAccountsPage.isBusinessAccountExist("6548")) {
+			// West Haven Rocks -> 6548
+			businessAccountsPage.imporsonateBusinessAccount(profiles.get(0));
+			businessAccountsPage.validateLicensePlate(profiles);
+		}
+	}
+	
+	@Test(priority = 7)
+	public void TC_07_ValidateLicensePlate() {
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		businessAccountsPage = homePage.navigateToBusinessAccountsPage();
+		// List<String> sheets = excel_Ops.get_Total_Sheets(fileName);
+		List<Profile_Bulk> profiles = excel_Ops.load_ProfilesData_From_ExcelSheet(fileName, "2ndHalf_4");
+		if (businessAccountsPage.isBusinessAccountExist("6548")) {
+			// West Haven Rocks -> 6548
+			businessAccountsPage.imporsonateBusinessAccount(profiles.get(0));
+			businessAccountsPage.validateLicensePlate(profiles);
+		}
+	}
 }

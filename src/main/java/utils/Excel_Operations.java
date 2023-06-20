@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.poiji.bind.Poiji;
 
+import components.BaseClass;
 import dataModel.Admiral.Citation;
 import dataModel.OD.Profile_Bulk;
 import dataModel.OD.PromoCode_Bulk;
@@ -23,6 +24,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class Excel_Operations extends Extent_Reports {
 
+	BaseClass baseClass = new BaseClass();
 	/*
 	 * This method is to load the excel sheet and it binds to Profiles object and
 	 * returns list of profiles
@@ -32,8 +34,8 @@ public class Excel_Operations extends Extent_Reports {
 
 	public List<Profile_Bulk> load_ProfilesData_From_ExcelSheet(String fileName, String sheetName) {
 		try {
-			//File file = new File("\\src\\test\\java\\testData\\OD\\" + fileName);
-			File file = new File(System.getProperty("user.dir") + "\\src\\test\\resources\\WestHavenPlatelist.xlsx");
+			
+			File file = new File(System.getProperty("user.dir") + "//src//test//resources//WestHavenPlatelist_P2232.xlsx");
 			//File file = new File(System.getProperty("user.dir")+"\\src\\test\\java\\testdata\\OD"+fileName);
 			
 			XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
