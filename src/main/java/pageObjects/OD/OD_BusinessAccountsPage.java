@@ -65,9 +65,9 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	By msg_Thankyou = By.xpath("//h1[normalize-space()='Thank You']");
 	By button_NOThanks = By.xpath("//a[normalize-space()='No, thank you']");
 
-
 	By dynamic_Layouts_Label = By.xpath("//tr//td[contains(normalize-space(),'Dynamic Layouts:')]");
-	By dynamic_Layouts_Status = By.xpath("//tr//td[contains(normalize-space(),'Dynamic Layouts:')]/following-sibling::td");
+	By dynamic_Layouts_Status = By
+			.xpath("//tr//td[contains(normalize-space(),'Dynamic Layouts:')]/following-sibling::td");
 	By BA_Edit_Button = By.xpath("//tr//td//div//a[contains(normalize-space(),'Edit')]");
 	By dynamic_Layouts_Section = By.xpath("//div//h4[contains(normalize-space(),'Dynamic Layouts')]");
 	By label_AllowTo_Assign_Spaces = By.xpath("//div//label[contains(normalize-space(),'Allow to assign spaces')]");
@@ -352,7 +352,7 @@ public class OD_BusinessAccountsPage extends BaseClass {
 			switch_to_Tab(tabs, 1);
 			try {
 				for (Profile_Bulk profile : profiles) {
-					By button_Location = By.xpath("//strong[contains(text(),'P2231')]");
+					By button_Location = By.xpath("//strong[contains(text(),'P2232')]");
 					waitForElementTobeDisplayed(button_Location);
 					clickOnButton(button_Location, getElementText(button_Location));
 					waitForElementTobeDisplayed(textBox_LicensePlate);
@@ -367,10 +367,10 @@ public class OD_BusinessAccountsPage extends BaseClass {
 							waitForElementTobeDisplayed(textBox_LicensePlate);
 							gotoBackPage();
 							waitForElementTobeDisplayed(button_Location);
-							//break;
+							// break;
 						}
 					} catch (Exception e) {
-						//failStep(e.getMessage());
+						// failStep(e.getMessage());
 					}
 					try {
 						if (isElementDisplayed(msg_Thankyou)) {
@@ -378,9 +378,9 @@ public class OD_BusinessAccountsPage extends BaseClass {
 							waitForElementTobeDisplayed(button_NOThanks);
 							clickOnButton(button_NOThanks, getElementText(button_NOThanks));
 						}
-						
+
 					} catch (Exception e) {
-						//failStep(e.getMessage());
+						// failStep(e.getMessage());
 					}
 				}
 
@@ -395,9 +395,8 @@ public class OD_BusinessAccountsPage extends BaseClass {
 
 	}
 
-
 	/*
-
+	 * 
 	 * Method to verify dynamic layouts
 	 *
 	 * Author : Pavan Prasad(pavanprasad.v@comakeit.com)
@@ -424,16 +423,20 @@ public class OD_BusinessAccountsPage extends BaseClass {
 		assertEquals(getElementText(label_AllowTo_Assign_Spaces), "Allow to assign spaces");
 		passStep(getElementText(label_AllowTo_Assign_Spaces) + " check box has been displayed on the BA edit screen");
 
-		stepInfo("<b>Verifying whether user can click on the 'Allow to assign spaces' checkbox under the dynamic layouts section</b>");
+		stepInfo(
+				"<b>Verifying whether user can click on the 'Allow to assign spaces' checkbox under the dynamic layouts section</b>");
 		if (isCheckBoxChecked(checkbox_AllowTo_Assign_Spaces))
 			passStep("Allow to assign spaces checkbox is checked");
-		else select_Checkbox(checkbox_AllowTo_Assign_Spaces, "Allow to assign spaces checkbox");
+		else
+			select_Checkbox(checkbox_AllowTo_Assign_Spaces, "Allow to assign spaces checkbox");
 
 		stepInfo("<b>Verifying whether user can see 'Permitted Locations' label under the dynamic layouts section");
 		assertEquals(getElementText(label_Permitted_Locations), "Permitted Locations");
-		passStep(getElementText(label_Permitted_Locations) + " label has been displayed under the dynamic layouts section");
+		passStep(getElementText(label_Permitted_Locations)
+				+ " label has been displayed under the dynamic layouts section");
 
-		stepInfo("<b>Verifying whether user can select the locations available with dynamic layouts from 'Permitted Locations' dropdown.</b>");
+		stepInfo(
+				"<b>Verifying whether user can select the locations available with dynamic layouts from 'Permitted Locations' dropdown.</b>");
 		clearText(textBox_Permitted_Locations);
 		selectFromSearch(textBox_Permitted_Locations, "P0373", "Permitted Locations Dropdown");
 		clickOnButton(dynamic_Layouts_Section, "Dynamic Layouts");
@@ -441,17 +444,21 @@ public class OD_BusinessAccountsPage extends BaseClass {
 		stepInfo("<b>Verifying whether user can save the dynamic layout changes.</b>");
 		clickOnButton(button_Update_BA, "Update Business Account Button");
 
-		stepInfo("<b>Verifying whether user can see dynamic layouts as 'active' in the BA details screen when updating with 'Allow to assign spaces' checkbox.");
+		stepInfo(
+				"<b>Verifying whether user can see dynamic layouts as 'active' in the BA details screen when updating with 'Allow to assign spaces' checkbox.");
 		assertEquals(getElementText(dynamic_Layouts_Status), "active");
-		passStep("Dynamic layouts status as " + getElementText(dynamic_Layouts_Status) + " displayed in the BA details screen");
+		passStep("Dynamic layouts status as " + getElementText(dynamic_Layouts_Status)
+				+ " displayed in the BA details screen");
 
-		stepInfo("<b>Verifying whether user can see dynamic layouts as 'inactive' in the BA details screen when un checking with 'Allow to assign spaces' checkbox.");
+		stepInfo(
+				"<b>Verifying whether user can see dynamic layouts as 'inactive' in the BA details screen when un checking with 'Allow to assign spaces' checkbox.");
 		clickOnButton(BA_Edit_Button, "Edit Business Account Button");
 		unselect_Checkbox(checkbox_AllowTo_Assign_Spaces, "Allow to assign spaces checkbox");
 		clearText(textBox_Permitted_Locations);
 		clickOnButton(button_Update_BA, "Update Business Account Button");
 		assertEquals(getElementText(dynamic_Layouts_Status), "inactive");
-		passStep("Dynamic layouts status as " + getElementText(dynamic_Layouts_Status) + " displayed in the BA details screen");
+		passStep("Dynamic layouts status as " + getElementText(dynamic_Layouts_Status)
+				+ " displayed in the BA details screen");
 
 	}
 
