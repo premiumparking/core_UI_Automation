@@ -351,22 +351,22 @@ public class OD_BusinessAccountsPage extends BaseClass {
 
 			switch_to_Tab(tabs, 1);
 			try {
+				By button_Location = By.xpath("//strong[contains(text(),'P2237')]");
+				waitForElementTobeDisplayed(button_Location);
+				clickOnButton(button_Location, getElementText(button_Location));
+				waitForElementTobeDisplayed(textBox_LicensePlate);
 				for (Profile_Bulk profile : profiles) {
-					By button_Location = By.xpath("//strong[contains(text(),'P2232')]");
-					waitForElementTobeDisplayed(button_Location);
-					clickOnButton(button_Location, getElementText(button_Location));
-					waitForElementTobeDisplayed(textBox_LicensePlate);
-
+					String currentURL = BaseClass.driver.getCurrentUrl();
 					enterText(textBox_LicensePlate, profile.getLpNumber(), "Licence Box");
 					waitForElementTobeClickable(button_Validate);
 					clickOnButton(button_Validate, "VALIDATE button");
 					try {
 						if (isElementDisplayed(msg_Error)) {
 							passStep(profile.getLpNumber() + " has already validated");
-							gotoBackPage();
-							waitForElementTobeDisplayed(textBox_LicensePlate);
-							gotoBackPage();
-							waitForElementTobeDisplayed(button_Location);
+							// gotoBackPage();
+							// waitForElementTobeDisplayed(textBox_LicensePlate);
+							// gotoBackPage();
+							// waitForElementTobeDisplayed(button_Location);
 							// break;
 						}
 					} catch (Exception e) {
@@ -376,12 +376,13 @@ public class OD_BusinessAccountsPage extends BaseClass {
 						if (isElementDisplayed(msg_Thankyou)) {
 							passStep(profile.getLpNumber() + " has been validated successfully");
 							waitForElementTobeDisplayed(button_NOThanks);
-							clickOnButton(button_NOThanks, getElementText(button_NOThanks));
+							// clickOnButton(button_NOThanks, getElementText(button_NOThanks));
 						}
 
 					} catch (Exception e) {
 						// failStep(e.getMessage());
 					}
+					BaseClass.driver.get(currentURL);
 				}
 
 			} catch (Exception e) {
