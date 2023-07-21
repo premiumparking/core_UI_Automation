@@ -3,11 +3,12 @@ package components;
 public class Constants {
 
 	public static final String PREMIUMPARKING = "Premium Parking";
-	public static String[] VIRTUAL_LOCATIONS = {"P0101", "P0094", "P0249"};
-	public static final String[] WEEKDAYS = {"Sunday", "Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday"};
-	public static final String[] LOCATIONS = {"101","1357","400"};
-	//public static final String[] PEEK_LOCATIONS = {"101","1357"};
-	public static final String[] PEEK_LOCATIONS = {"101"};
+	public static String[] VIRTUAL_LOCATIONS = { "P0101", "P0094", "P0249" };
+	public static final String[] WEEKDAYS = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+			"Saturday" };
+	public static final String[] LOCATIONS = { "101", "1357", "400" };
+	// public static final String[] PEEK_LOCATIONS = {"101","1357"};
+	public static final String[] PEEK_LOCATIONS = { "101" };
 	public static final String VISA_CARD_NUMBER = "4242424242424242";
 	public static final String VISA_CARD_TYPE = "Visa **** 4242";
 	public static final String UNKNOWN = "UNKNOWN";
@@ -22,6 +23,7 @@ public class Constants {
 	public static final String PROMO100 = "PROMO100";
 	public static final String PROMO50 = "PROMO50";
 	public static final String CARD = "card";
-	
+	public static final String NEW_VEHICLE = "newVehicle";
+	public static final String HOTEL_LOCATION = "1202";
 
 }

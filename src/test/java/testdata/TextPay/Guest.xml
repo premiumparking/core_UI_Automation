@@ -1,5 +1,7 @@
 <guest>
     <locationNumber>101</locationNumber>
+    <mobileNumber>+918888888888</mobileNumber>
+    <otp>1234</otp>
     <licensePlateNumber>MA</licensePlateNumber>
     <state>AK - Alaska</state>
     <zip>643445</zip>
@@ -15,4 +17,7 @@
     <make>BMW</make>
     <type>SUV</type>
     <color>Black</color>
+    <firstName>MICHAEL</firstName>
+    <lastName>AMATO</lastName>
+    <roomNumber>1111</roomNumber>
 </guest>

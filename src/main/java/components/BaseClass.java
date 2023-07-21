@@ -44,8 +44,8 @@ public class BaseClass extends Operations {
 	protected static String od_username, od_password, od_url;
 	protected static String spa_url, spa_username, spa_password;
 	protected static String textpay_url;
-	protected String headless;
-	protected String browser;
+	protected static String headless,browser;
+	public static String os;
 	SPA_LoginPage spaLoginPage;
 	SPA_AccountsPage accountsPage;
 
@@ -58,6 +58,7 @@ public class BaseClass extends Operations {
 
 		config = new Properties();
 		String fpath = System.getProperty("user.dir") + "//src//test//resources//application.properties";
+		//String fpath = System.getProperty("user.dir") + "\\src\\test\\resources\\application.properties";
 		fis = new FileInputStream(fpath);
 
 		config.load(fis);
@@ -76,7 +77,8 @@ public class BaseClass extends Operations {
 
 		// Browser Configurations
 		browser = config.getProperty("browser");
-		this.headless = config.getProperty("headless");
+		headless = config.getProperty("headless");
+		os = config.getProperty("os");
 
 		// SPA Configurations
 		spa_url = config.getProperty("spa_url");
@@ -248,7 +250,11 @@ public class BaseClass extends Operations {
 		File source = ts.getScreenshotAs(OutputType.FILE);
 		String timeStamp = new SimpleDateFormat("HHmmss").format(new Date());
 		String screenshot = "Failure_" + timeStamp;
-		String destination = System.getProperty("user.dir") + "//TestResults//" + d + "//" + screenshot + ".png";
+		String destination = "";
+		//if(os.equalsIgnoreCase("windows"))
+			destination = System.getProperty("user.dir") + "//TestResults//" + d + "//" + screenshot + ".png";
+		//else
+			//destination = System.getProperty("user.dir") + "\\TestResults\\" + d + "\\" + screenshot + ".png";
 
 		File finalDestination = new File(destination);
 		FileUtils.copyFile(source, finalDestination);

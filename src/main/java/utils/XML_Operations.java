@@ -6,6 +6,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import components.BaseClass;
 import dataModel.OD.*;
 import dataModel.SPA.Vehicle;
 import dataModel.TextPay.Guest;
@@ -16,7 +17,7 @@ import dataModel.TextPay.Guest;
  * 
  * Author : Venu Thota(venu.t@comakeit.com)
  */
-public class XML_Operations {
+public class XML_Operations extends BaseClass{
 
 	/*
 	 * This method is to load the data from XML file and bind it to the respective
@@ -31,7 +32,10 @@ public class XML_Operations {
 		switch (model.toLowerCase()) {
 		case "guest":
 			Guest guest = null;
-			xmlFile = new File("src\\test\\java\\testdata\\TextPay\\Guest.xml");
+			//if(BaseClass.os.equalsIgnoreCase("windows"))
+				//xmlFile = new File("src\\test\\java\\testdata\\TextPay\\Guest.xml");
+			//else
+				xmlFile = new File("src//test//java//testdata//TextPay//Guest.xml");
 			try {
 				jaxbContext = JAXBContext.newInstance(Guest.class);
 				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
