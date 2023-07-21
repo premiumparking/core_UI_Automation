@@ -1,7 +1,12 @@
 package components;
 
+import java.text.DateFormatSymbols;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -13,6 +18,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
 import pageObjects.SPA.SPA_LocationPage;
 import pageObjects.TextPay.TextPay_HomePage;
@@ -26,7 +32,9 @@ public class Operations extends Extent_Reports {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public void enterText(By ele, String text, String field) {
+		waitForElementTobeDisplayed(ele);
 		waitForElementTobeClickable(ele);
+
 		WebElement element = BaseClass.driver.findElement(ele);
 		if (isElementDisplayed(ele) && element.isEnabled()) {
 			highlightElement(element);
@@ -37,7 +45,8 @@ public class Operations extends Extent_Reports {
 		}
 	}
 
-	public void clearText(By ele ) {
+	public void clearText(By ele) {
+		waitForElementTobeDisplayed(ele);
 		waitForElementTobeClickable(ele);
 		WebElement element = BaseClass.driver.findElement(ele);
 		if (isElementDisplayed(ele) && element.isEnabled()) {
@@ -46,6 +55,7 @@ public class Operations extends Extent_Reports {
 
 		}
 	}
+
 	/*
 	 * This method is to enter text into TEXTBOX using JSE
 	 * 
@@ -93,16 +103,16 @@ public class Operations extends Extent_Reports {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public void clickOnButton(By ele, String field) {
+	public void clickOnButton(By ele, String field) {		
 		waitForElementTobeDisplayed(ele);
+		waitForElementTobeClickable(ele);
 		WebElement element = BaseClass.driver.findElement(ele);
-		waitForPageLoad(1);
 		if (isElementDisplayed(ele) && element.isEnabled()) {
 			highlightElement(element);
 			element.click();
 			passStep("Clicked on " + field);
 			logger.info("Clicked on " + field);
-			waitForPageLoad(2);
+			waitForPageLoad(1);
 		}
 
 	}
@@ -113,13 +123,13 @@ public class Operations extends Extent_Reports {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public void clickOnButton(By ele) {
+		waitForElementTobeDisplayed(ele);
 		waitForElementTobeClickable(ele);
 		WebElement element = BaseClass.driver.findElement(ele);
-		waitForPageLoad(1);
 		if (isElementDisplayed(ele) && element.isEnabled()) {
 			highlightElement(element);
 			element.click();
-			waitForPageLoad(2);
+			waitForPageLoad(1);
 		}
 
 	}
@@ -131,6 +141,7 @@ public class Operations extends Extent_Reports {
 	 */
 	public void clickOnButton_using_Actions(By ele, String field) {
 		waitForElementTobeDisplayed(ele);
+		waitForElementTobeClickable(ele);
 		WebElement element = BaseClass.driver.findElement(ele);
 		waitForPageLoad(1);
 		if (isElementDisplayed(ele) && element.isEnabled()) {
@@ -139,7 +150,7 @@ public class Operations extends Extent_Reports {
 			act.moveToElement(BaseClass.driver.findElement(ele)).click().perform();
 			// element.click();
 			passStep("Clicked on " + field);
-			waitForPageLoad(2);
+			waitForPageLoad(1);
 		}
 
 	}
@@ -151,7 +162,7 @@ public class Operations extends Extent_Reports {
 	 */
 	public void clickOnButton_using_JSE(By ele, String field) {
 
-		//waitForElementTobeDisplayed(ele);
+		// waitForElementTobeDisplayed(ele);
 		WebElement element = BaseClass.driver.findElement(ele);
 		waitForPageLoad(1);
 		if (isElementDisplayed(ele) && element.isEnabled()) {
@@ -225,6 +236,7 @@ public class Operations extends Extent_Reports {
 	 */
 	public void select_Radiobutton(By ele, String field) {
 		waitForElementTobeDisplayed(ele);
+		waitForElementTobeClickable(ele);
 		WebElement element = BaseClass.driver.findElement(ele);
 		if (isElementDisplayed(ele, field) && element.isEnabled()) {
 			highlightElement(element);
@@ -244,6 +256,7 @@ public class Operations extends Extent_Reports {
 	 */
 	public void select_Checkbox(By ele, String field) {
 		waitForElementTobeDisplayed(ele);
+		waitForElementTobeClickable(ele);
 		WebElement element = BaseClass.driver.findElement(ele);
 		if (isElementDisplayed(ele, field) && element.isEnabled()) {
 			highlightElement(element);
@@ -275,7 +288,6 @@ public class Operations extends Extent_Reports {
 		}
 	}
 
-
 	public boolean isCheckBoxChecked(By ele) {
 		waitForElementTobeDisplayed(ele);
 		WebElement element = BaseClass.driver.findElement(ele);
@@ -285,7 +297,8 @@ public class Operations extends Extent_Reports {
 				return true;
 
 			}
-		}return false;
+		}
+		return false;
 	}
 
 	/*
@@ -503,7 +516,7 @@ public class Operations extends Extent_Reports {
 	public void refresh_Page() {
 		BaseClass.driver.navigate().refresh();
 	}
-	
+
 	/*
 	 * This method is used to the go back to the previous page
 	 * 
@@ -581,5 +594,26 @@ public class Operations extends Extent_Reports {
 		// Scrolling down the page till the element is found
 		js.executeScript("arguments[0].scrollIntoView();", element);
 		passStep("Scrolled down to  " + element.getText());
+	}
+
+
+	public void getMonthName() {
+		// Get the current date
+		LocalDate currentDate = LocalDate.now();
+
+		// Get the month from the current date
+		Month currentMonth = currentDate.getMonth();
+
+		// Get the integer representation of the month (1 to 12)
+		int monthValue = currentMonth.getValue();
+
+		// Get the month name (full name or abbreviated name)
+		String fullMonthName = currentMonth.getDisplayName(TextStyle.FULL, Locale.getDefault());
+		String abbreviatedMonthName = currentMonth.getDisplayName(TextStyle.SHORT, Locale.getDefault());
+
+		System.out.println("Current month (1 to 12): " + monthValue);
+		System.out.println("Full month name: " + fullMonthName);
+		System.out.println("Abbreviated month name: " + abbreviatedMonthName);
+
 	}
 }

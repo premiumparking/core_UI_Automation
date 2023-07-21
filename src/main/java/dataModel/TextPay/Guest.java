@@ -5,7 +5,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
-
 /*
  * This model is to create Guest java object
  * Data is getting loaded from XML File
@@ -33,34 +32,11 @@ public class Guest implements Serializable {
 	private String make;
 	private String type;
 	private String color;
-
-	public String getMake() {	return make;	}
-
-	public void setMake(String make) {	this.make = make;	}
-
-	public String getType() {	return type;	}
-
-	public void setType(String type) {	this.type = type;	}
-
-	public String getColor() {	return color;	}
-
-	public void setColor(String color) { this.color = color; }
-
-	public String getVehicleType() { return vehicleType; }
-
-	public void setVehicleType(String vehicleType) { this.vehicleType = vehicleType; }
-
-	public String getParkingType() {
-		return parkingType;
-	}
-
-	public void setParkingType(String parkingType) {
-		this.parkingType = parkingType;
-	}
-
-	public String getTimeInHours() { return timeInHours; }
-
-	public void setTimeInHours(String timeInHours) { this.timeInHours = timeInHours; }
+	private String mobileNumber;
+	private String otp;
+	private String firstName;
+	private String lastName;
+	private String roomNumber;
 
 	public String getLicensePlateNumber() {
 		return licensePlateNumber;
@@ -126,8 +102,20 @@ public class Guest implements Serializable {
 		this.amount = amount;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String getTimeInHours() {
+		return timeInHours;
+	}
+
+	public void setTimeInHours(String timeInHours) {
+		this.timeInHours = timeInHours;
+	}
+
+	public String getParkingType() {
+		return parkingType;
+	}
+
+	public void setParkingType(String parkingType) {
+		this.parkingType = parkingType;
 	}
 
 	public String getPromocode() {
@@ -144,6 +132,82 @@ public class Guest implements Serializable {
 
 	public void setPaymentVia(String paymentVia) {
 		this.paymentVia = paymentVia;
+	}
+
+	public String getVehicleType() {
+		return vehicleType;
+	}
+
+	public void setVehicleType(String vehicleType) {
+		this.vehicleType = vehicleType;
+	}
+
+	public String getMake() {
+		return make;
+	}
+
+	public void setMake(String make) {
+		this.make = make;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+	public String getOtp() {
+		return otp;
+	}
+
+	public void setOtp(String otp) {
+		this.otp = otp;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getRoomNumber() {
+		return roomNumber;
+	}
+
+	public void setRoomNumber(String roomNumber) {
+		this.roomNumber = roomNumber;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

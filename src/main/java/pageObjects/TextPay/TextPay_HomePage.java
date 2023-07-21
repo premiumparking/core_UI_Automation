@@ -29,6 +29,23 @@ public class TextPay_HomePage extends BaseClass {
 	// ****************** WEB ELEMENTS ****************************//
 
 	public By link_Guest = By.xpath("//a[normalize-space()='Continue as a Guest']");
+
+	//Hotel Parking
+	By button_AddNewVehicle = By.xpath("//button[normalize-space()='Add New Vehicle']");
+	By textbox_MobileNumber = By.xpath("//input[@placeholder='Mobile Phone Number']");
+	By button_Continue_Login = By.xpath("//button[@data-testid='login-continue-button']");
+	By button_Continue = By.xpath("//button[normalize-space()='Continue']");	
+	By textBox_OTP = By.xpath("//input[@placeholder='Verification Code']");
+	By button_Verify = By.xpath("//button[normalize-space()='Verify']");	
+	By button_HotelRate = By.xpath("(//div[@data-testid='test-rate-hotel-group']/button)[1]");	
+	By button_Cal_nextMonth = By.xpath("//button[contains(text(),'›')]");
+	By date_17 = By.xpath("//abbr[contains(text(),'17')]");
+	By button_Confirm = By.xpath("//button[contains(text(),'Confirm')]");
+	By button_Charge_to_room = By.xpath("//button[normalize-space()='Charge to Room']");
+	By textbox_FirstName = By.xpath("//input[@name='firstName']");
+	By textbox_LastName = By.xpath("//input[@name='lastName']");
+	By textbox_RoomNumber = By.xpath("//input[@name='roomNumber']");
+
 	By location_searchBox = By.xpath("//input[@data-testid='test-search-input']");
 	By location_searchResult = By.xpath("//button[@data-testid='test-location-search-result']");
 	By textBox_LicencePlate = By.xpath("//input[@id='license-plate-number']");
@@ -351,6 +368,55 @@ public class TextPay_HomePage extends BaseClass {
 			purchaseDetails.setAmountCharged(guest.getAmount());
 
 		}
+	}
+		
+		public void verify_Purchase_Details_Hotel(Guest guest, PurchaseDetails purchaseDetails) {
+			stepInfo(" <b> **** Verifying Purchase Details ****</b>");
+			waitForElementTobeDisplayed(label_confirmationTitle);
+			if (isElementDisplayed(label_confirmationTitle)) {
+				passStep("Displayed : " + getElementText(label_confirmationTitle));
+				assertEquals(getElementText(label_PurchaseDetails), "Purchase Details");
+				passStep("Displayed : Purchase Details");				
+				passStep("Parking Duration :" + getElementText(label_conf_duration));
+
+				passStep(getElementText(label_conf_endTime));
+				assertEquals(getElementText(label_conf_location), "Location Number:P" + guest.getLocationNumber());
+				passStep(getElementText(label_conf_location));
+
+				if (guest.getParkingType().equalsIgnoreCase("Regular Space")) {
+					assertEquals(getElementText(label_conf_spaceType), "Space Type:Regular");
+					purchaseDetails.setSpaceType("On Demand");
+				} else if (guest.getParkingType().equalsIgnoreCase("Star Space")) {
+					assertEquals(getElementText(label_conf_spaceType), "Space Type:Star");
+					purchaseDetails.setSpaceType("Star Spaces");
+				} else if (guest.getParkingType().equalsIgnoreCase("Charging Space")) {
+					assertEquals(getElementText(label_conf_spaceType), "Space Type:Charging");
+					purchaseDetails.setSpaceType("On Demand");
+				}
+				passStep(getElementText(label_conf_spaceType));
+				passStep(getElementText(label_conf_address));
+
+				String licencePlateInfo;
+				if (guest.getVehicleType().equalsIgnoreCase("unknownVehicle"))
+					licencePlateInfo = guest.getColor() + " " + guest.getType() + " " + guest.getMake();
+
+				else
+					licencePlateInfo = guest.getLicensePlateNumber() + "/" + guest.getState().split(" ")[0];
+				assertEquals(getElementText(label_conf_vehicleInfo), licencePlateInfo);
+				passStep(getElementText(label_conf_vehicleData));
+				passStep(getElementText(label_conf_confirmationNumber));
+				assertEquals(getElementText(label_amountCharged), guest.getAmount());
+				passStep("Amount Charged :" + getElementText(label_amountCharged));
+
+				purchaseDetails.setChannel("TextPay");
+				purchaseDetails.setOrderNumber(getElementText(confirmationNumber));
+				purchaseDetails.setPurchaseType("Session");
+				purchaseDetails.setLocationNumber(guest.getLocationNumber());
+				purchaseDetails.setLicencePlate(guest.getLicensePlateNumber());
+				purchaseDetails.setDurationInWords(getElementText(label_conf_duration));
+				purchaseDetails.setAmountCharged(guest.getAmount());
+
+			}
 
 	}
 
@@ -426,6 +492,61 @@ public class TextPay_HomePage extends BaseClass {
 		passStep("confimation message is displayed as : " + getElementText(peek_confirmation_Message));
 		assertEquals(getElementText(peek_confirmation_Message), "Added to Order");
 
+	}
+
+	public Guest prepare_testData(Guest textpayUser) {
+		textpayUser.setLocationNumber(Constants.HOTEL_LOCATION);
+		String licencePlate = getRandomLicencePlate();
+		textpayUser.setLicensePlateNumber(licencePlate);
+		textpayUser.setVehicleType(Constants.NEW_VEHICLE);
+		textpayUser.setParkingType(Constants.REGULAR_SPACE);
+		textpayUser.setPaymentVia(Constants.CARD);
+		textpayUser.setCcNumber(Constants.VISA_CARD_NUMBER);
+		return textpayUser;
+
+	}
+
+	/*
+	 * Method to Purchase a Session as Guest
+	 *
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public void purchase_Session_With_Hotel_AsRegisterdUser(Guest textPayUser) {
+		stepInfo(" <b> **** Purchasing Session with Hotel as Registered user ****</b>");
+		enterText(textbox_MobileNumber, textPayUser.getMobileNumber(), "Mobile Number textbox");
+		clickOnButton(button_Continue_Login, getElementText(button_Continue_Login));
+		enterText(textBox_OTP, textPayUser.getOtp(), "OTP textbox");
+		clickOnButton(button_Verify, getElementText(button_Verify));
+
+		waitForElementTobeClickable(location_searchBox);
+		enterText(location_searchBox, textPayUser.getLocationNumber(), "Location Searchbox");
+		waitForElementTobeClickable(location_searchResult);
+		clickOnButton(location_searchResult, getElementText(location_searchResult));
+		waitForPageLoad(5);
+		// Vehicle Type
+		if (textPayUser.getVehicleType().equalsIgnoreCase("newVehicle")) {
+			clickOnButton(button_AddNewVehicle, getElementText(button_AddNewVehicle));
+			addNewVehicle(textPayUser);
+		} else if (textPayUser.getVehicleType().equalsIgnoreCase("unknownVehicle")) {
+			addUnknownVehicle(textPayUser);
+		}
+		
+		clickOnButton(button_Continue,getElementText(button_Continue));
+		clickOnButton(button_RegularSpace, "Regular Space");
+		clickOnButton(button_HotelRate,getElementText(button_HotelRate));
+		clickOnButton(button_Cal_nextMonth,"Next month button(>)");
+		clickOnButton(date_17, "17th date");
+		clickOnButton(button_Confirm, getElementText(button_Confirm));
+		clickOnButton(button_Charge_to_room,getElementText(button_Charge_to_room));
+		
+		waitForElementTobeDisplayed(label_Cost);
+		textPayUser.setAmount(getElementText(label_Cost));
+		
+		enterText(textbox_FirstName, textPayUser.getFirstName(),"First Name");
+		enterText(textbox_LastName, textPayUser.getLastName(),"Last Name");
+		enterText(textbox_RoomNumber, textPayUser.getRoomNumber(),"Room Number");
+		clickOnButton(button_Charge_to_room,getElementText(button_Charge_to_room));		
+		
 	}
 
 }
