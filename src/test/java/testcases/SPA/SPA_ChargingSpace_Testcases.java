@@ -1,5 +1,6 @@
 package testcases.SPA;
 
+import org.testng.annotations.Test;
 import components.BaseClass;
 import dataModel.SPA.Vehicle;
 import org.testng.annotations.Test;

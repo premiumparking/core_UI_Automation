@@ -104,7 +104,10 @@ public class BaseClass extends Operations {
 		switch (browser.toLowerCase()) {
 		case "chrome":
 			WebDriverManager.chromedriver().setup();
-			// System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+			WebDriverManager.chromedriver().getDownloadedDriverVersion();
+			WebDriverManager.chromedriver().setup();
+			
+			//System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 			ChromeOptions ch_options = new ChromeOptions();
 
 			if (Boolean.parseBoolean(headless))
@@ -375,6 +378,20 @@ public class BaseClass extends Operations {
 		spaLoginPage = launch_SPA_Application();
 		accountsPage = spaLoginPage.login();
 		return accountsPage.add_New_Vehicle();
+	}
+	
+	/*
+	 * Usage : To get random US Phone number from list of US Phone numbers
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
+	 */
+	public String getRandomUSPhoneNumber() {
+
+		String[] us_ph_numbers = Constants.US_PHONE_NUMBERS;
+		Random random = new Random();
+		int index = random.nextInt(us_ph_numbers.length);
+
+		return us_ph_numbers[index];
 	}
 
 }

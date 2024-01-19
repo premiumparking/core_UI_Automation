@@ -8,7 +8,7 @@
             </run>
         </groups>
         <classes>
-            <class name="testcases.TextPay.TextPay_Sessions_Testcases" />
+            <class name="testcases.TextPay.TextPay_Sanity_Testcases" />
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

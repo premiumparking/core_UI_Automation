@@ -1,6 +1,8 @@
 <guest>
+    <guestRole>flase</guestRole>
+    <newPayment>flase</newPayment>
     <locationNumber>101</locationNumber>
-    <mobileNumber>+918888888888</mobileNumber>
+    <mobileNumber>+18189750320</mobileNumber>
     <otp>1234</otp>
     <licensePlateNumber>MA</licensePlateNumber>
     <state>AK - Alaska</state>

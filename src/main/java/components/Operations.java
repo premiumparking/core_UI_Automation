@@ -103,7 +103,7 @@ public class Operations extends Extent_Reports {
 	 * 
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
-	public void clickOnButton(By ele, String field) {		
+	public void clickOnButton(By ele, String field) {
 		waitForElementTobeDisplayed(ele);
 		waitForElementTobeClickable(ele);
 		WebElement element = BaseClass.driver.findElement(ele);
@@ -213,9 +213,14 @@ public class Operations extends Extent_Reports {
 	 * Author : Venu Thota(venu.t@comakeit.com)
 	 */
 	public Boolean isElementDisplayed(By element) {
-		WebElement ele = BaseClass.driver.findElement(element);
-		highlightElement(ele);
-		return ele.isDisplayed();
+		try {
+			waitForElementTobeDisplayed(element);
+			WebElement ele = BaseClass.driver.findElement(element);
+			highlightElement(ele);
+			return ele.isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
 
 	}
 
@@ -595,7 +600,6 @@ public class Operations extends Extent_Reports {
 		js.executeScript("arguments[0].scrollIntoView();", element);
 		passStep("Scrolled down to  " + element.getText());
 	}
-
 
 	public void getMonthName() {
 		// Get the current date
