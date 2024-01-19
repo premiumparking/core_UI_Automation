@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="testcases.SPA.SPA_ChargingSpace_Testcases"/>
+      <class name="testcases.OD.Manage_Menu_Testcases"/>
+      <class name="testcases.OD.Prod.Bulk_Creation_Of_PromoCodes"/>
+      <class name="testcases.SPA.SPA_OnBoarding_Testcases"/>
+      <class name="testcases.Admiral.AdmiralEnforcement"/>
+      <class name="testcases.OD.Content_Menu_Testcases"/>
+      <class name="testcases.SPA.SPA_StarSpace_Testcases"/>
+      <class name="testcases.SPA.SPA_Sessions_Testcases"/>
+      <class name="testcases.SPA.SPA_Reservations_Testcases"/>
+      <class name="testcases.OD.Prod.MassImport_BusinessAccounts"/>
+      <class name="testcases.TextPay.TextPay_Sessions_Testcases"/>
+      <class name="testcases.TextPay.TextPay_Sessions_With_Hotel"/>
+      <class name=".NewTest"/>
+      <class name="testcases.TextPay.TextPay_Sanity_Testcases"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

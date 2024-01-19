@@ -1,5 +1,6 @@
 package testcases.TextPay;
 
+import org.testng.annotations.Test;
 import components.BaseClass;
 import components.Constants;
 import dataModel.TextPay.Guest;
@@ -40,7 +41,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia(Constants.CARD);
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -66,7 +67,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO100);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -92,7 +93,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia(Constants.CARD);
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -118,7 +119,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO100);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -145,7 +146,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setTimeInHours(Constants._2_Hrs);
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -172,7 +173,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPromocode(Constants.PROMO100);
 		guest.setTimeInHours(Constants._5_Hrs);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -198,7 +199,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setTimeInHours(Constants._1_Hr);
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -225,7 +226,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPromocode(Constants.PROMO100);
 		guest.setTimeInHours(Constants._2_Hrs);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -251,7 +252,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		guest.setTimeInHours(Constants._2_Hrs);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -278,7 +279,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPromocode(Constants.PROMO100);
 		guest.setTimeInHours(Constants._5_Hrs);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -304,7 +305,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		guest.setTimeInHours(Constants._1_Hr);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -331,7 +332,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPromocode(Constants.PROMO100);
 		guest.setTimeInHours(Constants._2_Hrs);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -359,7 +360,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setTimeInHours(Constants._2_Hrs);
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -386,7 +387,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPromocode(Constants.PROMO100);
 		guest.setTimeInHours(Constants._1_Hr);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -413,7 +414,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setTimeInHours(Constants._5_Hrs);
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -440,7 +441,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPromocode(Constants.PROMO100);
 		guest.setTimeInHours(Constants._2_Hrs);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -467,7 +468,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO50);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -494,7 +495,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO50);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -521,7 +522,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO50);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -548,7 +549,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO50);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -575,7 +576,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO50);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -602,7 +603,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO50);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -629,7 +630,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO50);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -656,7 +657,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO50);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -684,7 +685,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia(Constants.CARD);
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session_AsGuest(guest, false);
+		tp_HomePage.purchase_Session(guest);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification

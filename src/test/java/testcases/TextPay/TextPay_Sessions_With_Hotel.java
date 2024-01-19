@@ -1,5 +1,6 @@
 package testcases.TextPay;
 
+import org.testng.annotations.Test;
 import components.BaseClass;
 import components.Constants;
 import dataModel.TextPay.Guest;

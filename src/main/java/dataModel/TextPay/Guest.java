@@ -16,6 +16,8 @@ import java.io.Serializable;
 public class Guest implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private boolean guestRole;
+	private boolean newPayment;
 	private String licensePlateNumber;
 	private String state;
 	private String zip;
@@ -37,6 +39,14 @@ public class Guest implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String roomNumber;
+
+	public boolean isGuestRole() {
+		return guestRole;
+	}
+
+	public void setGuestRole(boolean guestRole) {
+		this.guestRole = guestRole;
+	}
 
 	public String getLicensePlateNumber() {
 		return licensePlateNumber;
@@ -208,6 +218,14 @@ public class Guest implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public boolean isNewPayment() {
+		return newPayment;
+	}
+
+	public void setNewPayment(boolean newPayment) {
+		this.newPayment = newPayment;
 	}
 
 }
