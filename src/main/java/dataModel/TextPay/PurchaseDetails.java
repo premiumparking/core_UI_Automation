@@ -14,6 +14,15 @@ public class PurchaseDetails {
 	String paymentOption;
 	String paymentMethod;
 	String spaceType;
+	String email;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getOrderNumber() {
 		return orderNumber;

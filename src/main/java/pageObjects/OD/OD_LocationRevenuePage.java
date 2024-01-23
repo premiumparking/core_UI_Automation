@@ -36,7 +36,6 @@ public class OD_LocationRevenuePage extends BaseClass {
 
 		String orderNum = purchaseDetails.getOrderNumber();
 
-		
 		if (purchaseDetails.getPaymentOption().equalsIgnoreCase(Constants.CARD)) {
 			orderNumber = By.xpath("//a[normalize-space()='" + orderNum + "']");
 
@@ -76,35 +75,47 @@ public class OD_LocationRevenuePage extends BaseClass {
 		waitForElementTobeClickable(button_Find);
 		clickOnButton_using_Actions(button_Find, "Button Find");
 		// clickOnButton(button_Find, "Button Find");
-		waitForPageLoad(60);
+		waitForPageLoad(10);
 		clickOnButton_using_Actions(button_Find, "Button Find");
 		waitForElementTobeDisplayed(orderNumber);
 		passStep("Order Number : " + getElementText(orderNumber));
-		passStep("Location Name : " + getElementText(locationName));	
+		highlightElement((orderNumber));
+		passStep("Location Name : " + getElementText(locationName));
+		highlightElement((locationName));
 		passStep("Product : " + getElementText(product));
+		highlightElement((product));
 		passStep("Channel : " + getElementText(channel));
+		highlightElement((channel));
 		passStep("Licence Plate : " + getElementText(licencePlate));
+		highlightElement((licencePlate));
 		passStep("Duration in words : " + getElementText(durationInWords));
+		highlightElement((durationInWords));
 		passStep("Rate Name : " + getElementText(rateName));
+		highlightElement((rateName));
 		passStep("Total AMount : " + getElementText(totalAmount));
+		highlightElement((totalAmount));
 		passStep("Transaction Type : " + getElementText(transactionType));
-
-		if (purchaseDetails.getLocationNumber().equalsIgnoreCase("101"))
-			purchaseDetails.setLocationNumber("P0101");
+		highlightElement((transactionType));
 
 		assertEquals(getElementText(orderNumber), purchaseDetails.getOrderNumber());
-		assertEquals(getElementText(locationName), purchaseDetails.getLocationNumber());
-		assertEquals(getElementText(product), purchaseDetails.getSpaceType());
-		assertEquals(getElementText(channel), purchaseDetails.getChannel());
-		assertEquals(getElementText(licencePlate), purchaseDetails.getLicencePlate());
-		assertEquals(getElementText(durationInWords).toLowerCase(), purchaseDetails.getDurationInWords().toLowerCase());
-		assertEquals(getElementText(totalAmount), purchaseDetails.getAmountCharged());
-		assertEquals(getElementText(transactionType).toLowerCase(), purchaseDetails.getPurchaseType().toLowerCase());
-		if (purchaseDetails.getPaymentOption().equalsIgnoreCase("promocode")) {
-			assertEquals(getElementText(promoCode), purchaseDetails.getPromocode());
+		if (purchaseDetails.getLocationNumber().length() == 3)
+			assertEquals(getElementText(locationName), "P0" + purchaseDetails.getLocationNumber(),
+					"Location name mismatch...");
+		else
+			assertEquals(getElementText(locationName), "P" + purchaseDetails.getLocationNumber(),
+					"Location name mismatch...");
+		assertEquals(getElementText(product), purchaseDetails.getSpaceType(), "Product mismatch...");
+		assertEquals(getElementText(channel), purchaseDetails.getChannel(), "Channel mismatch...");
+		assertEquals(getElementText(licencePlate), purchaseDetails.getLicencePlate(), "Licence Plate mismatch...");
+		assertEquals(getElementText(durationInWords).toLowerCase(), purchaseDetails.getDurationInWords().toLowerCase(),
+				"Duration mismatch...");
+		assertEquals(getElementText(totalAmount), purchaseDetails.getAmountCharged(), "Total amount mismatch...");
+		assertEquals(getElementText(transactionType).toLowerCase(), purchaseDetails.getPurchaseType().toLowerCase(), "Purchase type mismatch...");
+		if (purchaseDetails.getPaymentOption().equalsIgnoreCase(Constants.PROMOCODE)) {
+			assertEquals(getElementText(promoCode), purchaseDetails.getPromocode(), "Payment method mismatch...");
 			passStep("Promo code : " + getElementText(promoCode));
 		} else {
-			assertEquals(getElementText(paymentMethod), purchaseDetails.getPaymentMethod());
+			assertEquals(getElementText(paymentMethod), purchaseDetails.getPaymentMethod(), "Payment method mismatch...");
 			passStep("Payment Method : " + getElementText(paymentMethod));
 		}
 

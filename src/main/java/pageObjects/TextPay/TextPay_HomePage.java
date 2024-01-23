@@ -3,6 +3,7 @@ package pageObjects.TextPay;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
+import org.testng.Assert;
 
 import components.BaseClass;
 import components.Constants;
@@ -119,6 +120,11 @@ public class TextPay_HomePage extends BaseClass {
 	By button_Apply = By.xpath("//button[normalize-space()='Apply']");
 	By peek_confirmation_Message = By.xpath("//strong[normalize-space()='Added to Order']");
 
+	By link_SendReceipt = By.xpath("//button[normalize-space()='Would you like a receipt?']");
+	By textBox_Email = By.xpath("//input[@placeholder='Email Address']");
+	By button_Send = By.xpath("//input[@placeholder='Email Address']/following-sibling::button/span");
+	By label_EmailSent = By.xpath("//h4[@data-testid='test-remind-text']");
+
 	/*
 	 * Method to navigate to Location Page
 	 *
@@ -183,8 +189,15 @@ public class TextPay_HomePage extends BaseClass {
 	}
 
 	public void addNewVehicle(Guest user) {
-		if (isElementDisplayed(button_AddNewVehicle))
-			clickOnButton(button_AddNewVehicle, "Add New Vehicle link");
+		if (user.getVehicleType().equalsIgnoreCase(Constants.NEW_VEHICLE)) {
+			waitForElementTobeDisplayed(button_AddNewVehicle);
+			waitForElementTobeClickable(button_AddNewVehicle);
+
+			if (isElementDisplayed(button_AddNewVehicle))
+				clickOnButton(button_AddNewVehicle, "Add New Vehicle link");
+			waitForElementTobeDisplayed(textBox_LicencePlate);
+			waitForElementTobeClickable(textBox_LicencePlate);
+		}
 		enterText(textBox_LicencePlate, user.getLicensePlateNumber(), "Licence Plate box");
 		waitForPageLoad(2);
 		selectDropdown(dd_LicenceState, user.getState(), "Licence State dropdown");
@@ -194,6 +207,12 @@ public class TextPay_HomePage extends BaseClass {
 	}
 
 	public void addUnknownVehicle(Guest user) {
+		waitForPageLoad(8);
+		if (isElementDisplayed(button_AddNewVehicle))
+			clickOnButton(button_AddNewVehicle, "Add New Vehicle link");
+		waitForElementTobeDisplayed(button_Unknown_Vehicle);
+		waitForElementTobeClickable(button_Unknown_Vehicle);
+
 		clickOnButton(button_Unknown_Vehicle, "I don't know my License Plate");
 		waitForElementTobeDisplayed(dd_Vehicle_Make);
 		selectFromSearch(dd_Vehicle_Make, user.getMake(), "Vehicle Make");
@@ -288,7 +307,7 @@ public class TextPay_HomePage extends BaseClass {
 	public void doPayment(Guest user) {
 		if (user.getPaymentVia().equalsIgnoreCase("card")) {
 			payWithCard(user);
-		} else if (user.getPaymentVia().equalsIgnoreCase("promocode")) {
+		} else if (user.getPaymentVia().equalsIgnoreCase(Constants.PROMOCODE)) {
 			addPromoCode(user);
 			if (user.getPromocode().equalsIgnoreCase(Constants.PROMO50)) {
 				payWithCard(user);
@@ -304,6 +323,7 @@ public class TextPay_HomePage extends BaseClass {
 
 	public void payWithCard(Guest user) {
 		try {
+			waitForPageLoad(5);
 			if (isElementDisplayed(button_payWithCard)) {
 				clickOnButton(button_payWithCard, getElementText(button_payWithCard));
 
@@ -335,13 +355,13 @@ public class TextPay_HomePage extends BaseClass {
 			waitForElementTobeDisplayed(iframe_cardNumber);
 			switchToIframe(iframe_cardNumber);
 			enterText(textbox_CardNumber, user.getCcNumber(), "Card Number Textbox");
-			BaseClass.driver.switchTo().defaultContent();
+			comeOutFromFrame();
 			switchToIframe(iframe_expDate);
 			enterText(textbox_ExpDate, user.getExpiry(), "Expiry Date Textbox");
-			BaseClass.driver.switchTo().defaultContent();
+			comeOutFromFrame();
 			switchToIframe(iframe_CVC);
 			enterText(textbox_CVC, user.getCvc(), "CC_CVC code Textbox");
-			BaseClass.driver.switchTo().defaultContent();
+			comeOutFromFrame();
 			enterText(textbox_ZipCode, user.getZip(), "Zip Code Textbox");
 		}
 	}
@@ -391,6 +411,7 @@ public class TextPay_HomePage extends BaseClass {
 			purchaseDetails.setChannel("TextPay");
 			purchaseDetails.setOrderNumber(getElementText(confirmationNumber));
 			purchaseDetails.setPurchaseType("Session");
+
 			purchaseDetails.setLocationNumber(user.getLocationNumber());
 			purchaseDetails.setLicencePlate(user.getLicensePlateNumber());
 			purchaseDetails.setDurationInWords(getElementText(label_conf_duration));
@@ -587,6 +608,22 @@ public class TextPay_HomePage extends BaseClass {
 		clickOnButton(button_Verify, getElementText(button_Verify));
 
 		waitForElementTobeClickable(location_searchBox);
+
+	}
+
+	public void send_Receipt_to_Email(String email) {
+		waitForElementTobeDisplayed(link_SendReceipt);
+		waitForElementTobeClickable(link_SendReceipt);
+		clickOnButton(link_SendReceipt, getElementText(link_SendReceipt));
+		enterText(textBox_Email, email, "Email ID");
+		clickOnButton(button_Send, "Send button");
+		waitForElementTobeDisplayed(label_EmailSent);
+		if (isElementDisplayed(label_EmailSent))
+			passStep(getElementText(label_EmailSent));
+		else
+			failStep("Email sent confirmation message not displayed");
+		// Assert.assertEquals(isElementDisplayed(label_EmailSent), true, "Email sent
+		// confirmation message not displayed");
 
 	}
 

@@ -70,8 +70,6 @@ public class Operations extends Extent_Reports {
 			JavascriptExecutor jse = (JavascriptExecutor) BaseClass.driver;
 
 			jse.executeScript("arguments[0].value='" + text + "';", element);
-
-			// jse.executeScript("document.getElementById('pass').value = 'mukeshotwani';");
 			element.clear();
 			element.sendKeys(text);
 			waitForPageLoad(1);
@@ -214,7 +212,6 @@ public class Operations extends Extent_Reports {
 	 */
 	public Boolean isElementDisplayed(By element) {
 		try {
-			waitForElementTobeDisplayed(element);
 			WebElement ele = BaseClass.driver.findElement(element);
 			highlightElement(ele);
 			return ele.isDisplayed();
@@ -333,6 +330,20 @@ public class Operations extends Extent_Reports {
 		// border: 3px solid red;');", element);
 		js.executeScript("arguments[0].setAttribute('style', 'border: 3px solid red;');", element);
 	}
+	
+	/*
+	 * This method is to HIGHLIGHT the webelement
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public static void highlightElement(By ele) {
+		WebElement element = BaseClass.driver.findElement(ele);
+		JavascriptExecutor js = (JavascriptExecutor) BaseClass.driver;
+		// js.executeScript("arguments[0].setAttribute('style', 'background: #828383;
+		// border: 3px solid red;');", element);
+		js.executeScript("arguments[0].setAttribute('style', 'border: 3px solid red;');", element);
+	}
+	
 
 	/*
 	 * Usage :Explicit wait for the element to be displayed
@@ -539,6 +550,15 @@ public class Operations extends Extent_Reports {
 	public void switchToIframe(By ele) {
 		WebElement iframe = BaseClass.driver.findElement(ele);
 		BaseClass.driver.switchTo().frame(iframe);
+	}
+	
+	/*
+	 * This method is used to the come out from iFrame
+	 * 
+	 * Author : Venu Thota(venu.t@comakeit.com)
+	 */
+	public void comeOutFromFrame() {
+		BaseClass.driver.switchTo().defaultContent();
 	}
 
 	/*

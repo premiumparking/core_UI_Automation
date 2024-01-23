@@ -32,6 +32,7 @@ import pageObjects.OD.OD_LoginPage;
 import pageObjects.SPA.SPA_AccountsPage;
 import pageObjects.SPA.SPA_LoginPage;
 import pageObjects.TextPay.TextPay_HomePage;
+import utils.Email_Verification;
 
 public class BaseClass extends Operations {
 
@@ -43,8 +44,8 @@ public class BaseClass extends Operations {
 	protected static String adm_username, adm_password, adm_url;
 	protected static String od_username, od_password, od_url;
 	protected static String spa_url, spa_username, spa_password;
-	protected static String textpay_url;
-	protected static String headless,browser;
+	protected static String textpay_url, yopmail_url;
+	protected static String headless, browser;
 	public static String os;
 	SPA_LoginPage spaLoginPage;
 	SPA_AccountsPage accountsPage;
@@ -58,7 +59,8 @@ public class BaseClass extends Operations {
 
 		config = new Properties();
 		String fpath = System.getProperty("user.dir") + "//src//test//resources//application.properties";
-		//String fpath = System.getProperty("user.dir") + "\\src\\test\\resources\\application.properties";
+		// String fpath = System.getProperty("user.dir") +
+		// "\\src\\test\\resources\\application.properties";
 		fis = new FileInputStream(fpath);
 
 		config.load(fis);
@@ -87,6 +89,10 @@ public class BaseClass extends Operations {
 
 		// TextPay configurations
 		textpay_url = config.getProperty("textpay_url");
+
+		// yopmail
+		yopmail_url = config.getProperty("yopmail_url");
+
 	}
 
 	/*
@@ -106,8 +112,8 @@ public class BaseClass extends Operations {
 			WebDriverManager.chromedriver().setup();
 			WebDriverManager.chromedriver().getDownloadedDriverVersion();
 			WebDriverManager.chromedriver().setup();
-			
-			//System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+
+			// System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 			ChromeOptions ch_options = new ChromeOptions();
 
 			if (Boolean.parseBoolean(headless))
@@ -254,10 +260,11 @@ public class BaseClass extends Operations {
 		String timeStamp = new SimpleDateFormat("HHmmss").format(new Date());
 		String screenshot = "Failure_" + timeStamp;
 		String destination = "";
-		//if(os.equalsIgnoreCase("windows"))
-			destination = System.getProperty("user.dir") + "//TestResults//" + d + "//" + screenshot + ".png";
-		//else
-			//destination = System.getProperty("user.dir") + "\\TestResults\\" + d + "\\" + screenshot + ".png";
+		// if(os.equalsIgnoreCase("windows"))
+		destination = System.getProperty("user.dir") + "//TestResults//" + d + "//" + screenshot + ".png";
+		// else
+		// destination = System.getProperty("user.dir") + "\\TestResults\\" + d + "\\" +
+		// screenshot + ".png";
 
 		File finalDestination = new File(destination);
 		FileUtils.copyFile(source, finalDestination);
@@ -353,7 +360,7 @@ public class BaseClass extends Operations {
 
 		return locations[index];
 	}
-	
+
 	/*
 	 * Usage : To get random PEEK location from list of Locations space
 	 * 
@@ -367,8 +374,7 @@ public class BaseClass extends Operations {
 
 		return locations[index];
 	}
-	
-	
+
 	/*
 	 * Usage : To get random location from list of Locations space
 	 * 
@@ -379,7 +385,7 @@ public class BaseClass extends Operations {
 		accountsPage = spaLoginPage.login();
 		return accountsPage.add_New_Vehicle();
 	}
-	
+
 	/*
 	 * Usage : To get random US Phone number from list of US Phone numbers
 	 * 
@@ -392,6 +398,40 @@ public class BaseClass extends Operations {
 		int index = random.nextInt(us_ph_numbers.length);
 
 		return us_ph_numbers[index];
+	}
+
+	/*
+	 * Usage : To launch Yopmail application
+	 * 
+	 * Author : Venu Thota (venu.t@comakeit.com)
+	 */
+	public Email_Verification launch_yopmail() {
+		driver.get(yopmail_url);
+		Email_Verification emailPage = new Email_Verification();
+		waitForElementTobeDisplayed(emailPage.textBox_Email);
+		if (isElementDisplayed(emailPage.textBox_Email))
+			passStep("Launched the Yopmail mailbox page");
+		return emailPage;
+	}
+
+	/*
+	 * Usage : To generate random promo code
+	 *
+	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 */
+	public String getRandomEmailAddress() {
+		String alphabet = "abcdefghijklmnopqrstuvwxyz";
+		Random random = new Random();
+		StringBuilder sb = new StringBuilder();
+
+		for (int i = 0; i < 5; i++) {
+			int index = random.nextInt(alphabet.length());
+			char randomChar = alphabet.charAt(index);
+			sb.append(randomChar);
+		}
+
+		return sb.toString() + "_" + getTimestamp() + "@yopmail.com";
+
 	}
 
 }
