@@ -56,7 +56,7 @@ public class Email_Verification extends BaseClass {
 			comeOutFromFrame();
 			switchToIframe(iframe_mailBody);
 
-			stepInfo("<b> **** Verifying Email Body ****</b>");
+			stepInfo("<b> **** Verifying Email Body of " + purchaseDetails.getEmail() + "****</b>");
 
 			String location = getElementText(getRowElement("Location"));
 			passStep(location);
@@ -104,8 +104,12 @@ public class Email_Verification extends BaseClass {
 			assertEquals(amount, "• Amount: " + purchaseDetails.getAmountCharged(), "Amount mismatch...");
 			assertEquals(duration, "• Duration: " + purchaseDetails.getDurationInWords().toLowerCase(),
 					"Duration mismatch...");
-			
-			assertEquals(vehicle, "• Vehicle: Alaska, " + purchaseDetails.getLicencePlate(), "Vehicle mismatch...");
+
+			if (purchaseDetails.isUnKnownVehicle())
+				assertEquals(vehicle, "• Vehicle: " + purchaseDetails.getLicencePlate(), "Vehicle mismatch...");
+			else
+				assertEquals(vehicle, "• Vehicle: Alaska, " + purchaseDetails.getLicencePlate(), "Vehicle mismatch...");
+
 			assertEquals(source.toLowerCase(), "• source: " + purchaseDetails.getChannel().toLowerCase(),
 					"Source mismatch...");
 

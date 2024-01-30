@@ -1,28 +1,21 @@
 package dataModel.TextPay;
 
 public class PurchaseDetails {
-	String orderNumber;
-	String licencePlate;
-	String state;
-	String locationNumber;
-	String channel;
-	String purchaseType;
-	String promocode;
-	String rateName;
-	String durationInWords;
-	String amountCharged;
-	String paymentOption;
-	String paymentMethod;
-	String spaceType;
-	String email;
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	private String orderNumber;
+	private String licencePlate;
+	private String state;
+	private String locationNumber;
+	private String channel;
+	private String purchaseType;
+	private String promocode;
+	private String rateName;
+	private String durationInWords;
+	private String amountCharged;
+	private String paymentOption;
+	private String paymentMethod;
+	private String spaceType;
+	private String email;
+	private Boolean unKnownVehicle;
 
 	public String getOrderNumber() {
 		return orderNumber;
@@ -128,5 +121,20 @@ public class PurchaseDetails {
 		this.spaceType = spaceType;
 	}
 
-	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Boolean isUnKnownVehicle() {
+		return unKnownVehicle;
+	}
+
+	public void setUnKnownVehicle(Boolean unKnownVehicle) {
+		this.unKnownVehicle = unKnownVehicle;
+	}
+
 }

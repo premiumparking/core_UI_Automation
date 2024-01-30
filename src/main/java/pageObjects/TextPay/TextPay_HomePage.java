@@ -262,6 +262,7 @@ public class TextPay_HomePage extends BaseClass {
 	public void choose_starSpace_and_Continue(Guest user) {
 		waitForElementTobeClickable(button_StarSpace);
 		clickOnButton(button_StarSpace, "Star Space");
+		waitForPageLoad(5);
 
 		clickOnButton(getStarTime(user.getTimeInHours()), getElementText(getStarTime(user.getTimeInHours())));
 		if (user.getTimeInHours().equalsIgnoreCase("1"))
@@ -285,6 +286,7 @@ public class TextPay_HomePage extends BaseClass {
 	public void choose_chargingSpace_and_Continue(Guest user) {
 		waitForElementTobeClickable(button_ChargingSpace);
 		clickOnButton(button_ChargingSpace, "Charging Space");
+		waitForPageLoad(5);
 
 		clickOnButton(getChargingTime(user.getTimeInHours()), getElementText(getChargingTime(user.getTimeInHours())));
 		if (user.getTimeInHours().equalsIgnoreCase("1"))
