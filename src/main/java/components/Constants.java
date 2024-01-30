@@ -6,7 +6,7 @@ public class Constants {
 	public static String[] VIRTUAL_LOCATIONS = { "P0101", "P0094", "P0249" };
 	public static final String[] WEEKDAYS = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
 			"Saturday" };
-	public static final String[] LOCATIONS = {  "400" };
+	public static final String[] LOCATIONS = { "400"};
 	// public static final String[] PEEK_LOCATIONS = {"101","1357"};
 	public static final String[] PEEK_LOCATIONS = { "101" };
 	public static final String VISA_CARD_NUMBER = "4242424242424242";
