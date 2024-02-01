@@ -17,12 +17,16 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+        
     - name: Build with Maven
-      run: mvn clean test -DsuiteXmlFile=Textpay_Smoke.xml; exit 0
+      continue-on-error: true
+      run: mvn clean test -DsuiteXmlFile=Textpay_Smoke.xml
+      
     - name: echo date
       run: echo ${{ github.event.inputs.date }}
+      
     - name: Upload Test Report
       uses: actions/upload-artifact@v2
       with:
         name: test-report
-        path: TestResults/${{ github.event_name == 'workflow_dispatch' && github.event.inputs.date }}
+        path: ./TestResults/${{ github.event_name == 'workflow_dispatch' && github.event.inputs.date }}
