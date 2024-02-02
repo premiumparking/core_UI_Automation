@@ -33,7 +33,13 @@ jobs:
         cd ./TestResults
         zip -r test-report-${{ steps.set-date.outputs.today }}.zip ./${{ steps.set-date.outputs.today }}
       shell: bash
-    
+
+    - name: Upload Test Report
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-report
+        path: test-report-${{ steps.set-date.outputs.today }}.zip
+
     - name: Send email with SparkPost
       env:
         SPARKPOST_API_KEY: ${{ secrets.SPARKPOST_API_KEY }}
@@ -44,10 +50,10 @@ jobs:
         -H 'Content-Type: application/json' \
         -d '{
           "options": {
-            "sandbox": true
+            "sandbox": false
           },
           "content": {
-            "from": "sivaaws0@gmail.com",
+            "from": "support@premiumparking.com",
             "subject": "Test Report for ${{ steps.set-date.outputs.today }}",
             "html": "<html><body><p>The test report for ${{ steps.set-date.outputs.today }} is attached.</p></body></html>"
           },
@@ -62,9 +68,3 @@ jobs:
             }
           ]
         }'
-
-    - name: Upload Test Report
-      uses: actions/upload-artifact@v2
-      with:
-        name: test-report
-        path: test-report-${{ steps.set-date.outputs.today }}.zip
