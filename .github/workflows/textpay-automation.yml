@@ -27,12 +27,12 @@ jobs:
       run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
       shell: bash
 
-    # - name: Zip current test report
-    #   id: zip-test
-    #   run: |
-    #     cd ./TestResults
-    #     zip -r /test-report-${{ steps.set-date.outputs.today }}.zip ./${{ steps.set-date.outputs.today }}
-    #   shell: bash
+    - name: Zip current test report
+      id: zip-test
+      run: |
+        cd ./TestResults
+        zip -r ../test-report-${{ steps.set-date.outputs.today }}.zip ./${{ steps.set-date.outputs.today }}
+      shell: bash
 
     - name: Upload Test Report
       uses: actions/upload-artifact@v2
