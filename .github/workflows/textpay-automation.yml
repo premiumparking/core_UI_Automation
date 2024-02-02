@@ -22,11 +22,19 @@ jobs:
       continue-on-error: true
       run: mvn clean test -DsuiteXmlFile=Textpay_Smoke.xml
       
-    - name: echo date
-      run: echo ${{ github.event.inputs.date }}
+    - name: Set current date
+      id: set-date
+      run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
+      shell: bash
+
+    - name: Zip current test report
+      id: zip-test
+      run: |
+        zip -r test-report-${{ steps.set-date.outputs.today }}.zip ./TestResults/${{ steps.set-date.outputs.today }}
+      shell: bash
       
     - name: Upload Test Report
       uses: actions/upload-artifact@v2
       with:
         name: test-report
-        path: ./TestResults/${{ github.event_name == 'workflow_dispatch' && github.event.inputs.date }}
+        path: test-report-${{ steps.set-date.outputs.today }}.zip
