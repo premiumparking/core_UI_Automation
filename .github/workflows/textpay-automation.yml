@@ -44,7 +44,7 @@ jobs:
         -H 'Content-Type: application/json' \
         -d '{
           "options": {
-            "sandbox": false
+            "sandbox": true
           },
           "content": {
             "from": "sivaaws0@gmail.com",
