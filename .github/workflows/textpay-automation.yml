@@ -34,6 +34,12 @@ jobs:
         zip -r ../test-report-${{ steps.set-date.outputs.today }}.zip ./${{ steps.set-date.outputs.today }}
       shell: bash
 
+    - name: Echo ZIP
+      run: |
+        echo "echoing where is zip file"
+        ls
+        cd ./TestResults
+
     - name: Upload Test Report
       uses: actions/upload-artifact@v2
       with:
@@ -54,8 +60,8 @@ jobs:
           },
           "content": {
             "from": "support@premiumparking.com",
-            "subject": "Test Report for ${{ steps.set-date.outputs.today }}",
-            "html": "<html><body><p>The test report for ${{ steps.set-date.outputs.today }} is attached.</p></body></html>"
+            "subject": "Textpay Automatiom Test Report for ${{ steps.set-date.outputs.today }}",
+            "html": "<html><body><p>The textpay automatiom test report for ${{ steps.set-date.outputs.today }} is attached.</p></body></html>"
           },
           "recipients": [
             {"address": {"email": "sivakumar.kurnool@xebia.com"}}
