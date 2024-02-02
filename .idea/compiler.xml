@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="parkos-od-automation-ui" />
         <module name="core.automation.ui" />
+        <module name="core_UI_Automation" />
         <module name="parkOS.automation.ui" />
         <module name="OD_UI_Automation" />
       </profile>

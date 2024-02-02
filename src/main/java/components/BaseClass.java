@@ -317,7 +317,7 @@ public class BaseClass extends Operations {
 	/*
 	 * Usage : To generate random promo code
 	 *
-	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 * Author : Venu Thota (venu.t@comakeit.com)
 	 */
 	public String getRandomPromoCode() {
 		String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -330,7 +330,7 @@ public class BaseClass extends Operations {
 	/*
 	 * Usage : To generate random phone number
 	 *
-	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 * Author : Venu Thota (venu.t@comakeit.com)
 	 */
 	public String getRandomPhoneNumber() {
 		Random random = new Random();
@@ -417,7 +417,7 @@ public class BaseClass extends Operations {
 	/*
 	 * Usage : To generate random promo code
 	 *
-	 * Author : Pavan Prasad (pavanprasad.v@comakeit.com)
+	 * Author : Venu Thota (venu.t@comakeit.com)
 	 */
 	public String getRandomEmailAddress() {
 		String alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -432,6 +432,45 @@ public class BaseClass extends Operations {
 
 		return sb.toString() + "_" + getTimestamp() + "@yopmail.com";
 
+	}
+
+	/*
+	 * Usage : To generate random Vehicle make from list of Makes
+	 *
+	 * Author : Venu Thota (venu.t@comakeit.com)
+	 */
+	public String getRandom_Vehicle_Make() {
+		String[] vehicle_makes = Constants.VEHICLE_MAKE;
+		Random random = new Random();
+		int index = random.nextInt(vehicle_makes.length);
+
+		return vehicle_makes[index];
+	}
+
+	/*
+	 * Usage : To generate random Vehicle color from list of Colors
+	 *
+	 * Author : Venu Thota (venu.t@comakeit.com)
+	 */
+	public String getRandom_Vehicle_Color() {
+		String[] vehicle_colors = Constants.VEHICLE_COLOR;
+		Random random = new Random();
+		int index = random.nextInt(vehicle_colors.length);
+
+		return vehicle_colors[index];
+	}
+
+	/*
+	 * Usage : To generate random Vehicle Type from list of Types
+	 *
+	 * Author : Venu Thota (venu.t@comakeit.com)
+	 */
+	public String getRandom_Vehicle_Type() {
+		String[] vehicle_types = Constants.VEHICLE_TYPE;
+		Random random = new Random();
+		int index = random.nextInt(vehicle_types.length);
+
+		return vehicle_types[index];
 	}
 
 }
