@@ -373,42 +373,47 @@ public class TextPay_HomePage extends BaseClass {
 		waitForElementTobeDisplayed(label_confirmationTitle);
 		if (isElementDisplayed(label_confirmationTitle)) {
 			passStep("Displayed : " + getElementText(label_confirmationTitle));
-			assertEquals(getElementText(label_PurchaseDetails), "Purchase Details");
+			assertEquals(getElementText(label_PurchaseDetails), "Purchase Details", "Purchase details title mismatch ...");
 			passStep("Displayed : Purchase Details");
-			if (user.getTimeInHours().equalsIgnoreCase("1"))
-				assertEquals(getElementText(label_conf_duration), user.getTimeInHours() + " Hour");
-			else
-				assertEquals(getElementText(label_conf_duration), user.getTimeInHours() + " Hours");
+			
 			passStep("Parking Duration :" + getElementText(label_conf_duration));
+			if (user.getTimeInHours().equalsIgnoreCase("1"))
+				assertEquals(getElementText(label_conf_duration), user.getTimeInHours() + " Hour", "Duration mismatch ...");
+			else
+				assertEquals(getElementText(label_conf_duration), user.getTimeInHours() + " Hours", "Duration mismatch ...");
+			
 
 			passStep(getElementText(label_conf_endTime));
-			assertEquals(getElementText(label_conf_location), "Location Number:P" + user.getLocationNumber());
+			assertEquals(getElementText(label_conf_location), "Location Number:P" + user.getLocationNumber(), "Location name mismatch");
 			passStep(getElementText(label_conf_location));
-
+			passStep(getElementText(label_conf_spaceType));
 			if (user.getParkingType().equalsIgnoreCase("Regular Space")) {
-				assertEquals(getElementText(label_conf_spaceType), "Space Type:Regular");
+				assertEquals(getElementText(label_conf_spaceType), "Space Type:Regular", "Space Type mismatch");
 				purchaseDetails.setSpaceType("On Demand");
 			} else if (user.getParkingType().equalsIgnoreCase("Star Space")) {
-				assertEquals(getElementText(label_conf_spaceType), "Space Type:Star");
+				assertEquals(getElementText(label_conf_spaceType), "Space Type:Star", "Space Type mismatch");
 				purchaseDetails.setSpaceType("Star Spaces");
 			} else if (user.getParkingType().equalsIgnoreCase("Charging Space")) {
-				assertEquals(getElementText(label_conf_spaceType), "Space Type:Charging");
+				assertEquals(getElementText(label_conf_spaceType), "Space Type:Charging", "Space Type mismatch");
 				purchaseDetails.setSpaceType("On Demand");
 			}
-			passStep(getElementText(label_conf_spaceType));
+			
 			passStep(getElementText(label_conf_address));
 
 			String licencePlateInfo;
 			if (user.getVehicleType().equalsIgnoreCase("unknownVehicle"))
 				licencePlateInfo = user.getColor() + " " + user.getType() + " " + user.getMake();
-
 			else
 				licencePlateInfo = user.getLicensePlateNumber() + "/" + user.getState().split(" ")[0];
-			assertEquals(getElementText(label_conf_vehicleInfo), licencePlateInfo);
 			passStep(getElementText(label_conf_vehicleData));
+			passStep(getElementText(label_conf_vehicleInfo));
+			assertEquals(getElementText(label_conf_vehicleInfo), licencePlateInfo, "Vehicle mismatch ... <a href=\"https://app.clickup.com/t/14266108/ENG-3849\">Clickup defect Ticket -> ENG-3849</a> \n\n");
+			
 			passStep(getElementText(label_conf_confirmationNumber));
-			assertEquals(getElementText(label_amountCharged), user.getAmount());
+			
 			passStep("Amount Charged :" + getElementText(label_amountCharged));
+			assertEquals(getElementText(label_amountCharged), user.getAmount(), "Amount mismatch ...");
+			
 
 			purchaseDetails.setChannel("TextPay");
 			purchaseDetails.setOrderNumber(getElementText(confirmationNumber));
