@@ -38,8 +38,6 @@ jobs:
       run: |
         echo "echoing where is zip file"
         ls
-        cd ./TestResults
-
     - name: Upload Test Report
       uses: actions/upload-artifact@v2
       with:
@@ -65,12 +63,14 @@ jobs:
           },
           "recipients": [
             {"address": {"email": "sivakumar.kurnool@xebia.com"}}
+            {"address": {"email": "sk800489@gmail.com"}},
+            {"address": {"email": "venu.thota@xebia.com"}},
           ],
           "attachments": [
             {
               "name": "test-report-${{ steps.set-date.outputs.today }}.zip",
               "type": "application/zip",
-              "data": "$(base64 -w 0 test-report-${{ steps.set-date.outputs.today }}.zip)"
+              "data": "$(base64 -w 0 ./test-report-${{ steps.set-date.outputs.today }}.zip)"
             }
           ]
         }'
