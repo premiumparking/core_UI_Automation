@@ -49,7 +49,7 @@ jobs:
         env:
           SPARKPOST_API_KEY: ${{ secrets.SPARKPOST_API_KEY }}
         run: |
-          curl -X POST \
+          curl -vv -X POST \
           https://api.sparkpost.com/api/v1/transmissions \
           -H "Authorization: $SPARKPOST_API_KEY" \
           -H 'Content-Type: application/json' \
