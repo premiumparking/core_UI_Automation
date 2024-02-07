@@ -57,7 +57,8 @@ jobs:
           https://api.sparkpost.com/api/v1/transmissions \
           -H "Authorization: $SPARKPOST_API_KEY" \
           -H 'Content-Type: application/json' \
-          -d '{
+          -d @- <<EOF
+          {
             "options": {
               "sandbox": false
             },
@@ -74,7 +75,8 @@ jobs:
               {
                 "name": "test-report-${{ steps.set-date.outputs.today }}.zip",
                 "type": "application/zip",
-                "data": "$ATTACHMENT_DATA"
+                "data": "${{ env.ATTACHMENT_DATA }}"
               }
             ]
-          }'
+          }
+          EOF
