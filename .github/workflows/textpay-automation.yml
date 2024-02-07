@@ -45,6 +45,10 @@ jobs:
           name: test-report-${{ steps.set-date.outputs.today }}
           path: ./TestResults/${{ steps.set-date.outputs.today }}
 
+      - name: Encode attachment
+        id: encode-attachment
+        run: echo "ATTACHMENT_DATA=$(base64 -w 0 test-report-${{ steps.set-date.outputs.today }}.zip)" >> $GITHUB_ENV
+
       - name: Send email with SparkPost
         env:
           SPARKPOST_API_KEY: ${{ secrets.SPARKPOST_API_KEY }}
@@ -70,7 +74,7 @@ jobs:
               {
                 "name": "test-report-${{ steps.set-date.outputs.today }}.zip",
                 "type": "application/zip",
-                "data": "$(base64 -w 0 test-report-${{ steps.set-date.outputs.today }}.zip)"
+                "data": "$ATTACHMENT_DATA"
               }
             ]
           }'
