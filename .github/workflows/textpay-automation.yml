@@ -27,6 +27,9 @@ jobs:
       run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
       shell: bash
 
+    - name: Change PNG Paths
+      run: sed -i 's|file:////home/runner/work/core_UI_Automation/core_UI_Automation//TestResults//2024-02-07//\([^"]*\)|./\1|g' TestResults/${{ steps.set-date.outputs.today }}/*.html
+
     - name: Zip current test report
       id: zip-test
       run: |
