@@ -1,77 +1,76 @@
 name: TextPay Test Automation
 on:
   push:
-    branches: [ "main" ]
-  workflow_dispatch: 
+    branches: ["main"]
+  workflow_dispatch:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
-        
-    - name: Build with Maven
-      continue-on-error: true
-      run: mvn clean test -DsuiteXmlFile=Textpay_Smoke.xml
-      
-    - name: Set current date
-      id: set-date
-      run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
-      shell: bash
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "temurin"
+          cache: maven
 
-    - name: Change PNG Paths
-      run: sed -i 's|file:////home/runner/work/core_UI_Automation/core_UI_Automation//TestResults//2024-02-07//\([^"]*\)|./\1|g' TestResults/${{ steps.set-date.outputs.today }}/*.html
+      - name: Build with Maven
+        continue-on-error: true
+        run: mvn clean test -DsuiteXmlFile=Textpay_Smoke.xml
 
-    - name: Zip current test report
-      id: zip-test
-      run: |
-        zip -r test-report-${{ steps.set-date.outputs.today }}.zip TestResults/${{ steps.set-date.outputs.today }}
-      shell: bash
+      - name: Set current date
+        id: set-date
+        run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
+        shell: bash
 
-    - name: Echo ZIP
-      run: |
-        echo "echoing where is zip file"
-        ls
-    - name: Upload Test Report
-      uses: actions/upload-artifact@v2
-      with:
-        name: test-report-${{ steps.set-date.outputs.today }}
-        path: ./TestResults/${{ steps.set-date.outputs.today }}
+      - name: Change PNG Paths
+        run: sed -i 's|file:////home/runner/work/core_UI_Automation/core_UI_Automation//TestResults//2024-02-07//\([^"]*\)|./\1|g' TestResults/${{ steps.set-date.outputs.today }}/*.html
 
-    - name: Send email with SparkPost
-      env:
-        SPARKPOST_API_KEY: ${{ secrets.SPARKPOST_API_KEY }}
-      run: |
-        curl -X POST \
-        https://api.sparkpost.com/api/v1/transmissions \
-        -H "Authorization: $SPARKPOST_API_KEY" \
-        -H 'Content-Type: application/json' \
-        -d '{
-          "options": {
-            "sandbox": false
-          },
-          "content": {
-            "from": "support@premiumparking.com",
-            "subject": "Textpay Automatiom Test Report for ${{ steps.set-date.outputs.today }}",
-            "html": "<html><body><p>The textpay automatiom test report for ${{ steps.set-date.outputs.today }} is attached.</p></body></html>"
-          },
-          "recipients": [
-            {"address": {"email": "sivakumar.kurnool@xebia.com"}}
-            {"address": {"email": "venu.thota@xebia.com"}},
-          ],
-          "attachments": [
-            {
-              "name": "test-report-${{ steps.set-date.outputs.today }}.zip",
-              "type": "application/zip",
-              "data": "$(base64 -w 0 test-report-${{ steps.set-date.outputs.today }}.zip)"
-            }
-          ]
-        }'
+      - name: Zip current test report
+        id: zip-test
+        run: |
+          zip -r test-report-${{ steps.set-date.outputs.today }}.zip TestResults/${{ steps.set-date.outputs.today }}
+        shell: bash
+
+      - name: Echo ZIP
+        run: |
+          echo "echoing where is zip file"
+          ls
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-report-${{ steps.set-date.outputs.today }}
+          path: ./TestResults/${{ steps.set-date.outputs.today }}
+
+      - name: Send email with SparkPost
+        env:
+          SPARKPOST_API_KEY: ${{ secrets.SPARKPOST_API_KEY }}
+        run: |
+          curl -X POST \
+          https://api.sparkpost.com/api/v1/transmissions \
+          -H "Authorization: $SPARKPOST_API_KEY" \
+          -H 'Content-Type: application/json' \
+          -d '{
+            "options": {
+              "sandbox": false
+            },
+            "content": {
+              "from": "support@premiumparking.com",
+              "subject": "Textpay Automatiom Test Report for ${{ steps.set-date.outputs.today }}",
+              "html": "<html><body><p>The textpay automatiom test report for ${{ steps.set-date.outputs.today }} is attached.</p></body></html>"
+            },
+            "recipients": [
+              {"address": {"email": "sivakumar.kurnool@xebia.com"}},
+              {"address": {"email": "venu.thota@xebia.com"}}
+            ],
+            "attachments": [
+              {
+                "name": "test-report-${{ steps.set-date.outputs.today }}.zip",
+                "type": "application/zip",
+                "data": "$(base64 -w 0 test-report-${{ steps.set-date.outputs.today }}.zip)"
+              }
+            ]
+          }'
