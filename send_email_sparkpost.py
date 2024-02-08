@@ -25,7 +25,7 @@ body = f"The textpay automation test report for {date_str} is attached."
 # Create a multipart message
 msg = MIMEMultipart()
 msg['From'] = from_email
-msg['To'] = to_emails
+msg['To'] = ", ".join(to_emails)
 msg['Subject'] = subject
 
 # Attach the email body
@@ -55,7 +55,6 @@ print("SMTP Password:", smtp_password)  # should not be None
 
 # Send the email over SMTP
 server = smtplib.SMTP(smtp_host, smtp_port)
-# server.set_debuglevel(1)  # Enable debug output
 server.starttls()
 server.login(smtp_username, smtp_password)
 server.sendmail(from_email, to_emails, msg.as_string())
