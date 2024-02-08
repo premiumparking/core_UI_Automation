@@ -23,16 +23,16 @@ jobs:
 
       - name: Set current date
         id: set-date
-        run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
+        run: echo "DATE_STR=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
         shell: bash
 
       - name: Change PNG Paths
-        run: sed -i 's|file:////home/runner/work/core_UI_Automation/core_UI_Automation//TestResults//2024-02-07//\([^"]*\)|./\1|g' TestResults/${{ steps.set-date.outputs.today }}/*.html
+        run: sed -i 's|file:////home/runner/work/core_UI_Automation/core_UI_Automation//TestResults//2024-02-07//\([^"]*\)|./\1|g' TestResults/${{ env.DATE_STR }}/*.html
 
       - name: Zip current test report
         id: zip-test
         run: |
-          zip -r test-report-${{ steps.set-date.outputs.today }}.zip TestResults/${{ steps.set-date.outputs.today }}
+          zip -r test-report-${{ env.DATE_STR }}.zip TestResults/${{ env.DATE_STR }}
         shell: bash
 
       - name: Echo ZIP
@@ -42,41 +42,21 @@ jobs:
       - name: Upload Test Report
         uses: actions/upload-artifact@v2
         with:
-          name: test-report-${{ steps.set-date.outputs.today }}
-          path: ./TestResults/${{ steps.set-date.outputs.today }}
-
-      - name: Encode attachment
-        id: encode-attachment
-        run: echo "ATTACHMENT_DATA=$(base64 -w 0 test-report-${{ steps.set-date.outputs.today }}.zip)" >> $GITHUB_ENV
+          name: test-report-${{ env.DATE_STR }}
+          path: ./TestResults/${{ env.DATE_STR }}
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install email smtplib
 
       - name: Send email with SparkPost
         env:
-          SPARKPOST_API_KEY: ${{ secrets.SPARKPOST_API_KEY }}
-        run: |
-          curl -vv -X POST \
-          https://api.sparkpost.com/api/v1/transmissions \
-          -H "Authorization: $SPARKPOST_API_KEY" \
-          -H 'Content-Type: application/json' \
-          -d @- <<EOF
-          {
-            "options": {
-              "sandbox": false
-            },
-            "content": {
-              "from": "support@premiumparking.com",
-              "subject": "Textpay Automatiom Test Report for ${{ steps.set-date.outputs.today }}",
-              "html": "<html><body><p>The textpay automatiom test report for ${{ steps.set-date.outputs.today }} is attached.</p></body></html>"
-            },
-            "recipients": [
-              {"address": {"email": "sivakumar.kurnool@xebia.com"}},
-              {"address": {"email": "venu.thota@xebia.com"}}
-            ],
-            "attachments": [
-              {
-                "name": "test-report-${{ steps.set-date.outputs.today }}.zip",
-                "type": "application/zip",
-                "data": "${{ env.ATTACHMENT_DATA }}"
-              }
-            ]
-          }
-          EOF
+          SPARKPOST_SMTP_HOST: ${{ secrets.SPARKPOST_SMTP_HOST }}
+          SPARKPOST_SMTP_PORT: ${{ secrets.SPARKPOST_SMTP_PORT }}
+          SPARKPOST_SMTP_USERNAME: ${{ secrets.SPARKPOST_SMTP_USERNAME }}
+          SPARKPOST_SMTP_PASSWORD: ${{ secrets.SPARKPOST_API_KEY }}
+          FROM_EMAIL: "support@premiumparking.com"
+          TO_EMAIL_1: "sivakumar.kurnool@xebia.com"
+          TO_EMAIL_2: "venu.thota@xebia.com"
+          DATE_STR: ${{ env.DATE_STR }}
+        run: python send_email.py
