@@ -17,7 +17,7 @@ import utils.Excel_Operations;
  * 
  * Extends : BaseClass
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class Bulk_Creation_Of_PromoCodes extends BaseClass {
 
@@ -34,7 +34,7 @@ public class Bulk_Creation_Of_PromoCodes extends BaseClass {
 	/*
 	 * This is a test case to create Bulk PromoCodes
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(priority = 1)
 	public void TC_01_CreateBulkPromoCode() {

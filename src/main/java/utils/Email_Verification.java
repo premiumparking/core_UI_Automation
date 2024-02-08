@@ -12,7 +12,7 @@ import dataModel.TextPay.PurchaseDetails;
  * Class is to handle the test data manipulations
  * 
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class Email_Verification extends BaseClass {
 
@@ -31,7 +31,7 @@ public class Email_Verification extends BaseClass {
 	/*
 	 * This method is verify email content return the Operator object
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void verify_Email_PurchaseDetails(PurchaseDetails purchaseDetails) {
 		launch_yopmail();
@@ -41,7 +41,7 @@ public class Email_Verification extends BaseClass {
 	/*
 	 * This method is verify email content return the Operator object
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void verify_Email_Content(PurchaseDetails purchaseDetails) {
 		waitForElementTobeDisplayed(textBox_Email);

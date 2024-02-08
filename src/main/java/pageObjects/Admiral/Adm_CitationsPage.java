@@ -8,7 +8,7 @@ import components.BaseClass;
  * 
  * Extends : BaseClass
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class Adm_CitationsPage extends BaseClass {
 
@@ -27,7 +27,7 @@ public class Adm_CitationsPage extends BaseClass {
 	/*
 	 * Method to verify Citation payment status
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public Boolean isCitationPaid(String citation) {
 		passStep("Verifying Citation: " + citation + " Status");
@@ -50,7 +50,7 @@ public class Adm_CitationsPage extends BaseClass {
 	/*
 	 * Method to Pay Citation
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void payCitation(String amount) {
 		// clickOnButton(link_Details, "Details");

@@ -9,7 +9,7 @@ import com.poiji.annotation.ExcelRow;
  * This model is to create Promo Code java object
  * Data is getting loaded from Excel File
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class PromoCode_Bulk implements Serializable {
 

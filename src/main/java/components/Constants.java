@@ -45,5 +45,8 @@ public class Constants {
 			"+17073958726", "+14782733578", "+17243748910", "+18189750320", "+19492883523", "+12485795654",
 			"+12025961737", "+14305581376", "+13133265290", "+12562690950", "+16157635478", "+18157809623",
 			"+16163193856" };
+	
+	public static final String TEXTPAY = "Textpay";
+	public static final String CAMERAPAY = "CameraPay";
 
 }

@@ -9,7 +9,7 @@ import components.BaseClass;
  * 
  * Extends : BaseClass
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class Adm_HomePage extends BaseClass {
 
@@ -22,7 +22,7 @@ public class Adm_HomePage extends BaseClass {
 	/*
 	 * Method to navigate to citations page from home page
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public Adm_CitationsPage navigateToCitationsPage() {
 		

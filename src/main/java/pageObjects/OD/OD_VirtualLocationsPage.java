@@ -9,7 +9,7 @@ import components.BaseClass;
  * 
  * Extends : BaseClass
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class OD_VirtualLocationsPage extends BaseClass {
 
@@ -30,7 +30,7 @@ public class OD_VirtualLocationsPage extends BaseClass {
 	/*
 	 * Method to create a new Location
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void create_VirtualLocation(String name, String[] locations) {
 		waitForElementTobeDisplayed(button_New);

@@ -16,7 +16,7 @@ import static org.testng.Assert.assertEquals;
  * 
  * Extends : BaseClass
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class OD_BusinessAccountsPage extends BaseClass {
 
@@ -80,7 +80,7 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	/*
 	 * Method to navigate to imporsonate Business Account
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void imporsonateBusinessAccount(Profile_Bulk profile) {
 
@@ -104,7 +104,7 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	/*
 	 * Method to navigate to check if the business account exist
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public boolean isBusinessAccountExist(String accountName, String location) {
 		stepInfo("<b>Verifying Business account : " + accountName + "</b>");
@@ -134,7 +134,7 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	/*
 	 * Method to navigate to check if the business account exist
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public boolean isBusinessAccountExist(String businessAccountId) {
 
@@ -177,7 +177,7 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	/*
 	 * Method to navigate to check if the member is exist or not
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public boolean isMember_Exist(Profile_Bulk profile) {
 
@@ -209,7 +209,7 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	/*
 	 * Method to navigate to members to the business account
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void add_Member(Profile_Bulk profile) {
 		stepInfo("Adding member : " + profile.getEmail());
@@ -244,7 +244,7 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	/*
 	 * Method to add a vehicle to the member
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void add_Vehicle(String licence_Plate) {
 		try {
@@ -316,7 +316,7 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	/*
 	 * Method to navigate to business accounts page
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void navigate_To_BusinessAcounts_Page() {
 		BaseClass.driver.get(businessAccountURL);
@@ -329,7 +329,7 @@ public class OD_BusinessAccountsPage extends BaseClass {
 	 * Method to validate the license plates *
 	 * 
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 * 
 	 */
 

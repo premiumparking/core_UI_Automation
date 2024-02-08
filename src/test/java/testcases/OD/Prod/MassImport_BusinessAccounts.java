@@ -18,7 +18,7 @@ import utils.Excel_Operations;
  * 
  * Extends : BaseClass
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class MassImport_BusinessAccounts extends BaseClass {
 
@@ -37,7 +37,7 @@ public class MassImport_BusinessAccounts extends BaseClass {
 	/*
 	 * This is a test case to create profile
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	//@Test(priority = 1)
 	public void TC_01_CreateProfile() {
@@ -57,7 +57,7 @@ public class MassImport_BusinessAccounts extends BaseClass {
 	/*
 	 * This is a test case imporsonate Business Account
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	//@Test(priority = 2)
 	public void TC_02_ImpersonateBusinessAccount() {
@@ -88,7 +88,7 @@ public class MassImport_BusinessAccounts extends BaseClass {
 	/*
 	 * 
 	 * This is a test case to validate the license plates of business account Author
-	 * : Venu Thota(venu.t@comakeit.com)
+	 * : Venu Thota(venu.thota@xebia.com)
 	 * 
 	 */
 

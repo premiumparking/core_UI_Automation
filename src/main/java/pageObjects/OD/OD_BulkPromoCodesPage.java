@@ -16,7 +16,7 @@ import dataModel.OD.PromoCode_Bulk;
  * 
  * Extends : BaseClass
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class OD_BulkPromoCodesPage extends BaseClass {
 
@@ -91,7 +91,7 @@ public class OD_BulkPromoCodesPage extends BaseClass {
 	/*
 	 * Method to create a new Market
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void create_PromoCode(PromoCode_Bulk promocode) {
 		stepInfo("<b>Creating PromoCode : " + promocode.getPromoCode() + "</b>");
@@ -186,7 +186,7 @@ public class OD_BulkPromoCodesPage extends BaseClass {
 	/*
 	 * Method to navigate to check if the PromoCode exist
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public boolean isPromoCodeExist(String promocode) {
 		stepInfo("<b>Verifying PromoCode : " + promocode + "</b>");

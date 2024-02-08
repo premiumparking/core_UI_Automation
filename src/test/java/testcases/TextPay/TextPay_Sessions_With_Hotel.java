@@ -26,7 +26,7 @@ public class TextPay_Sessions_With_Hotel extends BaseClass {
 	 * This is a test case to purchase regular space session as a guest with new
 	 * vehicle and through card payment
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 
 	@Test(groups = { "smoke", "regression" })
