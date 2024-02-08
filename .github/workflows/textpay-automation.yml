@@ -44,10 +44,6 @@ jobs:
         with:
           name: test-report-${{ env.DATE_STR }}
           path: ./TestResults/${{ env.DATE_STR }}
-      - name: Install Python dependencies
-        run: |
-          pip install --upgrade pip
-          pip install email smtplib
 
       - name: Send email with SparkPost
         env:
@@ -59,4 +55,4 @@ jobs:
           TO_EMAIL_1: "sivakumar.kurnool@xebia.com"
           TO_EMAIL_2: "venu.thota@xebia.com"
           DATE_STR: ${{ env.DATE_STR }}
-        run: python send_email.py
+        run: python3 send_email.py
