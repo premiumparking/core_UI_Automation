@@ -47,8 +47,15 @@ with open(attachment_path, 'rb') as attachment:
     )
     msg.attach(part)
 
+print("SMTP Host:", smtp_host)  # should not be None
+print("SMTP Port:", smtp_port)  # should not be None
+print("SMTP Username:", smtp_username)  # should not be None
+print("SMTP Password:", smtp_password)  # should not be None
+
+
 # Send the email over SMTP
 server = smtplib.SMTP(smtp_host, smtp_port)
+server.set_debuglevel(1)  # Enable debug output
 server.starttls()
 server.login(smtp_username, smtp_password)
 server.sendmail(from_email, to_emails, msg.as_string())
