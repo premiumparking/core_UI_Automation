@@ -11,7 +11,7 @@ date_str = os.getenv('DATE_STR')
 
 # SparkPost SMTP configuration
 smtp_host = os.getenv('SPARKPOST_SMTP_HOST')
-smtp_port = os.getenv('SPARKPOST_SMTP_PORT')
+smtp_port = int(os.getenv('SPARKPOST_SMTP_PORT'))
 smtp_username = os.getenv('SPARKPOST_SMTP_USERNAME')
 smtp_password = os.getenv('SPARKPOST_API_KEY')
 
@@ -41,11 +41,14 @@ with open(attachment_path, 'rb') as attachment:
     part = MIMEBase('application', 'octet-stream')
     part.set_payload(attachment.read())
     encoders.encode_base64(part)
-    part.add_header('Content-Disposition', f'attachment; filename={filename}')
+    part.add_header(
+        'Content-Disposition',
+        f'attachment; filename= {filename}',
+    )
     msg.attach(part)
 
 # Send the email over SMTP
-server = smtplib.SMTP(smtp_host, int(smtp_port))
+server = smtplib.SMTP(smtp_host, smtp_port)
 server.starttls()
 server.login(smtp_username, smtp_password)
 server.sendmail(from_email, to_emails, msg.as_string())
