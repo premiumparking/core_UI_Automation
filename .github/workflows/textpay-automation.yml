@@ -55,4 +55,4 @@ jobs:
           TO_EMAIL_1: "sivakumar.kurnool@xebia.com"
           TO_EMAIL_2: "venu.thota@xebia.com"
           DATE_STR: ${{ env.DATE_STR }}
-        run: python3 send_email.py
+        run: python3 send_email_sparkpost.py
