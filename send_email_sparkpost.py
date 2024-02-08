@@ -55,7 +55,7 @@ print("SMTP Password:", smtp_password)  # should not be None
 
 # Send the email over SMTP
 server = smtplib.SMTP(smtp_host, smtp_port)
-server.set_debuglevel(1)  # Enable debug output
+# server.set_debuglevel(1)  # Enable debug output
 server.starttls()
 server.login(smtp_username, smtp_password)
 server.sendmail(from_email, to_emails, msg.as_string())
