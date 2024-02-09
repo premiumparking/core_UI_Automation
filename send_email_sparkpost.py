@@ -25,7 +25,7 @@ body = f"The textpay automation test report for {date_str} is attached."
 # Create a multipart message
 msg = MIMEMultipart()
 msg['From'] = from_email
-msg['To'] = to_emails
+msg['To'] = ", ".join(to_emails)
 msg['Subject'] = subject
 
 # Attach the email body
