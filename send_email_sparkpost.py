@@ -1,9 +1,24 @@
 import smtplib
 import os
+import re
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
+
+
+
+def parse_test_summary(maven_output):
+    # Define the pattern to search for
+    pattern = r"Tests run: (\d+), Failures: (\d+), Errors: (\d+), Skipped: (\d+)"
+    # Search for the pattern in the Maven output
+    match = re.search(pattern, maven_output)
+    # If a match is found, format and return the summary
+    if match:
+        return f"Tests run: {match.group(1)}, Failures: {match.group(2)}, Errors: {match.group(3)}, Skipped: {match.group(4)}"
+    else:
+        return "Test summary not found in Maven output."
+
 
 
 # Get the date from the environment variable
@@ -15,12 +30,20 @@ smtp_port = os.getenv('SPARKPOST_SMTP_PORT')
 smtp_username = os.getenv('SPARKPOST_SMTP_USERNAME')
 smtp_password = os.getenv('SPARKPOST_SMTP_PASSWORD')
 
+try:
+    with open('mvn_output.txt', 'r') as file:
+        maven_output = file.read()
+    # Parse the test summary from Maven output
+    test_summary = parse_test_summary(maven_output)
+except FileNotFoundError:
+    test_summary = "Maven output file not found."
+
 
 # Email settings
 from_email = os.getenv('FROM_EMAIL')
 to_emails = [os.getenv('TO_EMAIL_1'), os.getenv('TO_EMAIL_2')]
 subject = f"Textpay Automation Test Report for {date_str}"
-body = f"The textpay automation test report for {date_str} is attached."
+body = f"The textpay automation test report for {date_str} is attached.\n\nTest Summary:\n{test_summary}"
 
 # Create a multipart message
 msg = MIMEMultipart()

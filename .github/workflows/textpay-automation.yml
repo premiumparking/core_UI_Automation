@@ -19,7 +19,7 @@ jobs:
 
       - name: Build with Maven
         continue-on-error: true
-        run: mvn clean test -DsuiteXmlFile=Textpay_Smoke.xml
+        run: mvn clean test -DsuiteXmlFile=Textpay_Smoke.xml | tee mvn_output.txt
 
       - name: Set current date
         id: set-date
