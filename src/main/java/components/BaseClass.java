@@ -67,7 +67,7 @@ public class BaseClass extends Operations {
 	protected static String od_username, od_password, od_url;
 	protected static String spa_url, spa_username, spa_password;
 	protected static String textpay_url, yopmail_url;
-	protected static String headless, browser;
+	protected static String headless, browser,verifyEmail;
 	public static String os;
 	SPA_LoginPage spaLoginPage;
 	SPA_AccountsPage accountsPage;
@@ -105,6 +105,7 @@ public class BaseClass extends Operations {
 		browser = config.getProperty("browser");
 		headless = config.getProperty("headless");
 		os = config.getProperty("os");
+		verifyEmail = config.getProperty("os");
 
 		// SPA Configurations
 		spa_url = config.getProperty("spa_url");
