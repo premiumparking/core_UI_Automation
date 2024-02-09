@@ -3,6 +3,7 @@ package pageObjects.OD;
 import static org.testng.Assert.assertEquals;
 
 import org.openqa.selenium.By;
+import org.testng.Assert;
 
 import components.BaseClass;
 import components.Constants;
@@ -13,7 +14,7 @@ import dataModel.TextPay.PurchaseDetails;
  * 
  * Extends : BaseClass
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class OD_LocationRevenuePage extends BaseClass {
 
@@ -22,15 +23,15 @@ public class OD_LocationRevenuePage extends BaseClass {
 	By label_LocationRevenues = By.xpath("//h1[normalize-space()='Location Revenues']");
 	By searchBox = By.id("location_revenue_search_order_invoice_lp");
 	By button_Find = By.xpath("//input[@value='Find']");
-	By orderNumber, locationName, channel, licencePlate, durationInWords, totalAmount, transactionType, promoCode,
-			paymentMethod, product, rateName;
+	By orderNumber, locationName, channel, licencePlate, descriptive, durationInWords, totalAmount, transactionType,
+			promoCode, paymentMethod, product, rateName;
 
 	// ****************** ACTIONS ****************************//
 
 	/*
 	 * Method to verify transaction entry in the location revenue table
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void verify_LocationRevenueData(PurchaseDetails purchaseDetails) {
 
@@ -43,6 +44,7 @@ public class OD_LocationRevenuePage extends BaseClass {
 			channel = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[4]");
 			product = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[3]");
 			licencePlate = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[12]");
+			descriptive = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[13]");
 			durationInWords = By
 					.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[18]");
 			rateName = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[19]");
@@ -60,6 +62,8 @@ public class OD_LocationRevenuePage extends BaseClass {
 			channel = By.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[4]");
 			licencePlate = By
 					.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[12]");
+			descriptive = By
+					.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[13]");
 			durationInWords = By
 					.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[18]");
 			rateName = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[19]");
@@ -73,11 +77,21 @@ public class OD_LocationRevenuePage extends BaseClass {
 		waitForElementTobeDisplayed(searchBox);
 		enterText(searchBox, purchaseDetails.getOrderNumber(), "Search box");
 		waitForElementTobeClickable(button_Find);
-		clickOnButton_using_Actions(button_Find, "Button Find");
-		// clickOnButton(button_Find, "Button Find");
-		waitForPageLoad(10);
-		clickOnButton_using_Actions(button_Find, "Button Find");
-		waitForElementTobeDisplayed(orderNumber);
+		clickOnButton(button_Find, "Find button");		
+
+		int maxClicks = 18;
+		int clickCount = 0;
+		while (!isElementDisplayed(orderNumber) && clickCount < maxClicks) {
+
+			// If not displayed, click find button
+			waitForPageLoad(10);
+			passStep("awaited for 10 sec ...");
+			clickOnButton(button_Find, "Find button");
+			clickCount++;
+			
+		}
+
+		Assert.assertTrue(isElementDisplayed(orderNumber), "Order number not displayed even after 3 minutes");
 		passStep("Order Number : " + getElementText(orderNumber));
 		highlightElement((orderNumber));
 		passStep("Location Name : " + getElementText(locationName));
@@ -88,6 +102,10 @@ public class OD_LocationRevenuePage extends BaseClass {
 		highlightElement((channel));
 		passStep("Licence Plate : " + getElementText(licencePlate));
 		highlightElement((licencePlate));
+		if (purchaseDetails.isUnKnownVehicle()) {
+			passStep("Descriptive : " + getElementText(descriptive));
+			highlightElement((descriptive));
+		}
 		passStep("Duration in words : " + getElementText(durationInWords));
 		highlightElement((durationInWords));
 		passStep("Rate Name : " + getElementText(rateName));
@@ -106,16 +124,22 @@ public class OD_LocationRevenuePage extends BaseClass {
 					"Location name mismatch...");
 		assertEquals(getElementText(product), purchaseDetails.getSpaceType(), "Product mismatch...");
 		assertEquals(getElementText(channel), purchaseDetails.getChannel(), "Channel mismatch...");
-		assertEquals(getElementText(licencePlate), purchaseDetails.getLicencePlate(), "Licence Plate mismatch...");
+		if (purchaseDetails.isUnKnownVehicle()) {
+			assertEquals(getElementText(licencePlate), "UNKNOWN", "Licence Plate mismatch...");
+			assertEquals(getElementText(descriptive), purchaseDetails.getLicencePlate(), "Licence Plate mismatch...");
+		} else
+			assertEquals(getElementText(licencePlate), purchaseDetails.getLicencePlate(), "Descriptive mismatch...");
 		assertEquals(getElementText(durationInWords).toLowerCase(), purchaseDetails.getDurationInWords().toLowerCase(),
 				"Duration mismatch...");
 		assertEquals(getElementText(totalAmount), purchaseDetails.getAmountCharged(), "Total amount mismatch...");
-		assertEquals(getElementText(transactionType).toLowerCase(), purchaseDetails.getPurchaseType().toLowerCase(), "Purchase type mismatch...");
+		assertEquals(getElementText(transactionType).toLowerCase(), purchaseDetails.getPurchaseType().toLowerCase(),
+				"Purchase type mismatch...");
 		if (purchaseDetails.getPaymentOption().equalsIgnoreCase(Constants.PROMOCODE)) {
 			assertEquals(getElementText(promoCode), purchaseDetails.getPromocode(), "Payment method mismatch...");
 			passStep("Promo code : " + getElementText(promoCode));
 		} else {
-			assertEquals(getElementText(paymentMethod), purchaseDetails.getPaymentMethod(), "Payment method mismatch...");
+			assertEquals(getElementText(paymentMethod), purchaseDetails.getPaymentMethod(),
+					"Payment method mismatch...");
 			passStep("Payment Method : " + getElementText(paymentMethod));
 		}
 

@@ -9,7 +9,7 @@ import components.BaseClass;
  * 
  * Extends : BaseClass
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class OD_LoginPage extends BaseClass {
 
@@ -22,7 +22,7 @@ public class OD_LoginPage extends BaseClass {
 	/*
 	 * Method to navigate to perform login
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public OD_HomePage login() {
 		enterText(textbox_UserName, BaseClass.od_username);

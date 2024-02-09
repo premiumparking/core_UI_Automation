@@ -22,4 +22,6 @@
     <firstName>MICHAEL</firstName>
     <lastName>AMATO</lastName>
     <roomNumber>1111</roomNumber>
+    <email>test@premiumparking.com</email>
+    <channel>TextPay</channel>
 </guest>

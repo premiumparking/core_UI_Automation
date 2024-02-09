@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * This model is to create Operator java object
  * Data is getting loaded from XML File
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 @XmlRootElement(name = "User")
 @XmlAccessorType(XmlAccessType.PROPERTY)

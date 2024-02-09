@@ -1,15 +1,27 @@
 package components;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 
+import javax.imageio.ImageIO;
+
+import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
+import org.apache.batik.transcoder.TranscoderException;
+import org.apache.batik.transcoder.TranscoderInput;
+import org.apache.batik.transcoder.TranscoderOutput;
+import org.apache.batik.transcoder.image.PNGTranscoder;
+import org.apache.batik.util.XMLResourceDescriptor;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -20,14 +32,24 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.DecodeHintType;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.Result;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
 import com.relevantcodes.extentreports.LogStatus;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import pageObjects.Admiral.Adm_LoginPage;
+import pageObjects.OD.OD_HomePage;
+import pageObjects.OD.OD_LocationsPage;
 import pageObjects.OD.OD_LoginPage;
 import pageObjects.SPA.SPA_AccountsPage;
 import pageObjects.SPA.SPA_LoginPage;
@@ -45,15 +67,17 @@ public class BaseClass extends Operations {
 	protected static String od_username, od_password, od_url;
 	protected static String spa_url, spa_username, spa_password;
 	protected static String textpay_url, yopmail_url;
-	protected static String headless, browser;
+	protected static String headless, browser,verifyEmail;
 	public static String os;
 	SPA_LoginPage spaLoginPage;
 	SPA_AccountsPage accountsPage;
+	
+	
 
 	/*
 	 * This method is to load data from application.properties files
-	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public void loadProperties() throws IOException {
 
@@ -81,6 +105,7 @@ public class BaseClass extends Operations {
 		browser = config.getProperty("browser");
 		headless = config.getProperty("headless");
 		os = config.getProperty("os");
+		verifyEmail = config.getProperty("os");
 
 		// SPA Configurations
 		spa_url = config.getProperty("spa_url");
@@ -97,10 +122,10 @@ public class BaseClass extends Operations {
 
 	/*
 	 * This method is to launch the browser
-	 * 
+	 *
 	 * @BeforeMethod : annotation to invoke before the execution of each test method
-	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	@BeforeMethod(alwaysRun = true)
 	public void launchBrowser(Method testMethod) throws InterruptedException, IOException {
@@ -153,8 +178,8 @@ public class BaseClass extends Operations {
 
 	/*
 	 * Usage: to get the test case name to include in the reports
-	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public String getTestCaseName(Method testMethod) {
 
@@ -167,8 +192,8 @@ public class BaseClass extends Operations {
 
 	/*
 	 * Usage : To get the current timestamp
-	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public String getTimestamp() {
 		return new SimpleDateFormat("HHmmss").format(new Date());
@@ -176,8 +201,8 @@ public class BaseClass extends Operations {
 
 	/*
 	 * Usage : To launch application & Returns : OD_LoginPage
-	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public OD_LoginPage launch_OD_Application() {
 		driver.get(od_url);
@@ -206,8 +231,8 @@ public class BaseClass extends Operations {
 
 	/*
 	 * Usage : To launch application & Returns : Adm_LoginPage
-	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public Adm_LoginPage launch_AdmiralEnforcement_Application() {
 		driver.get(adm_url);
@@ -220,8 +245,8 @@ public class BaseClass extends Operations {
 
 	/*
 	 * Usage : To launch TextPay application
-	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public TextPay_HomePage launch_TextPay_Application() {
 		driver.get(textpay_url);
@@ -233,11 +258,35 @@ public class BaseClass extends Operations {
 	}
 
 	/*
+	 * Usage : To launch TextPay application
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
+	 */
+	public TextPay_HomePage launch_TextPay_Application_withLocation_QR_code() throws TranscoderException {
+		OD_LoginPage od_loginPage = new OD_LoginPage();
+		OD_HomePage od_homePage = new OD_HomePage();
+		OD_LocationsPage od_locationsPage = new OD_LocationsPage();
+		
+		od_loginPage = launch_OD_Application();
+		od_homePage = od_loginPage.login();
+		od_locationsPage = od_homePage.navigateToLocationsPage();
+		String url = od_locationsPage.scan_Location_QR_code(getRandomLocation());
+		Assert.assertTrue(!url.isEmpty(), "Failed to convert QR code into URL");
+		passStep("QR code URL is <b>"+url+"</b>");
+		openNewTab(url);
+		TextPay_HomePage tp_homePage = new TextPay_HomePage();
+		waitForElementTobeDisplayed(tp_homePage.link_Guest);
+		if (isElementDisplayed(tp_homePage.link_Guest))
+			passStep("Launched the Textpay application <b>" + url + "</b> from the QR code");
+		return tp_homePage;
+	}
+
+	/*
 	 * Usage : This method is to quit the browser
-	 * 
+	 *
 	 * @AfterMethod : annotation to invoke after the execution of each test method
-	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	@AfterMethod(alwaysRun = true)
 	public void quitBrowser() {
@@ -247,8 +296,8 @@ public class BaseClass extends Operations {
 
 	/*
 	 * Usage : This method is to get the screenshots of the web page
-	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public static String getScreenshot(WebDriver driver, String screenshotName) throws IOException {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -259,13 +308,7 @@ public class BaseClass extends Operations {
 		File source = ts.getScreenshotAs(OutputType.FILE);
 		String timeStamp = new SimpleDateFormat("HHmmss").format(new Date());
 		String screenshot = "Failure_" + timeStamp;
-		String destination = "";
-		// if(os.equalsIgnoreCase("windows"))
-		destination = System.getProperty("user.dir") + "//TestResults//" + d + "//" + screenshot + ".png";
-		// else
-		// destination = System.getProperty("user.dir") + "\\TestResults\\" + d + "\\" +
-		// screenshot + ".png";
-
+		String destination = System.getProperty("user.dir") + "//TestResults//" + d + "//" + screenshot + ".png";
 		File finalDestination = new File(destination);
 		FileUtils.copyFile(source, finalDestination);
 		return destination;
@@ -273,10 +316,10 @@ public class BaseClass extends Operations {
 
 	/*
 	 * Usage : This method is to quit the browser
-	 * 
+	 *
 	 * @AfterMethod : annotation to invoke after the execution of each test method
-	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	@AfterMethod(alwaysRun = true)
 	public void getResult(ITestResult result) throws IOException {
@@ -292,8 +335,8 @@ public class BaseClass extends Operations {
 
 	/*
 	 * Usage : To generate 4 digit random number which is used as a location number
-	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public String get4DigitRandomNumber() {
 		Random random = new Random();
@@ -303,8 +346,8 @@ public class BaseClass extends Operations {
 	/*
 	 * Usage : To generate 5 digit random licence plate which is used purchase a
 	 * space
-	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public String getRandomLicencePlate() {
 		String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -317,7 +360,7 @@ public class BaseClass extends Operations {
 	/*
 	 * Usage : To generate random promo code
 	 *
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public String getRandomPromoCode() {
 		String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -330,7 +373,7 @@ public class BaseClass extends Operations {
 	/*
 	 * Usage : To generate random phone number
 	 *
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public String getRandomPhoneNumber() {
 		Random random = new Random();
@@ -349,8 +392,8 @@ public class BaseClass extends Operations {
 
 	/*
 	 * Usage : To get random location from list of Locations space
-	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public String getRandomLocation() {
 
@@ -363,8 +406,8 @@ public class BaseClass extends Operations {
 
 	/*
 	 * Usage : To get random PEEK location from list of Locations space
-	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public String getRandom_PEEK_Location() {
 
@@ -377,8 +420,8 @@ public class BaseClass extends Operations {
 
 	/*
 	 * Usage : To get random location from list of Locations space
-	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public String Add_NewVehicle() {
 		spaLoginPage = launch_SPA_Application();
@@ -388,8 +431,8 @@ public class BaseClass extends Operations {
 
 	/*
 	 * Usage : To get random US Phone number from list of US Phone numbers
-	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public String getRandomUSPhoneNumber() {
 
@@ -402,11 +445,12 @@ public class BaseClass extends Operations {
 
 	/*
 	 * Usage : To launch Yopmail application
-	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public Email_Verification launch_yopmail() {
-		driver.get(yopmail_url);
+		//driver.get(yopmail_url);
+		openNewTab(yopmail_url);
 		Email_Verification emailPage = new Email_Verification();
 		waitForElementTobeDisplayed(emailPage.textBox_Email);
 		if (isElementDisplayed(emailPage.textBox_Email))
@@ -417,7 +461,7 @@ public class BaseClass extends Operations {
 	/*
 	 * Usage : To generate random promo code
 	 *
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public String getRandomEmailAddress() {
 		String alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -437,7 +481,7 @@ public class BaseClass extends Operations {
 	/*
 	 * Usage : To generate random Vehicle make from list of Makes
 	 *
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public String getRandom_Vehicle_Make() {
 		String[] vehicle_makes = Constants.VEHICLE_MAKE;
@@ -450,7 +494,7 @@ public class BaseClass extends Operations {
 	/*
 	 * Usage : To generate random Vehicle color from list of Colors
 	 *
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public String getRandom_Vehicle_Color() {
 		String[] vehicle_colors = Constants.VEHICLE_COLOR;
@@ -463,7 +507,7 @@ public class BaseClass extends Operations {
 	/*
 	 * Usage : To generate random Vehicle Type from list of Types
 	 *
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public String getRandom_Vehicle_Type() {
 		String[] vehicle_types = Constants.VEHICLE_TYPE;
@@ -471,6 +515,54 @@ public class BaseClass extends Operations {
 		int index = random.nextInt(vehicle_types.length);
 
 		return vehicle_types[index];
+	}
+	
+	/*
+	 * Usage : To convert QR code of format SVG into the URL.
+	 * It converts .svg to .png and decodes the URL
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
+	 */
+	public static String readQRCodeFromSVG(String svgUrl) {
+		try {
+			// Create a Document from the SVG file
+			String parser = XMLResourceDescriptor.getXMLParserClassName();
+			SAXSVGDocumentFactory f = new SAXSVGDocumentFactory(parser);			
+
+			File pngFile = File.createTempFile("qr_code", ".png");
+			PNGTranscoder transcoder = new PNGTranscoder();
+			TranscoderInput input = new TranscoderInput(f.createDocument(svgUrl));
+			try (FileOutputStream outputStream = new FileOutputStream(pngFile)) {
+				TranscoderOutput output = new TranscoderOutput(outputStream);
+				transcoder.transcode(input, output);
+			}
+
+			// Decode QR code from PNG
+			return decodeQRCode(pngFile);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/*
+	 * Usage : To decode the QR code of format .png file
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
+	 */
+	public static String decodeQRCode(File pngFile) {
+		try {
+			BufferedImage bufferedImage = ImageIO.read(pngFile);
+			BinaryBitmap bitmap = new BinaryBitmap(
+					new HybridBinarizer(new BufferedImageLuminanceSource(bufferedImage)));
+			Map<DecodeHintType, Object> hints = new HashMap<>();
+			hints.put(DecodeHintType.TRY_HARDER, Boolean.TRUE);
+			Result result = new MultiFormatReader().decode(bitmap, hints);
+			return result.getText();
+		} catch (NotFoundException | IOException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 /*
  * This class is to handle the HTML reports upon the execution
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 
 public class Extent_Reports {
@@ -34,7 +34,7 @@ public class Extent_Reports {
 	 * 
 	 * @BeforeSuite : annotation to invoke before the execution of entire suite
 	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	@BeforeSuite(alwaysRun = true)
 	public static void startTest() {
@@ -48,7 +48,7 @@ public class Extent_Reports {
 		report = new ExtentReports(
 				System.getProperty("user.dir") + "//TestResults//" + d + "//" + reportName + ".html");
 
-		report.addSystemInfo("Environment", "QA").addSystemInfo("User Name", "Venu Thota (venu.t@comakeit.com)");
+		report.addSystemInfo("Environment", "QA").addSystemInfo("User Name", "Venu Thota (venu.thota@xebia.com)");
 
 		// Configure Log4j
 		System.setProperty("log4j.configurationFile",
@@ -61,7 +61,7 @@ public class Extent_Reports {
 	 * 
 	 * @AfterMethod : annotation to invoke aftwr the execution of entire suite
 	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	@AfterMethod(alwaysRun = true)
 	public static void endTest() {
@@ -72,7 +72,7 @@ public class Extent_Reports {
 	/*
 	 * This method is to include a statement as passed
 	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public void passStep(String stepinfo) {
 		test.log(LogStatus.PASS, stepinfo);
@@ -82,7 +82,7 @@ public class Extent_Reports {
 	/*
 	 * This method is to include a statement as failed
 	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public void failStep(String stepinfo) {
 		test.log(LogStatus.FAIL, stepinfo);
@@ -91,7 +91,7 @@ public class Extent_Reports {
 	/*
 	 * This method is to include a statement as information
 	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public void stepInfo(String stepinfo) {
 		test.log(LogStatus.INFO, "<b>" + stepinfo + "</b>");

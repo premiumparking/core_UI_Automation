@@ -25,7 +25,7 @@ public class SPA_HomePage extends BaseClass {
 	/*
 	 * Method to navigate to Location Page
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public SPA_LocationPage navigate_To_LocationPage(String locationName) {
 		waitForPageLoad(2);

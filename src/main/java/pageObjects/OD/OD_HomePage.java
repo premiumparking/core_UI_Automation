@@ -9,7 +9,7 @@ import components.BaseClass;
  * 
  * Extends : BaseClass
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class OD_HomePage extends BaseClass {
 
@@ -49,7 +49,6 @@ public class OD_HomePage extends BaseClass {
 	By link_ContactReasons = By.xpath("//a[normalize-space()='Contact Reasons']");
 	By link_SupportArticles = By.xpath("//a[normalize-space()='Support Articles']");
 
-
 	By dd_Reports = By.xpath("//a[normalize-space()='Reports']");
 	By link_LocationRevenues = By.xpath("//a[normalize-space()='Location Revenues']");
 
@@ -58,7 +57,7 @@ public class OD_HomePage extends BaseClass {
 	/*
 	 * Method to navigate to Markets page from home page
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public OD_MarketsPage navigateToMarketsPage() {
 		waitForElementTobeDisplayed(dd_Manage);
@@ -75,7 +74,7 @@ public class OD_HomePage extends BaseClass {
 	/*
 	 * Method to navigate to Locations page from home page
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public OD_LocationsPage navigateToLocationsPage() {
 		waitForElementTobeDisplayed(dd_Manage);
@@ -92,7 +91,7 @@ public class OD_HomePage extends BaseClass {
 	/*
 	 * Method to navigate to Virtual Locations page from home page
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public OD_VirtualLocationsPage navigateToVirtualLocationsPage() {
 		waitForElementTobeDisplayed(dd_Manage);
@@ -370,7 +369,7 @@ public class OD_HomePage extends BaseClass {
 	/*
 	 * Method to navigate to profiles page from home page
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public OD_BulkProfilesPage navigateToBulkProfilesPage() {
 		waitForElementTobeDisplayed(dd_Manage);
@@ -382,7 +381,7 @@ public class OD_HomePage extends BaseClass {
 	/*
 	 * Method to navigate to Virtual Locations page from home page
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public OD_BulkPromoCodesPage navigateToBulkPromoCodesPage() {
 		waitForElementTobeDisplayed(dd_Manage);
@@ -399,7 +398,7 @@ public class OD_HomePage extends BaseClass {
 	/*
 	 * Method to navigate to BusinessAccounts page from home page
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public OD_BusinessAccountsPage navigateToBusinessAccountsPage() {
 		waitForElementTobeDisplayed(dd_Manage);
@@ -598,7 +597,7 @@ public class OD_HomePage extends BaseClass {
 	/*
 	 * Method to navigate to Location Revenue Page under reports
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public OD_LocationRevenuePage navigateToLocationRevenuePage() {
 		waitForElementTobeDisplayed(dd_Reports);

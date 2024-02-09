@@ -29,7 +29,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to enter text into TEXTBOX
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void enterText(By ele, String text, String field) {
 		waitForElementTobeDisplayed(ele);
@@ -59,7 +59,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to enter text into TEXTBOX using JSE
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void enterText_with_JSE(By ele, String text, String field) {
 		waitForElementTobeDisplayed(ele);
@@ -82,7 +82,7 @@ public class Operations extends Extent_Reports {
 	 * 
 	 * Ex: username, password
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void enterText(By ele, String text) {
 		waitForElementTobeDisplayed(ele);
@@ -99,7 +99,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to click on BUTTON
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void clickOnButton(By ele, String field) {
 		waitForElementTobeDisplayed(ele);
@@ -118,7 +118,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to click on BUTTON
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void clickOnButton(By ele) {
 		waitForElementTobeDisplayed(ele);
@@ -135,7 +135,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to click on BUTTON
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void clickOnButton_using_Actions(By ele, String field) {
 		waitForElementTobeDisplayed(ele);
@@ -156,7 +156,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to click on BUTTON
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void clickOnButton_using_JSE(By ele, String field) {
 
@@ -177,7 +177,7 @@ public class Operations extends Extent_Reports {
 	 * This method is to verify whether the element is DISPLAYED or NOT and will
 	 * include in the report
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public Boolean isElementDisplayed(By ele, String field) {
 		WebElement element = BaseClass.driver.findElement(ele);
@@ -193,7 +193,7 @@ public class Operations extends Extent_Reports {
 	 * This method is to verify whether the element is ENABLED or NOT and will
 	 * include in the report
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public Boolean isElementEnabled(By ele, String field) {
 		WebElement element = BaseClass.driver.findElement(ele);
@@ -208,7 +208,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to verify whether the element is DISPLAYED or NOT
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public Boolean isElementDisplayed(By element) {
 		try {
@@ -224,7 +224,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to verify whether the element is ENABLED or NOT
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public Boolean isElementEnabled(By element) {
 		return BaseClass.driver.findElement(element).isEnabled();
@@ -234,7 +234,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to select RADIO BUTTON
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void select_Radiobutton(By ele, String field) {
 		waitForElementTobeDisplayed(ele);
@@ -254,7 +254,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to select CHECKBOX
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void select_Checkbox(By ele, String field) {
 		waitForElementTobeDisplayed(ele);
@@ -274,7 +274,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to UNselect CHECKBOX
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void unselect_Checkbox(By ele, String field) {
 		waitForElementTobeDisplayed(ele);
@@ -306,7 +306,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to select DROPDOWN based on the text
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void selectDropdown(By ele, String text, String field) {
 		waitForElementTobeDisplayed(ele);
@@ -322,7 +322,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to HIGHLIGHT the webelement
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public static void highlightElement(WebElement element) {
 		JavascriptExecutor js = (JavascriptExecutor) BaseClass.driver;
@@ -330,11 +330,11 @@ public class Operations extends Extent_Reports {
 		// border: 3px solid red;');", element);
 		js.executeScript("arguments[0].setAttribute('style', 'border: 3px solid red;');", element);
 	}
-	
+
 	/*
 	 * This method is to HIGHLIGHT the webelement
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public static void highlightElement(By ele) {
 		WebElement element = BaseClass.driver.findElement(ele);
@@ -343,12 +343,11 @@ public class Operations extends Extent_Reports {
 		// border: 3px solid red;');", element);
 		js.executeScript("arguments[0].setAttribute('style', 'border: 3px solid red;');", element);
 	}
-	
 
 	/*
 	 * Usage :Explicit wait for the element to be displayed
 	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public void waitForElementTobeDisplayed(By locator) {
 		WebDriverWait wait = new WebDriverWait(BaseClass.driver, Duration.ofSeconds(90));
@@ -358,7 +357,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * Usage :Explicit wait for the element to be clickable
 	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public void waitForElementTobeClickable(By locator) {
 		WebDriverWait wait = new WebDriverWait(BaseClass.driver, Duration.ofSeconds(90));
@@ -368,7 +367,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * Usage : Force wait to hold the execution for the given specific time period
 	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public void waitForPageLoad(int seconds) {
 		try {
@@ -382,16 +381,25 @@ public class Operations extends Extent_Reports {
 	/*
 	 * Usage : To get the value of the element (Ex: Button name)
 	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public String getElementValue(By ele) {
 		return BaseClass.driver.findElement(ele).getAttribute("value");
 	}
 
 	/*
+	 * Usage : To get the src of the image (EX: QR code source)
+	 * 
+	 * Author : Venu Thota (venu.thota@xebia.com)
+	 */
+	public String getImageSrc(By ele) {
+		return BaseClass.driver.findElement(ele).getAttribute("src");
+	}
+
+	/*
 	 * Usage : To get the value of the element (Ex: Text)
 	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public String getElementText(By ele) {
 		return BaseClass.driver.findElement(ele).getText();
@@ -400,7 +408,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to select the search result on the search box
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void selectFromSearch(By ele, String text, String field) {
 		waitForElementTobeDisplayed(ele);
@@ -419,7 +427,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to select the dynamic value on the dropdown
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void select_FromDropDown(String text) {
 		By value = By.xpath(".//li[@data-value='" + text + "']");
@@ -429,7 +437,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to move to the specific element
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void moveToElement(By ele) {
 		WebElement element = BaseClass.driver.findElement(ele);
@@ -440,7 +448,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to accept the windows alert
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void acceptAlert() {
 		BaseClass.driver.switchTo().alert().accept();
@@ -449,7 +457,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to click an element but not include in the report
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void performClick(By ele) {
 		WebElement element = BaseClass.driver.findElement(ele);
@@ -459,7 +467,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is to hit the enter key
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void hitEnter(By ele) {
 		WebElement element = BaseClass.driver.findElement(ele);
@@ -469,7 +477,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is click based on x,y coordinates
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void clickWithPoints(By ele) {
 		WebElement element = BaseClass.driver.findElement(ele);
@@ -486,21 +494,28 @@ public class Operations extends Extent_Reports {
 	}
 
 	/*
-	 * This method is used to open new tab
+	 * This method is used to open new tab with URl
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void openNewTab(String url) {
-		// BaseClass.driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +
-		// "t");
 		BaseClass.driver.switchTo().newWindow(WindowType.TAB);
 		BaseClass.driver.get(url);
 	}
 
 	/*
+	 * This method is used to open new tab
+	 * 
+	 * Author : Venu Thota(venu.thota@xebia.com)
+	 */
+	public void openNewTab() {
+		BaseClass.driver.switchTo().newWindow(WindowType.TAB);
+	}
+
+	/*
 	 * This method is used get all open tabs(windows)
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public ArrayList<String> getAllTabs() {
 		return new ArrayList<String>(BaseClass.driver.getWindowHandles());
@@ -509,7 +524,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is used switch to the specific tab
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void switch_to_Tab(ArrayList<String> tabs, int number) {
 		BaseClass.driver.switchTo().window(tabs.get(number));
@@ -518,7 +533,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is used close the specific tab
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void close_Tab(ArrayList<String> tabs, int number) {
 		BaseClass.driver.switchTo().window(tabs.get(number)).close();
@@ -527,7 +542,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is used to the refresh the tab
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void refresh_Page() {
 		BaseClass.driver.navigate().refresh();
@@ -536,7 +551,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is used to the go back to the previous page
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void gotoBackPage() {
 		BaseClass.driver.navigate().back();
@@ -545,17 +560,17 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is used to the switch iFrame
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void switchToIframe(By ele) {
 		WebElement iframe = BaseClass.driver.findElement(ele);
 		BaseClass.driver.switchTo().frame(iframe);
 	}
-	
+
 	/*
 	 * This method is used to the come out from iFrame
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void comeOutFromFrame() {
 		BaseClass.driver.switchTo().defaultContent();
@@ -564,7 +579,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is used to choose time on timebar
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void changeTimeBar(String id, String time) {
 		JavascriptExecutor jse = (JavascriptExecutor) BaseClass.driver;
@@ -576,7 +591,7 @@ public class Operations extends Extent_Reports {
 	/*
 	 * This method is used to choose time on timebar
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void changeTime(String time) {
 		TextPay_HomePage tph = new TextPay_HomePage();

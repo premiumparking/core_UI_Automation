@@ -27,7 +27,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase regular space session as a guest with new
 	 * vehicle and through card payment
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 
 	@Test(groups = { "smoke", "regression" })
@@ -41,7 +41,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia(Constants.CARD);
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -55,7 +55,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase regular space session as a guest with new
 	 * vehicle and through promocode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_02_Purchase_Regular_Space_as_Guest_With_PromoCode_and_NewVehicle() {
@@ -67,7 +67,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO100);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -81,7 +81,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase regular space session as a guest for unknown
 	 * vehicle and  through card payment
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_03_Purchase_Regular_Space_as_Guest_for_UnknownVehicle_with_NewCard() {
@@ -93,7 +93,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia(Constants.CARD);
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -107,7 +107,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase regular space session as a guest for unknown
 	 * vehicle and through promocode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_04_Purchase_Regular_Space_as_Guest_for_UnknownVehicle_with_PromoCode() {
@@ -119,7 +119,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO100);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -133,7 +133,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase star space session as a guest for unknown
 	 * vehicle and through promocode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_05_Purchase_Star_Space_as_Guest_With_NewCard_and_NewVehicle() {
@@ -146,7 +146,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setTimeInHours(Constants._2_Hrs);
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -160,7 +160,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase star space session as a guest with new
 	 * vehicle and promocode payment method
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_06_Purchase_Star_Space_as_Guest_With_PromoCode_and_NewVehicle() {
@@ -173,7 +173,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPromocode(Constants.PROMO100);
 		guest.setTimeInHours(Constants._5_Hrs);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -186,7 +186,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase star space session as a guest for unknown
 	 * vehicle with new card payment method
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_07_Purchase_Star_Space_as_Guest_for_UnknownVehicle_with_NewCard() {
@@ -199,7 +199,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setTimeInHours(Constants._1_Hr);
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -213,7 +213,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase star space session as a guest for unknown
 	 * vehicle and through promocode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_08_Purchase_Star_Space_as_Guest_for_UnknownVehicle_with_PromoCode() {
@@ -226,7 +226,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPromocode(Constants.PROMO100);
 		guest.setTimeInHours(Constants._2_Hrs);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -239,7 +239,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase charging space session as a guest for unknown
 	 * vehicle and through promocode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_09_Purchase_Charging_Space_as_Guest_With_NewCard_and_NewVehicle() {
@@ -252,7 +252,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		guest.setTimeInHours(Constants._2_Hrs);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -266,7 +266,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase charging space session as a guest with new
 	 * vehicle and promocode payment method
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_10_Charging_Space_as_Guest_With_PromoCode_and_NewVehicle() {
@@ -279,7 +279,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPromocode(Constants.PROMO100);
 		guest.setTimeInHours(Constants._5_Hrs);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -292,7 +292,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase charging space session as a guest for unknown
 	 * vehicle with new card payment method
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_11_Charging_Space_as_Guest_for_UnknownVehicle_with_NewCard() {
@@ -305,7 +305,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		guest.setTimeInHours(Constants._1_Hr);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -319,7 +319,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase charging space session as a guest for unknown
 	 * vehicle and through promocode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_12_Charging_Star_Space_as_Guest_for_UnknownVehicle_with_PromoCode() {
@@ -332,7 +332,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPromocode(Constants.PROMO100);
 		guest.setTimeInHours(Constants._2_Hrs);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -345,7 +345,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase regular space session as a guest with new
 	 * vehicle and through card payment
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 
 	@Test(groups = { "smoke", "regression" })
@@ -360,7 +360,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setTimeInHours(Constants._2_Hrs);
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -374,7 +374,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase regular space session as a guest with new
 	 * vehicle and promocode payment method
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_14_Purchase_SpecialRate_Session_as_Guest_With_PromoCode_and_NewVehicle() {
@@ -387,7 +387,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPromocode(Constants.PROMO100);
 		guest.setTimeInHours(Constants._1_Hr);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -401,7 +401,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase regular space session as a guest for unknown
 	 * vehicle with new card payment method
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_15_Purchase_SpecialRate_Session_as_Guest_for_UnknownVehicle_with_NewCard() {
@@ -414,7 +414,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setTimeInHours(Constants._5_Hrs);
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -428,7 +428,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase regular space session as a guest for unknown
 	 * vehicle and through promocode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_16_Purchase_SpecialRate_Session_as_Guest_for_UnknownVehicle_with_PromoCode() {
@@ -441,7 +441,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPromocode(Constants.PROMO100);
 		guest.setTimeInHours(Constants._2_Hrs);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -455,7 +455,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase regular space session as a guest with new
 	 * vehicle and through fixed discount promocode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_17_Purchase_Regular_Space_as_Guest_With_FixedDiscountPromoCode_and_NewVehicle() {
@@ -468,7 +468,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO50);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -482,7 +482,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase regular space session as a guest for unknown
 	 * vehicle and through promocode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_18_Purchase_Regular_Space_as_Guest_for_UnknownVehicle_with_FixedDiscountPromoCode() {
@@ -495,7 +495,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO50);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -509,7 +509,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase Star space session as a guest with new
 	 * vehicle and through fixed discount promocode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_19_Purchase_Star_Space_as_Guest_With_FixedDiscountPromoCode_and_NewVehicle() {
@@ -522,7 +522,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO50);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -536,7 +536,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase Star space session as a guest for unknown
 	 * vehicle and through promocode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_20_Purchase_Star_Space_as_Guest_for_UnknownVehicle_with_FixedDiscountPromoCode() {
@@ -549,7 +549,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO50);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -563,7 +563,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase Charging space session as a guest with new
 	 * vehicle and through fixed discount promocode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	//@Test(groups = { "smoke", "regression" })
 	public void TC_21_Purchase_Charging_Space_as_Guest_With_FixedDiscountPromoCode_and_NewVehicle() {
@@ -576,7 +576,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO50);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -590,7 +590,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase Star space session as a guest for unknown
 	 * vehicle and through promocode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	//@Test(groups = { "smoke", "regression" })
 	public void TC_22_Purchase_Charging_Space_as_Guest_for_UnknownVehicle_with_FixedDiscountPromoCode() {
@@ -603,7 +603,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO50);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -617,7 +617,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase Charging space session as a guest with new
 	 * vehicle and through fixed discount promocode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	//@Test(groups = { "smoke", "regression" })
 	public void TC_23_Purchase_SpecialRate_Session_as_Guest_With_FixedDiscountPromoCode_and_NewVehicle() {
@@ -630,7 +630,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO50);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -644,7 +644,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase Star space session as a guest for unknown
 	 * vehicle and through promocode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	//@Test(groups = { "smoke", "regression" })
 	public void TC_24_Purchase_SpecialRate_Session_as_Guest_for_UnknownVehicle_with_FixedDiscountPromoCode() {
@@ -657,7 +657,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia("promocode");
 		guest.setPromocode(Constants.PROMO50);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
@@ -671,7 +671,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 	 * This is a test case to purchase regular space session as a guest with new
 	 * vehicle and through card payment
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 
 	// @Test(groups = { "smoke", "regression" })
@@ -685,7 +685,7 @@ public class TextPay_Sessions_Testcases extends BaseClass {
 		guest.setPaymentVia(Constants.CARD);
 		guest.setCcNumber(Constants.VISA_CARD_NUMBER);
 		tp_HomePage = launch_TextPay_Application();
-		tp_HomePage.purchase_Session(guest);
+		tp_HomePage.purchase_Session(guest, Constants.TEXTPAY);
 		tp_HomePage.verify_Purchase_Details(guest, purchaseDetails);
 
 		// Set the purchase details for location revenue page verification
