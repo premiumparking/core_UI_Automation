@@ -13,7 +13,7 @@ date_str = os.getenv('DATE_STR')
 smtp_host = os.getenv('SPARKPOST_SMTP_HOST')
 smtp_port = os.getenv('SPARKPOST_SMTP_PORT')
 smtp_username = os.getenv('SPARKPOST_SMTP_USERNAME')
-smtp_password = os.getenv('SPARKPOST_API_KEY')
+smtp_password = os.getenv('SPARKPOST_SMTP_PASSWORD')
 
 
 # Email settings
