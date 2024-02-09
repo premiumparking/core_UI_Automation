@@ -27,6 +27,7 @@ public class Email_Verification extends BaseClass {
 	By mailItem_Subject = By.className("lms");
 
 	By locationNumner = By.xpath("");
+	By checkbox_Recaptha = By.xpath("//div[@class='recaptcha-checkbox-checkmark']");
 
 	/*
 	 * This method is verify email content return the Operator object
@@ -44,9 +45,13 @@ public class Email_Verification extends BaseClass {
 	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void verify_Email_Content(PurchaseDetails purchaseDetails) {
+		
 		waitForElementTobeDisplayed(textBox_Email);
 		enterText(textBox_Email, purchaseDetails.getEmail());
 		clickOnButton(button_Arrow);
+		
+		if(isElementDisplayed(checkbox_Recaptha))
+			clickOnButton(checkbox_Recaptha);		
 		waitForPageLoad(3);
 		switchToIframe(iframe_inbox);
 		waitForElementTobeDisplayed(mailItem_Subject);

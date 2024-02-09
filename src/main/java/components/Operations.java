@@ -330,7 +330,7 @@ public class Operations extends Extent_Reports {
 		// border: 3px solid red;');", element);
 		js.executeScript("arguments[0].setAttribute('style', 'border: 3px solid red;');", element);
 	}
-	
+
 	/*
 	 * This method is to HIGHLIGHT the webelement
 	 * 
@@ -343,7 +343,6 @@ public class Operations extends Extent_Reports {
 		// border: 3px solid red;');", element);
 		js.executeScript("arguments[0].setAttribute('style', 'border: 3px solid red;');", element);
 	}
-	
 
 	/*
 	 * Usage :Explicit wait for the element to be displayed
@@ -387,7 +386,7 @@ public class Operations extends Extent_Reports {
 	public String getElementValue(By ele) {
 		return BaseClass.driver.findElement(ele).getAttribute("value");
 	}
-	
+
 	/*
 	 * Usage : To get the src of the image (EX: QR code source)
 	 * 
@@ -495,15 +494,22 @@ public class Operations extends Extent_Reports {
 	}
 
 	/*
-	 * This method is used to open new tab
+	 * This method is used to open new tab with URl
 	 * 
 	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void openNewTab(String url) {
-		// BaseClass.driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +
-		// "t");
 		BaseClass.driver.switchTo().newWindow(WindowType.TAB);
 		BaseClass.driver.get(url);
+	}
+
+	/*
+	 * This method is used to open new tab
+	 * 
+	 * Author : Venu Thota(venu.thota@xebia.com)
+	 */
+	public void openNewTab() {
+		BaseClass.driver.switchTo().newWindow(WindowType.TAB);
 	}
 
 	/*
@@ -560,7 +566,7 @@ public class Operations extends Extent_Reports {
 		WebElement iframe = BaseClass.driver.findElement(ele);
 		BaseClass.driver.switchTo().frame(iframe);
 	}
-	
+
 	/*
 	 * This method is used to the come out from iFrame
 	 * 

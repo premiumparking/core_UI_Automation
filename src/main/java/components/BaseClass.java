@@ -272,7 +272,7 @@ public class BaseClass extends Operations {
 		String url = od_locationsPage.scan_Location_QR_code(getRandomLocation());
 		Assert.assertTrue(!url.isEmpty(), "Failed to convert QR code into URL");
 		passStep("QR code URL is <b>"+url+"</b>");
-		driver.get(url);
+		openNewTab(url);
 		TextPay_HomePage tp_homePage = new TextPay_HomePage();
 		waitForElementTobeDisplayed(tp_homePage.link_Guest);
 		if (isElementDisplayed(tp_homePage.link_Guest))
@@ -448,7 +448,8 @@ public class BaseClass extends Operations {
 	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public Email_Verification launch_yopmail() {
-		driver.get(yopmail_url);
+		//driver.get(yopmail_url);
+		openNewTab(yopmail_url);
 		Email_Verification emailPage = new Email_Verification();
 		waitForElementTobeDisplayed(emailPage.textBox_Email);
 		if (isElementDisplayed(emailPage.textBox_Email))

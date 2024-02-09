@@ -2,6 +2,8 @@ package pageObjects.TextPay;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.ArrayList;
+
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
@@ -406,7 +408,8 @@ public class TextPay_HomePage extends BaseClass {
 
 			highlightElement(label_conf_spaceType);
 			passStep(getElementText(label_conf_spaceType));
-			if (user.getParkingType().equalsIgnoreCase(Constants.REGULAR_SPACE)) {
+			if (user.getParkingType().equalsIgnoreCase(Constants.REGULAR_SPACE)
+					|| user.getParkingType().equalsIgnoreCase(Constants.SPECIAL_RATE)) {
 				assertEquals(getElementText(label_conf_spaceType), "Space Type:Regular", "Space Type mismatch");
 				purchaseDetails.setSpaceType("On Demand");
 			} else if (user.getParkingType().equalsIgnoreCase(Constants.STAR_SPACE)) {
@@ -518,8 +521,17 @@ public class TextPay_HomePage extends BaseClass {
 	public void verify_LocationRevenuePage(PurchaseDetails purchaseDetails) {
 		stepInfo(" <b> **** Verifying Location Revenue Details ****</b>");
 
-		od_loginPage = launch_OD_Application();
-		od_homePage = od_loginPage.login();
+		if (purchaseDetails.getChannel().equalsIgnoreCase(Constants.CAMERAPAY)) {
+			ArrayList<String> all_open_tabs = getAllTabs();
+			switch_to_Tab(all_open_tabs, 0);
+			waitForPageLoad(3);
+		}
+		if (purchaseDetails.getChannel().equalsIgnoreCase(Constants.TEXTPAY)) {
+			openNewTab();
+			od_loginPage = launch_OD_Application();
+			od_homePage = od_loginPage.login();
+		}
+
 		od_locRevenuePage = od_homePage.navigateToLocationRevenuePage();
 		od_locRevenuePage.verify_LocationRevenueData(purchaseDetails);
 
@@ -652,7 +664,7 @@ public class TextPay_HomePage extends BaseClass {
 		enterText(textBox_OTP, user.getOtp(), "OTP textbox");
 		clickOnButton(button_Verify, getElementText(button_Verify));
 
-		//waitForElementTobeClickable(location_searchBox);
+		// waitForElementTobeClickable(location_searchBox);
 
 	}
 
