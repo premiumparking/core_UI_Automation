@@ -72,6 +72,3 @@ except Exception as e:
 finally:
     if server is not None:
         server.quit()
-
-
-print('Email sent successfully.')
