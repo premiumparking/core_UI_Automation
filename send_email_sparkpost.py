@@ -35,27 +35,43 @@ msg.attach(MIMEText(body, 'plain'))
 filename = f"test-report-{date_str}.zip"
 attachment_path = f"./test-report-{date_str}.zip"
 
-print("SMTP Host:", smtp_host)  # should not be None
-print("SMTP Port:", smtp_port)  # should not be None
-print("SMTP Username:", smtp_username)  # should not be None
-print("SMTP Password:", smtp_password)  # should not be None
+try:
+    with open(attachment_path, 'rb') as attachment:
+        part = MIMEBase('application', 'octet-stream')
+        part.set_payload(attachment.read())
+        encoders.encode_base64(part)
+        part.add_header('Content-Disposition', f'attachment; filename={filename}')
+        msg.attach(part)
+except FileNotFoundError:
+    print(f"The file {attachment_path} was not found.")
+    exit(1)
 
+print("SMTP Host:", smtp_host)
+print("SMTP Port:", smtp_port)
+print("SMTP Username:", smtp_username)
+print("SMTP Password:", "[HIDDEN]")  # Never print passwords
 
+server = None
 try:
     # Attempt to establish an SMTP connection
-    server = smtplib.SMTP(smtp_host, int(smtp_port))
-    server.set_debuglevel(1)  # Enable debug output to see the connection details
-    server.starttls()  # Upgrade the connection to secure
-    server.login(smtp_username, smtp_password)  # Try to log in to the server
-    print("SMTP connection and authentication successful.")
+    server = smtplib.SMTP(smtp_host, smtp_port)
+    server.set_debuglevel(1)
+    server.starttls()
+    server.login(smtp_username, smtp_password)
+    server.sendmail(from_email, to_emails, msg.as_string())
+    print("Email sent successfully.")
+except smtplib.SMTPAuthenticationError as e:
+    print("SMTP authentication failed:", e)
+    exit(1)
 except smtplib.SMTPException as e:
-    print(f"SMTP error occurred: {e}")
+    print("SMTP error occurred:", e)
     exit(1)
 except Exception as e:
-    print(f"An error occurred: {e}")
+    print("An error occurred:", e)
     exit(1)
+finally:
+    if server is not None:
+        server.quit()
 
-
-server.quit()
 
 print('Email sent successfully.')
