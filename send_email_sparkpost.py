@@ -35,6 +35,11 @@ msg.attach(MIMEText(body, 'plain'))
 filename = f"test-report-{date_str}.zip"
 attachment_path = f"./test-report-{date_str}.zip"
 
+print("SMTP Host:", smtp_host)  # should not be None
+print("SMTP Port:", smtp_port)  # should not be None
+print("SMTP Username:", smtp_username)  # should not be None
+print("SMTP Password:", smtp_password)  # should not be None
+
 
 try:
     # Attempt to establish an SMTP connection
