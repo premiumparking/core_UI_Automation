@@ -13,7 +13,7 @@ import java.io.Serializable;
  * This model is to create Vehicle java object
  * Data is getting loaded from XML File
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 
 @Getter

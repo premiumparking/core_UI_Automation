@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
  *
  * Extends : BaseClass
  *
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class SPA_AccountsPage extends BaseClass {
 	// ****************** WEB ELEMENTS ****************************//
@@ -29,7 +29,7 @@ public class SPA_AccountsPage extends BaseClass {
 	/*
 	 * Method to navigate to Home page from Accounts page
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public SPA_HomePage navigateToHomePage() {
 		clickOnButton(logo_PP, "Logo");
@@ -45,7 +45,7 @@ public class SPA_AccountsPage extends BaseClass {
 	/*
 	 * Usage : To get random location from list of Locations space
 	 * 
-	 * Author : Venu Thota (venu.t@comakeit.com)
+	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public String add_New_Vehicle() {
 		

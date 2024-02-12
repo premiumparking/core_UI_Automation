@@ -63,7 +63,7 @@ public class Manage_Menu_Testcases extends BaseClass {
 	/*
 	 * This is a test case to create Market
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_01_Create_Market() {
@@ -80,7 +80,7 @@ public class Manage_Menu_Testcases extends BaseClass {
 	/*
 	 * This is a test case to create Location
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_02_Create_Location() {
@@ -103,7 +103,7 @@ public class Manage_Menu_Testcases extends BaseClass {
 	/*
 	 * This is a test case to create Location
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_03_Create_VirtualLocation() {

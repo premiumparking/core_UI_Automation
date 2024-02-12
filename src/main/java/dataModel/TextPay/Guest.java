@@ -9,7 +9,7 @@ import java.io.Serializable;
  * This model is to create Guest java object
  * Data is getting loaded from XML File
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 @XmlRootElement(name = "guest")
 @XmlAccessorType(XmlAccessType.PROPERTY)
@@ -39,6 +39,8 @@ public class Guest implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String roomNumber;
+	private String email;
+	private String channel;
 
 	public boolean isGuestRole() {
 		return guestRole;
@@ -228,4 +230,19 @@ public class Guest implements Serializable {
 		this.newPayment = newPayment;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getChannel() {
+		return channel;
+	}
+
+	public void setChannel(String channel) {
+		this.channel = channel;
+	}
 }

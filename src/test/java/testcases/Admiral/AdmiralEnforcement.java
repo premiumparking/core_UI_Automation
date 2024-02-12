@@ -18,7 +18,7 @@ import utils.Excel_Operations;
  * 
  * Extends : BaseClass
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class AdmiralEnforcement extends BaseClass {
 
@@ -34,7 +34,7 @@ public class AdmiralEnforcement extends BaseClass {
 	/*
 	 * This is a test case to Verify Citation status and Pay Citation if not paid
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(priority = 1)
 	public void TC_01_update_Admiral_CItation_Payments() {

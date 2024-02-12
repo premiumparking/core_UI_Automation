@@ -10,7 +10,7 @@ import dataModel.OD.Market;
  * 
  * Extends : BaseClass
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class OD_MarketsPage extends BaseClass {
 
@@ -31,7 +31,7 @@ public class OD_MarketsPage extends BaseClass {
 	/*
 	 * Method to create a new Market
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void create_Market(Market market) {
 		waitForElementTobeDisplayed(button_New);

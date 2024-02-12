@@ -2,6 +2,8 @@ package pageObjects.TextPay;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.ArrayList;
+
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
@@ -128,11 +130,18 @@ public class TextPay_HomePage extends BaseClass {
 	/*
 	 * Method to navigate to Location Page
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
-	public void purchase_Session(Guest user) {
+	public void purchase_Session(Guest user, String application) {
 		// Login
-		login_and_SelectLocation_and_Continue(user);
+
+		boolean skipLocationSearch = false;
+		if (application.equalsIgnoreCase(Constants.CAMERAPAY)) {
+			skipLocationSearch = true;
+			user.setChannel(Constants.CAMERAPAY);
+		}
+
+		login_and_SelectLocation_and_Continue(user, skipLocationSearch);
 
 		// Vehicle Type
 		select_VehicleType_and_Continue(user);
@@ -173,7 +182,7 @@ public class TextPay_HomePage extends BaseClass {
 		clickOnButton(button_Continue_1of4, "Continue button");
 	}
 
-	public void login_and_SelectLocation_and_Continue(Guest user) {
+	public void login_and_SelectLocation_and_Continue(Guest user, boolean skipLocationSearch) {
 		if (user.isGuestRole()) {
 			stepInfo(" <b> **** Purchasing Session as Guest ****</b>");
 			clickOnButton(link_Guest);
@@ -182,17 +191,17 @@ public class TextPay_HomePage extends BaseClass {
 			login_with_phoneNumber(user);
 		}
 
-		waitForElementTobeClickable(location_searchBox);
-		enterText(location_searchBox, user.getLocationNumber(), "Location Searchbox");
-		waitForElementTobeClickable(location_searchResult);
-		clickOnButton(location_searchResult, getElementText(location_searchResult));
+		if (!skipLocationSearch) {
+			waitForElementTobeClickable(location_searchBox);
+			enterText(location_searchBox, user.getLocationNumber(), "Location Searchbox");
+			waitForElementTobeClickable(location_searchResult);
+			clickOnButton(location_searchResult, getElementText(location_searchResult));
+		}
 	}
 
 	public void addNewVehicle(Guest user) {
 		if (user.getVehicleType().equalsIgnoreCase(Constants.NEW_VEHICLE)) {
-			waitForElementTobeDisplayed(button_AddNewVehicle);
-			waitForElementTobeClickable(button_AddNewVehicle);
-
+			waitForPageLoad(5);
 			if (isElementDisplayed(button_AddNewVehicle))
 				clickOnButton(button_AddNewVehicle, "Add New Vehicle link");
 			waitForElementTobeDisplayed(textBox_LicencePlate);
@@ -207,7 +216,7 @@ public class TextPay_HomePage extends BaseClass {
 	}
 
 	public void addUnknownVehicle(Guest user) {
-		waitForPageLoad(8);
+		waitForPageLoad(2);
 		if (isElementDisplayed(button_AddNewVehicle))
 			clickOnButton(button_AddNewVehicle, "Add New Vehicle link");
 		waitForElementTobeDisplayed(button_Unknown_Vehicle);
@@ -307,7 +316,7 @@ public class TextPay_HomePage extends BaseClass {
 	}
 
 	public void doPayment(Guest user) {
-		if (user.getPaymentVia().equalsIgnoreCase("card")) {
+		if (user.getPaymentVia().equalsIgnoreCase(Constants.CARD)) {
 			payWithCard(user);
 		} else if (user.getPaymentVia().equalsIgnoreCase(Constants.PROMOCODE)) {
 			addPromoCode(user);
@@ -372,55 +381,87 @@ public class TextPay_HomePage extends BaseClass {
 		stepInfo(" <b> **** Verifying Purchase Details ****</b>");
 		waitForElementTobeDisplayed(label_confirmationTitle);
 		if (isElementDisplayed(label_confirmationTitle)) {
+			highlightElement(label_confirmationTitle);
 			passStep("Displayed : " + getElementText(label_confirmationTitle));
-			assertEquals(getElementText(label_PurchaseDetails), "Purchase Details", "Purchase details title mismatch ...");
+
+			highlightElement(label_PurchaseDetails);
+			assertEquals(getElementText(label_PurchaseDetails), "Purchase Details",
+					"Purchase details title mismatch ...");
 			passStep("Displayed : Purchase Details");
-			
+
+			highlightElement(label_conf_duration);
 			passStep("Parking Duration :" + getElementText(label_conf_duration));
 			if (user.getTimeInHours().equalsIgnoreCase("1"))
-				assertEquals(getElementText(label_conf_duration), user.getTimeInHours() + " Hour", "Duration mismatch ...");
+				assertEquals(getElementText(label_conf_duration), user.getTimeInHours() + " Hour",
+						"Duration mismatch ...");
 			else
-				assertEquals(getElementText(label_conf_duration), user.getTimeInHours() + " Hours", "Duration mismatch ...");
-			
+				assertEquals(getElementText(label_conf_duration), user.getTimeInHours() + " Hours",
+						"Duration mismatch ...");
 
+			highlightElement(label_conf_endTime);
 			passStep(getElementText(label_conf_endTime));
-			assertEquals(getElementText(label_conf_location), "Location Number:P" + user.getLocationNumber(), "Location name mismatch");
+
+			highlightElement(label_conf_location);
 			passStep(getElementText(label_conf_location));
+			assertEquals(getElementText(label_conf_location), "Location Number:P" + user.getLocationNumber(),
+					"Location name mismatch");
+
+			highlightElement(label_conf_spaceType);
 			passStep(getElementText(label_conf_spaceType));
-			if (user.getParkingType().equalsIgnoreCase("Regular Space")) {
+			if (user.getParkingType().equalsIgnoreCase(Constants.REGULAR_SPACE)
+					|| user.getParkingType().equalsIgnoreCase(Constants.SPECIAL_RATE)) {
 				assertEquals(getElementText(label_conf_spaceType), "Space Type:Regular", "Space Type mismatch");
 				purchaseDetails.setSpaceType("On Demand");
-			} else if (user.getParkingType().equalsIgnoreCase("Star Space")) {
+			} else if (user.getParkingType().equalsIgnoreCase(Constants.STAR_SPACE)) {
 				assertEquals(getElementText(label_conf_spaceType), "Space Type:Star", "Space Type mismatch");
 				purchaseDetails.setSpaceType("Star Spaces");
-			} else if (user.getParkingType().equalsIgnoreCase("Charging Space")) {
+			} else if (user.getParkingType().equalsIgnoreCase(Constants.CHARGING_SPACE)) {
 				assertEquals(getElementText(label_conf_spaceType), "Space Type:Charging", "Space Type mismatch");
 				purchaseDetails.setSpaceType("On Demand");
 			}
-			
+
+			highlightElement(label_conf_address);
 			passStep(getElementText(label_conf_address));
 
 			String licencePlateInfo;
-			if (user.getVehicleType().equalsIgnoreCase("unknownVehicle"))
+			if (user.getVehicleType().equalsIgnoreCase(Constants.UNKNOWN_VEHICLE)) {
 				licencePlateInfo = user.getColor() + " " + user.getType() + " " + user.getMake();
-			else
+				purchaseDetails.setUnKnownVehicle(true);
+				purchaseDetails.setLicencePlate(licencePlateInfo);
+			} else {
 				licencePlateInfo = user.getLicensePlateNumber() + "/" + user.getState().split(" ")[0];
+				purchaseDetails.setUnKnownVehicle(false);
+				purchaseDetails.setLicencePlate(user.getLicensePlateNumber());
+			}
 			passStep(getElementText(label_conf_vehicleData));
 			passStep(getElementText(label_conf_vehicleInfo));
-			assertEquals(getElementText(label_conf_vehicleInfo), licencePlateInfo, "Vehicle mismatch ... <a href=\"https://app.clickup.com/t/14266108/ENG-3849\">Clickup defect Ticket -> ENG-3849</a> \n\n");
-			
+			highlightElement(label_conf_vehicleData);
+			highlightElement(label_conf_vehicleInfo);
+			assertEquals(getElementText(label_conf_vehicleInfo), licencePlateInfo,
+					"Vehicle mismatch ... <a href=\"https://app.clickup.com/t/14266108/ENG-3849\">Clickup defect Ticket -> ENG-3849</a> \n\n");
+
+			highlightElement(label_conf_confirmationNumber);
 			passStep(getElementText(label_conf_confirmationNumber));
-			
+
+			highlightElement(label_amountCharged);
 			passStep("Amount Charged :" + getElementText(label_amountCharged));
 			assertEquals(getElementText(label_amountCharged), user.getAmount(), "Amount mismatch ...");
-			
 
-			purchaseDetails.setChannel("TextPay");
+			if (user.getPaymentVia().equalsIgnoreCase(Constants.PROMOCODE)) {
+				purchaseDetails.setPaymentOption(Constants.PROMOCODE);
+				purchaseDetails.setPromocode(Constants.PROMO100);
+			}
+			if (user.getPaymentVia().equalsIgnoreCase(Constants.CARD)) {
+				purchaseDetails.setPaymentOption(Constants.CARD);
+				purchaseDetails.setPaymentMethod(Constants.VISA_CARD_TYPE);
+			}
+
+			purchaseDetails.setEmail(user.getEmail());
+			purchaseDetails.setChannel(user.getChannel());
 			purchaseDetails.setOrderNumber(getElementText(confirmationNumber));
 			purchaseDetails.setPurchaseType("Session");
 
 			purchaseDetails.setLocationNumber(user.getLocationNumber());
-			purchaseDetails.setLicencePlate(user.getLicensePlateNumber());
 			purchaseDetails.setDurationInWords(getElementText(label_conf_duration));
 			purchaseDetails.setAmountCharged(user.getAmount());
 
@@ -480,8 +521,17 @@ public class TextPay_HomePage extends BaseClass {
 	public void verify_LocationRevenuePage(PurchaseDetails purchaseDetails) {
 		stepInfo(" <b> **** Verifying Location Revenue Details ****</b>");
 
-		od_loginPage = launch_OD_Application();
-		od_homePage = od_loginPage.login();
+		if (purchaseDetails.getChannel().equalsIgnoreCase(Constants.CAMERAPAY)) {
+			ArrayList<String> all_open_tabs = getAllTabs();
+			switch_to_Tab(all_open_tabs, 0);
+			waitForPageLoad(3);
+		}
+		if (purchaseDetails.getChannel().equalsIgnoreCase(Constants.TEXTPAY)) {
+			openNewTab();
+			od_loginPage = launch_OD_Application();
+			od_homePage = od_loginPage.login();
+		}
+
 		od_locRevenuePage = od_homePage.navigateToLocationRevenuePage();
 		od_locRevenuePage.verify_LocationRevenueData(purchaseDetails);
 
@@ -566,7 +616,7 @@ public class TextPay_HomePage extends BaseClass {
 	/*
 	 * Method to Purchase a Session as Guest
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void purchase_Session_With_Hotel_AsRegisterdUser(Guest textPayUser) {
 		stepInfo(" <b> **** Purchasing Session with Hotel as Registered user ****</b>");
@@ -614,7 +664,7 @@ public class TextPay_HomePage extends BaseClass {
 		enterText(textBox_OTP, user.getOtp(), "OTP textbox");
 		clickOnButton(button_Verify, getElementText(button_Verify));
 
-		waitForElementTobeClickable(location_searchBox);
+		// waitForElementTobeClickable(location_searchBox);
 
 	}
 

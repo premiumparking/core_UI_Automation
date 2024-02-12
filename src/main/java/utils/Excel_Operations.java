@@ -20,7 +20,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * Class is to handle the Excel operations i.e. getting test data from excel and binding to Java object
  * 
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class Excel_Operations extends Extent_Reports {
 
@@ -29,7 +29,7 @@ public class Excel_Operations extends Extent_Reports {
 	 * This method is to load the excel sheet and it binds to Profiles object and
 	 * returns list of profiles
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 
 	public List<Profile_Bulk> load_ProfilesData_From_ExcelSheet(String fileName, String sheetName) {
@@ -51,7 +51,7 @@ public class Excel_Operations extends Extent_Reports {
 	/*
 	 * This method is to get the number of sheets from excel sheet
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 
 	public List<String> get_Total_Sheets(String fileName) {
@@ -76,7 +76,7 @@ public class Excel_Operations extends Extent_Reports {
 	 * This method is to load the excel sheet and it binds to Citation object and
 	 * returns list of citations
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 
 	public List<Citation> load_CitationData_From_ExcelSheet(String fileName, String sheetName) {
@@ -96,7 +96,7 @@ public class Excel_Operations extends Extent_Reports {
 	 * This method is to load the excel sheet and it binds to PromoCode_Bulk object
 	 * and returns list of citations
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 
 	public List<PromoCode_Bulk> load_BulkPromoCodes_From_ExcelSheet(String fileName, String sheetName) {

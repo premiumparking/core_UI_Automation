@@ -1,16 +1,77 @@
 package pageObjects.OD;
 
+import java.awt.image.BufferedImage;
+
+import java.io.IOException;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.DecodeHintType;
+import com.google.zxing.LuminanceSource;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.ReaderException;
+import com.google.zxing.Result;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
+
+import org.apache.batik.transcoder.TranscoderException;
+import org.apache.batik.transcoder.TranscoderInput;
+import org.apache.batik.transcoder.TranscoderOutput;
+import org.apache.batik.transcoder.image.ImageTranscoder;
+import org.apache.batik.transcoder.image.JPEGTranscoder;
+import org.apache.batik.transcoder.image.PNGTranscoder;
+import org.apache.batik.util.XMLResourceDescriptor;
+import org.apache.batik.transcoder.Transcoder;
+import org.apache.batik.transcoder.TranscodingHints;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 
 import components.BaseClass;
 import dataModel.OD.Location;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
+import org.apache.batik.dom.GenericDOMImplementation;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
+import org.apache.batik.transcoder.TranscoderInput;
+import org.apache.batik.transcoder.TranscoderOutput;
+import org.apache.batik.transcoder.image.PNGTranscoder;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.DecodeHintType;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.Result;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.io.FileOutputStream;
 
 /*
  * Class which contains the web elements and performs Locations page activities (methods)
  * 
  * Extends : BaseClass
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class OD_LocationsPage extends BaseClass {
 
@@ -41,12 +102,16 @@ public class OD_LocationsPage extends BaseClass {
 	By textBox_location_longitude = By.id("location_longitude");
 	By button_create_location = By.xpath("//input[@value='Create Location']");
 
+	By locationDetails_Tab = By.xpath("//a[contains(text(),'Details')]");
+	By location_QR_Code = By
+			.xpath("//strong[contains(text(),'TextPay QR Code')]/parent::td/following-sibling::td/a/img");
+
 	// ****************** ACTIONS ****************************//
 
 	/*
 	 * Method to create a new Location
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void create_Location(Location location) {
 		waitForElementTobeDisplayed(button_New);
@@ -92,5 +157,24 @@ public class OD_LocationsPage extends BaseClass {
 		}
 
 	}
+
+	public String scan_Location_QR_code(String location_name) throws TranscoderException {
+		enterText(textBox_search_Location, location_name, "Location text box");
+		waitForPageLoad(3);
+		By link_LocationName = By.xpath("//a[contains(text(),'P" + location_name + "')]");
+		Assert.assertTrue(isElementDisplayed(link_LocationName), "Location '" + location_name + "' not found");
+		clickOnButton(link_LocationName, "Location link");
+		clickOnButton(locationDetails_Tab, "Details Tab");
+		waitForPageLoad(3);
+		scrollToElement(location_QR_Code);		
+		String svgImageUrl = getImageSrc(location_QR_Code);
+		highlightElement(location_QR_Code);
+		Assert.assertTrue(!svgImageUrl.isEmpty(), "QR code doesnot have the source");
+		passStep("QR code source is <b>"+svgImageUrl+"</b>");
+		return readQRCodeFromSVG(svgImageUrl);
+
+	}
+
+	
 
 }

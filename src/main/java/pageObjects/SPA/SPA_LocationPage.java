@@ -10,7 +10,7 @@ import dataModel.SPA.Vehicle;
  *
  * Extends : BaseClass
  *
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class SPA_LocationPage extends BaseClass {
 
@@ -70,7 +70,7 @@ public class SPA_LocationPage extends BaseClass {
 	/*
 	 * Method to purchase a Session
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void purchase_Session(Vehicle vehicle) {
 		stepInfo(" <b> ****Purchasing Session ****</b>");
@@ -129,7 +129,7 @@ public class SPA_LocationPage extends BaseClass {
 	/*
 	 * Method to extend Session
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void extend_Session(Vehicle vehicle) {
 		stepInfo(" <b> ****Extending Session ****</b>");
@@ -186,7 +186,7 @@ public class SPA_LocationPage extends BaseClass {
 	/*
 	 * Method to add Promocode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void addPromoCode(String promocode) {
 		waitForElementTobeDisplayed(select_promocode);
@@ -200,7 +200,7 @@ public class SPA_LocationPage extends BaseClass {
 	/*
 	 * Method to add New Card
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void addNewCard(Vehicle vehicle) {
 		waitForElementTobeDisplayed(iframe_cardNumber);

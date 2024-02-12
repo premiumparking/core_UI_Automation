@@ -13,7 +13,7 @@ import dataModel.OD.Profile_Bulk;
  * 
  * Extends : BaseClass
  * 
- * Author : Venu Thota(venu.t@comakeit.com)
+ * Author : Venu Thota(venu.thota@xebia.com)
  */
 public class OD_BulkProfilesPage extends BaseClass {
 
@@ -40,7 +40,7 @@ public class OD_BulkProfilesPage extends BaseClass {
 	/*
 	 * Method to navigate to create a profile
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void createProfile(Profile_Bulk profile) {
 		passStep("Creating profile : " + profile.getEmail());
@@ -66,7 +66,7 @@ public class OD_BulkProfilesPage extends BaseClass {
 	/*
 	 * Method to navigate to check if the profile exist
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public boolean isPrfileExist(String email) {
 		stepInfo("<b>Verifying profile : " + email + "</b>");
@@ -110,7 +110,7 @@ public class OD_BulkProfilesPage extends BaseClass {
 	/*
 	 * Method to navigate to profiles page
 	 * 
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void navigate_To_Profiles_Page() {
 		waitForPageLoad(1);

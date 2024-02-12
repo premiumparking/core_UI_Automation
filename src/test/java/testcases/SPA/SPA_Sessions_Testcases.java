@@ -49,7 +49,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	/*
 	 * This is a test case to purchase session with new vehicle and new card payment method
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_01_Purchase_Session_With_NewCard_and_NewVehicle() {
@@ -74,7 +74,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	/*
 	 * This is a test case to purchase session with existing vehicle and new card payment method
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_02_Purchase_Session_With_NewCard_and_ExistingVehicle() {
@@ -96,7 +96,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	/*
 	 * This is a test case to purchase session with new vehicle and existing card payment method
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_03_Purchase_Session_With_ExistingCard_and_NewVehicle() {
@@ -120,7 +120,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	/*
 	 * This is a test case to purchase session with existing vehicle and existing card payment method
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_04_Purchase_Session_With_ExistingCard_and_ExistingVehicle() {
@@ -145,7 +145,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	/*
 	 * This is a test case to purchase session with new vehicle and 100% discount promoCode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_05_Purchase_Session_With_100Percent_Discount_PromoCode_and_NewVehicle() {
@@ -171,7 +171,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	/*
 	 * This is a test case to purchase session with existing vehicle and 100% discount promoCode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_06_Purchase_Session_With_100Percent_Discount_PromoCode_and_ExistingVehicle() {
@@ -194,7 +194,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	/*
 	 * This is a test case to purchase and extend session using new card payment
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_07_Purchase_And_Extend_Session_With_NewCard() {
@@ -220,7 +220,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	/*
 	 * This is a test case to purchase and extend session using existing card payment
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_08_Purchase_And_Extend_Session_With_ExistingCard() {
@@ -246,7 +246,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	/*
 	 * This is a test case to purchase session with new card payment and extend with existing card
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_09_Purchase_Session_With_NewCard_and_Extend_with_ExistingCard() {
@@ -273,7 +273,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	/*
 	 * This is a test case to purchase session with new card payment and extend with 100% discount promoCode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_10_Purchase_Session_With_NewCard_and_Extend_with_100Percent_Discount_PromoCode() {
@@ -301,7 +301,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	/*
 	 * This is a test case to purchase session with existing card payment and extend with new card
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_11_Purchase_Session_With_ExistingCard_and_Extend_with_NewCard() {
@@ -328,7 +328,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	/*
 	 * This is a test case to purchase session with existing card payment and extend with 100% discount promoCode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_12_Purchase_Session_With_ExistingCard_and_Extend_with_100Percent_Discount_PromoCode() {
@@ -355,7 +355,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	/*
 	 * This is a test case to purchase session with 100% discount promoCode card payment and extend with new card
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_13_Purchase_Session_With_100Percent_Discount_PromoCode_and_Extend_with_NewCard() {
@@ -383,7 +383,7 @@ public class SPA_Sessions_Testcases extends BaseClass {
 	/*
 	 * This is a test case to purchase session with existing card payment and extend with 100% discount promoCode
 	 *
-	 * Author : Venu Thota(venu.t@comakeit.com)
+	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
 	public void TC_14_Purchase_Session_With_100Percent_Discount_PromoCode_and_Extend_with_ExistingCard() {
