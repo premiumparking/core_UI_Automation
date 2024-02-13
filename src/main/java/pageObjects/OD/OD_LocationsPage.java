@@ -1,70 +1,11 @@
 package pageObjects.OD;
 
-import java.awt.image.BufferedImage;
-
-import java.io.IOException;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import com.google.zxing.BinaryBitmap;
-import com.google.zxing.DecodeHintType;
-import com.google.zxing.LuminanceSource;
-import com.google.zxing.MultiFormatReader;
-import com.google.zxing.NotFoundException;
-import com.google.zxing.ReaderException;
-import com.google.zxing.Result;
-import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
-import com.google.zxing.common.HybridBinarizer;
-
 import org.apache.batik.transcoder.TranscoderException;
-import org.apache.batik.transcoder.TranscoderInput;
-import org.apache.batik.transcoder.TranscoderOutput;
-import org.apache.batik.transcoder.image.ImageTranscoder;
-import org.apache.batik.transcoder.image.JPEGTranscoder;
-import org.apache.batik.transcoder.image.PNGTranscoder;
-import org.apache.batik.util.XMLResourceDescriptor;
-import org.apache.batik.transcoder.Transcoder;
-import org.apache.batik.transcoder.TranscodingHints;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
 import components.BaseClass;
 import dataModel.OD.Location;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
-import org.apache.batik.dom.GenericDOMImplementation;
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
-import org.apache.batik.transcoder.TranscoderInput;
-import org.apache.batik.transcoder.TranscoderOutput;
-import org.apache.batik.transcoder.image.PNGTranscoder;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import com.google.zxing.BinaryBitmap;
-import com.google.zxing.DecodeHintType;
-import com.google.zxing.MultiFormatReader;
-import com.google.zxing.NotFoundException;
-import com.google.zxing.Result;
-import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
-import com.google.zxing.common.HybridBinarizer;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.io.FileOutputStream;
 
 /*
  * Class which contains the web elements and performs Locations page activities (methods)

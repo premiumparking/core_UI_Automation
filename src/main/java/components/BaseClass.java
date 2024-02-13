@@ -37,6 +37,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import com.github.javafaker.Faker;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.MultiFormatReader;
@@ -67,12 +68,10 @@ public class BaseClass extends Operations {
 	protected static String od_username, od_password, od_url;
 	protected static String spa_url, spa_username, spa_password;
 	protected static String textpay_url, yopmail_url;
-	protected static String headless, browser,verifyEmail;
+	protected static String headless, browser, yopmail, mailosaur_apiKey, mailosaur_serverId, mailosaur_serverDomain;
 	public static String os;
 	SPA_LoginPage spaLoginPage;
 	SPA_AccountsPage accountsPage;
-	
-	
 
 	/*
 	 * This method is to load data from application.properties files
@@ -105,7 +104,7 @@ public class BaseClass extends Operations {
 		browser = config.getProperty("browser");
 		headless = config.getProperty("headless");
 		os = config.getProperty("os");
-		verifyEmail = config.getProperty("os");
+		yopmail = config.getProperty("yopmail");
 
 		// SPA Configurations
 		spa_url = config.getProperty("spa_url");
@@ -117,6 +116,10 @@ public class BaseClass extends Operations {
 
 		// yopmail
 		yopmail_url = config.getProperty("yopmail_url");
+
+		mailosaur_apiKey = config.getProperty("mailosaur_apiKey");
+		mailosaur_serverId = config.getProperty("mailosaur_serverId");
+		mailosaur_serverDomain = config.getProperty("mailosaur_serverDomain");
 
 	}
 
@@ -170,10 +173,25 @@ public class BaseClass extends Operations {
 		}
 		driver.manage().window().maximize();
 
-		test = report.startTest(getTestCaseName(testMethod));
+		test = report.startTest(getTestSuiteName(testMethod));
 		report.addSystemInfo("Browser", browser);
+		stepInfo("Test <i><b>" + getTestCaseName(testMethod, "pass") + "</b></i>Started");
 		waitForPageLoad(1);
 
+	}
+
+	/*
+	 * Usage: to get the test SUite name to include in the reports
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
+	 */
+	public String getTestSuiteName(Method testMethod) {
+
+		String name = testMethod.getDeclaringClass().getTypeName();
+		String className = name.substring(name.lastIndexOf(".") + 1);
+
+		return "<span style='color:#d64161;'>" + className + " : </span> " + "<span style='color:#4040a1;'>"
+				+ testMethod.getName() + " : </span> ";
 	}
 
 	/*
@@ -181,13 +199,15 @@ public class BaseClass extends Operations {
 	 *
 	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
-	public String getTestCaseName(Method testMethod) {
-
-		String name = testMethod.getDeclaringClass().getTypeName();
-		String className = name.substring(name.lastIndexOf(".") + 1);
-
-		return "<span style='color:#d64161;'>" + className + " : </span> " + "<span style='color:#4040a1;'>"
-				+ testMethod.getName() + " : </span> ";
+	public String getTestCaseName(Method testMethod, String status) {
+		String testcaseName = null;
+		if (status.equalsIgnoreCase("pass"))
+			testcaseName = "<span style='color:#32CD32;'>" + testMethod.getName() + " : </span> ";
+		else if (status.equalsIgnoreCase("fail"))
+			testcaseName = "<span style='color:#ff0000;'>" + testMethod.getName() + " : </span> ";
+		else if (status.equalsIgnoreCase("skip"))
+			testcaseName = "<span style='color:#005CD2;'>" + testMethod.getName() + " : </span> ";
+		return testcaseName;
 	}
 
 	/*
@@ -266,13 +286,13 @@ public class BaseClass extends Operations {
 		OD_LoginPage od_loginPage = new OD_LoginPage();
 		OD_HomePage od_homePage = new OD_HomePage();
 		OD_LocationsPage od_locationsPage = new OD_LocationsPage();
-		
+
 		od_loginPage = launch_OD_Application();
 		od_homePage = od_loginPage.login();
 		od_locationsPage = od_homePage.navigateToLocationsPage();
 		String url = od_locationsPage.scan_Location_QR_code(getRandomLocation());
 		Assert.assertTrue(!url.isEmpty(), "Failed to convert QR code into URL");
-		passStep("QR code URL is <b>"+url+"</b>");
+		passStep("QR code URL is <b>" + url + "</b>");
 		openNewTab(url);
 		TextPay_HomePage tp_homePage = new TextPay_HomePage();
 		waitForElementTobeDisplayed(tp_homePage.link_Guest);
@@ -322,15 +342,20 @@ public class BaseClass extends Operations {
 	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	@AfterMethod(alwaysRun = true)
-	public void getResult(ITestResult result) throws IOException {
+	public void getResult(ITestResult result, Method testMethod) throws IOException {
 		if (result.getStatus() == ITestResult.FAILURE) {
 			stepInfo("<i>__Failed due to below exception__ :</i> ");
 			failStep(result.getThrowable().toString());
 			String screenshotPath = BaseClass.getScreenshot(driver, result.getName());
 
 			test.log(LogStatus.FAIL, test.addScreenCapture(screenshotPath));
+			stepInfo("Test <i><b>" + getTestCaseName(testMethod, "fail") + "</b></i> Failed");
 
-		}
+		} else if (result.getStatus() == ITestResult.SUCCESS)
+			stepInfo("Test <i><b>" + getTestCaseName(testMethod, "pass") + "</b></i> Passed");
+
+		else if (result.getStatus() == ITestResult.SKIP)
+			stepInfo("Test  <i><b>" + getTestCaseName(testMethod, "skip") + "</b></i> Skipped");
 	}
 
 	/*
@@ -449,7 +474,7 @@ public class BaseClass extends Operations {
 	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
 	public Email_Verification launch_yopmail() {
-		//driver.get(yopmail_url);
+		// driver.get(yopmail_url);
 		openNewTab(yopmail_url);
 		Email_Verification emailPage = new Email_Verification();
 		waitForElementTobeDisplayed(emailPage.textBox_Email);
@@ -463,7 +488,7 @@ public class BaseClass extends Operations {
 	 *
 	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
-	public String getRandomEmailAddress() {
+	public String getRandomYopmailAddress() {
 		String alphabet = "abcdefghijklmnopqrstuvwxyz";
 		Random random = new Random();
 		StringBuilder sb = new StringBuilder();
@@ -475,6 +500,17 @@ public class BaseClass extends Operations {
 		}
 
 		return sb.toString() + "_" + getTimestamp() + "@yopmail.com";
+
+	}
+
+	/*
+	 * Usage : To generate unique fake name
+	 *
+	 * Author : Venu Thota (venu.thota@xebia.com)
+	 */
+	public String getFakeName() {
+		Faker faker = new Faker();
+		return faker.name().firstName() + "_" + getTimestamp();
 
 	}
 
@@ -516,10 +552,10 @@ public class BaseClass extends Operations {
 
 		return vehicle_types[index];
 	}
-	
+
 	/*
-	 * Usage : To convert QR code of format SVG into the URL.
-	 * It converts .svg to .png and decodes the URL
+	 * Usage : To convert QR code of format SVG into the URL. It converts .svg to
+	 * .png and decodes the URL
 	 *
 	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
@@ -527,7 +563,7 @@ public class BaseClass extends Operations {
 		try {
 			// Create a Document from the SVG file
 			String parser = XMLResourceDescriptor.getXMLParserClassName();
-			SAXSVGDocumentFactory f = new SAXSVGDocumentFactory(parser);			
+			SAXSVGDocumentFactory f = new SAXSVGDocumentFactory(parser);
 
 			File pngFile = File.createTempFile("qr_code", ".png");
 			PNGTranscoder transcoder = new PNGTranscoder();
