@@ -29,7 +29,7 @@ jobs:
       - name: Change PNG Paths
         run: |
           sed -i 's|file:////home/runner/work/core_UI_Automation/core_UI_Automation//TestResults//${{ env.DATE_STR }}//\([^"]*\)|./\1|g' TestResults/${{ env.DATE_STR }}/*.html
-          sed -i 's|home/runner/work/core_UI_Automation/core_UI_Automation//TestResults//${{ env.DATE_STR }}//\([^"]*\)|./\1|g' TestResults/${{ env.DATE_STR }}/*.png
+          sed -i 's|home/runner/work/core_UI_Automation/core_UI_Automation//TestResults//${{ env.DATE_STR }}//\([^"]*\)|./\1|g' TestResults/${{ env.DATE_STR }}/*.html
 
       - name: Zip current test report
         id: zip-test
