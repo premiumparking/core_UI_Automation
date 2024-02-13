@@ -3,8 +3,6 @@ package testcases.OD.Prod;
 import org.testng.annotations.Test;
 import java.util.List;
 
-import org.testng.annotations.Test;
-
 import components.BaseClass;
 import dataModel.OD.Profile_Bulk;
 import pageObjects.OD.OD_BusinessAccountsPage;

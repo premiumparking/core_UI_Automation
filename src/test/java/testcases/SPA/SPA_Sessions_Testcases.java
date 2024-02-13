@@ -3,7 +3,6 @@ package testcases.SPA;
 import org.testng.annotations.Test;
 import components.BaseClass;
 import dataModel.SPA.Vehicle;
-import org.testng.annotations.Test;
 import pageObjects.SPA.SPA_AccountsPage;
 import pageObjects.SPA.SPA_HomePage;
 import pageObjects.SPA.SPA_LocationPage;

@@ -2,8 +2,6 @@ package testcases.OD;
 
 import org.testng.annotations.Test;
 import dataModel.OD.*;
-import org.testng.annotations.Test;
-
 import components.BaseClass;
 import pageObjects.OD.*;
 import utils.XML_Operations;

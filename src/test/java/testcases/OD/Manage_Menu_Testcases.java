@@ -1,12 +1,47 @@
 package testcases.OD;
 
 import org.testng.annotations.Test;
-import dataModel.OD.*;
-import org.testng.annotations.Test;
 
 import components.BaseClass;
 import components.Constants;
-import pageObjects.OD.*;
+import dataModel.OD.Blackout;
+import dataModel.OD.CashDeposit;
+import dataModel.OD.Client;
+import dataModel.OD.DynamicLayout;
+import dataModel.OD.EventRates;
+import dataModel.OD.Fee;
+import dataModel.OD.GLCode;
+import dataModel.OD.Invoice;
+import dataModel.OD.Location;
+import dataModel.OD.Market;
+import dataModel.OD.PartnerSale;
+import dataModel.OD.Profile;
+import dataModel.OD.PromoCode;
+import dataModel.OD.Role;
+import dataModel.OD.User;
+import dataModel.OD.Whitelist;
+import pageObjects.OD.OD_BlackoutsPage;
+import pageObjects.OD.OD_BusinessAccountsPage;
+import pageObjects.OD.OD_CashDepositsPage;
+import pageObjects.OD.OD_ClientsPage;
+import pageObjects.OD.OD_EventRatesPage;
+import pageObjects.OD.OD_FeesPage;
+import pageObjects.OD.OD_GLCodesPage;
+import pageObjects.OD.OD_HomePage;
+import pageObjects.OD.OD_InvoicesPage;
+import pageObjects.OD.OD_LocationsPage;
+import pageObjects.OD.OD_LoginPage;
+import pageObjects.OD.OD_MarketsPage;
+import pageObjects.OD.OD_PartnerSalesPage;
+import pageObjects.OD.OD_ProfilesPage;
+import pageObjects.OD.OD_PromoCodesPage;
+import pageObjects.OD.OD_RolesPage;
+import pageObjects.OD.OD_TextPayJobsPage;
+import pageObjects.OD.OD_TextPayRequestsPage;
+import pageObjects.OD.OD_UsersPage;
+import pageObjects.OD.OD_VenuesPage;
+import pageObjects.OD.OD_VirtualLocationsPage;
+import pageObjects.OD.OD_WhitelistPage;
 import utils.XML_Operations;
 
 public class Manage_Menu_Testcases extends BaseClass {

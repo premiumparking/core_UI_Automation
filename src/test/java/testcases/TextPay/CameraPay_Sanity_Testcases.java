@@ -55,7 +55,7 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 			throws TranscoderException {
 
 		// Test data setup
-		user = testData.get_User_Testdata(false, Constants.NEW_VEHICLE, Constants.REGULAR_SPACE, 0, true,
+		user = testData.get_User_Testdata(false, Constants.NEW_VEHICLE, Constants.REGULAR_SPACE, 12, true,
 				Constants.CARD);
 
 		// Test steps
@@ -66,7 +66,7 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
 
@@ -92,7 +92,7 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
 
@@ -119,7 +119,7 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 	}
 
 	/*
@@ -132,7 +132,7 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 	public void TC_04_Purchase_RegularSpace_asGuest_FullDiscountPromoCode_NewVehicle_VerifyMail()
 			throws TranscoderException {
 		// Test data setup
-		user = testData.get_User_Testdata(true, Constants.NEW_VEHICLE, Constants.REGULAR_SPACE, 0, false,
+		user = testData.get_User_Testdata(true, Constants.NEW_VEHICLE, Constants.REGULAR_SPACE, 12, false,
 				Constants.PROMOCODE);
 
 		// Test steps
@@ -143,7 +143,7 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 	}
 
 	/*
@@ -167,7 +167,7 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 	}
 
 	/*
@@ -192,7 +192,7 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
 
@@ -218,7 +218,7 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
 
@@ -244,7 +244,7 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
 	/*
@@ -270,7 +270,7 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
 
@@ -296,7 +296,7 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
 
@@ -323,7 +323,7 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
 
@@ -349,7 +349,7 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
 
