@@ -5,8 +5,6 @@ import static org.testng.Assert.assertEquals;
 import java.util.ArrayList;
 
 import org.openqa.selenium.By;
-import org.testng.Assert;
-
 import components.BaseClass;
 import components.Constants;
 import dataModel.TextPay.Guest;
@@ -201,7 +199,7 @@ public class TextPay_HomePage extends BaseClass {
 
 	public void addNewVehicle(Guest user) {
 		if (user.getVehicleType().equalsIgnoreCase(Constants.NEW_VEHICLE)) {
-			waitForPageLoad(5);
+			waitForPageLoad(3);
 			if (isElementDisplayed(button_AddNewVehicle))
 				clickOnButton(button_AddNewVehicle, "Add New Vehicle link");
 			waitForElementTobeDisplayed(textBox_LicencePlate);
@@ -296,6 +294,7 @@ public class TextPay_HomePage extends BaseClass {
 		waitForElementTobeClickable(button_ChargingSpace);
 		clickOnButton(button_ChargingSpace, "Charging Space");
 		waitForPageLoad(5);
+		waitForElementTobeDisplayed(getChargingTime(user.getTimeInHours()));
 
 		clickOnButton(getChargingTime(user.getTimeInHours()), getElementText(getChargingTime(user.getTimeInHours())));
 		if (user.getTimeInHours().equalsIgnoreCase("1"))
@@ -519,6 +518,7 @@ public class TextPay_HomePage extends BaseClass {
 	}
 
 	public void verify_LocationRevenuePage(PurchaseDetails purchaseDetails) {
+		waitForPageLoad(4);
 		stepInfo(" <b> **** Verifying Location Revenue Details ****</b>");
 
 		if (purchaseDetails.getChannel().equalsIgnoreCase(Constants.CAMERAPAY)) {

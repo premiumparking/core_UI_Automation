@@ -11,7 +11,6 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
-import org.apache.logging.log4j.EventLogger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -76,6 +75,7 @@ public class Extent_Reports {
 	 */
 	public void passStep(String stepinfo) {
 		test.log(LogStatus.PASS, stepinfo);
+		System.out.println(stepinfo);
 		logger.info("This is an info log message.");
 	}
 
@@ -84,8 +84,9 @@ public class Extent_Reports {
 	 * 
 	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */
-	public void failStep(String stepinfo) {
+	public void failStep(String stepinfo) {		
 		test.log(LogStatus.FAIL, stepinfo);
+		System.out.println("FAIL..."+stepinfo);
 	}
 
 	/*
@@ -95,5 +96,6 @@ public class Extent_Reports {
 	 */
 	public void stepInfo(String stepinfo) {
 		test.log(LogStatus.INFO, "<b>" + stepinfo + "</b>");
+		System.out.println(stepinfo);
 	}
 }

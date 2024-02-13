@@ -1,6 +1,11 @@
 package testcases.TextPay;
 
+import java.io.IOException;
+
 import org.testng.annotations.Test;
+
+import com.mailosaur.MailosaurException;
+
 import components.BaseClass;
 import components.Constants;
 import dataModel.TextPay.Guest;
@@ -50,10 +55,10 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 	 */
 
 	@Test(groups = { "smoke", "regression" })
-	public void TC_01_Purchase_RegularSpace_withPhoneNumber_WithNewCard_NewVehicle_VerifyMail() {
+	public void TC_01_Purchase_RegularSpace_withPhoneNumber_WithNewCard_NewVehicle_VerifyMail() throws IOException, MailosaurException {
 
 		// Test data setup
-		user = testData.get_User_Testdata(false, Constants.NEW_VEHICLE, Constants.REGULAR_SPACE, 0, true,
+		user = testData.get_User_Testdata(false, Constants.NEW_VEHICLE, Constants.REGULAR_SPACE, 12, true,
 				Constants.CARD);
 
 		// Test steps
@@ -64,7 +69,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
 
@@ -78,7 +83,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 	public void TC_02_Purchase_RegularSpace_withPhoneNumber_FullDiscountPromoCode_UnknownVehicle_VerifyMail() {
 
 		// Test data setup
-		user = testData.get_User_Testdata(false, Constants.UNKNOWN_VEHICLE, Constants.REGULAR_SPACE, 0, false,
+		user = testData.get_User_Testdata(false, Constants.UNKNOWN_VEHICLE, Constants.REGULAR_SPACE, 12, false,
 				Constants.PROMOCODE);
 
 		// Test steps
@@ -89,7 +94,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
 
@@ -104,7 +109,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 	public void TC_03_Purchase_RegularSpace_withPhoneNumber_WithCard_UnknownVehicle_VerifyMail() {
 
 		// Test data setup
-		user = testData.get_User_Testdata(false, Constants.UNKNOWN_VEHICLE, Constants.REGULAR_SPACE, 0, true,
+		user = testData.get_User_Testdata(false, Constants.UNKNOWN_VEHICLE, Constants.REGULAR_SPACE, 12, true,
 				Constants.CARD);
 
 		// Test steps
@@ -115,7 +120,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 	}
 
 	/*
@@ -127,7 +132,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 	@Test(groups = { "smoke", "regression" })
 	public void TC_04_Purchase_RegularSpace_asGuest_FullDiscountPromoCode_NewVehicle_VerifyMail() {
 		// Test data setup
-		user = testData.get_User_Testdata(true, Constants.NEW_VEHICLE, Constants.REGULAR_SPACE, 0, false,
+		user = testData.get_User_Testdata(true, Constants.NEW_VEHICLE, Constants.REGULAR_SPACE, 12, false,
 				Constants.PROMOCODE);
 
 		// Test steps
@@ -138,7 +143,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 	}
 
 	/*
@@ -162,7 +167,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 	}
 
 	/*
@@ -186,7 +191,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
 
@@ -212,7 +217,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
 
@@ -237,7 +242,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
 	/*
@@ -262,7 +267,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
 
@@ -287,7 +292,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
 
@@ -313,7 +318,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
 
@@ -338,7 +343,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
-		emailPage.verify_Email_PurchaseDetails(purchaseDetails);
+		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
 }

@@ -98,14 +98,6 @@
 			<version>3.1.9</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.24</version>
-			<scope>provided</scope>
-		</dependency>
-
 
 		<!-- Other dependencies -->
 
@@ -154,7 +146,21 @@
 			<artifactId>batik-all</artifactId>
 			<version>1.17</version>
 		</dependency>
-		
+
+		<!--  Email refenrence-->
+		<dependency>
+			<groupId>com.mailosaur</groupId>
+			<artifactId>mailosaur-java</artifactId>
+			<version>7.13.1</version>
+		</dependency>
+
+		<!-- Faker-->
+		<!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>1.0.2</version>
+		</dependency>
 
 
 	</dependencies>

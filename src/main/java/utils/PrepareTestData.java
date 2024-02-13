@@ -26,13 +26,17 @@ public class PrepareTestData extends BaseClass {
 			boolean isNewPayment, String paymentMethod) {
 
 		user.setLocationNumber(getRandomLocation());
-		
+
 		user.setParkingType(spaceTpe);
-		if(duration!=0)
-			user.setTimeInHours(duration+"");
+		if (duration != 0)
+			user.setTimeInHours(duration + "");
 		user.setGuestRole(isGuestRole);
 		user.setNewPayment(isNewPayment);
-		user.setEmail(getRandomEmailAddress());
+		if (Boolean.parseBoolean(yopmail))
+			user.setEmail(getRandomYopmailAddress());
+		else
+			user.setEmail(getFakeName() + "@" + mailosaur_serverDomain);
+
 		if (!isGuestRole)
 			user.setMobileNumber(getRandomUSPhoneNumber());
 

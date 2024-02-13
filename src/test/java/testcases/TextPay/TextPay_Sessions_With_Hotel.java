@@ -6,8 +6,6 @@ import components.Constants;
 import dataModel.TextPay.Guest;
 import dataModel.TextPay.PurchaseDetails;
 
-import org.testng.annotations.Test;
-
 import pageObjects.TextPay.TextPay_HomePage;
 import utils.XML_Operations;
 

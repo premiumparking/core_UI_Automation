@@ -25,8 +25,9 @@ public class OD_LoginPage extends BaseClass {
 	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public OD_HomePage login() {
-		enterText(textbox_UserName, BaseClass.od_username);
+		enterText(textbox_UserName, BaseClass.od_username,"User name field");
 		enterText(textbox_Password, BaseClass.od_password);
+		passStep("Entered password");
 		clickOnButton(button_SignIn, "Sign In button");
 		OD_HomePage homePage = new OD_HomePage();
 		waitForElementTobeDisplayed(homePage.label_OperatorDashboard);

@@ -3,8 +3,6 @@ package testcases.Admiral;
 import org.testng.annotations.Test;
 import java.util.List;
 
-import org.testng.annotations.Test;
-
 import components.BaseClass;
 import dataModel.Admiral.Citation;
 import pageObjects.Admiral.Adm_HomePage;
