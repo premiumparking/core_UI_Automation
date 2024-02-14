@@ -272,8 +272,8 @@ public class BaseClass extends Operations {
 		driver.get(textpay_url);
 		TextPay_HomePage tp_homePage = new TextPay_HomePage();
 		waitForElementTobeDisplayed(tp_homePage.link_Guest);
-		if (isElementDisplayed(tp_homePage.link_Guest))
-			passStep("Launched the Textpay application <b>" + textpay_url + "</b>");
+		Assert.assertTrue(isElementDisplayed(tp_homePage.textbox_MobileNumber), "Login screen not displayed");
+		passStep("Launched the Textpay application <b>" + textpay_url + "</b>");
 		return tp_homePage;
 	}
 

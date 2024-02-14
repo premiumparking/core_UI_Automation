@@ -34,7 +34,7 @@ public class TextPay_HomePage extends BaseClass {
 
 	// Hotel Parking
 	By button_AddNewVehicle = By.xpath("//button[normalize-space()='Add New Vehicle']");
-	By textbox_MobileNumber = By.xpath("//input[@placeholder='Mobile Phone Number']");
+	public By textbox_MobileNumber = By.xpath("//input[@placeholder='Mobile Phone Number']");
 	By button_Continue_Login = By.xpath("//button[@data-testid='login-continue-button']");
 	By button_Continue = By.xpath("//button[normalize-space()='Continue']");
 	By textBox_OTP = By.xpath("//input[@placeholder='Verification Code']");

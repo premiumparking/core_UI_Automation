@@ -18,17 +18,17 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 
 	/*
 	 * TC_01_Purchase_RegularSpace_withPhoneNumber_WithNewCard_NewVehicle_VerifyMail
-	 * TC_02_Purchase_RegularSpace_withPhoneNumber_FullDiscountPromoCode_UnknownVehicle_VerifyMail
-	 * TC_03_Purchase_RegularSpace_withPhoneNumber_WithCard_UnknownVehicle_VerifyMail
-	 * TC_04_Purchase_RegularSpace_asGuest_FullDiscountPromoCode_NewVehicle_VerifyMail
-	 * TC_05_Purchase_StarSpace_withPhoneNumber_WithCard_NewVehicle_VerifyMail
+	 * TC_02_Purchase_RegularSpecialSpace_withPhoneNumber_FullDiscountPromoCode_UnknownVehicle_VerifyMail
+	 * TC_03_Purchase_RegularSpace_asGuest_WithCard_UnknownVehicle_VerifyMail
+	 * TC_04_Purchase_RegularSpace_asGuest_withFullDiscountPromoCode_NewVehicle_VerifyMail
+	 * TC_05_Purchase_StarSpace_asGuest_WithCard_NewVehicle_VerifyMail
 	 * TC_06_Purchase_StarSpace_withPhoneNumber_FullDiscountPromoCode_UnknownVehicle_VerifyMail
 	 * TC_07_Purchase_StarSpace_asGuest_WithCard_UnknownVehicle_VerifyMail
 	 * TC_08_Purchase_StarSpace_withPhoneNumber_FullDiscountPromoCode_NewVehicle_VerifyMail
-	 * TC_09_Purchase_ChargingSpace_withPhoneNumber_WithCard_NewVehicle_VerifyMail
+	 * TC_09_Purchase_ChargingSpace_asGuest_WithCard_NewVehicle_VerifyMail
 	 * TC_10_Purchase_ChargingSpace_withPhoneNumber_FullDiscountPromoCode_UnknownVehicle_VerifyMail
-	 * TC_11_Purchase_ChargingSpace_withPhoneNumber_WithCard_UnknownVehicle_VerifyMail
-	 * TC_12_Purchase_ChargingSpace_asGuest_FullDiscountPromoCode_NewVehicle_VerifyMail
+	 * TC_11_Purchase_ChargingSpace_asGuest_WithCard_UnknownVehicle_VerifyMail
+	 * TC_12_Purchase_ChargingSpace_withPhoneNumber_FullDiscountPromoCode_NewVehicle_VerifyMail
 	 */
 
 	// ****************** CLASS INSTANCES ****************************//
@@ -77,7 +77,7 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
-	public void TC_02_Purchase_RegularSpace_withPhoneNumber_FullDiscountPromoCode_UnknownVehicle_VerifyMail()
+	public void TC_02_Purchase_RegularSpecialSpace_withPhoneNumber_FullDiscountPromoCode_UnknownVehicle_VerifyMail()
 			throws TranscoderException {
 
 		// Test data setup
@@ -97,15 +97,14 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase regular space session with phone number, with
-	 * Unknown vehicle and through card payment
+	 * This is a test case to purchase regular space with special rate session as
+	 * Guest, with Unknown vehicle and through card payment
 	 *
 	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 
 	@Test(groups = { "smoke", "regression" })
-	public void TC_03_Purchase_RegularSpace_withPhoneNumber_WithCard_UnknownVehicle_VerifyMail()
-			throws TranscoderException {
+	public void TC_03_Purchase_RegularSpace_asGuest_WithCard_UnknownVehicle_VerifyMail() throws TranscoderException {
 
 		// Test data setup
 		user = testData.get_User_Testdata(true, Constants.UNKNOWN_VEHICLE, Constants.SPECIAL_RATE, 5, true,
@@ -123,13 +122,13 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase regular space session with phone number,with
-	 * new vehicle and through promocode
+	 * This is a test case to purchase regular space session as guest,with new
+	 * vehicle and through promocode
 	 *
 	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
-	public void TC_04_Purchase_RegularSpace_asGuest_FullDiscountPromoCode_NewVehicle_VerifyMail()
+	public void TC_04_Purchase_RegularSpace_asGuest_withFullDiscountPromoCode_NewVehicle_VerifyMail()
 			throws TranscoderException {
 		// Test data setup
 		user = testData.get_User_Testdata(true, Constants.NEW_VEHICLE, Constants.REGULAR_SPACE, 12, false,
@@ -147,14 +146,14 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase regular space session with phone number, with
-	 * new vehicle and through card payment
+	 * This is a test case to purchase star space session as Guest, with new vehicle
+	 * and through card payment
 	 *
 	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 
 	@Test(groups = { "smoke", "regression" })
-	public void TC_05_Purchase_StarSpace_withPhoneNumber_WithCard_NewVehicle_VerifyMail() throws TranscoderException {
+	public void TC_05_Purchase_StarSpace_asGuest_WithCard_NewVehicle_VerifyMail() throws TranscoderException {
 
 		// Test data setup
 		user = testData.get_User_Testdata(true, Constants.NEW_VEHICLE, Constants.STAR_SPACE, 2, true, Constants.CARD);
@@ -171,8 +170,8 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase regular space session with phone number,with
-	 * new vehicle and through promocode
+	 * This is a test case to purchase Star space session with phone number,with
+	 * unknown vehicle and through promocode
 	 *
 	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
@@ -197,7 +196,7 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase regular space session with phone number, with
+	 * This is a test case to purchase Star space session with phone number, with
 	 * Unknown vehicle and through card payment
 	 *
 	 * Author : Venu Thota(venu.thota@xebia.com)
@@ -223,8 +222,8 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase regular space session with phone number,with
-	 * new vehicle and through promocode
+	 * This is a test case to purchase star space session with phone number,with new
+	 * vehicle and through promocode
 	 *
 	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
@@ -248,15 +247,14 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 
 	}
 	/*
-	 * This is a test case to purchase regular space session with phone number, with
-	 * new vehicle and through card payment
+	 * This is a test case to purchase Charging space session as Guest, with new
+	 * vehicle and through card payment
 	 *
 	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 
 	@Test(groups = { "smoke", "regression" })
-	public void TC_09_Purchase_ChargingSpace_withPhoneNumber_WithCard_NewVehicle_VerifyMail()
-			throws TranscoderException {
+	public void TC_09_Purchase_ChargingSpace_asGuest_WithCard_NewVehicle_VerifyMail() throws TranscoderException {
 
 		// Test data setup
 		user = testData.get_User_Testdata(true, Constants.NEW_VEHICLE, Constants.CHARGING_SPACE, 5, true,
@@ -275,8 +273,8 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase regular space session with phone number,with
-	 * new vehicle and through promocode
+	 * This is a test case to purchase Charging space session with phone number,with
+	 * unknown vehicle and through promocode
 	 *
 	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
@@ -301,15 +299,14 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase regular space session with phone number, with
-	 * Unknown vehicle and through card payment
+	 * This is a test case to purchase Charging space session as Guest, with Unknown
+	 * vehicle and through card payment
 	 *
 	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 
 	@Test(groups = { "smoke", "regression" })
-	public void TC_11_Purchase_ChargingSpace_withPhoneNumber_WithCard_UnknownVehicle_VerifyMail()
-			throws TranscoderException {
+	public void TC_11_Purchase_ChargingSpace_asGuest_WithCard_UnknownVehicle_VerifyMail() throws TranscoderException {
 
 		// Test data setup
 		user = testData.get_User_Testdata(true, Constants.UNKNOWN_VEHICLE, Constants.CHARGING_SPACE, 12, true,
@@ -328,13 +325,13 @@ public class CameraPay_Sanity_Testcases extends BaseClass {
 	}
 
 	/*
-	 * This is a test case to purchase regular space session with phone number,with
+	 * This is a test case to purchase Charging space session with phone number,with
 	 * new vehicle and through promocode
 	 *
 	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	@Test(groups = { "smoke", "regression" })
-	public void TC_12_Purchase_ChargingSpace_asGuest_FullDiscountPromoCode_NewVehicle_VerifyMail()
+	public void TC_12_Purchase_ChargingSpace_withPhoneNumber_FullDiscountPromoCode_NewVehicle_VerifyMail()
 			throws TranscoderException {
 
 		// Test data setup
