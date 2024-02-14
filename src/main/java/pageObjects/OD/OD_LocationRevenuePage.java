@@ -93,28 +93,29 @@ public class OD_LocationRevenuePage extends BaseClass {
 
 		Assert.assertTrue(isElementDisplayed(orderNumber), "Order number not displayed even after 3 minutes");
 		passStep("Order Number : " + getElementText(orderNumber));
-		highlightElement((orderNumber));
+		highlightElement(orderNumber);
 		passStep("Location Name : " + getElementText(locationName));
-		highlightElement((locationName));
+		highlightElement(locationName);
 		passStep("Product : " + getElementText(product));
-		highlightElement((product));
+		highlightElement(product);
 		passStep("Channel : " + getElementText(channel));
-		highlightElement((channel));
+		highlightElement(channel);
 		passStep("Licence Plate : " + getElementText(licencePlate));
-		highlightElement((licencePlate));
+		highlightElement(licencePlate);
 		if (purchaseDetails.isUnKnownVehicle()) {
 			passStep("Descriptive : " + getElementText(descriptive));
 			highlightElement((descriptive));
 		}
 		passStep("Duration in words : " + getElementText(durationInWords));
-		highlightElement((durationInWords));
+		highlightElement(durationInWords);
 		passStep("Rate Name : " + getElementText(rateName));
-		highlightElement((rateName));
+		highlightElement(rateName);
 		passStep("Total AMount : " + getElementText(totalAmount));
-		highlightElement((totalAmount));
+		highlightElement(totalAmount);
 		passStep("Transaction Type : " + getElementText(transactionType));
-		highlightElement((transactionType));
-
+		scrollToElement(transactionType);
+		highlightElement(transactionType);
+		
 		assertEquals(getElementText(orderNumber), purchaseDetails.getOrderNumber());
 		if (purchaseDetails.getLocationNumber().length() == 3)
 			assertEquals(getElementText(locationName), "P0" + purchaseDetails.getLocationNumber(),
@@ -127,19 +128,28 @@ public class OD_LocationRevenuePage extends BaseClass {
 		if (purchaseDetails.isUnKnownVehicle()) {
 			assertEquals(getElementText(licencePlate), "UNKNOWN", "Licence Plate mismatch...");
 			assertEquals(getElementText(descriptive), purchaseDetails.getLicencePlate(), "Licence Plate mismatch...");
+			highlightElement(descriptive);
 		} else
 			assertEquals(getElementText(licencePlate), purchaseDetails.getLicencePlate(), "Descriptive mismatch...");
 		assertEquals(getElementText(durationInWords).toLowerCase(), purchaseDetails.getDurationInWords().toLowerCase(),
 				"Duration mismatch...");
+		highlightElement(durationInWords);
 		assertEquals(getElementText(totalAmount), purchaseDetails.getAmountCharged(), "Total amount mismatch...");
 		assertEquals(getElementText(transactionType).toLowerCase(), purchaseDetails.getPurchaseType().toLowerCase(),
 				"Purchase type mismatch...");
+		highlightElement(licencePlate);
+		highlightElement(totalAmount);
+		scrollToElement(transactionType);
+		highlightElement(transactionType);
+		scrollToElement(promoCode);
 		if (purchaseDetails.getPaymentOption().equalsIgnoreCase(Constants.PROMOCODE)) {
 			assertEquals(getElementText(promoCode), purchaseDetails.getPromocode(), "Payment method mismatch...");
+			highlightElement(promoCode);
 			passStep("Promo code : " + getElementText(promoCode));
 		} else {
 			assertEquals(getElementText(paymentMethod), purchaseDetails.getPaymentMethod(),
 					"Payment method mismatch...");
+			highlightElement(paymentMethod);
 			passStep("Payment Method : " + getElementText(paymentMethod));
 		}
 
