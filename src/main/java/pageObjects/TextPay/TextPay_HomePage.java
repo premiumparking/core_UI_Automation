@@ -5,10 +5,13 @@ import static org.testng.Assert.assertEquals;
 import java.util.ArrayList;
 
 import org.openqa.selenium.By;
+import org.testng.Assert;
+
 import components.BaseClass;
 import components.Constants;
 import dataModel.TextPay.Guest;
 import dataModel.TextPay.PurchaseDetails;
+import pageObjects.OD.OD_EnforcementPage;
 import pageObjects.OD.OD_HomePage;
 import pageObjects.OD.OD_LocationRevenuePage;
 import pageObjects.OD.OD_LoginPage;
@@ -26,6 +29,7 @@ public class TextPay_HomePage extends BaseClass {
 	OD_HomePage od_homePage = new OD_HomePage();
 	OD_LoginPage od_loginPage = new OD_LoginPage();
 	OD_LocationRevenuePage od_locRevenuePage = new OD_LocationRevenuePage();
+	OD_EnforcementPage od_EnforcementPage = new OD_EnforcementPage();
 
 	// ****************** WEB ELEMENTS ****************************//
 
@@ -198,13 +202,11 @@ public class TextPay_HomePage extends BaseClass {
 	}
 
 	public void addNewVehicle(Guest user) {
-		if (user.getVehicleType().equalsIgnoreCase(Constants.NEW_VEHICLE)) {
-			waitForPageLoad(3);
-			if (isElementDisplayed(button_AddNewVehicle))
-				clickOnButton(button_AddNewVehicle, "Add New Vehicle link");
-			waitForElementTobeDisplayed(textBox_LicencePlate);
-			waitForElementTobeClickable(textBox_LicencePlate);
-		}
+		waitForElementTobeClickable(button_AddNewVehicle);
+		Assert.assertTrue(isElementDisplayed(button_AddNewVehicle), "mismatch of visibility of Add New Vehicle");
+		clickOnButton(button_AddNewVehicle, "Add New Vehicle link");
+		waitForElementTobeDisplayed(textBox_LicencePlate);
+		waitForElementTobeClickable(textBox_LicencePlate);
 		enterText(textBox_LicencePlate, user.getLicensePlateNumber(), "Licence Plate box");
 		waitForPageLoad(2);
 		selectDropdown(dd_LicenceState, user.getState(), "Licence State dropdown");
@@ -214,9 +216,9 @@ public class TextPay_HomePage extends BaseClass {
 	}
 
 	public void addUnknownVehicle(Guest user) {
-		waitForPageLoad(2);
-		if (isElementDisplayed(button_AddNewVehicle))
-			clickOnButton(button_AddNewVehicle, "Add New Vehicle link");
+		waitForElementTobeClickable(button_AddNewVehicle);
+		Assert.assertTrue(isElementDisplayed(button_AddNewVehicle), "mismatch of visibility of Add New Vehicle");
+		clickOnButton(button_AddNewVehicle, "Add New Vehicle link");
 		waitForElementTobeDisplayed(button_Unknown_Vehicle);
 		waitForElementTobeClickable(button_Unknown_Vehicle);
 
@@ -426,11 +428,12 @@ public class TextPay_HomePage extends BaseClass {
 			if (user.getVehicleType().equalsIgnoreCase(Constants.UNKNOWN_VEHICLE)) {
 				licencePlateInfo = user.getColor() + " " + user.getType() + " " + user.getMake();
 				purchaseDetails.setUnKnownVehicle(true);
-				purchaseDetails.setLicencePlate(licencePlateInfo);
+				purchaseDetails.setLicensePlate(licencePlateInfo);
+				purchaseDetails.setEnf_licensePlate(user.getColor() + user.getMake() + user.getType());
 			} else {
 				licencePlateInfo = user.getLicensePlateNumber() + "/" + user.getState().split(" ")[0];
 				purchaseDetails.setUnKnownVehicle(false);
-				purchaseDetails.setLicencePlate(user.getLicensePlateNumber());
+				purchaseDetails.setLicensePlate(user.getLicensePlateNumber());
 			}
 			passStep(getElementText(label_conf_vehicleData));
 			passStep(getElementText(label_conf_vehicleInfo));
@@ -509,7 +512,7 @@ public class TextPay_HomePage extends BaseClass {
 			purchaseDetails.setOrderNumber(getElementText(confirmationNumber));
 			purchaseDetails.setPurchaseType("Session");
 			purchaseDetails.setLocationNumber(user.getLocationNumber());
-			purchaseDetails.setLicencePlate(user.getLicensePlateNumber());
+			purchaseDetails.setLicensePlate(user.getLicensePlateNumber());
 			purchaseDetails.setDurationInWords(getElementText(label_conf_duration));
 			purchaseDetails.setAmountCharged(user.getAmount());
 
@@ -534,6 +537,14 @@ public class TextPay_HomePage extends BaseClass {
 
 		od_locRevenuePage = od_homePage.navigateToLocationRevenuePage();
 		od_locRevenuePage.verify_LocationRevenueData(purchaseDetails);
+
+	}
+
+	public void verify_EnforcementDetails(PurchaseDetails purchaseDetails) {
+		waitForPageLoad(4);
+		stepInfo(" <b> **** Verifying Enforcement Details ****</b>");
+		od_EnforcementPage = od_homePage.navigateToEnforcementPage();
+		od_EnforcementPage.verify_LicencePlateDetails(purchaseDetails);
 
 	}
 

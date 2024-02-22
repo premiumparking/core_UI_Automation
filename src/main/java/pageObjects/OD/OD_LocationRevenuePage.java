@@ -77,7 +77,7 @@ public class OD_LocationRevenuePage extends BaseClass {
 		waitForElementTobeDisplayed(searchBox);
 		enterText(searchBox, purchaseDetails.getOrderNumber(), "Search box");
 		waitForElementTobeClickable(button_Find);
-		clickOnButton(button_Find, "Find button");		
+		clickOnButton(button_Find, "Find button");
 
 		int maxClicks = 18;
 		int clickCount = 0;
@@ -88,7 +88,7 @@ public class OD_LocationRevenuePage extends BaseClass {
 			passStep("awaited for 10 sec ...");
 			clickOnButton(button_Find, "Find button");
 			clickCount++;
-			
+
 		}
 
 		Assert.assertTrue(isElementDisplayed(orderNumber), "Order number not displayed even after 3 minutes");
@@ -115,7 +115,7 @@ public class OD_LocationRevenuePage extends BaseClass {
 		passStep("Transaction Type : " + getElementText(transactionType));
 		scrollToElement(transactionType);
 		highlightElement(transactionType);
-		
+
 		assertEquals(getElementText(orderNumber), purchaseDetails.getOrderNumber());
 		if (purchaseDetails.getLocationNumber().length() == 3)
 			assertEquals(getElementText(locationName), "P0" + purchaseDetails.getLocationNumber(),
@@ -127,10 +127,10 @@ public class OD_LocationRevenuePage extends BaseClass {
 		assertEquals(getElementText(channel), purchaseDetails.getChannel(), "Channel mismatch...");
 		if (purchaseDetails.isUnKnownVehicle()) {
 			assertEquals(getElementText(licencePlate), "UNKNOWN", "Licence Plate mismatch...");
-			assertEquals(getElementText(descriptive), purchaseDetails.getLicencePlate(), "Licence Plate mismatch...");
+			assertEquals(getElementText(descriptive), purchaseDetails.getLicensePlate(), "Licence Plate mismatch...");
 			highlightElement(descriptive);
 		} else
-			assertEquals(getElementText(licencePlate), purchaseDetails.getLicencePlate(), "Descriptive mismatch...");
+			assertEquals(getElementText(licencePlate), purchaseDetails.getLicensePlate(), "Descriptive mismatch...");
 		assertEquals(getElementText(durationInWords).toLowerCase(), purchaseDetails.getDurationInWords().toLowerCase(),
 				"Duration mismatch...");
 		highlightElement(durationInWords);

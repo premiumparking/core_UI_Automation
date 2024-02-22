@@ -129,9 +129,9 @@ public class Email_Verification extends BaseClass {
 					"Duration mismatch...");
 
 			if (purchaseDetails.isUnKnownVehicle())
-				assertEquals(vehicle, "• Vehicle: " + purchaseDetails.getLicencePlate(), "Vehicle mismatch...");
+				assertEquals(vehicle, "• Vehicle: " + purchaseDetails.getLicensePlate(), "Vehicle mismatch...");
 			else
-				assertEquals(vehicle, "• Vehicle: Alaska, " + purchaseDetails.getLicencePlate(), "Vehicle mismatch...");
+				assertEquals(vehicle, "• Vehicle: Alaska, " + purchaseDetails.getLicensePlate(), "Vehicle mismatch...");
 
 			assertEquals(source.toLowerCase(), "• source: " + purchaseDetails.getChannel().toLowerCase(),
 					"Source mismatch...");
@@ -206,15 +206,15 @@ public class Email_Verification extends BaseClass {
 
 		if (purchaseDetails.isUnKnownVehicle()) {
 			Assert.assertTrue(
-					message.html().body().contains("<strong>Vehicle:</strong> " + purchaseDetails.getLicencePlate()),
+					message.html().body().contains("<strong>Vehicle:</strong> " + purchaseDetails.getLicensePlate()),
 					"Vehicle mismatch...");
-			passStep("Vehicle: " + purchaseDetails.getLicencePlate());
+			passStep("Vehicle: " + purchaseDetails.getLicensePlate());
 		} else {
 			Assert.assertTrue(
 					message.html().body()
-							.contains("<strong>Vehicle:</strong> Alaska, " + purchaseDetails.getLicencePlate()),
+							.contains("<strong>Vehicle:</strong> Alaska, " + purchaseDetails.getLicensePlate()),
 					"Vehicle mismatch...");
-			passStep("Vehicle: Alaska, " + purchaseDetails.getLicencePlate());
+			passStep("Vehicle: Alaska, " + purchaseDetails.getLicensePlate());
 		}
 		if (purchaseDetails.getChannel().equalsIgnoreCase("TextPay"))
 			purchaseDetails.setChannel("Textpay");

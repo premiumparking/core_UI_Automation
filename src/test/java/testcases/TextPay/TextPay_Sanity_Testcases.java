@@ -69,6 +69,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		tp_HomePage.verify_EnforcementDetails(purchaseDetails);
 		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
@@ -92,8 +93,9 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		tp_HomePage.send_Receipt_to_Email(user.getEmail());
 
 		// Verification
-		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
+		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);		
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		tp_HomePage.verify_EnforcementDetails(purchaseDetails);
 		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
@@ -120,6 +122,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		tp_HomePage.verify_EnforcementDetails(purchaseDetails);
 		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 	}
 
@@ -143,6 +146,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		tp_HomePage.verify_EnforcementDetails(purchaseDetails);
 		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 	}
 
@@ -167,6 +171,8 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		purchaseDetails.setSpaceType(Constants.STAR_SPACE);
+		tp_HomePage.verify_EnforcementDetails(purchaseDetails);
 		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 	}
 
@@ -191,6 +197,8 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		purchaseDetails.setSpaceType(Constants.STAR_SPACE);
+		tp_HomePage.verify_EnforcementDetails(purchaseDetails);
 		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
@@ -217,6 +225,8 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		purchaseDetails.setSpaceType(Constants.STAR_SPACE);
+		tp_HomePage.verify_EnforcementDetails(purchaseDetails);
 		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
@@ -242,6 +252,8 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		purchaseDetails.setSpaceType(Constants.STAR_SPACE);
+		tp_HomePage.verify_EnforcementDetails(purchaseDetails);
 		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
@@ -267,6 +279,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		tp_HomePage.verify_EnforcementDetails(purchaseDetails);
 		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
@@ -292,6 +305,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		tp_HomePage.verify_EnforcementDetails(purchaseDetails);
 		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
@@ -318,6 +332,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		tp_HomePage.verify_EnforcementDetails(purchaseDetails);
 		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
@@ -343,6 +358,7 @@ public class TextPay_Sanity_Testcases extends BaseClass {
 		// Verification
 		tp_HomePage.verify_Purchase_Details(user, purchaseDetails);
 		tp_HomePage.verify_LocationRevenuePage(purchaseDetails);
+		tp_HomePage.verify_EnforcementDetails(purchaseDetails);
 		emailPage.verify_PurchaseDetails_On_Email(purchaseDetails);
 
 	}
