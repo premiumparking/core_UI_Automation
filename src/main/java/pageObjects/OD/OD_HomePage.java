@@ -1,6 +1,7 @@
 package pageObjects.OD;
 
 import org.openqa.selenium.By;
+import org.testng.Assert;
 
 import components.BaseClass;
 
@@ -51,6 +52,8 @@ public class OD_HomePage extends BaseClass {
 
 	By dd_Reports = By.xpath("//a[normalize-space()='Reports']");
 	By link_LocationRevenues = By.xpath("//a[normalize-space()='Location Revenues']");
+	
+	By menu_Enforcement = By.xpath("//a[normalize-space()='Enforcement']");
 
 	// ****************** ACTIONS ****************************//
 
@@ -606,6 +609,21 @@ public class OD_HomePage extends BaseClass {
 		OD_LocationRevenuePage loc_Rev_Page = new OD_LocationRevenuePage();
 		waitForElementTobeDisplayed(loc_Rev_Page.label_LocationRevenues);
 		return loc_Rev_Page;
+	}
+	
+	/*
+	 * Method to navigate to Location Revenue Page under reports
+	 * 
+	 * Author : Venu Thota(venu.thota@xebia.com)
+	 */
+	public OD_EnforcementPage navigateToEnforcementPage() {
+		waitForElementTobeDisplayed(menu_Enforcement);
+		clickOnButton(menu_Enforcement, "Enforcement menu");
+		OD_EnforcementPage enfPage = new OD_EnforcementPage();
+		waitForElementTobeDisplayed(enfPage.header_EnfReport);
+		Assert.assertTrue(isElementDisplayed(enfPage.header_EnfReport),"Enforcement Report visibility ..");
+		passStep("Enforcemnt page loaded ");
+		return enfPage;
 	}
 
 }

@@ -312,7 +312,7 @@ public class Operations extends Extent_Reports {
 			highlightElement(element);
 			Select dropdown = new Select(element);
 			dropdown.selectByVisibleText(text);
-			passStep("Selected '" + text + "' from '" + field + "'");
+			passStep("Selected '" + text + "' on '" + field + "'");
 		}
 	}
 

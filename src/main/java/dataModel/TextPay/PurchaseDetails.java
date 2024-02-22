@@ -2,7 +2,7 @@ package dataModel.TextPay;
 
 public class PurchaseDetails {
 	private String orderNumber;
-	private String licencePlate;
+	private String licensePlate;
 	private String state;
 	private String locationNumber;
 	private String channel;
@@ -16,6 +16,7 @@ public class PurchaseDetails {
 	private String spaceType;
 	private String email;
 	private Boolean unKnownVehicle;
+	private String enf_licensePlate;
 
 	public String getOrderNumber() {
 		return orderNumber;
@@ -25,12 +26,18 @@ public class PurchaseDetails {
 		this.orderNumber = orderNumber;
 	}
 
-	public String getLicencePlate() {
-		return licencePlate;
+	
+
+	public String getLicensePlate() {
+		return licensePlate;
 	}
 
-	public void setLicencePlate(String licencePlate) {
-		this.licencePlate = licencePlate;
+	public void setLicensePlate(String licensePlate) {
+		this.licensePlate = licensePlate;
+	}
+
+	public Boolean getUnKnownVehicle() {
+		return unKnownVehicle;
 	}
 
 	public String getState() {
@@ -136,5 +143,15 @@ public class PurchaseDetails {
 	public void setUnKnownVehicle(Boolean unKnownVehicle) {
 		this.unKnownVehicle = unKnownVehicle;
 	}
+
+	public String getEnf_licensePlate() {
+		return enf_licensePlate;
+	}
+
+	public void setEnf_licensePlate(String enf_licensePlate) {
+		this.enf_licensePlate = enf_licensePlate;
+	}
+	
+	
 
 }

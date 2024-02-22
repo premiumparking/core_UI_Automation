@@ -484,7 +484,7 @@ public class BaseClass extends Operations {
 	}
 
 	/*
-	 * Usage : To generate random promo code
+	 * Usage : To generate random and unique yopmail
 	 *
 	 * Author : Venu Thota (venu.thota@xebia.com)
 	 */

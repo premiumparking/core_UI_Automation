@@ -33,7 +33,7 @@ public class PrepareTestData extends BaseClass {
 		user.setGuestRole(isGuestRole);
 		user.setNewPayment(isNewPayment);
 		if (Boolean.parseBoolean(yopmail))
-			user.setEmail(getRandomYopmailAddress());
+			user.setEmail(getFakeName() + "@yopmail.com");
 		else
 			user.setEmail(getFakeName() + "@" + mailosaur_serverDomain);
 
