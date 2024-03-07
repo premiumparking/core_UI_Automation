@@ -48,13 +48,20 @@ public class OD_EnforcementPage extends BaseClass {
 
 		clickOnButton(dd_LocationInput, "Location dropdown");
 		selectDropdown(dd_LocationInput, "P" + purchaseDetails.getLocationNumber(), "Location drop down");
+		waitForPageLoad(5);
 		waitForElementTobeDisplayed(get_LicensePlate(lpNumber));
+		scrollToElement(get_LicensePlate(lpNumber));
+		
 		if (Constants.STAR_SPACE.equalsIgnoreCase(purchaseDetails.getSpaceType()))
 			Assert.assertEquals(getElementText(get_LicensePlate(lpNumber)), lpNumber + " / ★");
 		else
 			Assert.assertEquals(getElementText(get_LicensePlate(lpNumber)), lpNumber);
 		passStep("Licenceplate displayed as expected -> " + getElementText(get_LicensePlate(lpNumber)));
+		
 		highlightElement(get_LicensePlate(lpNumber));
+		waitForPageLoad(3);
+		waitForElementTobeDisplayed(button_LicensePlateDetails(lpNumber));
+		waitForElementTobeClickable(button_LicensePlateDetails(lpNumber));
 		clickOnButton(button_LicensePlateDetails(lpNumber), "Lisense plate Details button");
 		highlightElement(button_LicensePlateDetails(lpNumber));
 		switchToIframe(iframe);
@@ -106,6 +113,6 @@ public class OD_EnforcementPage extends BaseClass {
 	}
 
 	public By button_LicensePlateDetails(String lpNumber) {
-		return By.xpath("//div[contains(text(),'" + lpNumber + "')]/parent::div/following-sibling::a/img");
+		return By.xpath("//div[contains(text(),'" + lpNumber + "')]/parent::div/following-sibling::a/img[@class='plate-img']");
 	}
 }
