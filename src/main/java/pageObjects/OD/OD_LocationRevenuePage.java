@@ -50,8 +50,8 @@ public class OD_LocationRevenuePage extends BaseClass {
 			rateName = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[19]");
 			totalAmount = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[23]");
 			transactionType = By
-					.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[34]");
-			promoCode = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[59]");
+					.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[38]");
+			promoCode = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[63]");
 			paymentMethod = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[10]");
 		} else {
 			orderNumber = By.xpath("(//a[normalize-space()='" + orderNum + "'])[2]");
@@ -69,8 +69,8 @@ public class OD_LocationRevenuePage extends BaseClass {
 			rateName = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[19]");
 			totalAmount = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[23]");
 			transactionType = By
-					.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[34]");
-			promoCode = By.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[59]");
+					.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[38]");
+			promoCode = By.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[63]");
 			paymentMethod = By
 					.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[10]");
 		}
