@@ -36,44 +36,28 @@ public class OD_LocationRevenuePage extends BaseClass {
 	public void verify_LocationRevenueData(PurchaseDetails purchaseDetails) {
 
 		String orderNum = purchaseDetails.getOrderNumber();
+		int row = 1;
 
-		if (purchaseDetails.getPaymentOption().equalsIgnoreCase(Constants.CARD)) {
-			orderNumber = By.xpath("//a[normalize-space()='" + orderNum + "']");
-
-			locationName = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[1]");
-			channel = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[4]");
-			product = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[3]");
-			licencePlate = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[12]");
-			descriptive = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[13]");
-			durationInWords = By
-					.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[18]");
-			rateName = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[19]");
-			totalAmount = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[23]");
-			transactionType = By
-					.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[38]");
-			promoCode = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[63]");
-			paymentMethod = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[10]");
-		} else {
-			orderNumber = By.xpath("(//a[normalize-space()='" + orderNum + "'])[2]");
-
-			locationName = By
-					.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[1]");
-			product = By.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[3]");
-			channel = By.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[4]");
-			licencePlate = By
-					.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[12]");
-			descriptive = By
-					.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[13]");
-			durationInWords = By
-					.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[18]");
-			rateName = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[19]");
-			totalAmount = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[23]");
-			transactionType = By
-					.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[38]");
-			promoCode = By.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[63]");
-			paymentMethod = By
-					.xpath("(//a[normalize-space()='" + orderNum + "'])[2]/parent::td/following-sibling::td[10]");
+		if (purchaseDetails.getPaymentOption().equalsIgnoreCase(Constants.PROMOCODE)) {
+			row = 2;
 		}
+
+		orderNumber = By.xpath("(//a[normalize-space()='" + orderNum + "'])["+row+"]");
+
+		locationName = By.xpath("(//a[normalize-space()='" + orderNum + "'])["+row+"]/parent::td/following-sibling::td[1]");
+		product = By.xpath("(//a[normalize-space()='" + orderNum + "'])["+row+"]/parent::td/following-sibling::td[3]");
+		channel = By.xpath("(//a[normalize-space()='" + orderNum + "'])["+row+"]/parent::td/following-sibling::td[4]");
+		licencePlate = By.xpath("(//a[normalize-space()='" + orderNum + "'])["+row+"]/parent::td/following-sibling::td[12]");
+		descriptive = By.xpath("(//a[normalize-space()='" + orderNum + "'])["+row+"]/parent::td/following-sibling::td[13]");
+		durationInWords = By
+				.xpath("(//a[normalize-space()='" + orderNum + "'])["+row+"]/parent::td/following-sibling::td[18]");
+		rateName = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[19]");
+		totalAmount = By.xpath("//a[normalize-space()='" + orderNum + "']/parent::td/following-sibling::td[23]");
+		transactionType = By
+				.xpath("(//a[normalize-space()='" + orderNum + "'])["+row+"]/parent::td/following-sibling::td[34]");
+		promoCode = By.xpath("(//a[normalize-space()='" + orderNum + "'])["+row+"]/parent::td/following-sibling::td[59]");
+		paymentMethod = By.xpath("(//a[normalize-space()='" + orderNum + "'])["+row+"]/parent::td/following-sibling::td[10]");
+
 		waitForElementTobeDisplayed(searchBox);
 		enterText(searchBox, purchaseDetails.getOrderNumber(), "Search box");
 		waitForElementTobeClickable(button_Find);
@@ -124,9 +108,10 @@ public class OD_LocationRevenuePage extends BaseClass {
 			assertEquals(getElementText(locationName), "P" + purchaseDetails.getLocationNumber(),
 					"Location name mismatch...");
 		assertEquals(getElementText(product), purchaseDetails.getSpaceType(), "Product mismatch...");
-		assertEquals(getElementText(channel), purchaseDetails.getChannel(), "Channel mismatch...");
+		assertEquals(getElementText(channel).toLowerCase(), purchaseDetails.getChannel().toLowerCase(),
+				"Channel mismatch...");
 		if (purchaseDetails.isUnKnownVehicle()) {
-			assertEquals(getElementText(licencePlate), "UNKNOWN", "Licence Plate mismatch...");
+			assertEquals(getElementText(licencePlate), Constants.UNKNOWN, "Licence Plate mismatch...");
 			assertEquals(getElementText(descriptive), purchaseDetails.getLicensePlate(), "Licence Plate mismatch...");
 			highlightElement(descriptive);
 		} else

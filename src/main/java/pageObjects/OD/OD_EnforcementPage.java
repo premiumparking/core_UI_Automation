@@ -2,7 +2,6 @@ package pageObjects.OD;
 
 import components.BaseClass;
 import components.Constants;
-import dataModel.OD.Banner;
 import dataModel.TextPay.PurchaseDetails;
 
 import java.util.List;

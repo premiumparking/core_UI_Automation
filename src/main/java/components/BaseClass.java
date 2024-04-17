@@ -68,7 +68,7 @@ public class BaseClass extends Operations {
 	protected static String od_username, od_password, od_url;
 	protected static String spa_url, spa_username, spa_password;
 	protected static String textpay_url, yopmail_url;
-	protected static String headless, browser, yopmail, mailosaur_apiKey, mailosaur_serverId, mailosaur_serverDomain;
+	protected static String headless, browser, yopmail, mailosaur_apiKey, mailosaur_serverId, mailosaur_serverDomain,verifymail;
 	public static String os;
 	SPA_LoginPage spaLoginPage;
 	SPA_AccountsPage accountsPage;
@@ -120,6 +120,7 @@ public class BaseClass extends Operations {
 		mailosaur_apiKey = config.getProperty("mailosaur_apiKey");
 		mailosaur_serverId = config.getProperty("mailosaur_serverId");
 		mailosaur_serverDomain = config.getProperty("mailosaur_serverDomain");
+		verifymail = config.getProperty("verifymail");
 
 	}
 

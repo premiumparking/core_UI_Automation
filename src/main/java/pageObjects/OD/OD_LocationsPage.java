@@ -45,7 +45,7 @@ public class OD_LocationsPage extends BaseClass {
 
 	By locationDetails_Tab = By.xpath("//a[contains(text(),'Details')]");
 	By location_QR_Code = By
-			.xpath("//strong[contains(text(),'TextPay QR Code')]/parent::td/following-sibling::td/a/img");
+			.xpath("//strong[contains(text(),'CameraPay QR Code')]/parent::td/following-sibling::td/a/img");
 
 	// ****************** ACTIONS ****************************//
 

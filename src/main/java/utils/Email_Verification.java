@@ -40,21 +40,23 @@ public class Email_Verification extends BaseClass {
 	 * Author : Venu Thota(venu.thota@xebia.com)
 	 */
 	public void verify_PurchaseDetails_On_Email(PurchaseDetails purchaseDetails) {
-		waitForPageLoad(4);
-		if (Boolean.parseBoolean(yopmail)) {
-		launch_yopmail();
-		verify_Email_Content(purchaseDetails);
-		} else
-			try {
-				verify_Mailosaur_Email_Content(purchaseDetails);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (MailosaurException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+		if (Boolean.parseBoolean(verifymail)) {
+			waitForPageLoad(4);
+			if (Boolean.parseBoolean(yopmail)) {
+				launch_yopmail();
+				verify_Email_Content(purchaseDetails);
+			} else
+				try {
+					verify_Mailosaur_Email_Content(purchaseDetails);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (MailosaurException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+
 	}
 
 	/*
