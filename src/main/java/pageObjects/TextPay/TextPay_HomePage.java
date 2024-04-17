@@ -141,7 +141,8 @@ public class TextPay_HomePage extends BaseClass {
 		if (application.equalsIgnoreCase(Constants.CAMERAPAY)) {
 			skipLocationSearch = true;
 			user.setChannel(Constants.CAMERAPAY);
-		}
+		} else
+			user.setChannel(Constants.TEXTPAY);
 
 		login_and_SelectLocation_and_Continue(user, skipLocationSearch);
 
@@ -239,9 +240,9 @@ public class TextPay_HomePage extends BaseClass {
 
 	public void choose_regularSpace_and_Continue(Guest user) {
 		waitForElementTobeClickable(button_RegularSpace);
-		clickOnButton(button_RegularSpace, "Regular Space");		
+		clickOnButton(button_RegularSpace, "Regular Space");
 		waitForElementTobeDisplayed(button_ViewRate);
-		clickOnButton(button_ViewRate, "View Rate button");	
+		clickOnButton(button_ViewRate, "View Rate button");
 		waitForElementTobeClickable(label_Time_Regular_Space);
 		assertEquals(getElementText(label_Time_Regular_Space), user.getTimeInHours() + " Hours");
 		clickOnButton(button_Continue_3of4, getElementText(button_Continue_3of4));
@@ -250,7 +251,7 @@ public class TextPay_HomePage extends BaseClass {
 
 	public void choose_regularSpace_SpecialRate_and_Continue(Guest user) {
 		waitForElementTobeClickable(button_RegularSpace);
-		clickOnButton(button_RegularSpace, "Regular Space");		
+		clickOnButton(button_RegularSpace, "Regular Space");
 		waitForElementTobeDisplayed(button_ViewRate);
 		waitForElementTobeClickable(getSpecialRateTime(user.getTimeInHours()));
 		clickOnButton(getSpecialRateTime(user.getTimeInHours()),
@@ -274,7 +275,7 @@ public class TextPay_HomePage extends BaseClass {
 	}
 
 	public void choose_starSpace_and_Continue(Guest user) {
-		
+
 		waitForElementTobeClickable(button_StarSpace);
 		clickOnButton(button_StarSpace, "Star Space");
 		waitForPageLoad(5);
