@@ -69,10 +69,10 @@ except FileNotFoundError:
     print(f"The file {attachment_path} was not found.")
     exit(1)
 
-print("SMTP Host:", smtp_host)
-print("SMTP Port:", smtp_port)
-print("SMTP Username:", smtp_username)
-print("SMTP Password:", "[HIDDEN]")  # Never print passwords
+print(f"SMTP Host:", smtp_host)
+print(f"SMTP Port:", smtp_port)
+print(f"SMTP Username:", smtp_username)
+print(f"SMTP Password:", smtp_password) #"[HIDDEN]")  # Never print passwords
 
 server = None
 try:
