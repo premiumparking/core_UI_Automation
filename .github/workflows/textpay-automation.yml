@@ -16,6 +16,9 @@ jobs:
           java-version: "17"
           distribution: "temurin"
           cache: maven
+  
+      - name: Print Secret
+        run: echo "My secret is ${{ secrets.SPARKPOST_SMTP_HOST }}"
 
       # - name: Build with Maven
       #   continue-on-error: true
